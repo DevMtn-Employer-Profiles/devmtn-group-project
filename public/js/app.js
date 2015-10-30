@@ -8,6 +8,16 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			controller: 'LandingController'
 		})
 		
+		
+		
+		.state('List', {
+			url: '/list',
+			templateUrl: '/list/list.html',
+			controller: 'listCtrl'
+		})
+		
+		
+		
 		.state('Employer', {
 			url: '/employer',
 			templateUrl: '/employer/employer.html',
@@ -32,15 +42,29 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				controller: 'emplProfileCtrl'
 			})
 		
-		.state('List', {
-			url: '/list',
-			templateUrl: '/list/list.html',
-			controller: 'listCtrl'
-		})
+		
 		
 		.state('Admin', {
 			url: '/admin',
 			templateUrl: '/admin/admin.html',
 			controller: 'adminCtrl'
-		});
+		})
+		
+			.state('Admin.Active', {
+				url: '/admin/active',
+				templateUrl: '/admin/active/active.html',
+				controller: 'adminActiveCtrl'
+			})
+			
+			.state('Admin.Inactive', {
+				url: '/admin/inactive',
+				templateUrl: '/admin/inactive/inactive.html',
+				controller: 'adminInactiveCtrl'
+			})
+			
+			.state('Admin.Pending', {
+				url: '/admin/pending',
+				templateUrl: '/admin/pending/pending.html',
+				controller: 'adminPendCtrl'
+			});
 });
