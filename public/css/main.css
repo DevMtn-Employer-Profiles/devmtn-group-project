@@ -1,7 +1,11 @@
 /*Header Styles*/
+header {
+	height: 86px;
+	padding: 30px;
+	box-sizing: border-box;
+}
 .logo {
 	height: 30px;
-	margin-top: 28px;
 	display: inline-block;
 }
 
@@ -9,7 +13,14 @@
 	display: inline-block;
 	text-decoration: none;
 	color: #404041;
-	vertical-align: middle;
 	padding: 0px 11px;
 	box-sizing: border-box;
+}
+
+.header-link:hover {
+	color: #2AABE2;
+}
+
+.header-buttons {
+	float: right;
 }
