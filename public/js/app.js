@@ -67,4 +67,6 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				templateUrl: '/admin/pending/pending.html',
 				controller: 'adminPendCtrl'
 			});
+	
+	$urlRouterProvider.otherwise('/');
 });
