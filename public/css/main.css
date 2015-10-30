@@ -1,3 +1,31 @@
+/*Header Styles*/
+header {
+	height: 86px;
+	padding: 30px;
+	box-sizing: border-box;
+}
+.logo {
+	height: 30px;
+	display: inline-block;
+}
+
+.header-link {
+	display: inline-block;
+	text-decoration: none;
+	color: #404041;
+	padding: 0px 11px;
+	box-sizing: border-box;
+}
+
+.header-link:hover {
+	color: #2AABE2;
+}
+
+.header-buttons {
+	float: right;
+}
+
+/*SOMEONES CSS*/
 .topBar {
 	height: 15%;
 	width: 	100%;
@@ -16,6 +44,3 @@
 .rightSide {
 	float: right;
 }
-
-
-
