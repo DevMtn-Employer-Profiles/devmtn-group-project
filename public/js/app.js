@@ -8,11 +8,29 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			controller: 'LandingController'
 		})
 		
-		.state('Profile', {
-			url: '/profile',
-			templateUrl: '/profile/profile.html',
-			controller: 'profileCtrl'
+		.state('Employer', {
+			url: '/employer',
+			templateUrl: '/employer/employer.html',
+			controller: 'employerCtrl'
 		})
+		
+			.state('Employer.Students', {
+				url: '/employer/students',
+				templateUrl: '/employer/student-view/students.html',
+				controller: 'emplStudCtrl'
+			})
+			
+			.state('Employer.Matching', {
+				url: '/employer/matching',
+				templateUrl: '/employer/matching/matching.html',
+				controller: 'emplMatchCtrl'
+			})
+			
+			.state('Employer.Profile', {
+				url: '/employer/profile',
+				templateUrl: '/employer/profile/profile.html',
+				controller: 'emplProfileCtrl'
+			})
 		
 		.state('List', {
 			url: '/list',
