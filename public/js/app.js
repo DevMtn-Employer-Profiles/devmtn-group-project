@@ -25,19 +25,19 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		})
 		
 			.state('Employer.Students', {
-				url: '/employer/students',
+				url: '/students',
 				templateUrl: '/employer/student-view/students.html',
 				controller: 'emplStudCtrl'
 			})
 			
 			.state('Employer.Matching', {
-				url: '/employer/matching',
+				url: '/matching',
 				templateUrl: '/employer/matching/matching.html',
 				controller: 'emplMatchCtrl'
 			})
 			
 			.state('Employer.Profile', {
-				url: '/employer/profile',
+				url: '/profile',
 				templateUrl: '/employer/profile/profile.html',
 				controller: 'emplProfileCtrl'
 			})
@@ -46,24 +46,24 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		.state('Admin', {
 			url: '/admin',
-			templateUrl: '/admin/admin.html',
+			templateUrl: 'js/admin/admin.html',
 			controller: 'adminCtrl'
 		})
 		
 			.state('Admin.Active', {
-				url: '/admin/active',
+				url: '/active',
 				templateUrl: '/admin/active/active.html',
 				controller: 'adminActiveCtrl'
 			})
 			
 			.state('Admin.Inactive', {
-				url: '/admin/inactive',
+				url: '/inactive',
 				templateUrl: '/admin/inactive/inactive.html',
 				controller: 'adminInactiveCtrl'
 			})
 			
 			.state('Admin.Pending', {
-				url: '/admin/pending',
+				url: '/pending',
 				templateUrl: '/admin/pending/pending.html',
 				controller: 'adminPendCtrl'
 			});
