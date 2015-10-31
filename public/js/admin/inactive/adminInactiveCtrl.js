@@ -1,0 +1,3 @@
+app.controller('adminInactiveCtrl', function() {
+	
+});

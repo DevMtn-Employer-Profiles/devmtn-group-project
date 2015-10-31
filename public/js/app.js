@@ -65,7 +65,13 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			.state('Admin.Pending', {
 				url: '/pending',
 				templateUrl: 'js/admin/pending/pending.html',
-				controller: 'adminPendCtrl'
+				controller: 'adminPendingCtrl'
+			})
+			
+			.state('Admin.Skills', {
+				url: '/skills',
+				templateUrl: 'js/admin/skills/skills.html',
+				controller: 'adminSkillsCtrl'
 			});
 	
 	$urlRouterProvider.otherwise('/');
