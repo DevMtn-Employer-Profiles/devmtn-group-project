@@ -1,4 +1,4 @@
-app.controller('adminCtrl', function($scope) {
+app.controller('adminCtrl', function($scope, $timeout) {
 	var custIsExpanded = false;
 	
 	$scope.toggleSidenav = function() {
@@ -9,9 +9,6 @@ app.controller('adminCtrl', function($scope) {
 				.css({
 					'width': '85px'
 				});
-			
-			angular.element('.menu-icon')
-				.removeClass('pull-right');
 			
 			angular.element('.open-expand')
 				.addClass('hidden');
@@ -26,11 +23,10 @@ app.controller('adminCtrl', function($scope) {
 					'width': '200px'
 				});
 			
-			angular.element('.menu-icon')
-				.addClass('pull-right');
-			
-			angular.element('.open-expand')
-				.removeClass('hidden');
+			$timeout(function(){
+				angular.element('.open-expand')
+					.removeClass('hidden');
+			}, 250);
 		};
 	}
 });

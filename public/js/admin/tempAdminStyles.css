@@ -33,7 +33,7 @@ md-sidenav .tab-button, .collapsed-sidenav-toolbar .toolbar-button, #toggle-menu
 	color: white;
 }
 
-md-sidenav .tab-button, #toggle-menu-button {
+md-sidenav .tab-button {
 	text-align: left;
 }
 	.expanded-icon {
