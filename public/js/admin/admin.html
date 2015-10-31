@@ -1,46 +1,52 @@
 <div class="route-container" id="admin-view">
-	<md-sidenav md-is-open="false">
-		<a ui-sref="Admin.Active">
-			<nav>
-				<md-button ng-click="closeSidenav()">Active</md-button>
-			</nav>
-		</a>
-		<a ui-sref="Admin.Active">
-			<nav>
-				<md-button ng-click="closeSidenav()">Active</md-button>
-			</nav>
-		</a>
-		<a ui-sref="Admin.Active">
-			<nav>
-				<md-button ng-click="closeSidenav()">Active</md-button>
-			</nav>
-		</a>
-		<a ui-sref="Admin.Active">
-			<nav>
-				<md-button ng-click="closeSidenav()">Active</md-button>
-			</nav>
-		</a>
+	<link rel="stylesheet" href="js/admin/tempadminstyles.css">
+	
+	<md-sidenav md-is-open="isExpanded">
+		
+		
+		<div>
+			<a ui-sref="Admin.Active">
+				<nav>
+					<md-button md-no-ink class="tab-button" ng-click="activeTab('active')">Active <span class="pull-right fa fa-play"></span></md-button>
+				</nav>
+			</a>
+			<a ui-sref="Admin.Active">
+				<nav>
+					<md-button md-no-ink class="tab-button" ng-click="activeTab('inactive')">Inactive <span class="pull-right fa fa-stop"></span></md-button>
+				</nav>
+			</a>
+			<a ui-sref="Admin.Active">
+				<nav>
+					<md-button md-no-ink class="tab-button" ng-click="activeTab('pending')">Pending <span class="pull-right fa fa-exclamation-triangle"></span></md-button>
+				</nav>
+			</a>
+			<a ui-sref="Admin.Active">
+				<nav>
+					<md-button md-no-ink class="tab-button" ng-click="activeTab('skills')">Skills <span class="pull-right fa fa-code"></span></md-button>
+				</nav>
+			</a>
+		</div>
 	</md-sidenav>
 	
 	<div class="collapsed-sidenav-toolbar">
 		<a ui-sref="Admin.Active">
 			<nav>
-				<md-button><span class="fa fa-play"></span></md-button>
+				<md-button md-no-ink class="toolbar-button"><span class="fa fa-play"></span></md-button>
 			</nav>
 		</a>
 		<a ui-sref="Admin.Active">
 			<nav>
-				<md-button><span class="fa fa-stop"></span></md-button>
+				<md-button md-no-ink class="toolbar-button"><span class="fa fa-stop"></span></md-button>
 			</nav>
 		</a>
 		<a ui-sref="Admin.Active">
 			<nav>
-				<md-button><span class="fa fa-exclamation-triangle"></span></md-button>
+				<md-button md-no-ink class="toolbar-button"><span class="fa fa-exclamation-triangle"></span></md-button>
 			</nav>
 		</a>
 		<a ui-sref="Admin.Active">
 			<nav>
-				<md-button><span class="fa fa-play"></span></md-button>
+				<md-button md-no-ink class="toolbar-button"><span class="fa fa-code"></span></md-button>
 			</nav>
 		</a>
 	</div>

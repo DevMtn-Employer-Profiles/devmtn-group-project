@@ -1,0 +1,38 @@
+md-sidenav, 
+md-sidenav.md-locked-open, 
+md-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px;
+    width: 200px;
+    max-width: 200px;
+}
+
+md-sidenav, .collapsed-sidenav-toolbar {
+	background-color: #2F3F42;
+}
+
+.md-sidenav-backdrop {
+	display: none;
+}
+
+md-sidenav .tab-button, .collapsed-sidenav-toolbar .toolbar-button {
+	margin: 0;
+	
+	padding: 10px 20px;
+	
+	width: 100%;
+	
+	font-size: 1.2em;
+	
+	line-height: 1.01em;
+	
+	color: white;
+}
+
+md-sidenav .tab-button {
+	text-align: left;
+	
+}
+
+.collapsed-sidenav-toolbar {
+	width: 80px;
+}

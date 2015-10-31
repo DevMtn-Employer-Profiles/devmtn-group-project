@@ -1,3 +1,5 @@
-app.controller('adminCtrl', function() {
+app.controller('adminCtrl', function($scope) {
+	$scope.isExpanded = false;
+	
 	
 });
