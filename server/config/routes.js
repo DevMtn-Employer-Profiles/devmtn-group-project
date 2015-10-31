@@ -9,7 +9,7 @@ module.exports = function (app){
   });
 
   //Catch-all route errors
-  app.get('*', function(req, res){
+  app.get('/', function(req, res){
     res.render('index');
   });
 };
