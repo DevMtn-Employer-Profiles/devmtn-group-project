@@ -4,7 +4,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider
 		.state('Landing', {
 			url: '/',
-			templateUrl: 'landing/landing.html',
+			templateUrl: 'js/landing/landing.html',
 			controller: 'LandingController'
 		})
 		
@@ -12,7 +12,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		.state('List', {
 			url: '/list',
-			templateUrl: '/list/list.html',
+			templateUrl: 'js/list/list.html',
 			controller: 'listCtrl'
 		})
 		
@@ -20,25 +20,25 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		.state('Employer', {
 			url: '/employer',
-			templateUrl: '/employer/employer.html',
+			templateUrl: 'js/employer/employer.html',
 			controller: 'employerCtrl'
 		})
 		
 			.state('Employer.Students', {
-				url: '/students',
-				templateUrl: '/employer/student-view/students.html',
+				url: '/employer/students',
+				templateUrl: 'js/employer/student-view/students.html',
 				controller: 'emplStudCtrl'
 			})
 			
 			.state('Employer.Matching', {
-				url: '/matching',
-				templateUrl: '/employer/matching/matching.html',
+				url: '/employer/matching',
+				templateUrl: 'js/employer/matching/matching.html',
 				controller: 'emplMatchCtrl'
 			})
 			
 			.state('Employer.Profile', {
-				url: '/profile',
-				templateUrl: '/employer/profile/profile.html',
+				url: '/employer/profile',
+				templateUrl: 'js/employer/profile/profile.html',
 				controller: 'emplProfileCtrl'
 			})
 		
@@ -51,20 +51,20 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		})
 		
 			.state('Admin.Active', {
-				url: '/active',
-				templateUrl: '/admin/active/active.html',
+				url: '/admin/active',
+				templateUrl: 'js/admin/active/active.html',
 				controller: 'adminActiveCtrl'
 			})
 			
 			.state('Admin.Inactive', {
-				url: '/inactive',
-				templateUrl: '/admin/inactive/inactive.html',
+				url: '/admin/inactive',
+				templateUrl: 'js/admin/inactive/inactive.html',
 				controller: 'adminInactiveCtrl'
 			})
 			
 			.state('Admin.Pending', {
-				url: '/pending',
-				templateUrl: '/admin/pending/pending.html',
+				url: '/admin/pending',
+				templateUrl: 'js/admin/pending/pending.html',
 				controller: 'adminPendCtrl'
 			});
 	
