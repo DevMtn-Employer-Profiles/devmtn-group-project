@@ -6,9 +6,12 @@
 		
 		<section class="employer-info">
 			<h3 class="company-name">{{ company.companyName }}</h3>
-			<p class="company-bio">{{ company.bio | limitTo: 300 }}</p>
+			<p class="company-bio">
+				{{ company.bio | limitTo: 300 }}
+				<span ng-show="company.bio.length > 300">...</span>
+			</p>
 			<div class="skills-container" layout="row" layout-wrap>
-				<span class="skill-tags" ng-repeat="skill in company.requestedSkills track by $index">{{ skill }}</span>
+				<span class="skill-tags smaller" ng-repeat="skill in company.requestedSkills track by $index">{{ skill }}</span>
 			</div>
 		</section>
 	</md-card>
