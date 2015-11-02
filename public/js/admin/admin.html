@@ -7,26 +7,32 @@
 		</md-button>
 		
 		
+		<nav ui-sref="Admin.All">
+			<md-button md-no-ink id="all" class="toolbar-button" ng-click="activeTab()">
+				<span class="open-expand smaller">All</span> <span class="pull-right menu-icon fa fa-database"></span>
+			</md-button>
+		</nav>
+		
 		<nav ui-sref="Admin.Active">
-			<md-button md-no-ink id="active" class="toolbar-button" ng-click="activeTab('active')">
+			<md-button md-no-ink id="active" class="toolbar-button" ng-click="activeTab()">
 				<span class="open-expand smaller">Active</span> <span class="pull-right menu-icon fa fa-play"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Inactive">
-			<md-button md-no-ink id="inactive" class="toolbar-button" ng-click="activeTab('inactive')">
+			<md-button md-no-ink id="inactive" class="toolbar-button" ng-click="activeTab()">
 				<span class="open-expand smaller">Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Pending">
-			<md-button md-no-ink id="pending" class="toolbar-button" ng-click="activeTab('pending')">
+			<md-button md-no-ink id="pending" class="toolbar-button" ng-click="activeTab()">
 				<span class="open-expand smaller">Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Skills">
-			<md-button md-no-ink id="skills" class="toolbar-button" ng-click="activeTab('skills')">
+			<md-button md-no-ink id="skills" class="toolbar-button" ng-click="activeTab()">
 				<span class="open-expand smaller">Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
 			</md-button>
 		</nav>

@@ -44,6 +44,7 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 			
 			switch(tab)
 			{
+				case 'all'  : angular.element('#all').addClass('active-tab');   break;
 				case 'active'  : angular.element('#active').addClass('active-tab');   break;
 				case 'inactive': angular.element('#inactive').addClass('active-tab'); break;
 				case 'pending' : angular.element('#pending').addClass('active-tab');  break;
