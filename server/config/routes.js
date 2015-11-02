@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    profile = require('../controllers/profile');
 
 module.exports = function (app){
   //Endpoints
-
+  app.get('/api/profile', profile.getProfile);
+  app.post('/api/profile', profile.createProfile);
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);
