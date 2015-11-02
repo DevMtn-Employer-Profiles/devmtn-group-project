@@ -1,7 +1,8 @@
 app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
-	var custIsExpanded = false;
+	var isExpanded = true;
 	
-	
+	//  This is designed to figure out if the browser is on a mobile device ONLY,
+	//  to allow me to ensure that it will be styled for that ONLY
 	var isMobile = {
 		Android: function() {
 			return navigator.userAgent.match(/Android/i);
@@ -37,43 +38,31 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	$state.go('Admin.Active');
 	
 	$scope.toggleSidenav = function() {
-		if (!isMobile.any()) {
-			if (custIsExpanded) {
-				custIsExpanded = false;
+		if (isExpanded) {
+			isExpanded = false;
+			
+			angular.element('.sidenav-toolbar')
+				.css({
+					'width': '85px'
+				});
+			
+			angular.element('.open-expand')
+				.addClass('hidden');
 				
-				angular.element('.sidenav-toolbar')
-					.css({
-						'width': '85px'
-					});
-				
-				angular.element('.open-expand')
-					.addClass('hidden');
-					
-			} else {
-				custIsExpanded = true;
-				
-				angular.element('.sidenav-toolbar')
-					.css({
-						'width': '200px'
-					});
-				
-				$timeout(function(){
+		} else {
+			isExpanded = true;
+			
+			angular.element('.sidenav-toolbar')
+				.css({
+					'width': '200px'
+				});
+			
+			$timeout(function(){
+				if (isExpanded)
 					angular.element('.open-expand')
 						.removeClass('hidden');
-				}, 285);
-			};
-		} else {
-			angular.element('.sidenav-toolbar')
-					.css({
-						'width': '85px'
-					});
-				
-				angular.element('.open-expand')
-					.addClass('hidden');
-				
-				angular.element('#toggle-menu-button')
-					.addClass('hidden');
-		}
+			}, 285);
+		};
 	};
 	
 	$scope.activeTab = function() {
@@ -99,6 +88,31 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	
 	
 	// GENERIC FUNCTIONS TO BE ABLE TO GRAB/MANIPULATE DATA AS WE'D LIKE
+	
+	
+	function initialSetup() {
+		if (isMobile.any()) {
+			angular.element('.sidenav-toolbar')
+				.css({
+					width: '85px'
+				});
+			
+			angular.element('#toggle-menu-button')
+				.addClass('hidden');
+			
+			$timeout(function() {
+				angular.element('.open-expand')
+					.addClass('hidden');
+				}, 25);
+		}
+		
+		angular.element('.route-container')
+			.css({
+				width: window.innerWidth,
+				height: window.innerHeight - 86,
+				"max-height": window.innerHeight - 86
+			})
+	}
 	
 	function parsePath() {
 		var reversePath = reverseString($location.path()),
@@ -128,5 +142,5 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		return reverseStr;
 	}
 	
-	$scope.toggleSidenav();
+	initialSetup();
 });
