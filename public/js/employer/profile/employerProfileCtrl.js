@@ -3,14 +3,14 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
 	
 	$scope.isEditing  = false;
 	
-	$scope.skillsOptions = ['Angular', 'Node','React','Webpack'];
+	$scope.skillsOptions = ['Angular', 'Node','React','Webpack', 'Other'];
 	
 	$scope.profile = {
 		company_name: 'Qualtrics',
 		bio: 'Located in Provo, Qualtrics is a great company with a cool environment for devs to work in.',
 		requirements: ['Willing to relocate', 'High school diploma'],
 		skills: ['Angular', 'Node', 'Express', 'Mongo'],
-		logo: ''
+		logo: 'https://image.freepik.com/free-vector/dolphin-clipart_91-5846.jpg'
 	};
 	
 	$scope.editedProfile = {};
@@ -60,6 +60,23 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
 	//Splice value from an array
 	$scope.removeRequirement = function(idx) {
 		$scope.editedProfile.requirements.splice(idx, 1);
+	}
+	
+	$scope.changeSelectedSkill = function(val) {
+		if(val ==='Other') {
+			$scope.showNewSkill = true;
+		} else {
+			$scope.showNewSkill = false;
+		}
+	}
+	
+	$scope.submitNewSkill = function(newSkill) {
+		//Send to server this new skill
+		//add to list
+		$scope.skillsOptions.push(newSkill);
+		$scope.newSkill = '';
+		$scope.editedProfile.skills.push(newSkill);
+		$scope.showNewSkill = false;
 	}
 	
 })

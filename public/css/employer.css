@@ -1,33 +1,10 @@
-.side-nav {
-	width: 200px;
-	height: 100vh;
-	float: left;
-	padding: 20px;
-	box-sizing: border-box;
-}
-
 .page-view-container {
 	width: calc( 100% - 200px );
+	margin: auto;
+	padding: 20px;
 	float: right;
 	box-sizing: border-box;
 }
-
-.side-nav-a {
-	margin: auto;
-	text-align: center;
-	text-decoration: none;
-	display: block;
-	padding: 10px;
-	color: #404041;
-}
-
-	.side-nav-a:visited {
-		color: #404041;
-	}
-
-	.side-nav-a:hover {
-		color: #2AABE2;
-	}
 
 /*Profile View Styles*/
 .profile-left {
@@ -45,7 +22,7 @@
 }
 
 .profile-img > img {
-	background: lightblue;
+	background: #69C4EA;
 	width: 200px;
 	height: 200px;
 }
@@ -56,3 +33,41 @@
 	height: 200px;
 	resize: none;
 }
+
+ul {
+	list-style: none;
+}
+
+.add-circle {
+	margin: 2px;
+}
+
+	.add-circle:hover {
+		color: green;
+	}
+
+.delete-circle {
+	margin: 2px;
+}
+
+	.delete-circle:hover {
+		cursor: pointer;
+		color: red;
+	}
+
+.save-btn {
+	font-size: 2em;
+}
+
+	.save-btn:hover {
+		color: green;
+		cursor: pointer;
+	}
+
+.cancel-btn {
+	font-size: 2em;
+}
+	.cancel-btn:hover {
+		color: red;
+		cursor: pointer;
+	}

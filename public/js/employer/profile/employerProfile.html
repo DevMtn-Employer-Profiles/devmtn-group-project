@@ -1,6 +1,6 @@
 <h3>Profile</h3>
 <div ng-show='!isEditing'>
-	<button ng-click='openEdit()'>Edit</button><br/>
+	<button ng-click='openEdit()' class='pull-right'>Edit</button><br/>
 	<div class='profile-left'>
 		<div class='profile-img'>
 			<img ng-src='{{profile.logo}}' alt='company logo'/>
@@ -21,19 +21,27 @@
 	</div>
 </div>
 <div ng-show='isEditing'>
-	<button ng-click='cancelEdit()'>Cancel</button>
-	<button ng-click='saveEdit()'>Save</button> <br/>
+	<div class='pull-right'>
+		<span ng-click='cancelEdit()' class='fa fa-ban cancel-btn'></span>
+		<span ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span> <br/>
+	</div>
 	<div class='profile-left'>
 		<div class='profile-img'>
 			<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
 			<input type='text' placeholder='company logo url' ng-model='editedProfile.logo' />
 		</div>
 		<h4>Skills Needed</h4>
-		<select ng-options='item for item in skillsOptions' ng-model='selectedSkill'>
+		<select ng-change='changeSelectedSkill(selectedSkill)' ng-options='item for item in skillsOptions' ng-model='selectedSkill'>
 		</select>
-		<button ng-click='addSelectedSkill(selectedSkill)'>+</button>
+		<span ng-click='addSelectedSkill(selectedSkill)' class='fa fa-plus-circle add-circle'></span>
+		<div ng-show='showNewSkill'>
+			<input type='text' placeholder='new skill' ng-model='newSkill'/>
+			<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
+		</div>
 		<ul>
-			<li ng-repeat='skill in editedProfile.skills track by $index'>{{skill}}<button ng-click='removeSkill($index)'>-</button></li>
+			<li ng-repeat='skill in editedProfile.skills track by $index'>
+				<span ng-click='removeSkill($index)' class='fa fa-minus-circle delete-circle'></span>{{skill}}
+			</li>
 		</ul>
 	</div>
 	<div class="profile-right">
@@ -42,9 +50,12 @@
 		<textarea class='profile-textarea' ng-model='editedProfile.bio'></textarea>
 		<h4>Requirements</h4>
 		<input type='text' placeholder='new requirement' ng-model='newRequirement'/>
-		<button ng-click='addNewRequirement(newRequirement)'>+</button>
+		<span ng-click='addNewRequirement(newRequirement)' class='fa fa-plus-circle add-circle'></span>
 		<ul>
-			<li ng-repeat='requirement in editedProfile.requirements track by $index'><input type='text' ng-model='editedProfile.requirements[$index]'/><button ng-click='removeRequirement($index)'>-</button></li>
+			<li ng-repeat='requirement in editedProfile.requirements track by $index'>
+				<span ng-click='removeRequirement($index)' class='fa fa-minus-circle delete-circle'></span>
+				<input type='text' ng-model='editedProfile.requirements[$index]'/>
+			</li>
 		</ul>
 	</div>
 </div>
