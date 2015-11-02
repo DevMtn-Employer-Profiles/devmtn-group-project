@@ -52,6 +52,7 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 				case 'inactive': angular.element('#inactive').addClass('active-tab'); break;
 				case 'pending' : angular.element('#pending').addClass('active-tab');  break;
 				case 'skills'  : angular.element('#skills').addClass('active-tab');   break;
+				case 'config'  : angular.element('#config').addClass('active-tab');   break;
 				default		   : angular.element('#active').addClass('active-tab');   break;
 			}
 		}, 50);
