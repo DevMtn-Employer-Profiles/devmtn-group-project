@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="css/employer.css">
+<div layout='row'>
+	<div class='sidenav-toolbar'>
+		<!--Nav Toggle Button-->
+		<md-button md-no-ink id="toggle-menu-button" class="toolbar-button" ng-click="toggleSidenav()">
+			<span class="open-expand smaller">Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
+		</md-button>
+		<!--Links/Tabs-->
+		<nav ui-sref="Employer.Home">
+			<md-button md-no-ink id="home" class="toolbar-button" ng-click="activeTab()">
+				<span class="open-expand smaller">Home</span> <span class="pull-right menu-icon fa fa-home"></span>
+			</md-button>
+		</nav>
+		
+		<nav ui-sref="Employer.Profile">
+			<md-button md-no-ink id="profile" class="toolbar-button" ng-click="activeTab()">
+				<span class="open-expand smaller">Profile</span> <span class="pull-right menu-icon fa fa-user"></span>
+			</md-button>
+		</nav>
+		
+		<nav ui-sref="Employer.Students">
+			<md-button md-no-ink id="students" class="toolbar-button" ng-click="activeTab()">
+				<span class="open-expand smaller">Students</span> <span class="pull-right menu-icon fa fa-graduation-cap"></span>
+			</md-button>
+		</nav>
+	</div>
+	<div class='page-view-container'>
+		<ui-view></ui-view>
+	</div>
+</div>
