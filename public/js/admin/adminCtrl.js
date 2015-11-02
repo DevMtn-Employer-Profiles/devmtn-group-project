@@ -1,42 +1,12 @@
 app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	var isExpanded = true;
 	
-	//  This is designed to figure out if the browser is on a mobile device ONLY,
-	//  to allow me to ensure that it will be styled for that ONLY
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-		
-		BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-		
-		iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-		
-		Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-		
-		Windows: function() {
-			return navigator.userAgent.match(/IEMobile|Edge/i);
-		},
-		
-		any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	}
-	
-	
-	
-	
-	
 	
 	if ($location.path() === '/admin')
 		$state.go('Admin.Active');
 	
+	
+	// Sidenav Toolbar configuration from here on down
 	$scope.toggleSidenav = function() {
 		if (isExpanded) {
 			isExpanded = false;
@@ -84,6 +54,36 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	};
 	
 	$scope.activeTab();
+	
+	
+	
+	//  This is designed to figure out if the browser is on a mobile device ONLY,
+	//  to allow me to ensure that it will be styled for that ONLY
+	var isMobile = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		
+		BlackBerry: function() {
+			return navigator.userAgent.match(/BlackBerry/i);
+		},
+		
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		
+		Opera: function() {
+			return navigator.userAgent.match(/Opera Mini/i);
+		},
+		
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile|Edge/i);
+		},
+		
+		any: function() {
+			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		}
+	}
 	
 	
 	
