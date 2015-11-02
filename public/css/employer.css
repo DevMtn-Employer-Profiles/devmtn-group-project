@@ -41,8 +41,11 @@
 }
 
 .profile-img {
+	text-align: center;
+}
+
+.profile-img > img {
+	background: lightblue;
 	width: 200px;
 	height: 200px;
-	background: lightblue;
-	margin: auto;
 }

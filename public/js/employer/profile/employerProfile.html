@@ -1,7 +1,9 @@
 <h3>Profile</h3>
 <div>
 	<div class='profile-left'>
-		<img class='profile-img' ng-src='company.logo' alt='company logo'/>
+		<div class='profile-img'>
+			<img ng-src='company.logo' alt='company logo'/>
+		</div>
 		<h4>Skills Needed</h4>
 		<ul>
 			<li ng-repeat='skill in profile.skills'>{{skill}}</li>
