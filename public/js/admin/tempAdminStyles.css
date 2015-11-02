@@ -1,4 +1,4 @@
-.hidden {
+/*.hidden {
 	display: none;
 }
 
@@ -13,7 +13,7 @@
 
 .active-tab {
 	background-color: #D8E8FF;
-	/*color: black !important;*/
+	color: black !important;
 }
 
 .active-tab:hover, .active-tab:focus {
@@ -31,7 +31,7 @@
 	
 	line-height: 1.01em;
 	
-	/*color: white;*/
+	color: white;
 }
 
 .sidenav-toolbar {
@@ -39,7 +39,7 @@
 	height: 100%;
 	width: 200px;
 	
-	/*background-color: #2F3F42;*/
+	background-color: #2F3F42;
 	
 	transition: all linear .3s;
 }
@@ -55,7 +55,7 @@
 	.sidenav-toolbar .toolbar-button > span:last-child {
 		position: relative;
 		left: -5px;
-	}
+	}*/
 
 
 
