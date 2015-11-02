@@ -1,4 +1,4 @@
-angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
+angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService) {
 	$scope.message = 'Hello from employer profile controller';
 	
 	$scope.isEditing  = false;
@@ -12,6 +12,13 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
 		skills: ['Angular', 'Node', 'Express', 'Mongo'],
 		logo: 'https://image.freepik.com/free-vector/dolphin-clipart_91-5846.jpg'
 	};
+	
+	var loadProfile = function() {
+		dataService.getMyProfile().then(function(result) {
+			$scope.profile = result;
+			console.log("Profile Loaded");
+		})
+	}
 	
 	$scope.editedProfile = {};
 	
@@ -31,7 +38,9 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
 	$scope.saveEdit = function() {
 		$scope.profile = $scope.editedProfile;
 		//Push to database
-		
+		dataService.updateProfile($scope.profile).then(function(result) {
+			console.log('Profile Updated');
+		});
 		//Close Profile Edit Div
 		$scope.isEditing = false;
 		$scope.editedProfile = {};
@@ -71,12 +80,18 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope) {
 	}
 	
 	$scope.submitNewSkill = function(newSkill) {
-		//Send to server this new skill
-		//add to list
-		$scope.skillsOptions.push(newSkill);
-		$scope.newSkill = '';
-		$scope.editedProfile.skills.push(newSkill);
-		$scope.showNewSkill = false;
+		if($scope.skillsOptions.indexOf(newSkill) === -1) {
+			//Send to server this new skill
+			dataService.createSkill(newSkill).then(function(result) {
+				console.log("Skill Created");
+			});
+			//add to list
+			$scope.skillsOptions.push(newSkill);
+			$scope.newSkill = '';
+			$scope.editedProfile.skills.push(newSkill);
+			$scope.showNewSkill = false;
+		}
 	}
 	
+	loadProfile();
 })
