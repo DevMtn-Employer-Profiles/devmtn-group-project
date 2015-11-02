@@ -34,8 +34,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	
 	
 	
-	
-	$state.go('Admin.Active');
+	if ($location.path() === '/admin')
+		$state.go('Admin.Active');
 	
 	$scope.toggleSidenav = function() {
 		if (isExpanded) {
