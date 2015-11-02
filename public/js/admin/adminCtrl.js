@@ -1,6 +1,10 @@
+var scope
+
 app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	var isExpanded = true;
 	
+	
+	scope = $scope; 
 	
 	if ($location.path() === '/admin')
 		$state.go('Admin.Active');
@@ -108,10 +112,9 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		
 		angular.element('.route-container')
 			.css({
-				width: window.innerWidth,
 				height: window.innerHeight - 86,
 				"max-height": window.innerHeight - 86
-			})
+			});
 	}
 	
 	function parsePath() {
@@ -143,4 +146,14 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	}
 	
 	initialSetup();
+	
+	$('window').resize(function() {
+		angular.element('.route-container')
+			.css({
+				height: window.innerHeight - 86,
+				"max-height": window.innerHeight - 86
+			});
+		
+		console.log('hey');
+	});
 });
