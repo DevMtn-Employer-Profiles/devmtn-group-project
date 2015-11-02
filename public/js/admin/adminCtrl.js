@@ -108,10 +108,9 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		
 		angular.element('.route-container')
 			.css({
-				width: window.innerWidth,
 				height: window.innerHeight - 86,
 				"max-height": window.innerHeight - 86
-			})
+			});
 	}
 	
 	function parsePath() {
@@ -143,4 +142,22 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	}
 	
 	initialSetup();
+	
+	$scope.$watch(function() {
+		return window.innerHeight;
+	}, function(newValue) {
+		angular.element('.route-container')
+			.css({
+				height: newValue - 86
+			});
+	});
+	
+	$scope.$watch(function() {
+		return window.innerWidth;
+	}, function(newValue) {
+		angular.element('.route-container')
+			.css({
+				width: newValue
+			});
+	});
 });
