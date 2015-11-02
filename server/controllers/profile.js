@@ -8,20 +8,16 @@ exports.getProfile = function(req, res){
 
 exports.createProfile = function(req, res, next){
 	var companyData = req.body;
-	companyData.companyName = companyData.company_name.toLowerCase();
+	companyData.companyName = companyData.companyName;
 	companyData.bio = companyData.bio;
-	Profile.create(companyData, function(req, res, next){
-		if (err){
-			if(err.toString.indexOf('E11000') > -1){
+	Profile.create(companyData, function(err, profile){
+		if(err){
+			if(err.toString().indexOf('E11000') > -1){
 				err = new Error('Duplicate Company Name');
 			}
 			res.send(400);
 			return res.send({reason:err.toString()});
-		}
-		req.login(user, function(err){
-			if(err){return next(err);}
-			res.send(user);
-		})
+		} else{res.end();}
 	})
 }
 exports.updateProfile = function(req, res){
