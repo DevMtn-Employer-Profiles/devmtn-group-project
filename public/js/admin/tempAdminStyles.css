@@ -56,3 +56,11 @@
 		position: relative;
 		left: -5px;
 	}
+
+.active-card {
+	width: 90%;
+	
+	border-radius: 3px;
+	
+	padding: 20px;
+}
