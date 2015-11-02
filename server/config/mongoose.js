@@ -1,4 +1,7 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    profileModel = require('../models/Profile'),
+    skillsModel = require('../models/Skill'),
+    userModel = require('../models/User');
 
 module.exports = function(config){
   mongoose.connect(config.db);
@@ -7,4 +10,7 @@ module.exports = function(config){
   db.once('open', function callback(){
     console.log('Ye hath entered into the Employer Db');
   });
+  profileModel;
+  skillsModel;
+  userModel;
 };
