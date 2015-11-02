@@ -56,3 +56,61 @@
 		position: relative;
 		left: -5px;
 	}
+	
+/*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
+
+.active-card, .inactive-card, .pending-card, .all-card {
+	width: 90%;
+	max-width: 800px;
+	
+	border-radius: 5px;
+	
+	overflow: hidden;
+	
+	/*padding: 20px;*/
+}
+
+	.employer-logo {
+		width: 150px;
+		height: 150px;
+		
+		margin: 10px; 
+	}
+		
+		.employer-logo > img {
+			width: 100%;
+		}
+	
+	.employer-info {
+		width: 100%;
+		
+		padding-left: 20px;
+	}
+	
+		.employer-info .company-name {
+			width: calc(100% - 40px);
+			
+			margin: 0;
+			
+			padding: 10px 20px;
+			
+			text-align: center;
+			background-color: #eee;
+		}
+		
+		.skills-container {
+			margin-bottom: 20px;
+		}
+		
+			.skills-container .skill-tags {
+				display: inline-block;
+				
+				margin: 0 8px;
+				padding: 3px;
+				
+				background-color: #e0e0ff;
+				
+				box-shadow: 0 2px 3px #bbb;
+				
+				border-radius: 3px;
+			}
