@@ -1,8 +1,9 @@
 <h3>Profile</h3>
-<div>
+<div ng-show='!isEditing'>
+	<button ng-click='openEdit()'>Edit</button><br/>
 	<div class='profile-left'>
 		<div class='profile-img'>
-			<img ng-src='company.logo' alt='company logo'/>
+			<img ng-src='{{profile.logo}}' alt='company logo'/>
 		</div>
 		<h4>Skills Needed</h4>
 		<ul>
@@ -16,6 +17,34 @@
 		<h4>Requirements</h4>
 		<ul>
 			<li ng-repeat='requirement in profile.requirements'>{{requirement}}</li>
+		</ul>
+	</div>
+</div>
+<div ng-show='isEditing'>
+	<button ng-click='cancelEdit()'>Cancel</button>
+	<button ng-click='saveEdit()'>Save</button> <br/>
+	<div class='profile-left'>
+		<div class='profile-img'>
+			<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
+			<input type='text' placeholder='company logo url' ng-model='editedProfile.logo' />
+		</div>
+		<h4>Skills Needed</h4>
+		<select ng-options='item for item in skillsOptions' ng-model='selectedSkill'>
+		</select>
+		<button ng-click='addSelectedSkill(selectedSkill)'>+</button>
+		<ul>
+			<li ng-repeat='skill in editedProfile.skills track by $index'>{{skill}}<button ng-click='removeSkill($index)'>-</button></li>
+		</ul>
+	</div>
+	<div class="profile-right">
+		<input type='text' ng-model='editedProfile.company_name' />
+		<h4>Bio</h4>
+		<textarea class='profile-textarea' ng-model='editedProfile.bio'></textarea>
+		<h4>Requirements</h4>
+		<input type='text' placeholder='new requirement' ng-model='newRequirement'/>
+		<button ng-click='addNewRequirement(newRequirement)'>+</button>
+		<ul>
+			<li ng-repeat='requirement in editedProfile.requirements track by $index'><input type='text' ng-model='editedProfile.requirements[$index]'/><button ng-click='removeRequirement($index)'>-</button></li>
 		</ul>
 	</div>
 </div>

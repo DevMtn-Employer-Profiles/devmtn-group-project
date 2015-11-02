@@ -49,3 +49,10 @@
 	width: 200px;
 	height: 200px;
 }
+
+.profile-textarea {
+	box-sizing: border-box;
+	width: 80%;
+	height: 200px;
+	resize: none;
+}
