@@ -1,4 +1,4 @@
-var app = angular.module('MainApp', ['ui.router']);
+var app = angular.module('MainApp', ['ui.router', 'ngMaterial']);
 
 app.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider
@@ -24,19 +24,19 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		})
 		
 			.state('Employer.Students', {
-				url: '/employer/students',
+				url: '/students',
 				templateUrl: 'js/employer/student-view/students.html',
 				controller: 'emplStudCtrl'
 			})
 			
 			.state('Employer.Matching', {
-				url: '/employer/matching',
+				url: '/matching',
 				templateUrl: 'js/employer/matching/matching.html',
 				controller: 'emplMatchCtrl'
 			})
 			
 			.state('Employer.Profile', {
-				url: '/employer/profile',
+				url: '/profile',
 				templateUrl: 'js/employer/profile/profile.html',
 				controller: 'emplProfileCtrl'
 			})
@@ -50,21 +50,27 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		})
 		
 			.state('Admin.Active', {
-				url: '/admin/active',
+				url: '/active',
 				templateUrl: 'js/admin/active/active.html',
 				controller: 'adminActiveCtrl'
 			})
 			
 			.state('Admin.Inactive', {
-				url: '/admin/inactive',
+				url: '/inactive',
 				templateUrl: 'js/admin/inactive/inactive.html',
 				controller: 'adminInactiveCtrl'
 			})
 			
 			.state('Admin.Pending', {
-				url: '/admin/pending',
+				url: '/pending',
 				templateUrl: 'js/admin/pending/pending.html',
-				controller: 'adminPendCtrl'
+				controller: 'adminPendingCtrl'
+			})
+			
+			.state('Admin.Skills', {
+				url: '/skills',
+				templateUrl: 'js/admin/skills/skills.html',
+				controller: 'adminSkillsCtrl'
 			});
 	
 	$urlRouterProvider.otherwise('/');

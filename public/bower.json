@@ -19,6 +19,7 @@
     "angular": "~1.4.7",
     "angular-material": "~0.11.4",
     "font-awesome": "~4.4.0",
-    "jquery": "~2.1.4"
+    "jquery": "~2.1.4",
+    "normalize-css": "~3.0.3"
   }
 }
