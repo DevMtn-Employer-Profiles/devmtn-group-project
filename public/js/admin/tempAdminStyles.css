@@ -1,4 +1,4 @@
-.hidden {
+/*.hidden {
 	display: none;
 }
 
@@ -12,9 +12,9 @@
 
 
 .active-tab {
-	background-color: #D8E8FF;
+	background-color: #D8E8FF;*/
 	/*color: black !important;*/
-}
+/*}
 
 .active-tab:hover, .active-tab:focus {
 	background-color: #BCCADE !important;
@@ -29,19 +29,19 @@
 	
 	font-size: 1.2em;
 	
-	line-height: 1.01em;
+	line-height: 1.01em;*/
 	
 	/*color: white;*/
-}
+/*}
 
 .sidenav-toolbar {
 	
 	height: 100%;
-	width: 200px;
+	width: 200px;*/
 	
 	/*background-color: #2F3F42;*/
 	
-	transition: all linear .3s;
+	/*transition: all linear .3s;
 }
 
 	.sidenav-toolbar .toolbar-button {
@@ -55,7 +55,7 @@
 	.sidenav-toolbar .toolbar-button > span:last-child {
 		position: relative;
 		left: -5px;
-	}
+	}*/
 	
 /*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
 
