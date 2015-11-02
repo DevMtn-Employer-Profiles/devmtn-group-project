@@ -50,11 +50,12 @@ angular.module('MainApp').service('dataService', function($http) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	this.updateCompany = function(companyId, updateObj) {
+	this.updateProfile = function(newProfile) {
 		return $http({
 			method: 'PUT',
-			url: '/api/company/' + companyId,
-			body: updateObj
+			url: '/api/company/'+newProfile._id,
+			data: newProfile	
+
 		}).then(simpleDataReturn, handleError)
 	}
 	
@@ -64,5 +65,20 @@ angular.module('MainApp').service('dataService', function($http) {
 			url: '/api/company/',
 			data: company	
 		}).then(simpleDataReturn, handleError)
+	}
+	
+	this.createSkill = function(skill) {
+		return $http({
+			method: 'POST',
+			url: '/api/skills',
+			data: skill
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.getMyProfile = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/myProfile'
+		}).then(simpleDataReturn, handleError);
 	}
 });
