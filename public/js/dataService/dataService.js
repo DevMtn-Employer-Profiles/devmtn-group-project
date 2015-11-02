@@ -50,10 +50,11 @@ angular.module('MainApp').service('dataService', function($http) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	this.updateCompany = function(companyId) {
+	this.updateCompany = function(companyId, updateObj) {
 		return $http({
 			method: 'PUT',
-			url: '/api/company/' + companyId	
+			url: '/api/company/' + companyId,
+			body: updateObj
 		}).then(simpleDataReturn, handleError)
 	}
 	
