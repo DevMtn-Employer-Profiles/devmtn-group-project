@@ -35,9 +35,6 @@
 }
 
 .sidenav-toolbar {
-	/*position: absolute;
-	left: 0;
-	top: 0;*/
 	
 	height: 100%;
 	width: 200px;
@@ -58,9 +55,4 @@
 	.sidenav-toolbar .toolbar-button > span:last-child {
 		position: relative;
 		left: -5px;
-		
 	}
-	
-	/*.open-expand {
-		text-align: left;
-	}*/
