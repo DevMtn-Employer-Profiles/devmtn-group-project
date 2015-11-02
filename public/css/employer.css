@@ -1,0 +1,48 @@
+.side-nav {
+	width: 200px;
+	height: 100vh;
+	float: left;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.page-view-container {
+	width: calc( 100% - 200px );
+	float: right;
+	box-sizing: border-box;
+}
+
+.side-nav-a {
+	margin: auto;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	padding: 10px;
+	color: #404041;
+}
+
+	.side-nav-a:visited {
+		color: #404041;
+	}
+
+	.side-nav-a:hover {
+		color: #2AABE2;
+	}
+
+/*Profile View Styles*/
+.profile-left {
+	width: 30%;
+	float: left;
+}
+
+.profile-right {
+	width: 70%;
+	float: right;
+}
+
+.profile-img {
+	width: 200px;
+	height: 200px;
+	background: lightblue;
+	margin: auto;
+}

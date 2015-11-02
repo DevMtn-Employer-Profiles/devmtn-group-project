@@ -23,23 +23,22 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			templateUrl: 'js/employer/employer.html',
 			controller: 'employerCtrl'
 		})
+			.state('Employer.Home', {
+				url: '/home',
+				templateUrl: 'js/employer/home/employerHome.html',
+				controller: 'employerHomeCtrl'
+			})
 		
 			.state('Employer.Students', {
-				url: '/employer/students',
-				templateUrl: 'js/employer/student-view/students.html',
-				controller: 'emplStudCtrl'
-			})
-			
-			.state('Employer.Matching', {
-				url: '/employer/matching',
-				templateUrl: 'js/employer/matching/matching.html',
-				controller: 'emplMatchCtrl'
+				url: '/students',
+				templateUrl: 'js/employer/students/students.html',
+				controller: 'employerStudentCtrl'
 			})
 			
 			.state('Employer.Profile', {
-				url: '/employer/profile',
-				templateUrl: 'js/employer/profile/profile.html',
-				controller: 'emplProfileCtrl'
+				url: '/profile',
+				templateUrl: 'js/employer/profile/employerProfile.html',
+				controller: 'employerProfileCtrl'
 			})
 		
 		
