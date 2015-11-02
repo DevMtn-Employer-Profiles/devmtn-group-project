@@ -1,10 +1,15 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<md-card class="active-card" ng-repeat="company in dummyActiveList track by $index" layout="row">
-		<div class="employer-logo">
-			
-		</div>
-		<div class="employer-info">
-			{{ company.companyName }}
-		</div>
+		<section class="employer-logo">
+			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+		</section>
+		
+		<section class="employer-info">
+			<h3 class="company-name">{{ company.companyName }}</h3>
+			<p class="company-bio">{{ company.bio | limitTo: 300 }}</p>
+			<div class="skills-container" layout="row" layout-wrap>
+				<span class="skill-tags" ng-repeat="skill in company.requestedSkills track by $index">{{ skill }}</span>
+			</div>
+		</section>
 	</md-card>
 </div>

@@ -66,10 +66,44 @@
 	
 	border-radius: 3px;
 	
+	overflow: hidden;
+	
 	/*padding: 20px;*/
 }
 
-.employer-logo {
-	width: 100px;
-	height: 100px;
-}
+	.employer-logo {
+		width: 150px;
+		height: 150px;
+	}
+		
+		.employer-logo > img {
+			width: 100%;
+		}
+	
+	.employer-info {
+		width: 100%;
+		
+		padding-left: 20px;
+	}
+	
+		.employer-info .company-name {
+			width: calc(100% - 40px);
+			
+			margin: 0;
+			
+			padding: 20px;
+			
+			text-align: center;
+			background-color: #eee;
+		}
+		
+		.skills-container .skill-tags {
+			display: inline-block;
+			
+			margin: 5px;
+			padding: 3px;
+			
+			background-color: #eee;
+			
+			box-shadow: 0 2px 3px #bbb;
+		}
