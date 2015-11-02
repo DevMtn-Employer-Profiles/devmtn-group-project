@@ -55,6 +55,7 @@ angular.module('MainApp').service('dataService', function($http) {
 			method: 'PUT',
 			url: '/api/company/'+newProfile._id,
 			data: newProfile	
+
 		}).then(simpleDataReturn, handleError)
 	}
 	

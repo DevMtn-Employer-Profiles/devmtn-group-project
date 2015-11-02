@@ -49,6 +49,12 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			controller: 'adminCtrl'
 		})
 		
+			.state('Admin.All', {
+				url: '/all',
+				templateUrl: 'js/admin/all/all.html',
+				controller: 'adminAllCtrl'
+			})
+			
 			.state('Admin.Active', {
 				url: '/active',
 				templateUrl: 'js/admin/active/active.html',
