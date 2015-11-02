@@ -57,10 +57,19 @@
 		left: -5px;
 	}
 
+
+
+/*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
+
 .active-card {
 	width: 90%;
 	
 	border-radius: 3px;
 	
-	padding: 20px;
+	/*padding: 20px;*/
+}
+
+.employer-logo {
+	width: 100px;
+	height: 100px;
 }

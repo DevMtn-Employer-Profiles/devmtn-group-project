@@ -1,5 +1,10 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
-	<md-card class="active-card" ng-repeat="company in dummyActiveList track by $index">
-		{{ company.companyName }}
+	<md-card class="active-card" ng-repeat="company in dummyActiveList track by $index" layout="row">
+		<div class="employer-logo">
+			
+		</div>
+		<div class="employer-info">
+			{{ company.companyName }}
+		</div>
 	</md-card>
 </div>
