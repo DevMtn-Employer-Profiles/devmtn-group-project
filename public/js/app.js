@@ -1,11 +1,10 @@
-var app = angular.module('MainApp', ['ui.router']);
+var app = angular.module('MainApp', ['ui.router', 'ngMaterial']);
 
 app.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider
 		.state('Landing', {
 			url: '/',
-			templateUrl: 'js/landing/landing.html',
-			controller: 'LandingController'
+			templateUrl: 'js/landing/landing.html'
 		})
 		
 		
@@ -39,6 +38,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/profile',
 				templateUrl: 'js/employer/profile/employerProfile.html',
 				controller: 'employerProfileCtrl'
+
 			})
 		
 		
@@ -50,21 +50,27 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		})
 		
 			.state('Admin.Active', {
-				url: '/admin/active',
+				url: '/active',
 				templateUrl: 'js/admin/active/active.html',
 				controller: 'adminActiveCtrl'
 			})
 			
 			.state('Admin.Inactive', {
-				url: '/admin/inactive',
+				url: '/inactive',
 				templateUrl: 'js/admin/inactive/inactive.html',
 				controller: 'adminInactiveCtrl'
 			})
 			
 			.state('Admin.Pending', {
-				url: '/admin/pending',
+				url: '/pending',
 				templateUrl: 'js/admin/pending/pending.html',
-				controller: 'adminPendCtrl'
+				controller: 'adminPendingCtrl'
+			})
+			
+			.state('Admin.Skills', {
+				url: '/skills',
+				templateUrl: 'js/admin/skills/skills.html',
+				controller: 'adminSkillsCtrl'
 			});
 	
 	$urlRouterProvider.otherwise('/');
