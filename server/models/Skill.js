@@ -5,9 +5,4 @@ var schema = mongoose.Schema({
 	created_on: {type: Date}
 });
 
-schema.pre('save', function(next) {
-	this.created_on = Date.now();
-	next();
-});
-
-module.exports = mongoose.model('Skills', schema);
+module.exports = mongoose.model('Skill', schema);
