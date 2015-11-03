@@ -15,8 +15,7 @@ exports.createProfile = function(req, res, next){
 			if(err.toString().indexOf('E11000') > -1){
 				err = new Error('Duplicate Company Name');
 			}
-			res.send(400);
-			return res.send({reason:err.toString()});
+			return res.status(400).send({reason:err.toString()});
 		} else{res.end();}
 	})
 }

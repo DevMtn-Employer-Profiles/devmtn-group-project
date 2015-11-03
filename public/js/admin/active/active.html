@@ -1,1 +1,23 @@
-Active view
+<div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
+	<md-card class="inactive-card" ng-repeat="company in dummyActiveList track by $index" layout="row">
+		<section class="employer-logo">
+			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+		</section>
+		
+		<section class="employer-info">
+			<h3 class="company-name">{{ company.companyName }}</h3>
+			<p class="company-bio">
+				{{ company.bio | limitTo: 300 }}
+				<span ng-show="company.bio.length > 300">...</span>
+			</p>
+			<div class="skills-container" layout="row" layout-wrap>
+				<span class="skill-tags smaller" ng-repeat="skill in company.requestedSkills track by $index">{{ skill }}</span>
+			</div>
+			
+			<div class="controls pull-right" layout="row">
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isActive">Active</md-switch>
+			</div>
+		</section>
+	</md-card>
+</div>

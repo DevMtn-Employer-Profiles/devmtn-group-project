@@ -1,0 +1,73 @@
+.page-view-container {
+	width: calc( 100% - 200px );
+	margin: auto;
+	padding: 20px;
+	float: right;
+	box-sizing: border-box;
+}
+
+/*Profile View Styles*/
+.profile-left {
+	width: 30%;
+	float: left;
+}
+
+.profile-right {
+	width: 70%;
+	float: right;
+}
+
+.profile-img {
+	text-align: center;
+}
+
+.profile-img > img {
+	background: #69C4EA;
+	width: 200px;
+	height: 200px;
+}
+
+.profile-textarea {
+	box-sizing: border-box;
+	width: 80%;
+	height: 200px;
+	resize: none;
+}
+
+ul {
+	list-style: none;
+}
+
+.add-circle {
+	margin: 2px;
+}
+
+	.add-circle:hover {
+		color: green;
+	}
+
+.delete-circle {
+	margin: 2px;
+}
+
+	.delete-circle:hover {
+		cursor: pointer;
+		color: red;
+	}
+
+.save-btn {
+	font-size: 2em;
+}
+
+	.save-btn:hover {
+		color: green;
+		cursor: pointer;
+	}
+
+.cancel-btn {
+	font-size: 2em;
+}
+	.cancel-btn:hover {
+		color: red;
+		cursor: pointer;
+	}

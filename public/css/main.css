@@ -1,9 +1,18 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
 /*Header Styles*/
 header {
-	height: 86px;
-	padding: 30px;
+	height: 67px;
+	padding: 20px;
 	box-sizing: border-box;
+	background: #fff;
+	border-bottom: #F8F8F8;
 }
+
 .logo {
 	height: 30px;
 	display: inline-block;
@@ -15,6 +24,7 @@ header {
 	color: #404041;
 	padding: 0px 11px;
 	box-sizing: border-box;
+	margin-top: 10px
 }
 
 .header-link:hover {
@@ -24,27 +34,6 @@ header {
 .header-buttons {
 	float: right;
 }
-
-/*SOMEONES CSS*/
-.topBar {
-	height: 15%;
-	width: 	100%;
-}
-
-.mainBox {
-	width: 80%;
-	height: 20%;
-	margin: 5%;	
-}
-
-.logoBox {
-	float: left;
-}
-
-.rightSide {
-	float: right;
-}
-
 
 /*  ---------------------  ADMIN VIEW STYLES  ----------------------  */
 
@@ -66,7 +55,7 @@ header {
 
 .active-tab {
 	background-color: #D8E8FF;
-	/*color: black !important;*/
+	color: black !important;
 }
 
 .active-tab:hover, .active-tab:focus {
@@ -84,7 +73,7 @@ header {
 	
 	line-height: 1.01em;
 	
-	/*color: white;*/
+	color: white;
 }
 
 .sidenav-toolbar {
@@ -92,7 +81,7 @@ header {
 	height: 100%;
 	width: 200px;
 	
-	/*background-color: #2F3F42;*/
+	background-color: #2F3F42;
 	
 	transition: all linear .3s;
 }
