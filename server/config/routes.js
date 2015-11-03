@@ -3,7 +3,8 @@ var mongoose = require('mongoose'),
     skill = require('../controllers/skills'),
     notification = require('../controllers/notification'),
     passport = require('passport'),
-    session = require('express-session');
+    session = require('express-session'),
+    devmtn = require('./devmtnAuthConfig');
 
 module.exports = function (app){
   /**********Middleware*********/
@@ -25,7 +26,7 @@ module.exports = function (app){
   app.delete('/api/notifications/:id', notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
   //Authentication
-  app.post('/auth/devmtn', passport.authenticate('devmtn'));
+  app.post('/api/auth/devmtn', passport.authenticate('devmtn'));
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);

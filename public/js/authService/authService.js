@@ -11,15 +11,15 @@ angular.module('MainApp').service('authService', function($http) {
 	this.tryLogin = function() {
 		return $http({
 			method: 'POST',
-			url: '/api/auth/local'
+			url: '/api/auth/devmtn'
 		}).then(simpleDataReturn, handleError);
 	}
 	
-	this.trySignup = function(signupData) {
-		return $http({
-			method: 'POST',
-			url: '/api/auth/signup',
-			data: signupData
-		});
-	}
+	// this.trySignup = function(signupData) {
+	// 	return $http({
+	// 		method: 'POST',
+	// 		url: '/api/auth/signup',
+	// 		data: signupData
+	// 	});
+	// }
 });
