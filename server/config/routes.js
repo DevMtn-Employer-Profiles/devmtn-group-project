@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
-    skill = require('../controllers/skills');
+    skill = require('../controllers/skills'),
+    auth = require('../controllers/auth'),
+    passport = require('passport');
 
 module.exports = function (app){
   /**********Endpoints**********/
@@ -10,6 +12,9 @@ module.exports = function (app){
   //Skills
   app.get('/api/skills', skill.getSkills);
   app.post('/api/skills', skill.createSkill);
+  //Auth(Temporary?)
+  app.post('/api/auth/signup', auth.localSignup);
+  app.get('/api/auth/login', passport.authenticate('local'));
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);
