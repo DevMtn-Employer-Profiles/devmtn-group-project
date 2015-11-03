@@ -98,3 +98,79 @@ header {
 		position: relative;
 		left: -5px;
 	}
+	
+	/*LIST VIEW CSS*/  
+	
+	.list-main-box {
+		width: 600px;
+		
+		border: 1px black solid;
+		
+		height: 150px;
+		
+		margin: auto;
+				
+		position: relative;	
+	}
+	
+	.list-logo-box {
+		float: left;
+		
+		width: 150px;
+		
+		height: 150px;
+	}
+	
+	.list-right-side {
+		width: 450px;
+		
+		float: right;
+		
+		padding: 5px;
+		
+		box-sizing: border-box;
+	}
+	
+	.list-top-right {
+		height: 90%;
+	}
+	
+	.list-company-name {
+		font-size: 1.5em;
+		
+		text-align: center;
+		
+		color: black;
+		
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	
+	.list-company-bio {
+		font-size: 1em;
+		
+		text-align: center;
+		
+		color: black;
+		
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	
+	.list-skills-row {
+		position: absolute;
+		
+		bottom: 0;
+		
+		right: 0;
+		
+		text-align: center;
+		
+		width: 450px;
+	}
+	
+	.list-p-skills {
+		display: inline;
+	
+		padding: 0 5px;
+		
+		margin: 0 5px;
+	}
