@@ -75,6 +75,20 @@ angular.module('MainApp').service('dataService', function($http) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	this.getSkills = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/skills'
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.deleteSkill = function(skillId) {
+		return $http({
+			method: 'DELETE',
+			url: '/api/skill/' + skillId
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',

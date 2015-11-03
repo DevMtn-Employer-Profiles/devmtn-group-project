@@ -1,9 +1,11 @@
 <div class="subroute-container" id="skills-view" layout="row">
-	<div id="current-skills">
-		
+	<div id="current-skills" flex>
+		<div class="skills" ng-repeat="skill in skills track by $index">
+			{{skill}}
+		</div>
 	</div>
 	
-	<div id="pending-skills">
-		
+	<div id="pending-skills" flex>
+		<button ng-click="test(skills)">test</button>
 	</div>
 </div>
