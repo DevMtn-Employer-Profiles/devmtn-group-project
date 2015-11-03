@@ -59,6 +59,16 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		return $http({
 			method: 'DELETE',
 			url: '/api/profile/' + companyId	
+
+		}).then(simpleDataReturn, handleError)
+	}
+	
+	this.updateProfile = function(newProfile) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profile/'+newProfile._id,
+			data: newProfile	
+
 		}).then(simpleDataReturn, handleError)
 	}
 	
