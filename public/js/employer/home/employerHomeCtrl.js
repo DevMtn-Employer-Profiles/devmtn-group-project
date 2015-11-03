@@ -11,6 +11,7 @@ angular.module('MainApp').controller('employerHomeCtrl', function($scope, dataSe
 			if(result.isActive) {
 				//CRAP! SOMETHING BROKE!
 				console.error('BOTH PROFILE STATUS BOOLS CAN NEVER BE THE SAME');
+				$scope.status = 'This is embarassing, it seems we have an error.';
 			} else {
 				$scope.status = 'Your profile is under reviewed.';
 			}
@@ -24,10 +25,8 @@ angular.module('MainApp').controller('employerHomeCtrl', function($scope, dataSe
 	});
 	
 	dataService.getNotifications().then(function(result) {
-		console.log(result);
-		if(!Array.isArray(result)) {
-			result = [result];
-		}
+		//Pull out welcome message from first notification
+		$scope.welcomeMessage = result.splice(0,1)[0].message;
 		$scope.notifications = result;
 	});
 });
