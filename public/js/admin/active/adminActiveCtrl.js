@@ -22,10 +22,17 @@ app.controller('adminActiveCtrl', function($scope, dataService) {
 	
 	$scope.activeList = [];
 	
-	$scope.getActiveCompanies = function() {
-		// $scope.activeList = dataService.getActiveCompanies();
-		console.log($scope.activeList);
-	};
+	// $scope.getActiveCompanies = function() {
+	// 	// $scope.activeList = dataService.getActiveCompanies();
+	// 	console.log($scope.activeList);
+	// };
 	
-	$scope.getActiveCompanies();
+	// $scope.getActiveCompanies();
+	
+	// $scope.updateStatus = function(index) {
+	// 	dataService.updateCompany($scope.dummyActiveList[index]._id, {
+	// 		isPending: $scope.dummyActiveList[index].isPending,
+	// 		isActive: $scope.dummyActiveList[index].isActive
+	// 	});
+	// };
 });
