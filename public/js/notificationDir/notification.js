@@ -1,6 +1,6 @@
 angular.module('MainApp').directive('notification', function() {
 	return {
 		restrict: 'E',
-		template: '<div><p>{{note.postDate}}</p><p>{{note.message}}</p></div>',
+		template: "<div class='notification-container'><p class='notification-date'>{{note.postDate | date: fullDate}}</p><p class='notification-message'>{{note.message}}</p></div>",
 	};
-})
+});
