@@ -22,17 +22,23 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 			method: 'GET',
 			url: '/api/profile'
 		}).then(function(response) {
-			deferred.resolve(response);
+			deferred.resolve(response.data);
 		}, handleError);
 		
 		return deferred.promise;
 	}
 	
 	this.getPendingCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
 			url: '/api/profile/pending'
-		}).then(simpleDataReturn, handleError);
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getActiveCompanies = function() {
