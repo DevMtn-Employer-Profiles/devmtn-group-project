@@ -22,10 +22,10 @@ app.controller('adminAllCtrl', function($scope) {
 	
 	$scope.activeList = [];
 	
-	// $scope.getActiveCompanies = function() {
+	// $scope.getAllCompanies = function() {
 	// 	// $scope.activeList = dataService.getActiveCompanies();
 	// 	console.log($scope.activeList);
 	// };
 	
-	// $scope.getActiveCompanies();
+	// $scope.getAllCompanies();
 });
