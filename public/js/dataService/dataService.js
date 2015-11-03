@@ -11,49 +11,49 @@ angular.module('MainApp').service('dataService', function($http) {
 	this.getCompanyById = function(companyId) {
 		return $http({
 			method: 'GET', 
-			url: '/api/company/' + companyId
+			url: '/api/profile/' + companyId
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getAllCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/all'
+			url: '/api/profile/all'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getPendingCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/pending'
+			url: '/api/profile/pending'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getActiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/active'
+			url: '/api/profile/active'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getInactiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/inactive'
+			url: '/api/profile/inactive'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.deleteCompany = function(companyId) {
 		return $http({
 			method: 'DELETE',
-			url: '/api/company/' + companyId	
+			url: '/api/profile/' + companyId	
 		}).then(simpleDataReturn, handleError)
 	}
 	
 	this.updateProfile = function(newProfile) {
 		return $http({
 			method: 'PUT',
-			url: '/api/company/'+newProfile._id,
+			url: '/api/profile/'+newProfile._id,
 			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)
@@ -62,7 +62,7 @@ angular.module('MainApp').service('dataService', function($http) {
 	this.createCompany = function(company) {
 		return $http({
 			method: 'POST',
-			url: '/api/company/',
+			url: '/api/profile/',
 			data: company	
 		}).then(simpleDataReturn, handleError)
 	}

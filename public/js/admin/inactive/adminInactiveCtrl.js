@@ -54,7 +54,9 @@ app.controller('adminInactiveCtrl', function($scope, dataService) {
 	
 	// $scope.getInactiveCompanies();
 	
-	$scope.updateCompany
+	$scope.search = function(company) {
+		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
+	};
 	
 	$scope.deleteCompany = function(company) {
 		var index = $scope.dummyInactiveList.indexOf(company);

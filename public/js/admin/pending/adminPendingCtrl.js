@@ -1,4 +1,4 @@
-app.controller('adminPendingCtrl', function($scope) {
+app.controller('adminPendingCtrl', function($scope, dataService) {
 	$scope.dummyPendingList = [
 		{
 			companyName: 'Apple',
@@ -27,10 +27,12 @@ app.controller('adminPendingCtrl', function($scope) {
 	
 	$scope.pendingList = [];
 	
-	// $scope.getActiveCompanies = function() {
-	// 	// $scope.activeList = dataService.getActiveCompanies();
-	// 	console.log($scope.activeList);
-	// };
+	$scope.search = function(company) {
+		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
+	};
 	
-	// $scope.getActiveCompanies();
+	(function getPendingCompanies() {
+		$scope.pendingList = dataService.getPendingCompanies();
+		console.log($scope.pendingList);
+	})();
 });
