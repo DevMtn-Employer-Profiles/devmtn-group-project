@@ -1,4 +1,4 @@
-angular.module('MainApp').service('dataService', function($http) {
+angular.module('MainApp').service('dataService', function($http, $q) {
 	
 	var simpleDataReturn = function(result) {
 		return result.data;
@@ -16,17 +16,29 @@ angular.module('MainApp').service('dataService', function($http) {
 	}
 	
 	this.getAllCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
-			url: '/api/profile/all'
-		}).then(simpleDataReturn, handleError);
+			url: '/api/profile'
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getPendingCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
 			url: '/api/profile/pending'
-		}).then(simpleDataReturn, handleError);
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getActiveCompanies = function() {

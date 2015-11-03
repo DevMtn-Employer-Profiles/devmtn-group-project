@@ -32,7 +32,10 @@ app.controller('adminPendingCtrl', function($scope, dataService) {
 	};
 	
 	(function getPendingCompanies() {
-		$scope.pendingList = dataService.getPendingCompanies();
-		console.log($scope.pendingList);
+		dataService.getPendingCompanies()
+			.then(function(response) {
+				$scope.pendingList = response;
+				console.log($scope.pendingList);
+			});
 	})();
 });
