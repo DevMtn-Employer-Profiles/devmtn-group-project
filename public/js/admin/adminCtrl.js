@@ -26,8 +26,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 			// 		'width': '85px'
 			// 	});
 			
-			angular.element('.open-expand')
-				.addClass('hidden');
+			// angular.element('.open-expand')
+			// 	.addClass('hidden');
 				
 		} else {
 			$scope.isExpanded = true;
@@ -37,11 +37,11 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 			// 		'width': '200px'
 			// 	});
 			
-			$timeout(function(){
-				if ($scope.isExpanded)
-					angular.element('.open-expand')
-						.removeClass('hidden');
-			}, 285);
+			// $timeout(function(){
+			// 	if ($scope.isExpanded)
+			// 		angular.element('.open-expand')
+			// 			.removeClass('hidden');
+			// }, 285);
 		};
 	};
 	

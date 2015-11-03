@@ -2,14 +2,19 @@
 	width: 200px;
 }
 
-.animate-enter {
-	-webkit-transition: .3s linear all;
-	transition: .3s linear all;
-	opacity: 0;
-}
+.ng-hide-add,
+.ng-hide-remove {
+  -webkit-transition:0.7s linear all;
+  transition:0.7s linear all;
 
-.animate-leave {
-	opacity: 1;
+  /* remember to add this */
+  display:inline-block!important;
+  width: 87px;
+  opacity:1;
+}
+.ng-hide {
+  opacity:0;
+  width: 0px;
 }
 
 

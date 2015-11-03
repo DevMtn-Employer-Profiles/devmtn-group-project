@@ -14,7 +14,10 @@
 			class="toolbar-button" 
 			ng-click="toggleSidenav()"
 		>
-			<span class="open-expand smaller">Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
+			<span 
+				class="open-expand smaller" 
+				ng-show="isExpanded" 
+			>Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
 		</md-button>
 		
 		
@@ -26,7 +29,10 @@
 				ng-class="{'active-tab': activeTab.all}" 
 				ng-click="activateTab()"
 			>
-				<span class="open-expand smaller" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">All</span> <span class="pull-right menu-icon fa fa-database"></span>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded"
+				>All</span> <span class="pull-right menu-icon fa fa-database"></span>
 			</md-button>
 		</nav>
 		
@@ -38,7 +44,10 @@
 				ng-class="{'active-tab': activeTab.active}" 
 				ng-click="activateTab()"
 			>
-				<span class="open-expand smaller">Active</span> <span class="pull-right menu-icon fa fa-play"></span>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded" 
+				>Active</span> <span class="pull-right menu-icon fa fa-play"></span>
 			</md-button>
 		</nav>
 		
@@ -50,7 +59,10 @@
 				ng-class="{'active-tab': activeTab.inactive}" 
 				ng-click="activateTab()"
 			>
-				<span class="open-expand smaller">Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded"
+				>Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
 			</md-button>
 		</nav>
 		
@@ -62,7 +74,10 @@
 				ng-class="{'active-tab': activeTab.pending}"  
 				ng-click="activateTab()"
 			>
-				<span class="open-expand smaller">Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded" 
+				>Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
 			</md-button>
 		</nav>
 		
@@ -74,7 +89,10 @@
 				ng-class="{'active-tab': activeTab.skills}" 
 				ng-click="activateTab()"
 			>
-				<span class="open-expand smaller">Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
+				<span 
+					class="open-expand fade-slide smaller" 
+					ng-show="isExpanded" 
+				>Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
 			</md-button>
 		</nav>
 	</div>
