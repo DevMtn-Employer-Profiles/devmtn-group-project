@@ -20,28 +20,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	$scope.toggleSidenav = function() {
 		if ($scope.isExpanded) {
 			$scope.isExpanded = false;
-			
-			// angular.element('.sidenav-toolbar')
-			// 	.css({
-			// 		'width': '85px'
-			// 	});
-			
-			// angular.element('.open-expand')
-			// 	.addClass('hidden');
-				
 		} else {
 			$scope.isExpanded = true;
-			
-			// angular.element('.sidenav-toolbar')
-			// 	.css({
-			// 		'width': '200px'
-			// 	});
-			
-			// $timeout(function(){
-			// 	if ($scope.isExpanded)
-			// 		angular.element('.open-expand')
-			// 			.removeClass('hidden');
-			// }, 285);
 		};
 	};
 	
@@ -107,26 +87,6 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	
 	// GENERIC FUNCTIONS TO BE ABLE TO GRAB/MANIPULATE DATA AS WE'D LIKE
 	
-	
-	function initialSetup() {
-		if ($scope.isMobile.any()) {
-			
-		// 	angular.element('#toggle-menu-button')
-		// 		.addClass('hidden');
-			
-		// 	$timeout(function() {
-		// 		angular.element('.open-expand')
-		// 			.addClass('hidden');
-		// 		}, 25);
-		}
-		
-		// angular.element('.route-container')
-		// 	.css({
-		// 		height: window.innerHeight - 67,
-		// 		"max-height": window.innerHeight - 67
-		// 	});
-	}
-	
 	function parsePath() {
 		var reversePath = reverseString($location.path()),
 			removeFromFirstSlash = deleteFrom(reversePath, reversePath.indexOf('/')),
@@ -154,6 +114,4 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		
 		return reverseStr;
 	}
-	
-	initialSetup();
 });
