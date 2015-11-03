@@ -22,6 +22,10 @@ app.controller('adminActiveCtrl', function($scope, dataService) {
 	
 	$scope.activeList = [];
 	
+	$scope.search = function(company) {
+		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
+	}
+	
 	// $scope.getActiveCompanies = function() {
 	// 	// $scope.activeList = dataService.getActiveCompanies();
 	// 	console.log($scope.activeList);
@@ -29,7 +33,8 @@ app.controller('adminActiveCtrl', function($scope, dataService) {
 	
 	// $scope.getActiveCompanies();
 	
-	// $scope.updateStatus = function(index) {
+	// $scope.updateStatus = function(company) {
+	//  var index = $scope.dummyActiveList
 	// 	dataService.updateCompany($scope.dummyActiveList[index]._id, {
 	// 		isPending: $scope.dummyActiveList[index].isPending,
 	// 		isActive: $scope.dummyActiveList[index].isActive

@@ -11,7 +11,7 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	this.getCompanyById = function(companyId) {
 		return $http({
 			method: 'GET', 
-			url: '/api/company/' + companyId
+			url: '/api/profile/' + companyId
 		}).then(simpleDataReturn, handleError);
 	}
 	
@@ -20,7 +20,7 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		
 		$http({
 			method: 'GET',
-			url: '/api/company/all'
+			url: '/api/profile'
 		}).then(function(response) {
 			deferred.resolve(response);
 		}, handleError);
@@ -31,36 +31,35 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	this.getPendingCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/pending'
+			url: '/api/profile/pending'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getActiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/active'
+			url: '/api/profile/active'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getInactiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/inactive'
+			url: '/api/profile/inactive'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.deleteCompany = function(companyId) {
 		return $http({
 			method: 'DELETE',
-			url: '/api/company/' + companyId	
+			url: '/api/profile/' + companyId	
 		}).then(simpleDataReturn, handleError)
 	}
-	
 	
 	this.createCompany = function(company) {
 		return $http({
 			method: 'POST',
-			url: '/api/company/',
+			url: '/api/profile/',
 			data: company	
 		}).then(simpleDataReturn, handleError)
 	}
