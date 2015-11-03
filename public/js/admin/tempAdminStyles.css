@@ -1,61 +1,27 @@
-/*.hidden {
-	display: none;
+.sidenav-toolbar-open {
+	width: 200px;
 }
 
-.smaller {
-	font-size: smaller;
+.animate-enter {
+	-webkit-transition: .3s linear all;
+	transition: .3s linear all;
+	opacity: 0;
 }
 
-.relative {
-	position: relative;
+.animate-leave {
+	opacity: 1;
 }
 
 
-.active-tab {
-	background-color: #D8E8FF;
-	color: black !important;
+
+.subroute-container {
+	padding: 8px 20px;
 }
 
-.active-tab:hover, .active-tab:focus {
-	background-color: #BCCADE !important;
+.sidenav-toolbar-closed {
+	width: 85px;
+	transition: all .3s linear;
 }
-
-.sidenav-toolbar .toolbar-button, #toggle-menu-button {
-	margin: 0;
-	
-	padding: 15px 33px;
-	
-	width: 100%;
-	
-	font-size: 1.2em;
-	
-	line-height: 1.01em;
-	color: white;
-}
-
-.sidenav-toolbar {
-	
-	height: 100%;
-	width: 200px;*/
-	
-	/*background-color: #2F3F42;*/
-	
-	/*transition: all linear .3s;
-}
-
-	.sidenav-toolbar .toolbar-button {
-		text-align: left;
-		width: 100%;
-		
-		min-width: auto;
-		border-radius: 0;
-	}
-	
-	.sidenav-toolbar .toolbar-button > span:last-child {
-		position: relative;
-		left: -5px;
-	}*/
-
 
 #admin-subroutes {
 	overflow: auto;
@@ -69,7 +35,8 @@ body {
 .route-container {
 	width: 100%;
 	height: 80%;
-	height: calc();
+	height: calc(100% - 67px);
+	max-height: calc(100% - 67px);
 }
 
 
@@ -130,3 +97,7 @@ body {
 				
 				border-radius: 3px;
 			}
+
+.search-bar {
+	border-radius: 100px;
+}

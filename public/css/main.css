@@ -13,6 +13,13 @@ header {
 	border-bottom: #F8F8F8;
 }
 
+.pull-right {
+	display: block;
+	float: right;
+	
+	align-self: flex-end;
+}
+
 .logo {
 	height: 30px;
 	display: inline-block;
@@ -77,9 +84,7 @@ header {
 }
 
 .sidenav-toolbar {
-	
 	height: 100%;
-	width: 200px;
 	
 	background-color: #2F3F42;
 	

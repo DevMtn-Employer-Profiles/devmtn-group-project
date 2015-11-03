@@ -1,70 +1,83 @@
 var scope
 
 app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
-	var isExpanded = true;
-	
-	
-	scope = $scope; 
-	
 	if ($location.path() === '/admin')
 		$state.go('Admin.Active');
+	
+	$scope.isExpanded = true;
+	
+	$scope.activeTab = {
+		all: false,
+		active: false,
+		inactive: false,
+		pending: false,
+		skills: false,
+		config: false
+	};
 	
 	
 	// Sidenav Toolbar configuration from here on down
 	$scope.toggleSidenav = function() {
-		if (isExpanded) {
-			isExpanded = false;
+		if ($scope.isExpanded) {
+			$scope.isExpanded = false;
 			
-			angular.element('.sidenav-toolbar')
-				.css({
-					'width': '85px'
-				});
+			// angular.element('.sidenav-toolbar')
+			// 	.css({
+			// 		'width': '85px'
+			// 	});
 			
 			angular.element('.open-expand')
 				.addClass('hidden');
 				
 		} else {
-			isExpanded = true;
+			$scope.isExpanded = true;
 			
-			angular.element('.sidenav-toolbar')
-				.css({
-					'width': '200px'
-				});
+			// angular.element('.sidenav-toolbar')
+			// 	.css({
+			// 		'width': '200px'
+			// 	});
 			
 			$timeout(function(){
-				if (isExpanded)
+				if ($scope.isExpanded)
 					angular.element('.open-expand')
 						.removeClass('hidden');
 			}, 285);
 		};
 	};
 	
-	$scope.activeTab = function() {
-		angular.element('.toolbar-button')
-			.removeClass('active-tab');
+	$scope.activateTab = function() {
+		$scope.activeTab = {
+			all: 		false,
+			active: 	false,
+			inactive: 	false,
+			pending: 	false,
+			skills: 	false,
+			config: 	false
+		};
 		
 		$timeout(function() {
 			var tab = parsePath();
 			
 			switch(tab)
 			{
-				case 'all'  : angular.element('#all').addClass('active-tab');   break;
-				case 'active'  : angular.element('#active').addClass('active-tab');   break;
-				case 'inactive': angular.element('#inactive').addClass('active-tab'); break;
-				case 'pending' : angular.element('#pending').addClass('active-tab');  break;
-				case 'skills'  : angular.element('#skills').addClass('active-tab');   break;
-				default		   : angular.element('#active').addClass('active-tab');   break;
+				case 'all' 	   : $scope.activeTab.all = true;   	break;
+				case 'active'  : $scope.activeTab.active = true;	break;
+				case 'inactive': $scope.activeTab.inactive = true;	break;
+				case 'pending' : $scope.activeTab.pending = true;	break;
+				case 'skills'  : $scope.activeTab.skills = true;	break;
+				case 'config'  : $scope.activeTab.config = true;	break;
+				default		   : $scope.activeTab.active = true;	break;
 			}
 		}, 50);
 	};
 	
-	$scope.activeTab();
+	$scope.activateTab();
 	
 	
 	
 	//  This is designed to figure out if the browser is on a mobile device ONLY,
 	//  to allow me to ensure that it will be styled for that ONLY
-	var isMobile = {
+	$scope.isMobile = {
 		Android: function() {
 			return navigator.userAgent.match(/Android/i);
 		},
@@ -86,7 +99,7 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		},
 		
 		any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+			return ($scope.isMobile.Android() || $scope.isMobile.BlackBerry() || $scope.isMobile.iOS() || $scope.isMobile.Opera() || $scope.isMobile.Windows());
 		}
 	}
 	
@@ -96,26 +109,22 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	
 	
 	function initialSetup() {
-		if (isMobile.any()) {
-			angular.element('.sidenav-toolbar')
-				.css({
-					width: '85px'
-				});
+		if ($scope.isMobile.any()) {
 			
-			angular.element('#toggle-menu-button')
-				.addClass('hidden');
+		// 	angular.element('#toggle-menu-button')
+		// 		.addClass('hidden');
 			
-			$timeout(function() {
-				angular.element('.open-expand')
-					.addClass('hidden');
-				}, 25);
+		// 	$timeout(function() {
+		// 		angular.element('.open-expand')
+		// 			.addClass('hidden');
+		// 		}, 25);
 		}
 		
-		angular.element('.route-container')
-			.css({
-				height: window.innerHeight - 67,
-				"max-height": window.innerHeight - 67
-			});
+		// angular.element('.route-container')
+		// 	.css({
+		// 		height: window.innerHeight - 67,
+		// 		"max-height": window.innerHeight - 67
+		// 	});
 	}
 	
 	function parsePath() {
@@ -147,14 +156,4 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	}
 	
 	initialSetup();
-	
-	$('window').resize(function() {
-		angular.element('.route-container')
-			.css({
-				height: window.innerHeight - 67,
-				"max-height": window.innerHeight - 67
-			});
-		
-		console.log('hey');
-	});
 });

@@ -30,14 +30,13 @@ app.controller('adminAllCtrl', function($scope, dataService) {
 		dataService.getAllCompanies()
 			.then(function(response) {
 				$scope.companyList = response;
-				console.log($scope.companyList[0]);
 			});
 	})();
 	
 	$scope.deleteCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		
-		dataService.deleteCompany($scope.companyList[index].id)
+		dataService.deleteCompany($scope.companyList[index]._id)
 			.then(function(result) {
 				$scope.companyList.splice(index, 1);
 			});
