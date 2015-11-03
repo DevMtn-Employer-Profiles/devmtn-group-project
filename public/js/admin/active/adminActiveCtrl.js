@@ -29,7 +29,8 @@ app.controller('adminActiveCtrl', function($scope, dataService) {
 	
 	// $scope.getActiveCompanies();
 	
-	// $scope.updateStatus = function(index) {
+	// $scope.updateStatus = function(company) {
+	//  var index = $scope.dummyActiveList
 	// 	dataService.updateCompany($scope.dummyActiveList[index]._id, {
 	// 		isPending: $scope.dummyActiveList[index].isPending,
 	// 		isActive: $scope.dummyActiveList[index].isActive
