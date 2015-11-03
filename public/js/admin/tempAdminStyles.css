@@ -69,7 +69,7 @@ body {
 
 /*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
 
-.active-card, .inactive-card, .pending-card {
+.active-card, .inactive-card, .pending-card, .all-card {
 	width: 90%;
 	max-width: 800px;
 	
