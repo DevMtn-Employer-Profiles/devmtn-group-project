@@ -20,3 +20,10 @@ exports.createSkill = function(req, res, next){
 		else{res.end();}
 	});
 };
+exports.removeSkill = function(req, res){
+	Skill.findByIdAndRemove({'_id':req.params.id}, function(err){
+		if(err){
+			return res.status(400).send({reason:err.toString()});
+		} else {res.end()};
+	});
+};

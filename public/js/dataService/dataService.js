@@ -56,14 +56,6 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	this.updateProfile = function(newProfile) {
-		return $http({
-			method: 'PUT',
-			url: '/api/company/'+newProfile._id,
-			data: newProfile	
-
-		}).then(simpleDataReturn, handleError)
-	}
 	
 	this.createCompany = function(company) {
 		return $http({
@@ -73,6 +65,7 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
+	//Employer Web Requests
 	this.createSkill = function(skill) {
 		return $http({
 			method: 'POST',
@@ -85,6 +78,36 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		return $http({
 			method: 'GET',
 			url: '/api/myProfile'
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.updateProfile = function(newProfile) {
+		return $http({
+			method: 'PUT',
+			url: '/api/company/'+newProfile._id,
+			data: newProfile	
+
+		}).then(simpleDataReturn, handleError)
+	}
+	
+	//Notification web requests
+	this.getNotifications = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/notifications'
+		}).then(simpleDataReturn, handleError);
+	}
+	this.deleteNotification = function(noteId) {
+		return $http({
+			method: 'DELETE',
+			url: '/api/notifications/'+noteId
+		}).then(simpleDataReturn, handleError);
+	}
+	this.addNotification = function(msg) {
+		return $http({
+			method: 'POST',
+			url: '/api/notifications',
+			data: {message: msg}
 		}).then(simpleDataReturn, handleError);
 	}
 });

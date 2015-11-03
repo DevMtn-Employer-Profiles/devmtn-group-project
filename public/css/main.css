@@ -35,27 +35,6 @@ header {
 	float: right;
 }
 
-/*SOMEONES CSS*/
-.topBar {
-	height: 15%;
-	width: 	100%;
-}
-
-.mainBox {
-	width: 80%;
-	height: 20%;
-	margin: 5%;	
-}
-
-.logoBox {
-	float: left;
-}
-
-.rightSide {
-	float: right;
-}
-
-
 /*  ---------------------  ADMIN VIEW STYLES  ----------------------  */
 
 /*  ---------  GENERAL CLASSES COULD BE USED ELSEWHERE  ------------  */
