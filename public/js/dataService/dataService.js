@@ -77,6 +77,13 @@ angular.module('MainApp').service('dataService', function($http) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	this.getSkills = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/skills'
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
@@ -87,7 +94,7 @@ angular.module('MainApp').service('dataService', function($http) {
 	this.updateProfile = function(newProfile) {
 		return $http({
 			method: 'PUT',
-			url: '/api/company/'+newProfile._id,
+			url: '/api/profile/'+newProfile._id,
 			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)
