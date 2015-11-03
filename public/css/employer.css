@@ -71,3 +71,19 @@ ul {
 		color: red;
 		cursor: pointer;
 	}
+
+/*Notification*/
+.notification-container {
+	border-left: thin solid black;
+	margin-left: 10px;
+	margin-bottom: 20px;
+	padding-left: 10px;
+}
+
+.notification-date {
+	margin: 0;
+}
+
+.notification-message {
+	margin: 0;
+}
