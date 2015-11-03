@@ -4,19 +4,25 @@
 
 .ng-hide-add,
 .ng-hide-remove {
-  -webkit-transition:0.7s linear all;
-  transition:0.7s linear all;
+  -webkit-transition:0.2s linear all;
+  transition:0.1s linear all;
 
   /* remember to add this */
-  display:inline-block!important;
+  /*position: absolute;*/
+  display:block!important;
   width: 87px;
   opacity:1;
 }
+
 .ng-hide {
   opacity:0;
   width: 0px;
 }
 
+
+.open-expand {
+	position: absolute;
+}
 
 
 .subroute-container {
