@@ -1,4 +1,4 @@
-app.controller('adminAllCtrl', function($scope) {
+app.controller('adminAllCtrl', function($scope, dataService) {
 	$scope.dummyActiveList = [
 		{
 			companyName: 'Procter & Gamble',
@@ -22,10 +22,13 @@ app.controller('adminAllCtrl', function($scope) {
 	
 	$scope.activeList = [];
 	
-	// $scope.getAllCompanies = function() {
-	// 	// $scope.activeList = dataService.getActiveCompanies();
-	// 	console.log($scope.activeList);
-	// };
+	$scope.getAllCompanies = function() {
+		dataService.getAllCompanies()
+			.then(function(resolve) {
+				$scope.companyList;
+			});
+		console.log($scope.companyList);
+	};
 	
-	// $scope.getAllCompanies();
+	$scope.getAllCompanies();
 });

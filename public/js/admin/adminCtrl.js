@@ -113,8 +113,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		
 		angular.element('.route-container')
 			.css({
-				height: window.innerHeight - 86,
-				"max-height": window.innerHeight - 86
+				height: window.innerHeight - 67,
+				"max-height": window.innerHeight - 67
 			});
 	}
 	
@@ -151,8 +151,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 	$('window').resize(function() {
 		angular.element('.route-container')
 			.css({
-				height: window.innerHeight - 86,
-				"max-height": window.innerHeight - 86
+				height: window.innerHeight - 67,
+				"max-height": window.innerHeight - 67
 			});
 		
 		console.log('hey');
