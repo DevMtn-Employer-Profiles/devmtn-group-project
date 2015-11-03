@@ -5,8 +5,9 @@ var schema = new mongoose.Schema({
 	companyName: {type: String, required: '{PATH} is required', unique: true},
 	bio: {type: String},
 	facts: [{type: String}],
-	roles: [String],
-	skills: [{type: mongoose.Schema.Types.ObjectId, ref: 'skills'}]
+	skills: [{type: mongoose.Schema.Types.ObjectId, ref: 'skills'}],
+	isPending: {type: Boolean, default: false},
+	isActive: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Profile', schema);
