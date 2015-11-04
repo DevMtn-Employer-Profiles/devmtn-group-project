@@ -1,8 +1,5 @@
 .page-view-container {
-	width: calc( 100% - 200px );
-	margin: auto;
 	padding: 20px;
-	float: right;
 	box-sizing: border-box;
 }
 

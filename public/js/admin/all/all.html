@@ -1,7 +1,7 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
-	<md-card class="active-card" ng-repeat="company in inactiveList | filter: search | orderBy: companyName track by $index" layout="row">
+	<div class="active-card" ng-repeat="company in companyList | filter: search | orderBy: companyName | limitTo: 10 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
@@ -16,10 +16,13 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isActive">Active</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isActive">Active</md-switch>
 			</div>
 			
-			<md-button class="md-warn md-raised" ng-hide="company.isActive" ng-click="deleteCompany(company)">Delete</md-button>
+			<md-button ng-show="!company.isActive" class="md-warn md-raised" ng-click="deleteCompany(company)">Delete</md-button>
 		</section>
-	</md-card>
+	</div>
+	
+	
 </div>
