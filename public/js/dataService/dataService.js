@@ -96,14 +96,14 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/myProfile'
+			url: '/api/profile'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.updateProfile = function(newProfile) {
 		return $http({
 			method: 'PUT',
-			url: '/api/profile/'+newProfile._id,
+			url: '/api/profile/',
 			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)

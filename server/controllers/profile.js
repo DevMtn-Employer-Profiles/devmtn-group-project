@@ -1,5 +1,6 @@
 var Profile = require('mongoose').model('Profile');
 
+
 /*****GET Requests*****/ 
 exports.getProfileById = function(req, res){
 	Profile.findById({'_id':req.params.id}).exec(function(err, profile){

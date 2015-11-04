@@ -38,7 +38,6 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/profile',
 				templateUrl: 'js/employer/profile/employerProfile.html',
 				controller: 'employerProfileCtrl'
-
 			})
 		
 		
