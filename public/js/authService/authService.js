@@ -8,7 +8,7 @@ angular.module('MainApp').service('authService', function($http) {
 		console.error(error);
 	}
 	
-	this.tryLogin = function() {
+	this.login = function() {
 		return $http({
 			method: 'POST',
 			url: '/api/auth/devmtn'

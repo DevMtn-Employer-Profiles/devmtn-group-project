@@ -78,13 +78,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				controller: 'adminSkillsCtrl'
 			})
 		
-		
-		
-		.state('Login', {
-			url: '/login',
-			templateUrl: 'js/login/login.html',
-			controller: 'loginCtrl'
-		})
+
 	
 	$urlRouterProvider.otherwise('/');
 });

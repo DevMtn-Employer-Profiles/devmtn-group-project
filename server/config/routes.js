@@ -26,7 +26,15 @@ module.exports = function (app){
   app.delete('/api/notifications/:id', notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
   //Authentication
-  app.post('/api/auth/devmtn', passport.authenticate('devmtn'));
+  app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
+    //Doesn't get called?
+    console.log('Ha ha this should not ever get printed to the console');
+  });
+  app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
+        failureRedirect: '/#/landing'
+      }), function(req, res) {
+        res.status(200).send();
+      });
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);

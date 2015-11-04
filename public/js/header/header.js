@@ -2,9 +2,10 @@ angular.module('MainApp').directive('siteHeader', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/header/headerTemplate.html',
-		controller: function($scope, $location) {
+		controller: function($scope, $location, authService) {
 			$scope.loginEmployer = function() {
-				$location.path('/login/employer');
+				authService.login();
+				// $location.path('/login/employer');
 			}
 			
 			$scope.loginStudent = function() {
