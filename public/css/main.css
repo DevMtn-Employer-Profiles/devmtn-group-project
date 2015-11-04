@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
 	height: 100%;
+	background-color: #F5FFFC;
 }
 
 /*  ------------------------ ANIMATION ------------------------  */
@@ -36,8 +37,10 @@ header {
 	height: 67px;
 	padding: 20px;
 	box-sizing: border-box;
-	background: #fff;
-	border-bottom: #F8F8F8;
+	background: #f8f8f8;
+	border-bottom: #F0F0F0;
+	
+	box-shadow: 0 3px 5px rgba(200,200,240,.5);
 }
 
 .pull-right {
