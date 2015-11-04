@@ -1,9 +1,9 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
-	<md-card class="pending-card" ng-repeat="company in dummyPendingList | filter: search track by $index" layout="row">
+	<md-card class="pending-card" ng-repeat="company in pendingList | filter: search track by $index" layout="row">
 		<section class="employer-logo">
-			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isPending">Pending</md-switch>
 			</div>
 		</section>
 	</md-card>

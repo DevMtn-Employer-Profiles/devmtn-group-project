@@ -16,8 +16,8 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isPending">Pending</md-switch>
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isActive">Active</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isActive">Active</md-switch>
 			</div>
 			
 			<md-button ng-show="!company.isActive" class="md-warn md-raised" ng-click="deleteCompany(company)">Delete</md-button>
