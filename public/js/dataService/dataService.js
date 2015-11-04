@@ -135,4 +135,11 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 			data: {message: msg}
 		}).then(simpleDataReturn, handleError);
 	}
+	this.updateNotification = function(noteId, changeObj) {
+		return $http({
+			method: 'PUT',
+			url: '/api/notifications/' + noteId,
+			body: changeObj
+		}).then(simpleDataReturn, handleError);
+	};
 });

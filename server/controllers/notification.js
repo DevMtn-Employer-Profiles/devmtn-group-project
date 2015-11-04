@@ -33,3 +33,13 @@ exports.addNotification = function(req, res) {
 		}
 	})
 }
+
+exports.updateNotification = function(req, res) {
+	Notification.findByIdAndUpdate(req.params.id, req.body)
+		.exec(function(err, change) {
+			if (err)
+				return res.send(err);
+			
+			res.json(change);
+		});
+};

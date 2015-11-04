@@ -6,9 +6,13 @@
 			<li>...</li>
 		</ul>
 		<h3>Employer welcome message</h3>
-		<form>
-			<textarea id="welcome-edit" placeholder="Put the welcome message employers will see on their home page here" ng-model="welcomeMessage"></textarea><br>
-			<input type="submit" class="md-button md-primary">
+		<p ng-hide="editModeList.welcome" ng-click="editModeOn('welcome')">
+			{{ welcomeMessage.message }}
+		</p>
+		<form ng-show="editModeList.welcome">
+			<textarea id="welcome-edit" placeholder="Put the welcome message employers will see on their home page here" ng-model="welcomeMessage.message"></textarea><br>
+			<input type="submit" class="md-button md-primary md-raised" ng-click="saveChanges('welcome')">
+			<md-button md-no-ink class="md-primary" ng-click="cancelEdit('welcome')">Cancel</md-button>
 		</form>
 	</div>
 	
@@ -34,11 +38,14 @@
 			</form>
 		</div>
 		
-		<form>
-			<textarea laceholder="New Notification" class="new-notification" ng-model="newMessage"></textarea>
+		<p ng-hide="editModeList.new" ng-click="editModeOn('new')">
+			<strong>+</strong> Add new
+		</p>
+		<form ng-show="editModeList.new">
+			<textarea placeholder="New Notification" class="new-notification" ng-model="newMessage"></textarea>
 			<br>
-			<input type="submit" value="Save" md-no-ink class="md-button md-primary md-raised" ng-click="saveChanges($index)"> 
-			<md-button md-no-ink class="md-primary" ng-click="cancelEdit($index)">Cancel</md-button>
+			<input type="submit" value="Save" md-no-ink class="md-button md-primary md-raised" ng-click="saveChanges('new')"> 
+			<md-button md-no-ink class="md-primary" ng-click="cancelEdit('new')">Cancel</md-button>
 		</form>
 	</md-card>
 </div>
