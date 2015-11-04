@@ -295,3 +295,75 @@ header {
 		
 		margin: 0 5px;
 	}
+
+/*LANDING PAGE CSS*/
+.landing-background {
+  position: relative;
+  
+  text-align: center;
+  
+  margin-top: -20px;
+  
+  height: 100vh;
+  
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/t31.0-8/s2048x2048/11174272_842916812445854_1885598337984820889_o.jpg);
+  
+  background-position: center;
+  
+  background-size: cover;
+  
+  background-repeat: no-repeat;
+}
+
+.text-container {
+	padding-top: 250px;
+	
+	margin-top: 20px;
+}
+
+.fade-in-text-animate {
+	color: white;
+	
+	font-size: 50px;
+	
+	font-family: Josefin Sans, sans-serif;
+	
+	margin: auto;
+	
+	visibility: visible;
+	
+	animation-duration: 3s;
+	
+	animation-name: fadeIn;
+}
+
+.update-container {
+	color: white;
+}
+
+.update-box {
+	color: 52 172 224;
+	
+	font-size: 30px;
+	
+	font-weight: bold;
+}
+
+.foot-clan-box {
+    position: relative;
+	
+    min-height: 1px;
+	
+    padding-right: 15px;
+	
+    padding-left: 15px;
+}
+
+.foot-clan-box-text {
+	padding: 15px;
+	
+	margin: auto;
+	
+	text-align: center;
+}
+ 
