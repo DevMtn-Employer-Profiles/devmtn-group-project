@@ -7,6 +7,35 @@ var mongoose = require('mongoose'),
     devmtn = require('./devmtnAuthConfig');
 
 module.exports = function (app){
+  var requireLogin = function(req, res, next) {
+    if(req.isAuthenticated) {
+      next();
+    } else {
+      req.status(401).json('Permission Denied');
+    }
+  }
+  var requireAdmin = function (req, res, next) {
+    if(!req.isAuthenticated()) {
+      res.status(401).json('Permission Denied');
+    } else {
+      if(req.user.isAdmin) {
+        next();
+      } else {
+        res.status(401).send("This Resource requires admin status");
+      }
+    }
+  }
+  var requireEmployer = function (req, res, next) {
+    if(!req.isAuthenticated()) {
+      res.status(401).json('Permission Denied');
+    } else {
+      if(!req.user.isAdmin){
+        next();
+      } else {
+        res.status(401).json('This resource requires Employer status');
+      }
+    }
+  }
   /**********Middleware*********/
   app.use(session({secret: 'hahahhaaha'}));
   app.use(passport.initialize());
@@ -14,16 +43,16 @@ module.exports = function (app){
   /**********Endpoints**********/
   //Profiles
   app.get('/api/profile',/*auth.requiresApiLogin(),*/ profile.getProfile);
-  app.post('/api/profile', profile.createProfile);
+  app.post('/api/profile', requireEmployer, profile.createProfile);
   app.put('/api/profile', profile.updateProfile);
-  app.delete('/api/profile/:id', profile.removeProfile);
+  app.delete('/api/profile/:id', requireLogin, profile.removeProfile);
   //Skills
   app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
   app.post('/api/skills', skill.createSkill);
   app.delete('/api/skills/:id', skill.removeSkill);
   //Notifications
   app.get('/api/notifications', notification.getNotifications);
-  app.delete('/api/notifications/:id', notification.deleteNotification);
+  app.delete('/api/notifications/:id', requireAdmin, notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
   //Authentication
   app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
@@ -36,15 +65,15 @@ module.exports = function (app){
         //Are they a admin or employer?
         if(req.user.isAdmin) {
           //redirect to admin landing
-          res.redirect('/admin');
+          res.redirect('/#/admin');
         } else {
           //redirect to employer landing
-          res.redirect('/employer');
+          res.redirect('/#/employer');
         }
       });
   app.get('/auth/logout', function(req, res) {
     req.logout();
-    res.redirect('/');
+    res.redirect('/#/');
   });
   app.get('/auth/currentUser', function(req, res) {
     if(req.user) {
