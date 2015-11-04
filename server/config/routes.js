@@ -1,5 +1,4 @@
-var auth = require('./auth.js'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
     skill = require('../controllers/skills'),
     notification = require('../controllers/notification'),
