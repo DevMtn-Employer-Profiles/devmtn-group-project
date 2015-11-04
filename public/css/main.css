@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
 	height: 100%;
-	background-color: #F5FFFC;
+	/*background-color: #F5FFFC;*/
 }
 
 /*  ------------------------ ANIMATION ------------------------  */
@@ -86,8 +86,10 @@ header {
 }
 
 .search-bar {
-	border-radius: 100px;
-	padding: 8px
+	border-radius: 3px;
+	padding: 8px;
+	position: absolute;
+	right: 20px;
 }
 
 .route-container {
@@ -114,12 +116,14 @@ header {
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
 .active-tab {
-	background-color: #D8E8FF;
-	color: black !important;
+	background-color: #2F3F42;
+	/*color: black !important;*/
+	color: white;
 }
 
 .active-tab:hover, .active-tab:focus {
-	background-color: #BCCADE !important;
+	/*background-color: #BCCADE !important;*/
+	background-color: #344F4E !important;
 }
 
 .sidenav-toolbar .toolbar-button, #toggle-menu-button {
@@ -133,15 +137,13 @@ header {
 	
 	line-height: 1.01em;
 	
-	color: white;
 	/*color: #2F3F42;*/
 }
 
 .sidenav-toolbar {
 	height: 100%;
 	
-	background-color: #2F3F42;
-	/*background-color: #B1E2ED;*/
+	/*background-color: #D8E8FF;*/
 	
 	transition: all linear .3s;
 }
@@ -176,7 +178,9 @@ header {
 	width: 90%;
 	max-width: 800px;
 	
-	border-radius: 5px;
+	/*border-radius: 5px;*/
+	border-radius: 0px;
+	margin: 10px 0;
 	
 	overflow: hidden;
 	
