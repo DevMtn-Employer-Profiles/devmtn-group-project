@@ -3,7 +3,7 @@
 	
 	<md-card class="pending-card" ng-repeat="company in pendingList | filter: search track by $index" layout="row">
 		<section class="employer-logo">
-			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">
@@ -17,7 +17,7 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isPending">Pending</md-switch>
 			</div>
 		</section>
 	</md-card>

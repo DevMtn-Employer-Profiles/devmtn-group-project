@@ -1,4 +1,4 @@
-app.controller('adminPendingCtrl', function($scope, dataService) {
+app.controller('adminPendingCtrl', function($scope, $timeout, dataService) {
 	// $scope.dummyPendingList = [
 	// 	{
 	// 		companyName: 'Apple',
@@ -41,6 +41,8 @@ app.controller('adminPendingCtrl', function($scope, dataService) {
 	$scope.updateStatus = function(company) {
 		var index = $scope.pendingList.indexOf(company);
 		
-		dataService.updateProfile($scope.pendingList[index]);
+		$timeout(function() {
+			dataService.updateProfile($scope.pendingList[index]);
+		}, 50);
 	};
 });

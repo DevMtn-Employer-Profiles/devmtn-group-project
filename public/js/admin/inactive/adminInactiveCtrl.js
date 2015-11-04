@@ -1,4 +1,4 @@
-app.controller('adminInactiveCtrl', function($scope, dataService) {
+app.controller('adminInactiveCtrl', function($scope, $timeout, dataService) {
 	// $scope.dummyInactiveList = [
 	// 	{
 	// 		companyName: 'MX',
@@ -70,6 +70,8 @@ app.controller('adminInactiveCtrl', function($scope, dataService) {
 	$scope.updateStatus = function(company) {
 		var index = $scope.inactiveList.indexOf(company);
 		
-		dataService.updateProfile($scope.inactiveList[index]);
+		$timeout(function() {
+			dataService.updateProfile($scope.inactiveList[index]);
+		}, 50);
 	};
 });

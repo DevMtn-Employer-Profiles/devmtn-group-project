@@ -3,7 +3,7 @@
 	
 	<md-card class="active-card" ng-repeat="company in inactiveList | filter: search | orderBy: companyName track by $index" layout="row">
 		<section class="employer-logo">
-			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">

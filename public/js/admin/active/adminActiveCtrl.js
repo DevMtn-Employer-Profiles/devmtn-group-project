@@ -1,4 +1,4 @@
-app.controller('adminActiveCtrl', function($scope, dataService) {
+app.controller('adminActiveCtrl', function($scope, $timeout, dataService) {
 	// $scope.dummyActiveList = [
 	// 	{
 	// 		companyName: 'Procter & Gamble',
@@ -27,14 +27,20 @@ app.controller('adminActiveCtrl', function($scope, dataService) {
 	}
 	
 	$scope.getActiveCompanies = function() {
-		$scope.activeList = dataService.getActiveCompanies();
+		dataService.getActiveCompanies()
+			.then(function(response) {
+				$scope.activeList = response;
+			});
 		console.log($scope.activeList);
 	};
 	
 	$scope.getActiveCompanies();
 	
 	$scope.updateStatus = function(company) {
-	 var index = $scope.activeList
-		dataService.updateProfile($scope.activeList[index]);
+		var index = $scope.activeList.indexOf(company);
+		
+		$timeout(function() {
+			dataService.updateProfile($scope.activeList[index]);
+		}, 50);
 	};
 });
