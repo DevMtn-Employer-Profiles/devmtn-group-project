@@ -42,7 +42,10 @@ module.exports = function (app){
           res.redirect('/employer');
         }
       });
-  app.get('/auth/logout', devmtn.logout());
+  app.get('/auth/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
   app.get('/auth/currentUser', function(req, res) {
     if(req.user) {
       res.json(req.user);

@@ -32,7 +32,7 @@ angular.module('MainApp').service('authService', function($http, $q) {
 	this.login = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/auth/devmtn'
+			url: '/auth/devmtn'
 		}).then(simpleLoginReturn, loginErrorHandler);
 	}
 	
