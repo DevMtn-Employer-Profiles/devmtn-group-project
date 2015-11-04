@@ -14,6 +14,9 @@ module.exports = function (app){
   //Profiles
   app.get('/api/profile',/*auth.requiresApiLogin(),*/ profile.getProfiles);
   app.get('/api/profile/pending',/*auth.requiresRole('admin'),*/ profile.getPendingProfile);
+  app.get('/api/profile/active', profile.getActiveProfile);
+  app.get('/api/profile/inactive', profile.getInactiveProfile);
+  app.get('/api/profile/:id', profile.getProfileById);
   app.post('/api/profile', profile.createProfile);
   app.put('/api/profile/:id', profile.updateProfile);
   app.delete('/api/profile/:id', profile.removeProfile);
