@@ -243,6 +243,14 @@ header {
 .open-expand.ng-hide {
   width: 0px;
 }
+
+
+/*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
+
+md-card.column {
+	width: 80%;
+}
+
 	
 	/*LIST VIEW CSS*/  
 	

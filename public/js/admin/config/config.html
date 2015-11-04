@@ -1,4 +1,4 @@
-<div class="subroute-container" id="config-view" layout="row">
+<div class="subroute-container" id="config-view" layout="row" layout-align="space-around center">
 	<md-card class="column" flex>
 		<h3>Employer welcome message</h3>
 		<p ng-hide="editModeList.welcome" ng-click="editModeOn('welcome')">
@@ -11,10 +11,10 @@
 		</form>
 	</md-card>
 	
-	<md-card class="md-whiteframe-2dp column" style="width: 95%;" flex>
+	<md-card class="md-whiteframe-2dp column" flex>
 		<h3>Notifications</h3>
 		<div class="notification" ng-repeat="notification in notifications track by $index">
-			<md-button class="md-icon-button md-warn pull-right" ng-hide="editModeList[$index]" ng-click="deleteNotification($index)">
+			<md-button class="md-icon-button md-warn pull-right" ng-hide="editModeList[$index]" ng-click="deleteNotification($index)" aria-labe="">
 				<span class="fa fa-times-circle"></span>
 			</md-button>
 			<p ng-hide="editModeList[$index]" class="notification-hover" ng-click="editModeOn($index)">{{ notification.message }}</p>

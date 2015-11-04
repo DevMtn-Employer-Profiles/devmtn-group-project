@@ -28,7 +28,9 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 	$scope.editModeOn = function(index) {
 		$scope.editModeList[index] = true;
 		
-		if (index !== 'new')
+		if (index === 'welcome')
+			$scope.backupNotifications[index] = $scope.welcomeMessage.message.slice();
+		else if (index !== 'new')
 			$scope.backupNotifications[index] = $scope.notifications[index].message.slice();
 	};
 	
@@ -37,6 +39,8 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 		
 		if (index === 'new')
 			$scope.newMessage = '';
+		else if (index === 'welcome')
+			$scope.welcomeMessage.message = $scope.backupNotifications[index].slice();
 		else
 			$scope.notifications[index].message = $scope.backupNotifications[index].slice();
 	};
@@ -55,8 +59,10 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 			dataService.updateNotification(note._id, {
 				message: note.message
 			});
-			
-			$scope.editModeList[index] = false;
+			if (index)
+				$scope.editModeList[index] = false;
+			else
+				$scope.editModeList['welcome'] = false;
 		}
 	};
 });
