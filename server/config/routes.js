@@ -33,6 +33,10 @@ module.exports = function (app){
   app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
         failureRedirect: '/#/landing'
       }), function(req, res) {
+        //Are they a admin or employer?
+        if(req.user.isAdmin) {
+          
+        }
         res.status(200).send();
       });
   //Catch-all api errors
