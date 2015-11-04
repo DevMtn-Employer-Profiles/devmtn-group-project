@@ -1,16 +1,17 @@
 var passport = require('passport'),
 	Devmtn = require('devmtn-auth'),
 	DevmtnStrategy = Devmtn.Strategy,
+	DevmtnAuthConfig = require('../config/devmtnAuthConfig'),
 	User = require('../models/User'),
 	Profile = require('../models/Profile');
 
-passport.use('devmtn', new DevmtnStrategy(function (jwtoken, user, done) {
+passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, user, done) {
 	console.log('devmtn profile: ', user);
 	//don't allow anyone with student role to register as an employer. don't allow admins to create a company profile
-	if (Devmtn.checkRoles(user, 'student')) {
+	if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'student')) {
 		console.log('Students should not login as an employer.')
 		done(null, false, { message: 'Students not allowed on Employers site' });
-	} else if (Devmtn.checkRoles(user, 'admin')) {
+	} else if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
 		console.log('admin user, free access, does not need to be created in database.');
 		done(null, user);
 	}
@@ -22,8 +23,7 @@ passport.use('devmtn', new DevmtnStrategy(function (jwtoken, user, done) {
 				firstName: user.first_name,
 				lastName: user.last_name,
 				email: user.email,
-				devmtnId: user.id,
-				roles: user.roles
+				devmtnId: user.id
 			};
 			User.create(newUser, function (createErr, createdUser) {
 				if (createErr) return done(createErr, null);
@@ -35,7 +35,7 @@ passport.use('devmtn', new DevmtnStrategy(function (jwtoken, user, done) {
 					bio: 'Bio goes here'
 				}
 				//if it is an admin, don't create a profile
-				if (Devmtn.checkRoles(user, 'admin')) {
+				if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
 					return done(null, createdUser);
 				}
 				Profile.create(prof, function (profileErr, newProfile) {
@@ -65,7 +65,7 @@ passport.serializeUser(function (user, done) {
 		isAdmin: false,
 		_id: user._id
 	};
-	if(Devmtn.checkRoles(user, 'admin')) {
+	if(user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
 		cerealUser.isAdmin = true;
 	}
 	done(null, cerealUser);

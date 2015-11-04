@@ -27,22 +27,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done) {
-  // This should match your data (e.g. would be user._id for mongo/mongoose)
-  done(null, user.id)
-})
-
-passport.deserializeUser(function(id, done) {
-
-  User.findById(id, function(err, user) {
-    if (err) {
-      return done(err)
-    }
-    return done(null, user)
-  })
-
-})
-
 passport.use('devmtn', new DevmtnStrategy(devmtnAuthConfig, function(jwtoken, user, done) {
   // Find or create a user in your database here and return your user.
   // json web token is also provided here as jwtoken and could be added to the session for use on API calls to devmounta.in
