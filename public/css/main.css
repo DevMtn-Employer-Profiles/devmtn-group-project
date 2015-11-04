@@ -11,12 +11,17 @@ body {
 .ng-hide-remove {
   -webkit-transition:0.2s linear all;
   transition:0.1s linear all;
-
+  
   /* remember to add this */
   /*position: absolute;*/
   display:block!important;
   width: 87px;
   opacity:1;
+}
+
+.ng-hide-remove {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
 }
 
 .ng-hide {
