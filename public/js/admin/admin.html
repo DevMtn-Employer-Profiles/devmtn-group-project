@@ -94,6 +94,21 @@
 				>Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
 			</md-button>
 		</nav>
+		
+		<nav ui-sref="Admin.Config">
+			<md-button 
+				md-no-ink 
+				id="skills" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.config}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand fade-slide smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Config</span> <span class="pull-right menu-icon fa fa-gear"></span>
+			</md-button>
+		</nav>
 	</div>
 	
 	<ui-view id="admin-subroutes" flex></ui-view>

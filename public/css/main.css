@@ -3,25 +3,29 @@ body {
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
 	height: 100%;
+	/*background-color: #F5FFFC;*/
 }
 
 /*  ------------------------ ANIMATION ------------------------  */
 	
 .ng-hide-add,
 .ng-hide-remove {
-  -webkit-transition:0.2s linear all;
-  transition:0.1s linear all;
+	-webkit-transition:0.2s linear all;
+	transition:0.1s linear all;
+	
+	/* remember to add this */
+	/*position: absolute;*/
+	display:block!important;
+	opacity:1;
+}
 
-  /* remember to add this */
-  /*position: absolute;*/
-  display:block!important;
-  width: 87px;
-  opacity:1;
+.ng-hide-remove {
+	-webkit-transition-delay: .1s;
+	transition-delay: .1s;
 }
 
 .ng-hide {
-  opacity:0;
-  width: 0px;
+	opacity:0;
 }
 
 
@@ -31,8 +35,10 @@ header {
 	height: 67px;
 	padding: 20px;
 	box-sizing: border-box;
-	background: #fff;
-	border-bottom: #F8F8F8;
+	background: #f8f8f8;
+	border-bottom: #F0F0F0;
+	
+	box-shadow: 0 3px 5px rgba(200,200,240,.5);
 }
 
 .pull-right {
@@ -80,8 +86,8 @@ header {
 }
 
 .search-bar {
-	border-radius: 100px;
-	padding: 8px
+	position: absolute;
+	right: 20px;
 }
 
 .route-container {
@@ -108,12 +114,14 @@ header {
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
 .active-tab {
-	background-color: #D8E8FF;
-	color: black !important;
+	background-color: #2F3F42;
+	/*color: black !important;*/
+	color: white;
 }
 
 .active-tab:hover, .active-tab:focus {
-	background-color: #BCCADE !important;
+	/*background-color: #BCCADE !important;*/
+	background-color: #344F4E !important;
 }
 
 .sidenav-toolbar .toolbar-button, #toggle-menu-button {
@@ -127,13 +135,13 @@ header {
 	
 	line-height: 1.01em;
 	
-	color: white;
+	/*color: #2F3F42;*/
 }
 
 .sidenav-toolbar {
 	height: 100%;
 	
-	background-color: #2F3F42;
+	/*background-color: #D8E8FF;*/
 	
 	transition: all linear .3s;
 }
@@ -168,11 +176,25 @@ header {
 	width: 90%;
 	max-width: 800px;
 	
-	border-radius: 5px;
+	/*border-radius: 5px;*/
+	border-radius: 0px;
+	margin: 10px 0;
 	
 	overflow: hidden;
 	
 	/*padding: 20px;*/
+	
+	opacity: .9;
+	border: 1px solid lightgray;
+	
+	transition: all linear .1s;
+	box-shadow: none;
+}
+
+.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
+	opacity: 1;
+	/*box-shadow: 0 0 8px lightgray;*/
+	box-shadow: 0 0 8px #8CE0EB;
 }
 
 	.employer-logo {
@@ -219,6 +241,105 @@ header {
 				
 				border-radius: 3px;
 			}
+
+
+/*  --------------  ANIMATION FOR TOOLBAR ONLY  ---------------  */
+.open-expand.ng-hide-add,
+.open-expand.ng-hide-remove {
+  width: 87px;
+}
+
+.ng-hide-remove {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}
+
+.open-expand.ng-hide {
+  width: 0px;
+}
+
+
+/*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
+
+md-card.column {
+	width: calc(50% - 60px);
+	
+	padding: 30px;
+}
+	md-card.column h3, md-card.column h5 {
+		margin: 2px;
+	}
+	
+	md-card.column textarea {
+		width: calc(100% - 20px);
+		padding: 10px;
+		min-height: auto;
+		height: auto;
+		box-sizing: border-box;
+	}
+	
+	md-card #welcome-message {
+		margin: 20px 0;
+	}
+	
+	#welcome-edit {
+		margin: 20px 0;
+	}
+
+.click-to-edit {
+	margin: 0;
+	padding: 8px;
+	
+	border-radius: 5px;
+	
+	transition: all linear 100ms;
+}
+
+	.click-to-edit:hover {
+		background-color: rgba(200,200,240,.5);
+		
+		cursor: pointer;
+	}
+
+	.delete-button {
+		min-height: auto;
+		min-width: auto;
+		height: 20px;
+		width: 20px;
+		
+		padding: 0;
+		margin: 0;
+		margin-right: 7px;
+		
+		position: relative;
+		top: .5em;
+		
+		border-radius: 10px;
+		
+		line-height: .5em;
+		text-align: center;
+	}
+	
+	.delete-button:hover {
+		background-color: rgb(244,67,54) !important;
+		color: white !important;
+	}
+
+/*  ------------  ANIMATIONS FOR CLICK-TO-EDIT, ETC.  -------------  */
+
+.click-to-edit.ng-hide-add,
+.click-to-edit.ng-hide-remove {
+	position: absolute;
+}
+
+.click-to-edit.ng-hide-remove {
+	position: absolute
+}
+
+.click-to-edit.ng-hide {
+	position: absolute;
+}
+
 	
 	/*LIST VIEW CSS*/  
 	
@@ -295,3 +416,9 @@ header {
 		
 		margin: 0 5px;
 	}
+
+@media (max-width: 1450px) {
+	.search-bar {
+		position: static;
+	}
+}
