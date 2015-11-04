@@ -1,5 +1,7 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
-	<md-card class="inactive-card" ng-repeat="company in dummyActiveList track by $index" layout="row">
+	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
+	
+	<md-card class="inactive-card" ng-repeat="company in dummyActiveList | filter: search track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
 		</section>
@@ -15,8 +17,7 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isPending">Pending</md-switch>
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus($index)" ng-model="company.isActive">Active</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isActive">Active</md-switch>
 			</div>
 		</section>
 	</md-card>

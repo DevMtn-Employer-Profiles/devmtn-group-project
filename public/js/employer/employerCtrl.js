@@ -1,54 +1,41 @@
 angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state) {
-	var isExpanded = true;
 	if ($location.path() === '/employer')
 		$state.go('Employer.Home');
 	// Sidenav Toolbar configuration from here on down
+	$scope.isExpanded = true;
 	$scope.toggleSidenav = function() {
-		if (isExpanded) {
-			isExpanded = false;
-			
-			angular.element('.sidenav-toolbar')
-				.css({
-					'width': '85px'
-				});
-			
-			angular.element('.open-expand')
-				.addClass('hidden');
+		if ($scope.isExpanded) {
+			$scope.isExpanded = false;
 				
 		} else {
-			isExpanded = true;
-			
-			angular.element('.sidenav-toolbar')
-				.css({
-					'width': '200px'
-				});
-			
-			$timeout(function(){
-				if (isExpanded)
-					angular.element('.open-expand')
-						.removeClass('hidden');
-			}, 285);
+			$scope.isExpanded = true;
 		};
 	};
 	
-	$scope.activeTab = function() {
-		angular.element('.toolbar-button')
-			.removeClass('active-tab');
+	$scope.activateTab = function() {
+		$scope.activeTab = {
+			all: 		false,
+			active: 	false,
+			inactive: 	false,
+			pending: 	false,
+			skills: 	false,
+			config: 	false
+		};
 		
 		$timeout(function() {
 			var tab = parsePath();
 			
 			switch(tab)
 			{
-				case 'home'  : angular.element('#home').addClass('active-tab');   break;
-				case 'profile': angular.element('#profile').addClass('active-tab'); break;
-				case 'students' : angular.element('#students').addClass('active-tab');  break;
-				default		   : angular.element('#home').addClass('active-tab');   break;
+				case 'home'	   : $scope.activeTab.home = true;  	break;
+				case 'profile' : $scope.activeTab.profile = true;	break;
+				case 'students': $scope.activeTab.students = true;	break;
+				default		   : $scope.activeTab.active = true;	break;
 			}
 		}, 50);
 	};
 	
-	$scope.activeTab();
+	$scope.activateTab();
 	
 	
 	
@@ -84,30 +71,6 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 	
 	// GENERIC FUNCTIONS TO BE ABLE TO GRAB/MANIPULATE DATA AS WE'D LIKE
 	
-	
-	function initialSetup() {
-		if (isMobile.any()) {
-			angular.element('.sidenav-toolbar')
-				.css({
-					width: '85px'
-				});
-			
-			angular.element('#toggle-menu-button')
-				.addClass('hidden');
-			
-			$timeout(function() {
-				angular.element('.open-expand')
-					.addClass('hidden');
-				}, 25);
-		}
-		
-		angular.element('.route-container')
-			.css({
-				height: window.innerHeight - 86,
-				"max-height": window.innerHeight - 86
-			});
-	}
-	
 	function parsePath() {
 		var reversePath = reverseString($location.path()),
 			removeFromFirstSlash = deleteFrom(reversePath, reversePath.indexOf('/')),
@@ -135,24 +98,4 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 		
 		return reverseStr;
 	}
-	
-	initialSetup();
-	
-	$scope.$watch(function() {
-		return window.innerHeight;
-	}, function(newValue) {
-		angular.element('.route-container')
-			.css({
-				height: newValue - 86
-			});
-	});
-	
-	$scope.$watch(function() {
-		return window.innerWidth;
-	}, function(newValue) {
-		angular.element('.route-container')
-			.css({
-				width: newValue
-			});
-	});
 });

@@ -17,6 +17,9 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		dataService.getMyProfile().then(function(result) {
 			$scope.profile = result;
 			console.log("Profile Loaded");
+		});
+		dataService.getSkills().then(function(result) {
+			$scope.skillsOptions = result;
 		})
 	}
 	

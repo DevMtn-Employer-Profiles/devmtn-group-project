@@ -1,33 +1,99 @@
 <div class="route-container relative" id="admin-view" layout="row">
-	<link rel="stylesheet" href="js/admin/tempadminstyles.css">
-	
-	<div class="sidenav-toolbar">
-		<md-button md-no-ink id="toggle-menu-button" class="toolbar-button" ng-click="toggleSidenav()">
-			<span class="open-expand smaller">Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
+	<div 
+		class="sidenav-toolbar"
+		ng-class="{
+			'sidenav-toolbar-closed': !isExpanded || !!isMobile.any(), 
+			'sidenav-toolbar-open': isExpanded && !isMobile.any()
+		}" 
+	>
+		<md-button 
+			md-no-ink 
+			id="toggle-menu-button" 
+			class="toolbar-button" 
+			ng-click="toggleSidenav()"
+			ng-hide="isMobile.any()" 
+		>
+			<span 
+				class="open-expand smaller" 
+				ng-show="isExpanded && !isMobile.any()" 
+			>Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
 		</md-button>
 		
 		
+		<nav ui-sref="Admin.All">
+			<md-button 
+				md-no-ink 
+				id="all" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.all}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>All</span> <span class="pull-right menu-icon fa fa-database"></span>
+			</md-button>
+		</nav>
+		
 		<nav ui-sref="Admin.Active">
-			<md-button md-no-ink id="active" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Active</span> <span class="pull-right menu-icon fa fa-play"></span>
+			<md-button 
+				md-no-ink 
+				id="active" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.active}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Active</span> <span class="pull-right menu-icon fa fa-play"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Inactive">
-			<md-button md-no-ink id="inactive" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
+			<md-button 
+				md-no-ink 
+				id="inactive" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.inactive}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Pending">
 			<md-button md-no-ink id="pending" class="toolbar-button" ng-click="activeTab()">
 				<span class="open-expand smaller">Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
+			<md-button 
+				md-no-ink 
+				id="pending" 
+				class="toolbar-button"
+				ng-class="{'active-tab': activeTab.pending}"  
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Admin.Skills">
-			<md-button md-no-ink id="skills" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
+			<md-button 
+				md-no-ink 
+				id="skills" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.skills}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand fade-slide smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
 			</md-button>
 		</nav>
 		
@@ -38,5 +104,5 @@
 		</nav>
 	</div>
 	
-	<ui-view flex></ui-view>
+	<ui-view id="admin-subroutes" flex></ui-view>
 </div>
