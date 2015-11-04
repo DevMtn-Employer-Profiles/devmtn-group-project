@@ -31,7 +31,6 @@ app.controller('adminActiveCtrl', function($scope, $timeout, dataService) {
 			.then(function(response) {
 				$scope.activeList = response;
 			});
-		console.log($scope.activeList);
 	};
 	
 	$scope.getActiveCompanies();

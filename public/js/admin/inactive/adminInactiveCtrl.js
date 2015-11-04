@@ -49,7 +49,6 @@ app.controller('adminInactiveCtrl', function($scope, $timeout, dataService) {
 			.then(function(result) {
 				$scope.inactiveList = result; 
 			});
-		console.log($scope.inactiveList);
 	};
 	
 	$scope.getInactiveCompanies();
