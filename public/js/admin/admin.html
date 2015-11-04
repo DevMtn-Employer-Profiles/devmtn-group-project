@@ -11,10 +11,11 @@
 			id="toggle-menu-button" 
 			class="toolbar-button" 
 			ng-click="toggleSidenav()"
+			ng-hide="isMobile.any()" 
 		>
 			<span 
 				class="open-expand smaller" 
-				ng-show="isExpanded" 
+				ng-show="isExpanded && !isMobile.any()" 
 			>Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
 		</md-button>
 		
@@ -29,7 +30,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded"
+					ng-show="isExpanded && !isMobile.any()" 
 				>All</span> <span class="pull-right menu-icon fa fa-database"></span>
 			</md-button>
 		</nav>
@@ -44,7 +45,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded" 
+					ng-show="isExpanded && !isMobile.any()" 
 				>Active</span> <span class="pull-right menu-icon fa fa-play"></span>
 			</md-button>
 		</nav>
@@ -59,7 +60,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded"
+					ng-show="isExpanded && !isMobile.any()" 
 				>Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
 			</md-button>
 		</nav>
@@ -74,7 +75,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded" 
+					ng-show="isExpanded && !isMobile.any()" 
 				>Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
 			</md-button>
 		</nav>
@@ -89,7 +90,7 @@
 			>
 				<span 
 					class="open-expand fade-slide smaller" 
-					ng-show="isExpanded" 
+					ng-show="isExpanded && !isMobile.any()" 
 				>Skills</span> <span class="pull-right menu-icon fa fa-code"></span>
 			</md-button>
 		</nav>

@@ -13,10 +13,11 @@
 			id="toggle-menu-button" 
 			class="toolbar-button" 
 			ng-click="toggleSidenav()"
+			ng-hide="isMobile.any()" 
 		>
 			<span 
 				class="open-expand smaller" 
-				ng-show="isExpanded" 
+				ng-show="isExpanded && !isMobile.any()"
 			>Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
 		</md-button>
 		
@@ -31,7 +32,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded"
+					ng-show="isExpanded && !isMobile.any()"
 				>
 					Home
 				</span> 
@@ -49,7 +50,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded" 
+					ng-show="isExpanded && !isMobile.any()"
 				>
 					Profile
 				</span>
@@ -67,7 +68,7 @@
 			>
 				<span 
 					class="open-expand smaller" 
-					ng-show="isExpanded" 
+					ng-show="isExpanded && !isMobile.any()"
 				>
 					Students
 				</span>
