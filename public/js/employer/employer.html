@@ -1,30 +1,81 @@
 <link rel="stylesheet" href="css/employer.css">
 <div layout='row' class="route-container">
-	<div class='sidenav-toolbar'>
+	<div 
+		class="sidenav-toolbar"
+		ng-class="{
+			'sidenav-toolbar-closed': !isExpanded || !!isMobile.any(), 
+			'sidenav-toolbar-open': isExpanded && !isMobile.any()
+		}" 
+	>
 		<!--Nav Toggle Button-->
-		<md-button md-no-ink id="toggle-menu-button" class="toolbar-button" ng-click="toggleSidenav()">
-			<span class="open-expand smaller">Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
+		<md-button 
+			md-no-ink 
+			id="toggle-menu-button" 
+			class="toolbar-button" 
+			ng-click="toggleSidenav()"
+			ng-hide="isMobile.any()" 
+		>
+			<span 
+				class="open-expand smaller" 
+				ng-show="isExpanded && !isMobile.any()"
+			>Collapse</span> <span class="pull-right menu-icon fa fa-bars"></span>
 		</md-button>
+		
 		<!--Links/Tabs-->
 		<nav ui-sref="Employer.Home">
-			<md-button md-no-ink id="home" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Home</span> <span class="pull-right menu-icon fa fa-home"></span>
+			<md-button 
+				md-no-ink 
+				id="home" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.home}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()"
+				>
+					Home
+				</span> 
+				<span class="pull-right menu-icon fa fa-home"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Employer.Profile">
-			<md-button md-no-ink id="profile" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Profile</span> <span class="pull-right menu-icon fa fa-user"></span>
+			<md-button 
+				md-no-ink 
+				id="active" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.profile}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()"
+				>
+					Profile
+				</span>
+				<span class="pull-right menu-icon fa fa-user"></span>
 			</md-button>
 		</nav>
 		
 		<nav ui-sref="Employer.Students">
-			<md-button md-no-ink id="students" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Students</span> <span class="pull-right menu-icon fa fa-graduation-cap"></span>
+			<md-button 
+				md-no-ink 
+				id="active" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.students}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand smaller" 
+					ng-show="isExpanded && !isMobile.any()"
+				>
+					Students
+				</span>
+				<span class="pull-right menu-icon fa fa-graduation-cap"></span>
 			</md-button>
 		</nav>
 	</div>
-	<div class='page-view-container'>
-		<ui-view></ui-view>
-	</div>
+	
+	<ui-view class='page-view-container' id="employer-subroutes" flex></ui-view>
 </div>

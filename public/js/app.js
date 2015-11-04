@@ -77,8 +77,12 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				templateUrl: 'js/admin/skills/skills.html',
 				controller: 'adminSkillsCtrl'
 			})
-		
-
+			
+			.state('Admin.Config', {
+				url: '/config',
+				templateUrl: 'js/admin/config/config.html',
+				controller: 'adminConfigCtrl'
+			});
 	
 	$urlRouterProvider.otherwise('/');
 });

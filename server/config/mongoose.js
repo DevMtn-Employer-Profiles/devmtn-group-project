@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
     notificationModel = require('../models/Notification');
 
 module.exports = function(config){
+    /**********Mongoose Connection*********/
   mongoose.connect(config.db);
   var db = mongoose.connection;
   db.on('error', console.error.bind(console, 'Connection error...'));

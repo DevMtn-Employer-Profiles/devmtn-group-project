@@ -1,6 +1,6 @@
 <h3>Home</h3>
 <h4>Welcome!</h4>
-<p>{{welcomeMessage}}</p>
+<p>{{welcomeMessage || defaultWelcomeMessage}}</p>
 <h4>Notifications</h4>
 <notification ng-repeat='note in notifications'></notification>
 <p ng-show='notifications.length < 1'>No current notifications.</p>
