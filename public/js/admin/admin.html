@@ -66,8 +66,6 @@
 		</nav>
 		
 		<nav ui-sref="Admin.Pending">
-			<md-button md-no-ink id="pending" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
 			<md-button 
 				md-no-ink 
 				id="pending" 
@@ -98,8 +96,17 @@
 		</nav>
 		
 		<nav ui-sref="Admin.Config">
-			<md-button md-no-ink id="config" class="toolbar-button" ng-click="activeTab()">
-				<span class="open-expand smaller">Config</span> <span class="pull-right menu-icon fa fa-gear"></span>
+			<md-button 
+				md-no-ink 
+				id="skills" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.config}" 
+				ng-click="activateTab()"
+			>
+				<span 
+					class="open-expand fade-slide smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>Config</span> <span class="pull-right menu-icon fa fa-gear"></span>
 			</md-button>
 		</nav>
 	</div>
