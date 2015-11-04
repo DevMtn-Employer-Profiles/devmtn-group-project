@@ -1,19 +1,10 @@
-var mongoose = require('mongoose'),
+var auth = require('./auth.js'),
+    mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
     skill = require('../controllers/skills'),
-    notification = require('../controllers/notification'),
-    passport = require('passport'),
-    session = require('express-session');
+    notification = require('../controllers/notification');
 
 module.exports = function (app){
-  /**********Middleware*********/
-  app.use(session({
-      secret: 'hahahhaaha',
-      saveUninitialized: true,
-      resave: true
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
   /**********Endpoints**********/
   //Profiles
   app.get('/api/profile',/*auth.requiresApiLogin(),*/ profile.getProfiles);
@@ -34,7 +25,7 @@ module.exports = function (app){
   app.post('/api/notifications', notification.addNotification);
   app.put('/api/notifications/:id', notification.updateNotification);
   //Authentication
-  app.post('/auth/devmtn', passport.authenticate('devmtn'));
+  app.post('/auth/devmtn', auth.authenticate);
   //Catch-all api errors
   app.all('/api/*', function(req, res){
       res.send(404);
