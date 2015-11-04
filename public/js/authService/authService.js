@@ -1,25 +1,48 @@
-angular.module('MainApp').service('authService', function($http) {
-	
-	var simpleDataReturn = function(result) {
+angular.module('MainApp').service('authService', function($http, $q) {
+
+	var simpleLoginReturn = function(result) {
+		//save user to local storage
+		localStorage.setItem('devmtnUser', result);
 		return result.data;
 	}
 	
-	var handleError = function(error) {
+	var loginErrorHandler = function(error) {
 		console.error(error);
+	}
+	
+	//This feels a little buggy, probably won't work --Tim
+	this.getCurrentUser = function() {
+		var dfd = $q.defer();
+		//check local storage
+		var user = localStorage.getItem('devmtnUser');
+		if(user)
+			dfd.resolve(user);
+		//check server
+		$http({
+			method: 'GET',
+			url: '/auth/currentUser'
+		}).then(function(result) {
+			dfd.resolve(result);
+		}, function(err) {
+			dfd.resolve(err, null);
+		});
+		return dfd.promise;
 	}
 	
 	this.login = function() {
 		return $http({
-			method: 'POST',
+			method: 'GET',
 			url: '/api/auth/devmtn'
-		}).then(simpleDataReturn, handleError);
+		}).then(simpleLoginReturn, loginErrorHandler);
 	}
 	
-	// this.trySignup = function(signupData) {
-	// 	return $http({
-	// 		method: 'POST',
-	// 		url: '/api/auth/signup',
-	// 		data: signupData
-	// 	});
-	// }
+	this.logout = function() {
+		//clear from localstorage
+		localStorage.removeItem('devmtnUser');
+		//logout on server
+		$http({
+			method: 'GET',
+			url: '/auth/logout'
+		})
+	}
 });

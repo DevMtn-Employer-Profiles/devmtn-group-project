@@ -35,10 +35,20 @@ module.exports = function (app){
       }), function(req, res) {
         //Are they a admin or employer?
         if(req.user.isAdmin) {
-          
+          //redirect to admin landing
+          res.redirect('/admin');
+        } else {
+          //redirect to employer landing
+          res.redirect('/employer');
         }
-        res.status(200).send();
       });
+  app.get('/auth/logout', devmtn.logout());
+  app.get('/auth/currentUser', function(req, res) {
+    if(req.user) {
+      res.json(req.user);
+    }
+    res.status(401).send();
+  })
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);
