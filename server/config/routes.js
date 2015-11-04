@@ -42,9 +42,9 @@ module.exports = function (app){
   app.use(passport.session());
   /**********Endpoints**********/
   //Profiles
-  app.get('/api/profile',/*auth.requiresApiLogin(),*/ profile.getProfile);
+  app.get('/api/profile',requireEmployer, profile.getProfile);
   app.post('/api/profile', requireEmployer, profile.createProfile);
-  app.put('/api/profile', profile.updateProfile);
+  app.put('/api/profile', requireEmployer, profile.updateProfile);
   app.delete('/api/profile/:id', requireLogin, profile.removeProfile);
   //Skills
   app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);

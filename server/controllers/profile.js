@@ -1,7 +1,7 @@
 var Profile = require('mongoose').model('Profile');
 
 exports.getProfile = function(req, res){
-	Profile.find({}).exec(function(err, collection){
+	Profile.find({_id: req.user}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
