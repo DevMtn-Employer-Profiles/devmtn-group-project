@@ -2,7 +2,29 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
+	height: 100%;
 }
+
+/*  ------------------------ ANIMATION ------------------------  */
+	
+.ng-hide-add,
+.ng-hide-remove {
+  -webkit-transition:0.2s linear all;
+  transition:0.1s linear all;
+
+  /* remember to add this */
+  /*position: absolute;*/
+  display:block!important;
+  width: 87px;
+  opacity:1;
+}
+
+.ng-hide {
+  opacity:0;
+  width: 0px;
+}
+
+
 
 /*Header Styles*/
 header {
@@ -11,6 +33,13 @@ header {
 	box-sizing: border-box;
 	background: #fff;
 	border-bottom: #F8F8F8;
+}
+
+.pull-right {
+	display: block;
+	float: right;
+	
+	align-self: flex-end;
 }
 
 .logo {
@@ -50,6 +79,31 @@ header {
 	position: relative;
 }
 
+.search-bar {
+	border-radius: 100px;
+	padding: 8px
+}
+
+.route-container {
+	width: 100%;
+	height: 80%;
+	height: calc(100% - 67px);
+	max-height: calc(100% - 67px);
+}
+
+.subroute-container {
+	padding: 8px 20px;
+}
+
+.sidenav-toolbar-open {
+	width: 200px;
+}
+
+.sidenav-toolbar-closed {
+	width: 85px;
+	transition: all .3s linear;
+}
+
 
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
@@ -77,9 +131,7 @@ header {
 }
 
 .sidenav-toolbar {
-	
 	height: 100%;
-	width: 200px;
 	
 	background-color: #2F3F42;
 	
@@ -97,4 +149,149 @@ header {
 	.sidenav-toolbar .toolbar-button > span:last-child {
 		position: relative;
 		left: -5px;
+	}
+
+
+.open-expand {
+	position: absolute;
+}
+
+
+#admin-subroutes {
+	overflow: auto;
+}
+
+
+/*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
+
+.active-card, .inactive-card, .pending-card, .all-card {
+	width: 90%;
+	max-width: 800px;
+	
+	border-radius: 5px;
+	
+	overflow: hidden;
+	
+	/*padding: 20px;*/
+}
+
+	.employer-logo {
+		width: 150px;
+		height: 150px;
+		
+		margin: 10px; 
+	}
+		
+		.employer-logo > img {
+			width: 100%;
+		}
+	
+	.employer-info {
+		width: 100%;
+		
+		padding-left: 20px;
+	}
+	
+		.employer-info .company-name {
+			width: calc(100% - 40px);
+			
+			margin: 0;
+			
+			padding: 10px 20px;
+			
+			text-align: center;
+			background-color: #eee;
+		}
+		
+		.skills-container {
+			margin-bottom: 20px;
+		}
+		
+			.skills-container .skill-tags {
+				display: inline-block;
+				
+				margin: 0 8px;
+				padding: 3px;
+				
+				background-color: #e0e0ff;
+				
+				box-shadow: 0 2px 3px #bbb;
+				
+				border-radius: 3px;
+			}
+	
+	/*LIST VIEW CSS*/  
+	
+	.list-main-box {
+		width: 600px;
+		
+		border: 1px black solid;
+		
+		height: 150px;
+		
+		margin: auto;
+				
+		position: relative;	
+	}
+	
+	.list-logo-box {
+		float: left;
+		
+		width: 150px;
+		
+		height: 150px;
+	}
+	
+	.list-right-side {
+		width: 450px;
+		
+		float: right;
+		
+		padding: 5px;
+		
+		box-sizing: border-box;
+	}
+	
+	.list-top-right {
+		height: 90%;
+	}
+	
+	.list-company-name {
+		font-size: 1.5em;
+		
+		text-align: center;
+		
+		color: black;
+		
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	
+	.list-company-bio {
+		font-size: 1em;
+		
+		text-align: center;
+		
+		color: black;
+		
+		font-family: Helvetica, Arial, sans-serif;
+	}
+	
+	.list-skills-row {
+		position: absolute;
+		
+		bottom: 0;
+		
+		right: 0;
+		
+		text-align: center;
+		
+		width: 450px;
+	}
+	
+	.list-p-skills {
+		display: inline;
+	
+		padding: 0 5px;
+		
+		margin: 0 5px;
 	}

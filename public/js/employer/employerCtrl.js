@@ -103,8 +103,8 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 		
 		angular.element('.route-container')
 			.css({
-				height: window.innerHeight - 86,
-				"max-height": window.innerHeight - 86
+				height: window.innerHeight - 67,
+				"max-height": window.innerHeight - 67
 			});
 	}
 	

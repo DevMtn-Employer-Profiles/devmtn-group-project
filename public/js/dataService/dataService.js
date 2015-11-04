@@ -1,4 +1,4 @@
-angular.module('MainApp').service('dataService', function($http) {
+angular.module('MainApp').service('dataService', function($http, $q) {
 	
 	var simpleDataReturn = function(result) {
 		return result.data;
@@ -11,49 +11,62 @@ angular.module('MainApp').service('dataService', function($http) {
 	this.getCompanyById = function(companyId) {
 		return $http({
 			method: 'GET', 
-			url: '/api/company/' + companyId
+			url: '/api/profile/' + companyId
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getAllCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
-			url: '/api/company/all'
-		}).then(simpleDataReturn, handleError);
+			url: '/api/profile'
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getPendingCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
-			url: '/api/company/pending'
-		}).then(simpleDataReturn, handleError);
+			url: '/api/profile/pending'
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getActiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/active'
+			url: '/api/profile/active'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getInactiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/company/inactive'
+			url: '/api/profile/inactive'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.deleteCompany = function(companyId) {
 		return $http({
 			method: 'DELETE',
-			url: '/api/company/' + companyId	
+			url: '/api/profile/' + companyId	
+
 		}).then(simpleDataReturn, handleError)
 	}
 	
 	this.updateProfile = function(newProfile) {
 		return $http({
 			method: 'PUT',
-			url: '/api/company/'+newProfile._id,
+			url: '/api/profile/'+newProfile._id,
 			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)
@@ -62,11 +75,12 @@ angular.module('MainApp').service('dataService', function($http) {
 	this.createCompany = function(company) {
 		return $http({
 			method: 'POST',
-			url: '/api/company/',
+			url: '/api/profile/',
 			data: company	
 		}).then(simpleDataReturn, handleError)
 	}
 	
+	//Employer Web Requests
 	this.createSkill = function(skill) {
 		return $http({
 			method: 'POST',
@@ -75,10 +89,47 @@ angular.module('MainApp').service('dataService', function($http) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	this.getSkills = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/skills'
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
 			url: '/api/myProfile'
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.updateProfile = function(newProfile) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profile/'+newProfile._id,
+			data: newProfile	
+
+		}).then(simpleDataReturn, handleError)
+	}
+	
+	//Notification web requests
+	this.getNotifications = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/notifications'
+		}).then(simpleDataReturn, handleError);
+	}
+	this.deleteNotification = function(noteId) {
+		return $http({
+			method: 'DELETE',
+			url: '/api/notifications/'+noteId
+		}).then(simpleDataReturn, handleError);
+	}
+	this.addNotification = function(msg) {
+		return $http({
+			method: 'POST',
+			url: '/api/notifications',
+			data: {message: msg}
 		}).then(simpleDataReturn, handleError);
 	}
 });
