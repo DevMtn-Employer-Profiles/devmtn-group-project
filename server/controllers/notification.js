@@ -1,5 +1,5 @@
 var Notification = require('mongoose').model('Notification');
-
+/*****GET Requests*****/ 
 exports.getNotifications = function(req, res) {
 	Notification.find({}).exec(function(err, collection) {
 		if(err){
@@ -10,8 +10,13 @@ exports.getNotifications = function(req, res) {
 	});
 }
 
-exports.deleteNotification = function(req, res) {
-	Notification.remove({_id: req.params.id}, function(err, result) {
+/*****POST Requests*****/ 
+exports.addNotification = function(req, res) {
+	var note = {
+		message: req.body.message,
+		postDate: Date.now()
+	};
+	Notification.create(note, function(err, result) {
 		if(err) {
 			res.status(500).send(err);
 		} else {
@@ -20,12 +25,9 @@ exports.deleteNotification = function(req, res) {
 	})
 }
 
-exports.addNotification = function(req, res) {
-	var note = {
-		message: req.body.message,
-		postDate: Date.now()
-	};
-	Notification.create(note, function(err, result) {
+/*****DELETE Requests*****/ 
+exports.deleteNotification = function(req, res) {
+	Notification.remove({_id: req.params.id}, function(err, result) {
 		if(err) {
 			res.status(500).send(err);
 		} else {
