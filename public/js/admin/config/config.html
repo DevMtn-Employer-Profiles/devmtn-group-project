@@ -1,29 +1,17 @@
 <div class="subroute-container" id="config-view" layout="row">
-	<div class="column" flex>
-		Col 1:
-		<ul>
-			<li>Edit welcome message</li>
-			<li>...</li>
-		</ul>
+	<md-card class="column" flex>
 		<h3>Employer welcome message</h3>
 		<p ng-hide="editModeList.welcome" ng-click="editModeOn('welcome')">
 			{{ welcomeMessage.message }}
 		</p>
 		<form ng-show="editModeList.welcome">
 			<textarea id="welcome-edit" placeholder="Put the welcome message employers will see on their home page here" ng-model="welcomeMessage.message"></textarea><br>
-			<input type="submit" class="md-button md-primary md-raised" ng-click="saveChanges('welcome')">
+			<input type="submit" class="md-button md-primary md-raised" ng-click="saveChanges(welcomeMessage)">
 			<md-button md-no-ink class="md-primary" ng-click="cancelEdit('welcome')">Cancel</md-button>
 		</form>
-	</div>
+	</md-card>
 	
 	<md-card class="md-whiteframe-2dp column" style="width: 95%;" flex>
-		Col 2:
-		<ul>
-			<li>Edit notifications</li>
-			<li>What</li>
-			<li>to</li>
-			<li>do...</li>
-		</ul>
 		<h3>Notifications</h3>
 		<div class="notification" ng-repeat="notification in notifications track by $index">
 			<md-button class="md-icon-button md-warn pull-right" ng-hide="editModeList[$index]" ng-click="deleteNotification($index)">
@@ -33,7 +21,7 @@
 			<form ng-show="editModeList[$index]">
 				<textarea placeholder="Notification" class="edit-notification" ng-model="notification.message"></textarea>
 				<br>
-				<input type="submit" value="Save" md-no-ink class="md-button md-primary md-raised" ng-click="saveChanges($index)"> 
+				<input type="submit" value="Save" md-no-ink class="md-button md-primary md-raised" ng-click="saveChanges(notification, $index)"> 
 				<md-button md-no-ink class="md-primary" ng-click="cancelEdit($index)">Cancel</md-button>
 			</form>
 		</div>

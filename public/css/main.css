@@ -16,7 +16,6 @@ body {
   /* remember to add this */
   /*position: absolute;*/
   display:block!important;
-  width: 87px;
   opacity:1;
 }
 
@@ -27,7 +26,6 @@ body {
 
 .ng-hide {
   opacity:0;
-  width: 0px;
 }
 
 
@@ -136,12 +134,14 @@ header {
 	line-height: 1.01em;
 	
 	color: white;
+	/*color: #2F3F42;*/
 }
 
 .sidenav-toolbar {
 	height: 100%;
 	
 	background-color: #2F3F42;
+	/*background-color: #B1E2ED;*/
 	
 	transition: all linear .3s;
 }
@@ -227,6 +227,22 @@ header {
 				
 				border-radius: 3px;
 			}
+
+
+/*  --------------  ANIMATION FOR TOOLBAR ONLY  ---------------  */
+.open-expand.ng-hide-add,
+.open-expand.ng-hide-remove {
+  width: 87px;
+}
+
+.ng-hide-remove {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}
+
+.open-expand.ng-hide {
+  width: 0px;
+}
 	
 	/*LIST VIEW CSS*/  
 	

@@ -139,7 +139,7 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		return $http({
 			method: 'PUT',
 			url: '/api/notifications/' + noteId,
-			body: changeObj
+			data: changeObj
 		}).then(simpleDataReturn, handleError);
 	};
 });

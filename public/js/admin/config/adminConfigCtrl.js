@@ -2,6 +2,7 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 	$scope.editModeList = [];
 	
 	$scope.notifications = [];
+	$scope.backupNotifications = [];
 	
 	(function getNotifications() {
 		dataService.getNotifications()
@@ -26,25 +27,36 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 	
 	$scope.editModeOn = function(index) {
 		$scope.editModeList[index] = true;
+		
+		if (index !== 'new')
+			$scope.backupNotifications[index] = $scope.notifications[index].message.slice();
 	};
 	
 	$scope.cancelEdit = function(index) {
 		$scope.editModeList[index] = false;
 		
-		$scope.notifications
+		if (index === 'new')
+			$scope.newMessage = '';
+		else
+			$scope.notifications[index].message = $scope.backupNotifications[index].slice();
 	};
 	
-	$scope.saveChanges = function(index) {
-		if (index === 'new') {
+	$scope.saveChanges = function(note, index) {
+		if (note === 'new') {
 			dataService.addNotification($scope.newMessage)
 				.then(function() {
 					dataService.getNotifications()
 						.then(function(result) {
+							result.splice(0, 1);
 							$scope.notifications = result;
 						});
 				});
 		} else {
+			dataService.updateNotification(note._id, {
+				message: note.message
+			});
 			
+			$scope.editModeList[index] = false;
 		}
 	};
 });

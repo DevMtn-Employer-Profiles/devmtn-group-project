@@ -7,7 +7,11 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app){
   /**********Middleware*********/
-  app.use(session({secret: 'hahahhaaha'}));
+  app.use(session({
+      secret: 'hahahhaaha',
+      saveUninitialized: true,
+      resave: true
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
   /**********Endpoints**********/
@@ -28,15 +32,16 @@ module.exports = function (app){
   app.get('/api/notifications', notification.getNotifications);
   app.delete('/api/notifications/:id', notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
+  app.put('/api/notifications/:id', notification.updateNotification);
   //Authentication
   app.post('/auth/devmtn', passport.authenticate('devmtn'));
   //Catch-all api errors
   app.all('/api/*', function(req, res){
-    res.send(404);
+      res.send(404);
   });
 
   //Catch-all route errors
   app.get('/', function(req, res){
-    res.render('index');
+      res.render('index');
   });
 };
