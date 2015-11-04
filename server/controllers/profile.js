@@ -1,6 +1,11 @@
 var Profile = require('mongoose').model('Profile');
 
-//**********GET Requests 
+/*****GET Requests*****/ 
+exports.getProfileById = function(req, res){
+	Profile.findById({'_id':req.params.id}).exec(function(err, profile){
+		res.send(profile);
+	});
+};
 exports.getProfiles = function(req, res){
 	Profile.find({}).exec(function(err, collection){
 		res.send(collection);
@@ -12,7 +17,19 @@ exports.getPendingProfile = function(req, res){
 		res.send(collection);
 	});
 };
-//*********POST Requests
+
+exports.getActiveProfile = function(req, res){
+	Profile.find({isActive:true}).exec(function(err, collection){
+		res.send(collection);
+	});
+};
+
+exports.getInactiveProfile = function(req, res){
+	Profile.find({isActive:false}).exec(function(err, collection){
+		res.send(collection);
+	});
+};
+/*****POST Requests*****/
 exports.createProfile = function(req, res, next){
 	var companyData = req.body;
 	companyData.companyName = companyData.companyName.toLowerCase();
@@ -26,7 +43,7 @@ exports.createProfile = function(req, res, next){
 		} else{res.end();}
 	})
 }
-//***********PUT Requests
+/*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
 	return Profile.findByIdAndUpdate(req.params.id, companyUpdates,function(err, schema){
@@ -34,7 +51,7 @@ exports.updateProfile = function(req, res){
 		return res.send(companyUpdates);
 	})
 };
-//**********DELETE Requests
+/*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
 	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){
 		if(err){
