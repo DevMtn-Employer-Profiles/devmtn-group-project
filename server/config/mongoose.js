@@ -12,7 +12,4 @@ module.exports = function(config){
   db.once('open', function callback(){
     console.log('Ye hath entered into the Employer Db');
   });
-  profileModel;
-  skillsModel;
-  userModel;
 };
