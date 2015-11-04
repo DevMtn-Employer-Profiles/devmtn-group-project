@@ -1,11 +1,11 @@
 var Skill = require('mongoose').model('Skill');
-
+/*****GET Requests*****/ 
 exports.getSkills = function(req, res){
 	Skill.find({}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
-
+/*****POST Requests*****/ 
 exports.createSkill = function(req, res, next){
 	var skillsData = req.body;
 	skillsData.name = skillsData.name.toLowerCase();
@@ -20,6 +20,7 @@ exports.createSkill = function(req, res, next){
 		else{res.end();}
 	});
 };
+/*****DELETE Requests*****/ 
 exports.removeSkill = function(req, res){
 	Skill.findByIdAndRemove({'_id':req.params.id}, function(err){
 		if(err){
