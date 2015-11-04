@@ -23,15 +23,16 @@ module.exports = function (app){
   app.get('/api/notifications', notification.getNotifications);
   app.delete('/api/notifications/:id', notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
+  app.put('/api/notifications/:id', notification.updateNotification);
   //Authentication
   app.post('/auth/devmtn', auth.authenticate);
   //Catch-all api errors
   app.all('/api/*', function(req, res){
-    res.send(404);
+      res.send(404);
   });
 
   //Catch-all route errors
   app.get('/', function(req, res){
-    res.render('index');
+      res.render('index');
   });
 };
