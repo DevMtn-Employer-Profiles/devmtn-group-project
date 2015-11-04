@@ -1,9 +1,9 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
-	<md-card class="inactive-card" ng-repeat="company in dummyActiveList | filter: search track by $index" layout="row">
+	<md-card class="inactive-card" ng-repeat="company in activeList | filter: search track by $index" layout="row">
 		<section class="employer-logo">
-			<img alt="Company Logo" ng-src="{{ company.companyLogo }}">
+			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">

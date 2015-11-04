@@ -42,10 +42,16 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	}
 	
 	this.getActiveCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
 			url: '/api/profile/active'
-		}).then(simpleDataReturn, handleError);
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getInactiveCompanies = function() {
@@ -59,15 +65,6 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		return $http({
 			method: 'DELETE',
 			url: '/api/profile/' + companyId	
-
-		}).then(simpleDataReturn, handleError)
-	}
-	
-	this.updateProfile = function(newProfile) {
-		return $http({
-			method: 'PUT',
-			url: '/api/profile/'+newProfile._id,
-			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)
 	}
