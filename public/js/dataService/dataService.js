@@ -63,15 +63,6 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	this.updateProfile = function(newProfile) {
-		return $http({
-			method: 'PUT',
-			url: '/api/profile/'+newProfile._id,
-			data: newProfile	
-
-		}).then(simpleDataReturn, handleError)
-	}
-	
 	this.createCompany = function(company) {
 		return $http({
 			method: 'POST',

@@ -1,4 +1,4 @@
-app.controller('adminAllCtrl', function($scope, dataService) {
+app.controller('adminAllCtrl', function($scope, $timeout, dataService) {
 	// $scope.dummyAllList = [
 	// 	{
 	// 		companyName: 'Procter & Gamble',
@@ -46,10 +46,8 @@ app.controller('adminAllCtrl', function($scope, dataService) {
 	
 	$scope.updateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
-		
-		dataService.updateCompany($scope.companyList[index]._id, {
-			isPending: $scope.companyList[index].isPending,
-			isActive: $scope.companyList[index].isActive
-		});
+		$timeout(function() {
+			dataService.updateProfile($scope.companyList[index]);
+		}, 50);
 	};
 });
