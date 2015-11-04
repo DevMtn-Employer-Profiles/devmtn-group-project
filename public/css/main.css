@@ -86,8 +86,6 @@ header {
 }
 
 .search-bar {
-	border-radius: 3px;
-	padding: 8px;
 	position: absolute;
 	right: 20px;
 }
@@ -185,6 +183,18 @@ header {
 	overflow: hidden;
 	
 	/*padding: 20px;*/
+	
+	opacity: .9;
+	border: 1px solid lightgray;
+	
+	transition: all linear .1s;
+	box-shadow: none;
+}
+
+.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
+	opacity: 1;
+	/*box-shadow: 0 0 8px lightgray;*/
+	box-shadow: 0 0 8px #8CE0EB;
 }
 
 	.employer-logo {
@@ -406,3 +416,9 @@ md-card.column {
 		
 		margin: 0 5px;
 	}
+
+@media (max-width: 1450px) {
+	.search-bar {
+		position: static;
+	}
+}
