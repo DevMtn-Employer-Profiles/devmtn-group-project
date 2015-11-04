@@ -95,5 +95,20 @@ module.exports = {
 		} else {
 			res.status(401).send();
 		}
+	},
+	requireAdminRole: function(req, res, next) {
+		//only call next if the user has admin status
+		if(req.isAuthenticated() && req.user.isAdmin) {
+			next();
+		} else {
+			res.status(401).json('Resource available for admins only');
+		}
+	},
+	requireEmployerRole: function(req, res, next) {
+		if(req.isAuthenticated() && !req.user.isAdmin) {
+			next();
+		} else {
+			res.status(401).json('Resource available for employers only');
+		}
 	}
 }
