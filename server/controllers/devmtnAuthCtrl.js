@@ -87,5 +87,13 @@ module.exports = {
 		} else {
 			res.redirect('/#/employer');
 		}
+	},
+	currentUser: function(req, res) {
+		//Return the currently logged in user
+		if(req.isAuthenticated()) {
+			res.json(req.user);
+		} else {
+			res.status(401).send();
+		}
 	}
 }

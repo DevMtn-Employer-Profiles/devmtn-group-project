@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
     notification = require('../controllers/notification'),
     passport = require('passport'),
     session = require('express-session'),
-    devmtn = require('./devmtnAuthConfig');
+    devmtn = require('./devmtnAuthConfig'),
+    devmtnCtrl = require('../controllers/devmtnAuthCtrl');
 
 module.exports = function (app){
   var requireLogin = function(req, res, next) {
@@ -61,26 +62,9 @@ module.exports = function (app){
   });
   app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
         failureRedirect: '/#/landing'
-      }), function(req, res) {
-        //Are they a admin or employer?
-        if(req.user.isAdmin) {
-          //redirect to admin landing
-          res.redirect('/#/admin');
-        } else {
-          //redirect to employer landing
-          res.redirect('/#/employer');
-        }
-      });
-  app.get('/auth/logout', function(req, res) {
-    req.logout();
-    res.redirect('/#/');
-  });
-  app.get('/auth/currentUser', function(req, res) {
-    if(req.user) {
-      res.json(req.user);
-    }
-    res.status(401).send();
-  })
+      }), devmtnCtrl.loginSuccessRouter);
+  app.get('/auth/logout', devmtnCtrl.logout);
+  app.get('/auth/currentUser', devmtnCtrl.currentUser);
   //Catch-all api errors
   app.all('/api/*', function(req, res){
     res.send(404);
