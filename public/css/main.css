@@ -248,8 +248,52 @@ header {
 /*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
 
 md-card.column {
-	width: 80%;
+	width: calc(50% - 60px);
+	
+	padding: 30px;
 }
+	md-card.column h3, md-card.column h5 {
+		margin: 2px;
+	}
+	
+	md-card.column textarea {
+		width: calc(100% - 20px);
+		padding: 10px;
+		min-height: auto;
+		height: auto;
+	}
+
+.click-to-edit {
+	margin: 0;
+	padding: 8px;
+	
+	border-radius: 5px;
+	
+	transition: all linear 100ms;
+}
+
+.click-to-edit:hover {
+	background-color: rgba(200,200,240,.5);
+}
+
+	.delete-button {
+		min-height: auto;
+		min-width: auto;
+		height: 20px;
+		width: 20px;
+		line-height: .5em;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+		position: relative;
+		top: .5em;
+		border-radius: 10px;
+	}
+	
+	.delete-button:hover {
+		background-color: rgb(244,67,54) !important;
+		color: white !important;
+	}
 
 	
 	/*LIST VIEW CSS*/  

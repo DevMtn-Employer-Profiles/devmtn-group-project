@@ -53,8 +53,11 @@ app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
 						.then(function(result) {
 							result.splice(0, 1);
 							$scope.notifications = result;
+							$scope.newMessage = '';
 						});
 				});
+			
+			$scope.editModeList[note] = false;
 		} else {
 			dataService.updateNotification(note._id, {
 				message: note.message
