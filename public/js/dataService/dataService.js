@@ -99,6 +99,19 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	this.getSkillById = function(skillId) {
+		var deferred = $q.defer();
+		
+		$http({
+			method: 'GET',
+			url: '/api/skills/' + skillId
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError)
+		
+		return deferred.promise;
+	}
+	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
