@@ -9,10 +9,16 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	}
 	
 	this.getCompanyById = function(companyId) {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET', 
 			url: '/api/profile/' + companyId
-		}).then(simpleDataReturn, handleError);
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getAllCompanies = function() {

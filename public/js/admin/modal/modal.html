@@ -1,5 +1,5 @@
 <md-dialog aria-label="Company Profile" ng-cloak>
-	<form>
+	<form layout="column" style="height: 100%; width: 100%">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Company Profile</h2>
@@ -8,9 +8,14 @@
 			</div>
 		</md-toolbar>
 		
-		<md-dialog-content style="max-width: 1000px; max-height: 810px;">
-			<div class="md-dialog-content">
-				<h2>{{  }}</h2>
+		<md-dialog-content flex>
+			<div class="md-dialog-content" layout="row">
+				<div id="quick-info">
+					<img ng-src="{{ currentProfile.logo }}">
+				</div>
+				<div id="quick-info">
+					<h2>{{ currentProfile.companyName }}</h2>
+				</div>
 			</div>
 		</md-dialog-content>
 		

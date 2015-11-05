@@ -1,7 +1,14 @@
 app.controller('ModalController', function($scope, $mdDialog, ModalService, dataService) {
+	$scope.currentProfile = {};
+	
 	function getReferencedProfile() {
-		ModalService.currentModal
+		dataService.getCompanyById(ModalService.currentProfileId)
+			.then(function(result) {
+				$scope.currentProfile = result;
+			});
 	}
+	
+	getReferencedProfile();
 	
 	$scope.hide = function() {
 		$mdDialog.hide();
