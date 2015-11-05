@@ -173,7 +173,7 @@ header {
 
 /*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */
 
-.active-card, .inactive-card, .pending-card, .all-card {
+.active-card, .inactive-card, .pending-card, .all-card, .column {
 	width: 90%;
 	max-width: 800px;
 	
@@ -192,7 +192,7 @@ header {
 	box-shadow: none;
 }
 
-.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
+.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover {
 	opacity: 1;
 	/*box-shadow: 0 0 8px lightgray;*/
 	box-shadow: 0 0 8px #8CE0EB;
@@ -266,16 +266,16 @@ header {
 
 /*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
 
-md-card.column {
+.column {
 	width: calc(50% - 60px);
 	
 	padding: 30px;
 }
-	md-card.column h3, md-card.column h5 {
+	.column h3, .column h5 {
 		margin: 2px;
 	}
 	
-	md-card.column textarea {
+	.column textarea {
 		width: calc(100% - 20px);
 		padding: 10px;
 		min-height: auto;
@@ -283,7 +283,7 @@ md-card.column {
 		box-sizing: border-box;
 	}
 	
-	md-card #welcome-message {
+	#welcome-message {
 		margin: 20px 0;
 	}
 	
