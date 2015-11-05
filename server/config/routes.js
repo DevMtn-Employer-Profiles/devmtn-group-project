@@ -25,9 +25,9 @@ module.exports = function (app){
   app.delete('/api/skills/:id', skill.removeSkill);
   //Notifications
   app.get('/api/notifications', notification.getNotifications);
-  app.delete('/api/notifications/:id',  notification.deleteNotification);
   app.post('/api/notifications', notification.addNotification);
   app.put('/api/notifications/:id', notification.updateNotification);
+  app.delete('/api/notifications/:id',  notification.deleteNotification);
   //Authentication
   app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
     //Doesn't get called?
