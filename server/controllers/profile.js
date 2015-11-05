@@ -19,6 +19,13 @@ exports.getPendingProfile = function(req, res){
 	});
 };
 
+exports.getMyProfile = function(req, res) {
+	Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
+		if(err)res.status(500).send();
+		res.json(profile);
+	})
+}
+
 exports.getActiveProfile = function(req, res){
 	Profile.find({isPending:false, isVisible: true}).exec(function(err, collection){
 		res.send(collection);
