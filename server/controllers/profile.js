@@ -8,25 +8,25 @@ exports.getProfileById = function(req, res){
 	});
 };
 exports.getProfiles = function(req, res){
-	Profile.find({isVisable:true}).exec(function(err, collection){
+	Profile.find({isVisible:true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
 exports.getPendingProfile = function(req, res){
-	Profile.find({isPending:true, isVisable:true}).exec(function(err, collection){
+	Profile.find({isPending:true, isVisible:true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
 exports.getActiveProfile = function(req, res){
-	Profile.find({isPending:false, isVisable: true}).exec(function(err, collection){
+	Profile.find({isPending:false, isVisible: true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
 exports.getInactiveProfile = function(req, res){
-	Profile.find({isVisable:false}).exec(function(err, collection){
+	Profile.find({isVisible:false}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
