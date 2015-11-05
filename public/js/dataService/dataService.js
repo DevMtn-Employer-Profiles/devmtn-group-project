@@ -20,16 +20,10 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.getAllCompanies = function() {
-		var deferred = $q.defer();
-		
-		$http({
+		return $http({
 			method: 'GET',
-			url: '/api/profile'
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
-		
-		return deferred.promise;
+			url: '/api/profile/active'
+		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getPendingCompanies = function() {
@@ -46,16 +40,10 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.getActiveCompanies = function() {
-		var deferred = $q.defer();
-		
-		$http({
+		return $http({
 			method: 'GET',
 			url: '/api/profile/active'
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
-		
-		return deferred.promise;
+		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.getInactiveCompanies = function() {

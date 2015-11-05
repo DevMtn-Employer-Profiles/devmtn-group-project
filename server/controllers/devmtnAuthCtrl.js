@@ -10,10 +10,10 @@ passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, u
 	//don't allow anyone with student role to register as an employer. don't allow admins to create a company profile
 	if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'student')) {
 		console.log('Students should not login as an employer.')
-		done(null, false, { message: 'Students not allowed on Employers site' });
+		return done(null, false, { message: 'Students not allowed on Employers site' });
 	} else if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
 		console.log('admin user, free access, does not need to be created in database.');
-		done(null, user);
+		return done(null, user);
 	}
 	User.findOne({ email: user.email }, function (findErr, foundUser) {
 		if (findErr) return done(findErr, false);
