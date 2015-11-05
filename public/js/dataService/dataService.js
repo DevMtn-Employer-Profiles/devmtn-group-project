@@ -1,10 +1,14 @@
-angular.module('MainApp').service('dataService', function($http, $q) {
+angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	
 	var simpleDataReturn = function(result) {
 		return result.data;
 	}
 	
 	var handleError = function(error) {
+		if(error.status===401) {
+			//unauthorized! get them out of here!
+			$state.go('Landing');
+		}
 		console.error(error);
 	}
 	
@@ -96,14 +100,15 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/profile'
+			url: '/api/myProfile/'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.updateProfile = function(newProfile) {
+		console.log("UPDATING PROFILE: ", newProfile);
 		return $http({
 			method: 'PUT',
-			url: '/api/profile/',
+			url: '/api/profile/'+newProfile._id,
 			data: newProfile	
 
 		}).then(simpleDataReturn, handleError)

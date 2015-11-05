@@ -60,16 +60,6 @@ passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, u
 
 passport.serializeUser(function (user, done) {
 	console.log("Serializing");
-	//req.user will have their ID as well as if they are an admin. Just a nifty
-	//way to track this variable without making multiple checks.
-	// var cerealUser = {
-	// 	isAdmin: false,
-	// 	_id: user._id
-	// };
-	// if(user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
-	// 	cerealUser.isAdmin = true;
-	// }
-	// console.log("user admin status: ", cerealUser.isAdmin);
 	done(null, user);
 });
 passport.deserializeUser(function (obj, done) {
@@ -86,7 +76,7 @@ module.exports = {
 		console.log('The User: ', req.user);
 		//Redirect admins to the admin view and employers 
 		//to the employer view. Students will not get authorized so they should not end up here
-		if(Devmtn.checkRoles(req.user, 'admin')) {
+		if(req.user.hasOwnProperty('roles') && Devmtn.checkRoles(req.user, 'admin')) {
 			console.log("Redirecting to admin");
 			res.redirect('/#/admin')
 		} else {

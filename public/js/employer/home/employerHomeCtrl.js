@@ -6,26 +6,21 @@ angular.module('MainApp').controller('employerHomeCtrl', function($scope, $state
 	
 	dataService.getMyProfile().then(function(result) {
 		$scope.myProfile = result;
-		try {
+		console.log("RESULT: ", result);
 		//Determine profile status
-			if(result.isPending) {
-				if(result.isActive) {
-					//CRAP! SOMETHING BROKE!
-					console.error('BOTH PROFILE STATUS BOOLS CAN NEVER BE THE SAME');
-					$scope.status = 'This is embarassing, it seems we have an error.';
-				} else {
-					$scope.status = 'Your profile is under review.';
-				}
+		if(result.isPending) {
+			if(result.isVisible) {
+				//CRAP! SOMETHING BROKE!
+				$scope.status = 'We have flagged your profile changes to be reviewed, your profile is still visible in the meantime.';
 			} else {
-				if(result.isActive) {
-					$scope.status = 'Your profile is active!';
-				} else {
-					$scope.status = 'Your profile is currently inactive. To activate your profile, go to the profile tab and update your profile information.';
-				}
+				$scope.status = 'Your profile is under review.';
 			}
-		} catch(e) {
-			console.error("You are not currently logged in. Please log in before accessing this page.  Thank you!");
-			// $state.go('Landing');
+		} else {
+			if(result.isVisible) {
+				$scope.status = 'Your profile is active!';
+			} else {
+				$scope.status = 'Your profile is currently inactive. To activate your profile, go to the profile tab and submit your profile for approval.';
+			}
 		}
 	});
 	
