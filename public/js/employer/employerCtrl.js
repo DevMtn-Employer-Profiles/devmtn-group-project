@@ -1,4 +1,5 @@
 angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state) {
+	console.log("Loading employer ctrl");
 	if ($location.path() === '/employer')
 		$state.go('Employer.Home');
 	// Sidenav Toolbar configuration from here on down

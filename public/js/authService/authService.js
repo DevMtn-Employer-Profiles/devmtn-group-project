@@ -35,7 +35,7 @@ angular.module('MainApp').service('authService', function($http, $q) {
 		return $http({
 			method: 'GET',
 			url: '/auth/devmtn'
-		}).then(simpleLoginReturn, loginErrorHandler);
+		}).then(function(success){console.log("SUCCESS", success)}, function(err){console.error('ERROR',err)});
 	}
 	
 	this.logout = function() {
