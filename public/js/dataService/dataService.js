@@ -26,7 +26,7 @@ angular.module('MainApp').service('dataService', function($http, $q) {
 		
 		$http({
 			method: 'GET',
-			url: '/api/profile'
+			url: '/api/profile/all'
 		}).then(function(response) {
 			deferred.resolve(response.data);
 		}, handleError);
