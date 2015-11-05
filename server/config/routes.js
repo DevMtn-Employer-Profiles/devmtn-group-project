@@ -33,6 +33,10 @@ module.exports = function (app){
     //Doesn't get called?
     console.log('Ha ha this should not ever get printed to the console');
   });
+  // app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
+  //       failureRedirect: '/#/landing',
+  //       successRedirect: '/#/employer'
+  //     }));
   app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
         failureRedirect: '/#/landing'
       }), devmtnCtrl.loginSuccessRouter);

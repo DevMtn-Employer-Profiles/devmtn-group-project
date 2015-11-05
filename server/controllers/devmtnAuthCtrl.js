@@ -59,6 +59,7 @@ passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, u
 }));
 
 passport.serializeUser(function (user, done) {
+	console.log("Serializing");
 	//req.user will have their ID as well as if they are an admin. Just a nifty
 	//way to track this variable without making multiple checks.
 	var cerealUser = {
@@ -70,8 +71,9 @@ passport.serializeUser(function (user, done) {
 	}
 	done(null, cerealUser);
 });
-passport.deserializeUser(function (_id, done) {
-	done(_id, null);
+passport.deserializeUser(function (obj, done) {
+	console.log("Deserializing");
+	done(null, obj);
 });
 
 module.exports = {
@@ -80,12 +82,16 @@ module.exports = {
 		res.redirect('/#/');
 	},
 	loginSuccessRouter: function (req, res) {
+		console.log("Login Success");
 		//Redirect admins to the admin view and employers 
 		//to the employer view. Students will not get authorized so they should not end up here
 		if(req.user.isAdmin) {
-			res.redirect('/#/admin');
+			console.log("Redirecting to admin");
+			res.send('to admin')
 		} else {
-			res.redirect('/#/employer');
+			console.log("Redirecting to employer");
+			// res.send('to employer');
+			res.redirect('/#/employer/home')
 		}
 	},
 	currentUser: function(req, res) {
