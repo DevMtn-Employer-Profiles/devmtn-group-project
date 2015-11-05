@@ -1,4 +1,4 @@
-angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService) {
+angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService, $state) {
 	$scope.message = 'Hello from employer profile controller';
 	
 	$scope.isEditing  = false;
@@ -36,10 +36,32 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.isEditing = false;
 	}
 	
+	$scope.submitProfile = function() {
+		// $scope.editedProfile._id = $scope.profile._id;
+		$scope.profile.isPending = true;
+		//** SET SKILLS TO BE ID's ONLY
+		var newSkills = [];
+		$scope.profile.skills.forEach(function(item) {
+			newSkills.push(item._id);
+		})
+		$scope.profile.skills = newSkills;
+		//Push to database
+		dataService.updateProfile($scope.profile).then(function(result) {
+			console.log('Profile Updated');
+			//Get New Profile
+			loadProfile();
+		});
+		
+		$state.go('Employer.Home');
+	}
+	
 	//Saves the edited variables to the database 
 	$scope.saveEdit = function() {
 		// $scope.editedProfile._id = $scope.profile._id;
 		$scope.profile = $scope.editedProfile;
+		if($scope.profile.isVisible) {
+			$scope.profile.isPending = true;
+		}
 		//** SET SKILLS TO BE ID's ONLY
 		var newSkills = [];
 		$scope.profile.skills.forEach(function(item) {
