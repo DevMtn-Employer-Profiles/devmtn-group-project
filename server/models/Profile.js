@@ -9,7 +9,7 @@ var schema = new mongoose.Schema({
 	logo: {type: String, default: 'http://www.factfiend.com/wp-content/uploads/2014/10/windows-logo.png'},
 	skills: {type: [{type: mongoose.Schema.Types.ObjectId, ref: 'skills'}], default: []},
 	isPending: {type: Boolean, default: false},
-	isVisable: {type: Boolean, default: false}
+	isVisible: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Profile', schema);
