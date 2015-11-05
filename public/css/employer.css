@@ -12,6 +12,8 @@
 .profile-right {
 	width: 70%;
 	float: right;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 .profile-img {
@@ -19,14 +21,13 @@
 }
 
 .profile-img > img {
-	background: #69C4EA;
 	width: 200px;
 	height: 200px;
 }
 
 .profile-textarea {
 	box-sizing: border-box;
-	width: 80%;
+	width: 100%;
 	height: 200px;
 	resize: none;
 }
@@ -83,4 +84,29 @@ ul {
 
 .notification-message {
 	margin: 0;
+}
+
+/*Home Styles*/
+.employer-container {
+	width: 90%;
+	margin: auto;
+	box-shadow: 2px 2px #2F3F42;
+	border-radius: 20px;
+	border: thin solid lightgray;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.stretch {
+	clear: both;
+	content: ' ';
+}
+
+.edit-btn {
+	font-size: 2em;
+}
+
+.edit-btn:hover {
+	cursor: pointer;
+	color: #2F3F42;
 }

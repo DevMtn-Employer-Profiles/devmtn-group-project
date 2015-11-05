@@ -1,5 +1,6 @@
 var Profile = require('mongoose').model('Profile');
 
+
 /*****GET Requests*****/ 
 exports.getProfileById = function(req, res){
 	Profile.findById({'_id':req.params.id}).populate('Skill').exec(function(err, profile){
@@ -7,25 +8,32 @@ exports.getProfileById = function(req, res){
 	});
 };
 exports.getProfiles = function(req, res){
-	Profile.find({}).exec(function(err, collection){
+	Profile.find({isVisible:true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
 exports.getPendingProfile = function(req, res){
-	Profile.find({isPending:true}).exec(function(err, collection){
+	Profile.find({isPending:true, isVisible:true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
+exports.getMyProfile = function(req, res) {
+	Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
+		if(err)res.status(500).send();
+		res.json(profile);
+	})
+}
+
 exports.getActiveProfile = function(req, res){
-	Profile.find({isActive:true}).exec(function(err, collection){
+	Profile.find({isPending:false, isVisible: true}).populate('skills').exec(function(err, collection){
 		res.send(collection);
 	});
 };
 
 exports.getInactiveProfile = function(req, res){
-	Profile.find({isActive:false}).exec(function(err, collection){
+	Profile.find({isVisible:false}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
