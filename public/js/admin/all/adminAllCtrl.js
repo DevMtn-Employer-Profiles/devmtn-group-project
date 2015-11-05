@@ -1,4 +1,4 @@
-app.controller('adminAllCtrl', function($scope, $timeout, dataService) {
+app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
 	$scope.search = function(company) {
@@ -28,5 +28,21 @@ app.controller('adminAllCtrl', function($scope, $timeout, dataService) {
 		$timeout(function() {
 			dataService.updateProfile($scope.companyList[index]);
 		}, 50);
+	};
+	
+	$scope.openModal = function(event, profileId) {
+		ModalService.currentProfileId = profileId;
+		 
+		$mdDialog.show({
+			controller: 'ModalController',
+			templateUrl: 'js/admin/modal/modal.html',
+			parent: angular.element(document.body),
+			targetEvent: event,
+			clickOutsideToClose: true
+		}).then(function(answer) {
+			console.log('SAVE!!!');
+		}, function() {
+			console.log('CANCEL!!!');
+		});
 	};
 });

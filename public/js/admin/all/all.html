@@ -1,4 +1,8 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
+	<button ng-click="openModal($event)">Test modal</button>
+	
+	<!--<admin-modal ng-show="modalOpen">-->
+	
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
 	<div class="active-card" ng-repeat="company in companyList | filter: search | orderBy: companyName | limitTo: 10 track by $index" layout="row">
@@ -7,7 +11,7 @@
 		</section>
 		
 		<section class="employer-info">
-			<h3 class="company-name">{{ company.companyName }}</h3>
+			<h3 class="company-name" ng-click="openModal($event, company._id)">{{ company.companyName }}</h3>
 			<p class="company-bio">
 				{{ company.bio | limitTo: 300 }}<span ng-show="company.bio.length > 300">...</span>
 			</p>
@@ -23,6 +27,4 @@
 			<md-button ng-show="!company.isActive" class="md-warn md-raised" ng-click="deleteCompany(company)">Delete</md-button>
 		</section>
 	</div>
-	
-	
 </div>

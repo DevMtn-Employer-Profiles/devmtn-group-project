@@ -1,19 +1,7 @@
-var passport = require('passport');
-var DevMtnStrategy = require('devmtn-auth');
-
-var config = {
-	app: 'app_name_placeholder',
-	client_token: 'client_token_placeholder',
-	callbackURL: 'callbackURL_placeholder',
-	jwtSecret: 'jwtSecret_placeholder'
-}
-
-passport.use('devmtn', new DevMtnStrategy(config, function(jwtoken, user, done) {
-	//just return the user
-	return done(null, user);
-}));
-
-exports.logout = function(req, res) {
-	req.logout();
-	res.send();
+module.exports = {
+	app: 'dev-ep',
+	client_token: 'ZKoOYXQzb8fYIoSsSDrS8Wdi7rpUASm36LgBh',
+	callbackURL: 'http://localhost:3000/auth/devmtn/callback',
+	// callbackURL: 'http://profiles.devmounta.in/auth/devmtn/callback',  **Development Callback?
+	jwtSecret: 'hashtagDevmountinIsAweseomeHashtagLearnToCode'
 }

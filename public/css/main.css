@@ -345,13 +345,11 @@ md-card.column {
 
 /*  ---------------------  ADMIN MODAL STYLES  -------------------  */
 
-#modal-container > #backdrop {
-	background-color: rgba(20, 20, 20, .7);
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+md-dialog {
+	border-radius: 0;
+	
+	width: 70%;
+	height: 70%;
 }
 
 	
@@ -434,5 +432,10 @@ md-card.column {
 @media (max-width: 1450px) {
 	.search-bar {
 		position: static;
+	}
+	
+	md-dialog {
+		width: 90%;
+		height: 90%;
 	}
 }
