@@ -14,7 +14,7 @@ exports.getProfiles = function(req, res){
 };
 
 exports.getPendingProfile = function(req, res){
-	Profile.find({isPending:true, isVisible:true}).exec(function(err, collection){
+	Profile.find({isPending:true}).exec(function(err, collection){
 		res.send(collection);
 	});
 };
