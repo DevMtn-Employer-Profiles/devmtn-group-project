@@ -1,4 +1,8 @@
 app.controller('ModalController', function($scope, $mdDialog, ModalService, dataService) {
+	function getReferencedProfile() {
+		ModalService.currentModal
+	}
+	
 	$scope.hide = function() {
 		$mdDialog.hide();
 	};
@@ -7,7 +11,7 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 		$mdDialog.cancel();
 	};
 	
-	$scope.answer = function(answer) {
+	$scope.saveProfile = function(answer) {
 		$mdDialog.hide(answer);
 	};
 });
