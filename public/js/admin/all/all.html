@@ -1,8 +1,4 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
-	<button ng-click="openModal($event)">Test modal</button>
-	
-	<!--<admin-modal ng-show="modalOpen">-->
-	
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
 	<div class="active-card" ng-repeat="company in companyList | filter: search | orderBy: companyName | limitTo: 10 track by $index" layout="row">

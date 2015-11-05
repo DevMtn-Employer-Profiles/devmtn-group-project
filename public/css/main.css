@@ -14,7 +14,6 @@ body {
 	transition:0.1s linear all;
 	
 	/* remember to add this */
-	/*position: absolute;*/
 	display:block!important;
 	opacity:1;
 }
@@ -351,6 +350,14 @@ md-dialog {
 	width: 70%;
 	height: 70%;
 }
+
+	.employer-logo-container-md {
+		width: 200px;
+	}
+	
+		.employer-logo-container-md > img {
+			width: 100%;
+		}
 
 	
 	/*LIST VIEW CSS*/  
