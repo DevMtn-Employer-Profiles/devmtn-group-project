@@ -16,6 +16,7 @@ module.exports = function (app){
   app.get('/api/profile/active', profile.getActiveProfile);
   app.get('/api/profile/inactive', profile.getInactiveProfile);
   app.get('/api/profile/:id', profile.getProfileById);
+  app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
   app.post('/api/profile', profile.createProfile);
   app.put('/api/profile/:id', profile.updateProfile);
   app.delete('/api/profile/:id', profile.removeProfile);
