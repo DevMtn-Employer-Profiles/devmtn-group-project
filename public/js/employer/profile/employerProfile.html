@@ -1,7 +1,7 @@
 <div class="employer-container">
 	<h3>Profile</h3>
 	<div ng-show='!isEditing'>
-		<span ng-show="profile.isVisible" title='Submit Profile' ng-click='submitProfile()' class='pull-right fa fa-upload save-btn'></span> 
+		<span ng-show="!profile.isPending" title='Submit Profile' ng-click='submitProfile()' class='pull-right fa fa-upload save-btn'></span> 
 		<span title='Edit Profile' ng-click='openEdit()' class='pull-right edit-btn fa fa-pencil-square-o'></span><br/>
 		<div class='profile-left'>
 			<div class='profile-img'>
