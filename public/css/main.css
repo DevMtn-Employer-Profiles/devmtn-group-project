@@ -448,27 +448,47 @@ md-card.column {
 	
 	font-size: 50px;
 	
+	font-weight: 500px;
+	
 	font-family: Josefin Sans, sans-serif;
 	
 	margin: auto;
 	
 	visibility: visible;
 	
-	animation-duration: 3s;
+	animation-duration: 2s;
 	
 	animation-name: fadeIn;
 }
 
-.update-container {
-	color: white;
+@-webkit-keyframes typing {
+    from { width: 0 }
+    to { width:16.3em }
 }
 
-.update-box {
-	color: 52 172 224;
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+@-webkit-keyframes delay {
+	from, to { display: none; }
+	50% { display: block;}
+}
+
+.typed-text { 
+    font-size:30px;
+	color: white;
+    width:15em;
+    white-space:nowrap;
+    overflow:hidden;
+    border-right: .1em solid white;
+	margin: auto;
+	font-family: Josefin Sans, sans-serif;
 	
-	font-size: 30px;
-	
-	font-weight: bold;
+    -webkit-animation: typing 3s steps(35, end), /* # of steps = # of characters */
+                        blink-caret 1s step-end infinite;
+					
 }
 
 .foot-clan-box {
@@ -479,6 +499,10 @@ md-card.column {
     padding-right: 15px;
 	
     padding-left: 15px;
+	
+	font-family: Josefin Sans, sans-serif;
+	
+	background-color: #EEEEEE;
 }
 
 .foot-clan-box-text {
