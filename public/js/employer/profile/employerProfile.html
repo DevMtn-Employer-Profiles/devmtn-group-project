@@ -1,61 +1,65 @@
-<h3>Profile</h3>
-<div ng-show='!isEditing'>
-	<button ng-click='openEdit()' class='pull-right'>Edit</button><br/>
-	<div class='profile-left'>
-		<div class='profile-img'>
-			<img ng-src='{{profile.logo}}' alt='company logo'/>
+<div class="employer-container">
+	<h3>Profile</h3>
+	<div ng-show='!isEditing'>
+		<span ng-show="profile.isVisible" title='Submit Profile' ng-click='submitProfile()' class='pull-right fa fa-upload save-btn'></span> 
+		<span title='Edit Profile' ng-click='openEdit()' class='pull-right edit-btn fa fa-pencil-square-o'></span><br/>
+		<div class='profile-left'>
+			<div class='profile-img'>
+				<img ng-src='{{profile.logo}}' alt='company logo'/>
+			</div>
+			<h4>Skills Needed</h4>
+			<ul>
+				<li ng-repeat='skill in profile.skills'>{{skill.name}}</li>
+			</ul>
 		</div>
-		<h4>Skills Needed</h4>
-		<ul>
-			<li ng-repeat='skill in profile.skills'>{{skill.name}}</li>
-		</ul>
-	</div>
-	<div class="profile-right">
-		<h3>{{profile.companyName}}</h3>
-		<h4>Bio</h4>
-		<p>{{profile.bio}}</p>
-		<h4>Requirements</h4>
-		<ul>
-			<li ng-repeat='requirement in profile.requirements'>{{requirement}}</li>
-		</ul>
-	</div>
-</div>
-<div ng-show='isEditing'>
-	<div class='pull-right'>
-		<span ng-click='cancelEdit()' class='fa fa-ban cancel-btn'></span>
-		<span ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span> <br/>
-	</div>
-	<div class='profile-left'>
-		<div class='profile-img'>
-			<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
-			<input type='text' placeholder='company logo url' ng-model='editedProfile.logo' />
+		<div class="profile-right">
+			<h3>{{profile.companyName}}</h3>
+			<h4>Bio</h4>
+			<p>{{profile.bio}}</p>
+			<h4>Requirements</h4>
+			<ul>
+				<li ng-repeat='requirement in profile.requirements'>{{requirement}}</li>
+			</ul>
 		</div>
-		<h4>Skills Needed</h4>
-		<select ng-change='changeSelectedSkill(selectedSkill)' ng-options='item as item.name for item in skillsOptions' ng-model='selectedSkill'>
-		</select>
-		<span ng-click='addSelectedSkill(selectedSkill)' class='fa fa-plus-circle add-circle'></span>
-		<div ng-show='showNewSkill'>
-			<input type='text' placeholder='new skill' ng-model='newSkill'/>
-			<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
+	</div>
+	<div ng-show='isEditing'>
+		<div class='pull-right'>
+			<span title='Cancel Edit' ng-click='cancelEdit()' class='fa fa-ban cancel-btn'></span>
+			<span title='Save Profile' ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span> <br/>
 		</div>
-		<ul>
-			<li ng-repeat='skill in editedProfile.skills track by $index'>
-				<span ng-click='removeSkill($index)' class='fa fa-minus-circle delete-circle'></span>{{skill.name}}
-			</li>
-		</ul>
+		<div class='profile-left'>
+			<div class='profile-img'>
+				<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
+				<input type='text' placeholder='company logo url' ng-model='editedProfile.logo' />
+			</div>
+			<h4>Skills Needed</h4>
+			<select ng-change='changeSelectedSkill(selectedSkill)' ng-options='item as item.name for item in skillsOptions' ng-model='selectedSkill'>
+			</select>
+			<span ng-click='addSelectedSkill(selectedSkill)' class='fa fa-plus-circle add-circle'></span>
+			<div ng-show='showNewSkill'>
+				<input type='text' placeholder='new skill' ng-model='newSkill'/>
+				<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
+			</div>
+			<ul>
+				<li ng-repeat='skill in editedProfile.skills track by $index'>
+					<span ng-click='removeSkill($index)' class='fa fa-minus-circle delete-circle'></span>{{skill.name}}
+				</li>
+			</ul>
+		</div>
+		<div class="profile-right">
+			<input type='text' ng-model='editedProfile.companyName' />
+			<h4>Bio</h4>
+			<textarea class='profile-textarea' ng-model='editedProfile.bio'></textarea>
+			<h4>Requirements</h4>
+			<input type='text' placeholder='new requirement' ng-model='newRequirement'/>
+			<span ng-click='addNewRequirement(newRequirement)' class='fa fa-plus-circle add-circle'></span>
+			<ul>
+				<li ng-repeat='requirement in editedProfile.requirements track by $index'>
+					<span ng-click='removeRequirement($index)' class='fa fa-minus-circle delete-circle'></span>
+					<input type='text' ng-model='editedProfile.requirements[$index]'/>
+				</li>
+			</ul>
+		</div>
 	</div>
-	<div class="profile-right">
-		<input type='text' ng-model='editedProfile.companyName' />
-		<h4>Bio</h4>
-		<textarea class='profile-textarea' ng-model='editedProfile.bio'></textarea>
-		<h4>Requirements</h4>
-		<input type='text' placeholder='new requirement' ng-model='newRequirement'/>
-		<span ng-click='addNewRequirement(newRequirement)' class='fa fa-plus-circle add-circle'></span>
-		<ul>
-			<li ng-repeat='requirement in editedProfile.requirements track by $index'>
-				<span ng-click='removeRequirement($index)' class='fa fa-minus-circle delete-circle'></span>
-				<input type='text' ng-model='editedProfile.requirements[$index]'/>
-			</li>
-		</ul>
-	</div>
+	<div class="stretch"></div>
 </div>
