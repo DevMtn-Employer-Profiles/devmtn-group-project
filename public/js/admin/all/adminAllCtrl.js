@@ -21,7 +21,6 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		return $scope.companyList.length;
 	}, function(newValue) {
 		$scope.lastPage = Math.ceil($scope.companyList.length / 10);
-		console.log(newValue);
 	})
 	
 	

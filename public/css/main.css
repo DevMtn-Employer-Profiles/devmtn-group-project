@@ -199,16 +199,39 @@ header {
 	transition: all linear .1s;
 }
 
-.arrow-button:hover {
+.pagination {
+	list-style: none;
+	
+	width: 300px;
+}
+
+	.pagination-button {
+		margin: 0;
+		padding: 0;
+		
+		min-width: auto;
+		min-height: auto;
+		width: 100%;
+		height: auto;
+	}
+	
+		.current-page {
+			background-color: rgba(63,81,181, .9) !important;
+			color: white;
+			
+			font-weight: bolder;
+		}
+
+/*.arrow-button:hover {
 	background-color: rgba(63,81,181, .9) !important;
 	color: white;
-	/*cursor: pointer;*/
+	cursor: pointer;
 }
 
 	.arrow-button > span {
 		position: relative;
 		top: 2px;
-	}
+	}*/
 
 
 /*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */

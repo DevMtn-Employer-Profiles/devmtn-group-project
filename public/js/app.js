@@ -86,3 +86,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 	
 	$urlRouterProvider.otherwise('/');
 });
+
+app.config(function(paginationTemplateProvider) {
+	paginationTemplateProvider.setPath('bower_components/angularUtils-pagination/dirPagination.tpl.html');
+});
