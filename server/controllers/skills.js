@@ -16,8 +16,8 @@ exports.getSkills = function(req, res){
 /*****POST Requests*****/ 
 exports.createSkill = function(req, res, next){
 	var skillsData = req.body;
+	console.log("GOT: ", skillsData);
 	skillsData.name = skillsData.name.toLowerCase();
-	skillsData.created_on = Date.now();
 	Skill.create(skillsData, function(err, skill){
 		if(err){
 			if(err.toString().indexOf('E11000') > -1){
@@ -36,3 +36,21 @@ exports.removeSkill = function(req, res){
 		} else {res.end()};
 	});
 };
+/*****PUT Requests*****/ 
+exports.updateSkill = function(req, res) {
+	var newSkill = {
+		name: req.body.name,
+		approved: req.body.approved
+	}
+	console.log("GOT: ", req.body);
+	console.log("NEW SKILL:", newSkill);
+	Skill.findOneAndUpdate({_id: req.params.id}, newSkill, function(err, result) {
+		if(err){
+			return res.status(400).send({reason:err.toString()})
+		} else {
+			console.log("RETURNED: ", result);
+			res.json(result);
+		}
+		
+	})
+}

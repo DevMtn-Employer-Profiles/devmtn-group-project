@@ -585,6 +585,30 @@ md-dialog#profile-modal {
 }
  
 
+
+
+/*****************Admin-Skills*************************/
+.skills:hover {
+	background: #6AC3E8;
+}
+.skills-delete:hover {
+	color: red;
+	cursor: pointer;
+}
+
+.skills-box {
+	margin: 20px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+
+.new-skill-submit:hover {
+	cursor: pointer;
+	color: green;
+}
+
+
 @media (max-width: 1450px) {
 	.search-bar {
 		position: static;

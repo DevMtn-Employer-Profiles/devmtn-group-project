@@ -91,9 +91,30 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.getSkills = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
 			url: '/api/skills'
+		}).then(function(result) {
+			deferred.resolve(result.data);
+		}, handleError);
+		
+		return deferred.promise;
+	}
+	
+	this.updateSkill = function(skill) {
+		return $http({
+			method: 'PUT',
+			url: '/api/skills/'+skill._id,
+			data: skill
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.deleteSkill = function(skillId) {
+		return $http({
+			method: 'DELETE',
+			url: '/api/skills/' + skillId
 		}).then(simpleDataReturn, handleError);
 	}
 	

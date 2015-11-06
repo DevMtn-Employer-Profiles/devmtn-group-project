@@ -24,6 +24,7 @@ module.exports = function (app){
 	app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
 	app.post('/api/skills', skill.createSkill);
 	app.delete('/api/skills/:id', skill.removeSkill);
+	app.put('/api/skills/:id', skill.updateSkill);
 	//Notifications
 	app.get('/api/notifications', notification.getNotifications);
 	app.delete('/api/notifications/:id',  notification.deleteNotification);
