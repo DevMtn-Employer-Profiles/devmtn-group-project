@@ -1,6 +1,8 @@
 app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
+	$scope.currentPage = 1;
+	
 	$scope.search = function(company) {
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};

@@ -23,4 +23,14 @@
 			<md-button ng-disabled="!company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
 		</section>
 	</div>
+	
+	<div class="pagination">
+		<span flex></span>
+		<div>
+			<span class="fa fa-arrow-left"></span>
+			{{ currentPage }}
+			<span class="fa fa-arrow-right"></span>
+		</div>
+		<span flex></span>
+	</div>
 </div>
