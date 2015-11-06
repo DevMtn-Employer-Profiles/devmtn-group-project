@@ -346,21 +346,36 @@ md-card.column {
 	.list-main-box {
 		width: 600px;
 		
-		border: 1px black solid;
+		border: 1px lightgray solid;
 		
 		height: 150px;
 		
 		margin: auto;
+		
+		margin-bottom: 20px;
+		
+		margin-top: 10px;
 				
 		position: relative;	
+		
+		opacity: 0.9;
+	}
+	
+	.list-main-box:hover {
+		/*box-shadow: 0 0 8px lightgray;*/
+		box-shadow: 0 0 8px #8CE0EB;
+		
+		opacity: 1;
 	}
 	
 	.list-logo-box {
+		margin: 10px;
+		
 		float: left;
 		
-		width: 150px;
+		width: 100px;
 		
-		height: 150px;
+		height: 100px;
 	}
 	
 	.list-right-side {
@@ -384,7 +399,11 @@ md-card.column {
 		
 		color: black;
 		
+		background-color: #eee;
+		
 		font-family: Helvetica, Arial, sans-serif;
+		
+		padding: 5px;
 	}
 	
 	.list-company-bio {
@@ -416,6 +435,18 @@ md-card.column {
 		
 		margin: 0 5px;
 	}
+	
+	.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
+		opacity: 1;
+		/*box-shadow: 0 0 8px lightgray;*/
+		box-shadow: 0 0 8px #8CE0EB;
+}
+
+.search-bar {
+	position: absolute;
+	right: 20px;
+	padding-top: 20px;
+}
 
 
 /*LANDING PAGE CSS*/
