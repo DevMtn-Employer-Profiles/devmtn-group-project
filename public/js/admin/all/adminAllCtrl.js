@@ -61,4 +61,13 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 	}, function(newValue) {
 		getAllCompanies();
 	});
+	
+	
+	$scope.nextPage = function() {
+		$scope.currentPage++;
+	};
+	
+	$scope.previousPage = function() {
+		$scope.currentPage--;
+	};
 });

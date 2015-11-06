@@ -27,9 +27,9 @@
 	<div class="pagination">
 		<span flex></span>
 		<div>
-			<span class="fa fa-arrow-left"></span>
-			Page {{ currentPage }} of {{ lastPage }}
-			<span class="fa fa-arrow-right"></span>
+			<span class="fa fa-arrow-left big arrow-button" ng-click="previousPage()"></span>
+			<p class="pages">Page {{ currentPage }} of {{ lastPage }}</p>
+			<span class="fa fa-arrow-right big arrow-button" ng-hide="currentPage === lastPage" ng-click="nextPage()"></span>
 		</div>
 		<span flex></span>
 	</div>

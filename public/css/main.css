@@ -109,6 +109,10 @@ header {
 	transition: all .3s linear;
 }
 
+.big {
+	font-size: x-large;
+}
+
 
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
@@ -168,6 +172,16 @@ header {
 
 #admin-subroutes {
 	overflow: auto;
+}
+
+.pages {
+	display:  inline-block;
+	margin: 0 20px;
+}
+
+.arrow-button:hover {
+	color: rgb(63,81,181);
+	cursor: pointer;
 }
 
 
@@ -267,7 +281,7 @@ header {
 /*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
 
 .column {
-	width: calc(50% - 60px);
+	width: calc(47% - 60px);
 	
 	padding: 30px;
 }
