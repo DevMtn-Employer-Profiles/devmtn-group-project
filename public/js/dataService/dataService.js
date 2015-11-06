@@ -79,7 +79,6 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.getSkills = function() {
-<<<<<<< HEAD
 		var deferred = $q.defer();
 		
 		$http({
@@ -96,11 +95,6 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		return $http({
 			method: 'DELETE',
 			url: '/api/skill/' + skillId
-=======
-		return $http({
-			method: 'GET',
-			url: '/api/skills'
->>>>>>> master
 		}).then(simpleDataReturn, handleError);
 	}
 	
