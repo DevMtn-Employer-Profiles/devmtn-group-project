@@ -118,6 +118,17 @@ header {
 	font-size: x-large;
 }
 
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	
+	cursor:  default;
+}
+
 
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
@@ -183,11 +194,21 @@ header {
 	display:  inline-block;
 	margin: 0 20px;
 }
+	
+.arrow-button {
+	transition: all linear .1s;
+}
 
 .arrow-button:hover {
-	color: rgb(63,81,181);
-	cursor: pointer;
+	background-color: rgba(63,81,181, .9) !important;
+	color: white;
+	/*cursor: pointer;*/
 }
+
+	.arrow-button > span {
+		position: relative;
+		top: 2px;
+	}
 
 
 /*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */

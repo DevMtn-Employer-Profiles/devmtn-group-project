@@ -3,6 +3,28 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 	
 	$scope.currentPage = 1;
 	
+	$scope.$watch(function() {
+		return $scope.currentPage;
+	}, function(newValue) {
+		$scope.amountShown = ($scope.currentPage - 1) * 10;
+	});
+	
+	$scope.nextPage = function() {
+		$scope.currentPage++;
+	};
+	
+	$scope.previousPage = function() {
+		$scope.currentPage--;
+	};
+	
+	$scope.$watch(function() {
+		return $scope.companyList.length;
+	}, function(newValue) {
+		$scope.lastPage = Math.ceil($scope.companyList.length / 10);
+		console.log(newValue);
+	})
+	
+	
 	$scope.search = function(company) {
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};
@@ -37,12 +59,14 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		
 	};
 	
+	
 	$scope.updateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$timeout(function() {
 			dataService.updateProfile($scope.companyList[index]);
 		}, 50);
 	};
+	
 	
 	$scope.openProfile = function(event, profileId) {
 		ModalService.currentProfileId = profileId;
@@ -56,18 +80,10 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		});
 	};
 	
+	
 	$scope.$watch(function() {
 		return ModalService.ModalSaveConfirmed;
 	}, function(newValue) {
 		getAllCompanies();
 	});
-	
-	
-	$scope.nextPage = function() {
-		$scope.currentPage++;
-	};
-	
-	$scope.previousPage = function() {
-		$scope.currentPage--;
-	};
 });
