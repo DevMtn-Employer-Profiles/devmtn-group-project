@@ -50,11 +50,12 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 			parent: angular.element(document.body),
 			targetEvent: event,
 			clickOutsideToClose: true
-		}).then(function() {
-			$timeout(function() {
-				getAllCompanies();
-			}, 3000);
-		}, function() {
 		});
 	};
+	
+	$scope.$watch(function() {
+		return ModalService.ModalSaveConfirmed
+	}, function(newValue) {
+		getAllCompanies();
+	});
 });

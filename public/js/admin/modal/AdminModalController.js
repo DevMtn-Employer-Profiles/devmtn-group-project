@@ -27,6 +27,7 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 		$mdDialog.show(confirm)
 			.then(function() {
 				dataService.updateProfile($scope.currentProfile);
+				ModalService.ModalSaveConfirmed++;
 			});
 	};
 	

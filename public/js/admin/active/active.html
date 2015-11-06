@@ -7,7 +7,7 @@
 		</section>
 		
 		<section class="employer-info">
-			<h3 class="company-name">{{ company.companyName }}</h3>
+			<h3 class="company-name" ng-click="openProfile($event, company._id)">{{ company.companyName }}</h3>
 			<p class="company-bio">
 				{{ company.bio | limitTo: 300 }}
 				<span ng-show="company.bio.length > 300">...</span>
