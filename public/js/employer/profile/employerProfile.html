@@ -36,6 +36,7 @@
 			<select ng-change='changeSelectedSkill(selectedSkill)' ng-options='item as item.name for item in skillsOptions' ng-model='selectedSkill'>
 			</select>
 			<span ng-click='addSelectedSkill(selectedSkill)' class='fa fa-plus-circle add-circle'></span>
+			<button ng-click="showNewSkill = !showNewSkill">New</button>
 			<div ng-show='showNewSkill'>
 				<input type='text' placeholder='new skill' ng-model='newSkill'/>
 				<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
