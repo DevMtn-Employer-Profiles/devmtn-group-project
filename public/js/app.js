@@ -38,7 +38,6 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/profile',
 				templateUrl: 'js/employer/profile/employerProfile.html',
 				controller: 'employerProfileCtrl'
-
 			})
 		
 		
@@ -77,6 +76,12 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/skills',
 				templateUrl: 'js/admin/skills/skills.html',
 				controller: 'adminSkillsCtrl'
+			})
+			
+			.state('Admin.Config', {
+				url: '/config',
+				templateUrl: 'js/admin/config/config.html',
+				controller: 'adminConfigCtrl'
 			});
 	
 	$urlRouterProvider.otherwise('/');

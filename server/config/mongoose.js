@@ -5,13 +5,11 @@ var mongoose = require('mongoose'),
     notificationModel = require('../models/Notification');
 
 module.exports = function(config){
-  mongoose.connect(config.db);
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'Connection error...'));
-  db.once('open', function callback(){
-    console.log('Ye hath entered into the Employer Db');
-  });
-  profileModel;
-  skillsModel;
-  userModel;
+    /**********Mongoose Connection*********/
+    mongoose.connect(config.db);
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'Connection error...'));
+    db.once('open', function callback(){
+      console.log('Ye hath entered into the Employer Db');
+    });
 };

@@ -1,4 +1,4 @@
-angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService) {
+angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService, $state) {
 	$scope.message = 'Hello from employer profile controller';
 	
 	$scope.isEditing  = false;
@@ -6,7 +6,7 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	$scope.skillsOptions = ['Angular', 'Node','React','Webpack', 'Other'];
 	
 	$scope.profile = {
-		company_name: 'Qualtrics',
+		companyName: 'Qualtrics',
 		bio: 'Located in Provo, Qualtrics is a great company with a cool environment for devs to work in.',
 		requirements: ['Willing to relocate', 'High school diploma'],
 		skills: ['Angular', 'Node', 'Express', 'Mongo'],
@@ -16,7 +16,10 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	var loadProfile = function() {
 		dataService.getMyProfile().then(function(result) {
 			$scope.profile = result;
-			console.log("Profile Loaded");
+			console.log("Profile Loaded: ", result);
+		});
+		dataService.getSkills().then(function(result) {
+			$scope.skillsOptions = result;
 		})
 	}
 	
@@ -28,18 +31,49 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.isEditing = true;
 	}
 	
-	//discard the edited variables and revert to 
-	//last save
+	//discard the edited variables and revert to last save
 	$scope.cancelEdit = function() {
 		$scope.isEditing = false;
 	}
 	
-	//Saves the edited variables to the database 
-	$scope.saveEdit = function() {
-		$scope.profile = $scope.editedProfile;
+	$scope.submitProfile = function() {
+		// $scope.editedProfile._id = $scope.profile._id;
+		$scope.profile.isPending = true;
+		//** SET SKILLS TO BE ID's ONLY
+		var newSkills = [];
+		$scope.profile.skills.forEach(function(item) {
+			newSkills.push(item._id);
+		})
+		$scope.profile.skills = newSkills;
 		//Push to database
 		dataService.updateProfile($scope.profile).then(function(result) {
 			console.log('Profile Updated');
+			//Get New Profile
+			loadProfile();
+		});
+		
+		$state.go('Employer.Home');
+	}
+	
+	//Saves the edited variables to the database 
+	$scope.saveEdit = function() {
+		// $scope.editedProfile._id = $scope.profile._id;
+		$scope.profile = $scope.editedProfile;
+		if($scope.profile.isVisible) {
+			$scope.profile.isPending = true;
+		}
+		//** SET SKILLS TO BE ID's ONLY
+		var newSkills = [];
+		$scope.profile.skills.forEach(function(item) {
+			newSkills.push(item._id);
+		})
+		console.log("New Skills: ", newSkills);
+		$scope.profile.skills = newSkills;
+		//Push to database
+		dataService.updateProfile($scope.profile).then(function(result) {
+			console.log('Profile Updated');
+			//Get New Profile
+			loadProfile();
 		});
 		//Close Profile Edit Div
 		$scope.isEditing = false;
