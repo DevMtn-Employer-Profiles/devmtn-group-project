@@ -5,14 +5,6 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 		dataService.getCompanyById(ModalService.currentProfileId)
 			.then(function(result) {
 				$scope.currentProfile = result;
-				console.log(result);
-				// $scope.currentProfile.skills.forEach(function(element, index) {
-				// 	dataService.getSkillById(element)
-				// 		.then(function(result) {
-				// 			$scope.currentProfile.skills[index] = result;
-				// 			console.log($scope.currentProfile.skills);
-				// 		});
-				// });
 			});
 	})();
 	
@@ -25,6 +17,30 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 	};
 	
 	$scope.saveProfile = function(answer) {
-		$mdDialog.hide(answer);
+		var confirm = $mdDialog.confirm()
+							.title('Save changes to the profile for ' + angular.uppercase($scope.currentProfile.companyName) + '?')
+							.ariaLabel('Save Profile')
+							.targetEvent(event)
+							.ok('Save')
+							.cancel('Cancel');
+		
+		$mdDialog.show(confirm)
+			.then(function() {
+				dataService.updateProfile($scope.currentProfile);
+			});
+	};
+	
+	$scope.delete = function() {
+		var confirm = $mdDialog.confirm()
+							.title('Delete the profile for ' + angular.uppercase($scope.currentProfile.companyName) + '?')
+							.ariaLabel('Delete Profile')
+							.targetEvent(event)
+							.ok('Delete')
+							.cancel('Cancel');
+		
+		$mdDialog.show(confirm)
+			.then(function() {
+				dataService.deleteProfile($scope.currentProfile._id);
+			});
 	};
 });

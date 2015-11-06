@@ -5,22 +5,33 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};
 	
-	(function getAllCompanies() {
+	function getAllCompanies() {
 		dataService.getAllCompanies()
 			.then(function(response) {
 				$scope.companyList = response;
 			});
-	})();
+	};
 	
-	$scope.deleteCompany = function(company) {
+	getAllCompanies();
+	
+	$scope.deleteCompany = function(event, company) {
 		var index = $scope.companyList.indexOf(company);
 		
-		dataService.deleteCompany($scope.companyList[index]._id)
-			.then(function(result) {
-				$scope.companyList.splice(index, 1);
+		var confirm = $mdDialog.confirm()
+							.title('Are you sure that you want to delete the profile for ' + angular.uppercase(company.companyName) + '?')
+							.ariaLabel('Delete Profile')
+							.targetEvent(event)
+							.ok('Delete')
+							.cancel('Cancel');
+		
+		$mdDialog.show(confirm)
+			.then(function() {
+				dataService.deleteCompany($scope.companyList[index]._id)
+					.then(function(result) {
+						$scope.companyList.splice(index, 1);
+					});
 			});
 		
-		// $scope.companyList.splice(index, 1);
 	};
 	
 	$scope.updateCompany = function(company) {
@@ -30,7 +41,7 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		}, 50);
 	};
 	
-	$scope.openModal = function(event, profileId) {
+	$scope.openProfile = function(event, profileId) {
 		ModalService.currentProfileId = profileId;
 		 
 		$mdDialog.show({
@@ -39,10 +50,11 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 			parent: angular.element(document.body),
 			targetEvent: event,
 			clickOutsideToClose: true
-		}).then(function(answer) {
-			console.log('SAVE!!!');
+		}).then(function() {
+			$timeout(function() {
+				getAllCompanies();
+			}, 3000);
 		}, function() {
-			console.log('CANCEL!!!');
 		});
 	};
 });

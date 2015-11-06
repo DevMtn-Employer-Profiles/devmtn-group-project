@@ -7,7 +7,7 @@
 		</section>
 		
 		<section class="employer-info">
-			<h3 class="company-name" ng-click="openModal($event, company._id)">{{ company.companyName }}</h3>
+			<h3 class="company-name" ng-click="openProfile($event, company._id)">{{ company.companyName }}</h3>
 			<p class="company-bio">
 				{{ company.bio | limitTo: 300 }}<span ng-show="company.bio.length > 300">...</span>
 			</p>
@@ -20,7 +20,7 @@
 				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isVisible">Active</md-switch>
 			</div>
 			
-			<md-button ng-disabled="!company.isVisible" class="md-warn md-raised" ng-click="deleteCompany(company)">Delete</md-button>
+			<md-button ng-disabled="!company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
 		</section>
 	</div>
 </div>

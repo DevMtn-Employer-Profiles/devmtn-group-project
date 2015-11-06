@@ -348,20 +348,28 @@ header {
 
 /*  ---------------------  ADMIN MODAL STYLES  -------------------  */
 
-md-dialog {
+md-dialog#profile-modal {
 	border-radius: 0;
 	
 	width: 50%;
 	height: 50%;
 }
+	
+	md-dialog#profile-modal md-toolbar, md-dialog#profile-modal .md-toolbar-tools {
+		background-color: #2F3F42;
+	}
 
-	.employer-logo-container-md {
+	md-dialog#profile-modal .employer-logo-container-md {
 		width: 200px;
 	}
 	
-		.employer-logo-container-md > img {
+		md-dialog#profile-modal .employer-logo-container-md > img {
 			width: 100%;
 		}
+	
+	md-dialog#profile-modal #more-info {
+		margin-left: 30px;
+	}
 
 	
 	/*LIST VIEW CSS*/  
