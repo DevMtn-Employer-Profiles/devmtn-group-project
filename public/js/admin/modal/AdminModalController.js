@@ -31,7 +31,7 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 			});
 	};
 	
-	$scope.delete = function() {
+	$scope.deleteCompany = function(event, company) {
 		var confirm = $mdDialog.confirm()
 							.title('Delete the profile for ' + angular.uppercase($scope.currentProfile.companyName) + '?')
 							.ariaLabel('Delete Profile')
@@ -41,7 +41,8 @@ app.controller('ModalController', function($scope, $mdDialog, ModalService, data
 		
 		$mdDialog.show(confirm)
 			.then(function() {
-				dataService.deleteProfile($scope.currentProfile._id);
+				dataService.deleteCompany($scope.currentProfile._id);
+				ModalService.ModalSaveConfirmed--;
 			});
 	};
 });

@@ -20,7 +20,7 @@
 				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isVisible">Active</md-switch>
 			</div>
 			
-			<md-button ng-disabled="!company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
+			<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
 		</section>
 	</div>
 	
@@ -28,7 +28,7 @@
 		<span flex></span>
 		<div>
 			<span class="fa fa-arrow-left"></span>
-			{{ currentPage }}
+			Page {{ currentPage }} of {{ lastPage }}
 			<span class="fa fa-arrow-right"></span>
 		</div>
 		<span flex></span>

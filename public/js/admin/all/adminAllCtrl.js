@@ -11,6 +11,7 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		dataService.getAllCompanies()
 			.then(function(response) {
 				$scope.companyList = response;
+				$scope.lastPage = Math.ceil($scope.companyList.length / 10);
 			});
 	};
 	
@@ -56,7 +57,7 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 	};
 	
 	$scope.$watch(function() {
-		return ModalService.ModalSaveConfirmed
+		return ModalService.ModalSaveConfirmed;
 	}, function(newValue) {
 		getAllCompanies();
 	});
