@@ -7,13 +7,38 @@ app.controller('adminSkillsCtrl', function($scope, dataService) {
 			.then(function(results) {
 				$scope.skills = results;
 			})
-		console.log('poop'); 
-	}
-	
-	$scope.test = function(data) {
-		console.log(data);
 	}
 	
 	$scope.getSkills();
 	
+	$scope.addNewSkill = function() {
+		//Add New Skill
+		var newSkill = {
+			name: $scope.newSkill
+		}
+		dataService.createSkill(newSkill).then(function(result) {
+			//Refresh Skill List
+			$scope.getSkills();
+			$scope.newSkill = '';
+		});
+	}
+	
+	$scope.removeSkill = function(id) {
+		dataService.deleteSkill(id).then(function(result) {
+			//Refresh List
+			$scope.getSkills();
+		});
+	}
+	
+	$scope.approveSkill = function(skill) {
+		skill.approved = true;
+		$scope.updateSkill(skill);
+	}
+	
+	$scope.updateSkill = function(skill) {
+		dataService.updateSkill(skill).then(function(result) {
+			//refresh skills
+			$scope.getSkills();
+		});
+	}
 });

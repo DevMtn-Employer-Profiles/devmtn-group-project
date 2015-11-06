@@ -91,10 +91,18 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		return deferred.promise;
 	}
 	
+	this.updateSkill = function(skill) {
+		return $http({
+			method: 'PUT',
+			url: '/api/skills/'+skill._id,
+			data: skill
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	this.deleteSkill = function(skillId) {
 		return $http({
 			method: 'DELETE',
-			url: '/api/skill/' + skillId
+			url: '/api/skills/' + skillId
 		}).then(simpleDataReturn, handleError);
 	}
 	
