@@ -3,12 +3,12 @@ var Profile = require('mongoose').model('Profile');
 
 /*****GET Requests*****/ 
 exports.getProfileById = function(req, res){
-	Profile.findById({'_id':req.params.id}).exec(function(err, profile){
+	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
 		res.send(profile);
 	});
 };
 exports.getProfiles = function(req, res){
-	Profile.find({isVisible:true}).exec(function(err, collection){
+	Profile.find().exec(function(err, collection){
 		res.send(collection);
 	});
 };
@@ -26,7 +26,7 @@ exports.getMyProfile = function(req, res) {
 	})
 }
 
-exports.getActiveProfile = function(req, res){
+exports.getActiveProfiles = function(req, res){
 	Profile.find({isPending:false, isVisible: true}).populate('skills').exec(function(err, collection){
 		res.send(collection);
 	});

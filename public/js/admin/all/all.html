@@ -1,13 +1,13 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
-	<div class="active-card" ng-repeat="company in companyList | filter: search | orderBy: companyName | limitTo: 10 track by $index" layout="row">
+	<div class="active-card" dir-paginate="company in companyList | filter: search | orderBy: companyName | itemsPerPage: 5 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">
-			<h3 class="company-name">{{ company.companyName }}</h3>
+			<h3 class="company-name" ng-click="openProfile($event, company._id)">{{ company.companyName }}</h3>
 			<p class="company-bio">
 				{{ company.bio | limitTo: 300 }}<span ng-show="company.bio.length > 300">...</span>
 			</p>
@@ -17,12 +17,16 @@
 			
 			<div class="controls pull-right" layout="row">
 				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isPending">Pending</md-switch>
-				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isActive">Active</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="company.isVisible">Active</md-switch>
 			</div>
 			
-			<md-button ng-show="!company.isActive" class="md-warn md-raised" ng-click="deleteCompany(company)">Delete</md-button>
+			<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
 		</section>
 	</div>
 	
-	
+	<div class="pagination no-select">
+		<span flex></span>
+		<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+		<span flex></span>
+	</div>
 </div>

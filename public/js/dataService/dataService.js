@@ -13,17 +13,29 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.getCompanyById = function(companyId) {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET', 
 			url: '/api/profile/' + companyId
-		}).then(simpleDataReturn, handleError);
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getAllCompanies = function() {
-		return $http({
+		var deferred = $q.defer();
+		
+		$http({
 			method: 'GET',
-			url: '/api/profile/active'
-		}).then(simpleDataReturn, handleError);
+			url: '/api/profile/all'
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	}
 	
 	this.getPendingCompanies = function() {
@@ -106,6 +118,19 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	// this.getSkillById = function(skillId) {
+	// 	var deferred = $q.defer();
+		
+	// 	$http({
+	// 		method: 'GET',
+	// 		url: '/api/skills/' + skillId
+	// 	}).then(function(response) {
+	// 		deferred.resolve(response.data);
+	// 	}, handleError)
+		
+	// 	return deferred.promise;
+	// }
+	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
@@ -114,7 +139,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.updateProfile = function(newProfile) {
-		console.log("UPDATING PROFILE: ", newProfile);
+		// console.log("UPDATING PROFILE: ", newProfile);
 		return $http({
 			method: 'PUT',
 			url: '/api/profile/'+newProfile._id,

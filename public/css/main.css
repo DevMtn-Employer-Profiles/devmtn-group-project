@@ -39,6 +39,10 @@ header {
 	border-bottom: #F0F0F0;
 	
 	box-shadow: 0 3px 5px rgba(200,200,240,.5);
+	
+	/*  For keeping the header shadow above the rest of the content  */
+	position: relative;
+	z-index: 100;
 }
 
 .pull-right {
@@ -110,12 +114,28 @@ header {
 	transition: all .3s linear;
 }
 
+.big {
+	font-size: x-large;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	
+	cursor:  default;
+}
+
 
 /*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
 
 .active-tab {
-	background-color: #2F3F42;
+	/*background-color: #BCCADE;*/
 	/*color: black !important;*/
+	background-color: #2F3F42;
 	color: white;
 }
 
@@ -135,13 +155,14 @@ header {
 	
 	line-height: 1.01em;
 	
+	/*color: white;*/
 	/*color: #2F3F42;*/
 }
 
 .sidenav-toolbar {
 	height: 100%;
 	
-	/*background-color: #D8E8FF;*/
+	/*background-color: #2F3F42;*/
 	
 	transition: all linear .3s;
 }
@@ -169,10 +190,53 @@ header {
 	overflow: auto;
 }
 
+.pages {
+	display:  inline-block;
+	margin: 0 20px;
+}
+	
+.arrow-button {
+	transition: all linear .1s;
+}
 
-/*  -----------------  ADMIN.ACTIVE VIEW STYLES  ----------------  */
+.pagination {
+	list-style: none;
+	
+	width: 300px;
+}
 
-.active-card, .inactive-card, .pending-card, .all-card {
+	.pagination-button {
+		margin: 0;
+		padding: 0;
+		
+		min-width: auto;
+		min-height: auto;
+		width: 100%;
+		height: auto;
+	}
+	
+		.current-page {
+			background-color: rgba(63,81,181, .9) !important;
+			color: white;
+			
+			font-weight: bolder;
+		}
+
+/*.arrow-button:hover {
+	background-color: rgba(63,81,181, .9) !important;
+	color: white;
+	cursor: pointer;
+}
+
+	.arrow-button > span {
+		position: relative;
+		top: 2px;
+	}*/
+
+
+/*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */
+
+.active-card, .inactive-card, .pending-card, .all-card, .column {
 	width: 90%;
 	max-width: 800px;
 	
@@ -191,7 +255,7 @@ header {
 	box-shadow: none;
 }
 
-.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
+.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover {
 	opacity: 1;
 	/*box-shadow: 0 0 8px lightgray;*/
 	box-shadow: 0 0 8px #8CE0EB;
@@ -224,6 +288,10 @@ header {
 			text-align: center;
 			background-color: #eee;
 		}
+		
+			.employer-info .company-name:hover {
+				cursor: pointer;
+			}
 		
 		.skills-container {
 			margin-bottom: 20px;
@@ -261,16 +329,16 @@ header {
 
 /*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
 
-md-card.column {
-	width: calc(50% - 60px);
+.column {
+	width: calc(47% - 60px);
 	
 	padding: 30px;
 }
-	md-card.column h3, md-card.column h5 {
+	.column h3, .column h5 {
 		margin: 2px;
 	}
 	
-	md-card.column textarea {
+	.column textarea {
 		width: calc(100% - 20px);
 		padding: 10px;
 		min-height: auto;
@@ -278,7 +346,7 @@ md-card.column {
 		box-sizing: border-box;
 	}
 	
-	md-card #welcome-message {
+	#welcome-message {
 		margin: 20px 0;
 	}
 	
@@ -339,6 +407,32 @@ md-card.column {
 .click-to-edit.ng-hide {
 	position: absolute;
 }
+
+
+/*  ---------------------  ADMIN MODAL STYLES  -------------------  */
+
+md-dialog#profile-modal {
+	border-radius: 0;
+	
+	width: 50%;
+	height: 50%;
+}
+	
+	md-dialog#profile-modal md-toolbar, md-dialog#profile-modal .md-toolbar-tools {
+		background-color: #2F3F42;
+	}
+
+	md-dialog#profile-modal .employer-logo-container-md {
+		width: 200px;
+	}
+	
+		md-dialog#profile-modal .employer-logo-container-md > img {
+			width: 100%;
+		}
+	
+	md-dialog#profile-modal #more-info {
+		margin-left: 30px;
+	}
 
 	
 	/*LIST VIEW CSS*/  
@@ -573,5 +667,9 @@ md-card.column {
 	.search-bar {
 		position: static;
 	}
+	
+	md-dialog {
+		width: 70%;
+		height: 70%;
+	}
 }
-

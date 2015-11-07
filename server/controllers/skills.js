@@ -5,6 +5,14 @@ exports.getSkills = function(req, res){
 		res.send(collection);
 	});
 };
+// exports.getSkillById = function(req, res) {
+// 	Skill.findById(req.params.id, function(err, skill) {
+// 		if (err)
+// 			return res.send(err);
+		
+// 		res.json(skill);
+// 	});
+// };
 /*****POST Requests*****/ 
 exports.createSkill = function(req, res, next){
 	var skillsData = req.body;

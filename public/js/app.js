@@ -1,4 +1,4 @@
-var app = angular.module('MainApp', ['ui.router', 'ngMaterial']);
+var app = angular.module('MainApp', ['ui.router', 'ngMaterial', 'angularUtils.directives.dirPagination']);
 
 app.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider
@@ -85,4 +85,8 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			});
 	
 	$urlRouterProvider.otherwise('/');
+});
+
+app.config(function(paginationTemplateProvider) {
+	paginationTemplateProvider.setPath('bower_components/angularUtils-pagination/dirPagination.tpl.html');
 });
