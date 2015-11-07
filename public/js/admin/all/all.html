@@ -26,18 +26,7 @@
 	
 	<div class="pagination no-select">
 		<span flex></span>
-		<!--<div>
-			<md-button class="md-icon-button arrow-button" aria-label="Previous Page" ng-click="previousPage()" layout="column" layout-align="center center">
-				<span class="fa fa-arrow-left big"></span>
-			</md-button>
-			
-			<p class="pages">Page {{ currentPage }} of {{ lastPage }}</p>
-			
-			<md-button class="md-icon-button arrow-button" aria-label="Previous Page" layout="column" layout-align="center center" ng-hide="currentPage === lastPage" ng-click="nextPage()">
-				<span class="fa fa-arrow-right big"></span>
-			</md-button>
-		</div>-->
-		<dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+		<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
 		<span flex></span>
 	</div>
 </div>
