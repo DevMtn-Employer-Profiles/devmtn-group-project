@@ -1,3 +1,7 @@
-<input type="text" placeholder="search" class="pull-right search-bar-list" ng-model="query">
-<br>
-<profile-dir ng-repeat="profile in profiles"></profile-dir>
+<div id="list-view" class="route-container" layout="column">
+	<div class="list-search-box">
+		<input type="text" placeholder="Click here and start typing for a live search of companies" class="search-bar" ng-model="query">
+	</div>
+	
+	<profile-dir class="active-card" ng-repeat="profile in profiles | filter: search track by $index"></profile-dir>
+</div>

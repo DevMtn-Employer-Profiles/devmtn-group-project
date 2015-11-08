@@ -6,6 +6,19 @@ body {
 	/*background-color: #F5FFFC;*/
 }
 
+p {
+	margin: 0;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+.main-router, .route-container {
+	width: 100%;
+	height: 80%;
+	height: calc(100% - 67px);
+	max-height: calc(100% - 67px);
+}
+
 /*  ------------------------ ANIMATION ------------------------  */
 	
 .ng-hide-add,
@@ -90,10 +103,10 @@ header {
 }
 
 .search-bar {
-	/*position: absolute;
-	right: 20px;*/
 	width: 90%;
 	max-width: 800px;
+	
+	height: 2.5em;
 	
 	margin: 20px 0;
 	
@@ -106,20 +119,12 @@ header {
 
 	.search-bar:hover {
 		box-shadow: 0 0 8px #8CE0EB;
-		/*padding: 8px;*/
 	}
 
 .admin-explanation {
 	width: 90%;
 	max-width: 800px;
 	
-}
-
-.route-container {
-	width: 100%;
-	height: 80%;
-	height: calc(100% - 67px);
-	max-height: calc(100% - 67px);
 }
 
 .subroute-container {
@@ -261,13 +266,8 @@ header {
 	width: 90%;
 	max-width: 800px;
 	
-	/*border-radius: 5px;*/
 	border-radius: 0px;
 	margin: 10px 0;
-	
-	overflow: hidden;
-	
-	/*padding: 20px;*/
 	
 	opacity: .9;
 	border: 1px solid lightgray;
@@ -278,7 +278,6 @@ header {
 
 .active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover {
 	opacity: 1;
-	/*box-shadow: 0 0 8px lightgray;*/
 	box-shadow: 0 0 8px #8CE0EB;
 }
 
@@ -456,14 +455,19 @@ md-dialog#profile-modal {
 	}
 
 	
-	/*LIST VIEW CSS*/  
+/*LIST VIEW CSS*/  
+#list-view {
+	overflow: auto;
 	
+	align-items: center;
+}
+
 	.list-main-box {
 		width: 600px;
 		
 		border: 1px lightgray solid;
 		
-		height: 150px;
+		/*height: 150px;*/
 		
 		margin: auto;
 		
@@ -474,6 +478,8 @@ md-dialog#profile-modal {
 		position: relative;	
 		
 		opacity: 0.9;
+		
+		transition: all linear .1s;
 	}
 	
 	.list-main-box:hover {
@@ -484,21 +490,22 @@ md-dialog#profile-modal {
 	}
 	
 	.list-logo-box {
-		margin: 10px;
+		padding: 15px;
 		
-		float: left;
-		
-		width: 100px;
-		
-		height: 100px;
+		width: 150px;
+		height: 150px;
 	}
+		
+		.list-logo-box > img {
+			width: 100%;
+		}
 	
 	.list-right-side {
 		width: 450px;
 		
 		float: right;
 		
-		padding: 5px;
+		padding-left: 8px;
 		
 		box-sizing: border-box;
 	}
@@ -524,44 +531,46 @@ md-dialog#profile-modal {
 	.list-company-bio {
 		font-size: 1em;
 		
-		text-align: center;
+		/*text-align: center;*/
 		
 		color: black;
 		
 		font-family: Helvetica, Arial, sans-serif;
+		
+		padding-right: 10px; 
 	}
 	
 	.list-skills-row {
-		position: absolute;
+		width: 100%;
 		
-		bottom: 0;
-		
-		right: 0;
-		
-		text-align: center;
-		
-		width: 450px;
+		padding-bottom: 8px;
 	}
 	
-	.list-p-skills {
-		display: inline;
-	
-		padding: 0 5px;
+	.list-skills {
+		display: inline-block;
 		
+		padding: 2px 5px;
 		margin: 0 5px;
+		
+		background-color: #eee;
+		
+		border: 1px solid gray;
+		border-radius: 3px;
 	}
+	
+	.list-search-box {
+		width: 90%;
+		max-width: 800px;
+	}
+	
+		.list-search-box > input {
+			width: 100%;
+		}
 	
 	.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
 		opacity: 1;
-		/*box-shadow: 0 0 8px lightgray;*/
 		box-shadow: 0 0 8px #8CE0EB;
-}
-
-.search-bar {
-	/*position: absolute;
-	right: 20px;*/
-	/*padding-top: 20px;*/
-}
+	}
 
 
 /*LANDING PAGE CSS*/
