@@ -1,27 +1,27 @@
 app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
-	$scope.currentPage = 1;
+	// $scope.currentPage = 1;
 	
-	$scope.$watch(function() {
-		return $scope.currentPage;
-	}, function(newValue) {
-		$scope.amountShown = ($scope.currentPage - 1) * 10;
-	});
+	// $scope.$watch(function() {
+	// 	return $scope.currentPage;
+	// }, function(newValue) {
+	// 	$scope.amountShown = ($scope.currentPage - 1) * 10;
+	// });
 	
-	$scope.nextPage = function() {
-		$scope.currentPage++;
-	};
+	// $scope.nextPage = function() {
+	// 	$scope.currentPage++;
+	// };
 	
-	$scope.previousPage = function() {
-		$scope.currentPage--;
-	};
+	// $scope.previousPage = function() {
+	// 	$scope.currentPage--;
+	// };
 	
-	$scope.$watch(function() {
-		return $scope.companyList.length;
-	}, function(newValue) {
-		$scope.lastPage = Math.ceil($scope.companyList.length / 10);
-	})
+	// $scope.$watch(function() {
+	// 	return $scope.companyList.length;
+	// }, function(newValue) {
+	// 	$scope.lastPage = Math.ceil($scope.companyList.length / 10);
+	// });
 	
 	
 	$scope.search = function(company) {

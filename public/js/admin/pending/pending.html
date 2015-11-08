@@ -1,5 +1,12 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
-	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
+	<p class="admin-explanation">
+		Companies whose profiles currently have pending changes show up here prior to administrative approval for the change to become live.
+	</p>
+	<p class="admin-explanation">
+		To search for a company by name, type the name in the box below.  When you've found the company you're looking for, click their name to view their profile and modify settings, or just click the corresponding setting shown on the card.
+	</p>
+	
+	<input type="text" placeholder="search" class="search-bar" ng-model="query">
 	
 	<md-card class="pending-card" dir-paginate="company in pendingList | filter: search | orderBy: companyName | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
