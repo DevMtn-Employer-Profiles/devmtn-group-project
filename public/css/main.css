@@ -262,7 +262,7 @@ header {
 
 /*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */
 
-.active-card, .inactive-card, .pending-card, .all-card, .column {
+.active-card, .inactive-card, .pending-card, .all-card, .column, .employer-container {
 	width: 90%;
 	max-width: 800px;
 	
@@ -276,7 +276,7 @@ header {
 	box-shadow: none;
 }
 
-.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover {
+.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover, .employer-container:hover {
 	opacity: 1;
 	box-shadow: 0 0 8px #8CE0EB;
 }
