@@ -1,6 +1,7 @@
 app.controller('adminSkillsCtrl', function($scope, dataService) {
 	
 	$scope.skills = [];
+	$scope.addingSkill = false;
 	
 	$scope.getSkills = function() {
 		dataService.getSkills()
@@ -41,4 +42,13 @@ app.controller('adminSkillsCtrl', function($scope, dataService) {
 			$scope.getSkills();
 		});
 	}
+	
+	$scope.showAdd = function() {
+		$scope.addingSkill = true;
+	};
+	
+	$scope.cancelNewSkill = function() {
+		$scope.addingSkill = false;
+		$scope.newSkill = '';
+	};
 });
