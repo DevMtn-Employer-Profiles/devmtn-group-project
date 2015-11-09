@@ -1,0 +1,54 @@
+<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak>
+	<form layout="column" style="height: 100%; width: 100%">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Company Profile</h2>
+				<span flex></span>
+				<h2>{{ currentProfile.companyName }}</h2>
+				<span flex></span>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isPending">Pending</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isVisible">Visible</md-switch>
+				<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
+			</div>
+		</md-toolbar>
+		
+		<md-dialog-content flex>
+			<div class="md-dialog-content" layout="row">
+				<div id="quick-info">
+					<div class="employer-logo-container-md">
+						<img ng-src="{{ currentProfile.logo }}">
+					</div>
+					<p><b ng-show="currentProfile.size">Company Size:</b> {{ currentProfile.size }}</p>
+					<div ng-show="currentProfile.skills[0]">
+						<b>Requested Skills:</b> 
+						<ul ng-repeat="skill in currentProfile.skills track by $index">
+							<li>{{ skill.name }}</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div id="more-info">
+					<h2>{{ currentProfile.companyName }}</h2>
+					
+					<div id="profile-bio">
+						<h4>Description:</h4>
+						<p>{{ currentProfile.bio }}</p>
+					</div>
+					
+					<div id="profile-requirements">
+						<h4>Requirements:</h4>
+						<ul>
+							<li ng-repeat="requirement in currentProfile.requirements track by $index">{{ requirement }}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</md-dialog-content>
+		
+		<div class="md-actions" layout="row">
+			<span flex></span>
+			<md-button ng-click="saveProfile()" aria-label="Save">Save</md-button>
+			<md-button ng-click="cancel()" aria-label="Cancel">Cancel</md-button>
+		</div>
+	</form>
+</md-dialog>

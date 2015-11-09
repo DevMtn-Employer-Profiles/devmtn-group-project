@@ -1,13 +1,13 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
 	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
 	
-	<md-card class="inactive-card" ng-repeat="company in activeList | filter: search track by $index" layout="row">
+	<md-card class="inactive-card" dir-paginate="company in activeList | filter: search | orderBy: companyName | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>
 		
 		<section class="employer-info">
-			<h3 class="company-name">{{ company.companyName }}</h3>
+			<h3 class="company-name" ng-click="openProfile($event, company._id)">{{ company.companyName }}</h3>
 			<p class="company-bio">
 				{{ company.bio | limitTo: 300 }}
 				<span ng-show="company.bio.length > 300">...</span>
@@ -17,8 +17,14 @@
 			</div>
 			
 			<div class="controls pull-right" layout="row">
-				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isActive">Active</md-switch>
+				<md-switch class="md-primary" md-no-ink ng-click="updateStatus(company)" ng-model="company.isVisible">Active</md-switch>
 			</div>
 		</section>
 	</md-card>
+	
+	<div class="no-select">
+		<span flex></span>
+		<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+		<span flex></span>
+	</div>
 </div>
