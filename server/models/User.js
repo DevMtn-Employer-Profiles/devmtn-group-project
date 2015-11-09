@@ -19,6 +19,11 @@ var userSchema = new mongoose.Schema({
        last: {
            type: String
        }
+   }, 
+   student_matches: {
+       type: mongoose.Schema.Types.ObjectId, 
+       default: [],
+       ref: 'StudentMatch'
    }
 });
 
