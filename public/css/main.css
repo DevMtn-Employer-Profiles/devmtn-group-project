@@ -457,6 +457,8 @@ md-dialog#profile-modal {
 	
 /*LIST VIEW CSS*/  
 #list-view {
+	padding-top: 20px;
+	
 	overflow: auto;
 	
 	align-items: center;
