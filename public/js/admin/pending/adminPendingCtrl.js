@@ -27,7 +27,7 @@ app.controller('adminPendingCtrl', function($scope, $timeout, $mdDialog, ModalSe
 		 
 		$mdDialog.show({
 			controller: 'ModalController',
-			templateUrl: 'js/admin/modal/modal.html',
+			templateUrl: 'js/modal/modal.html',
 			parent: angular.element(document.body),
 			targetEvent: event,
 			clickOutsideToClose: true

@@ -79,7 +79,8 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		},
 		
 		any: function() {
-			return ($scope.isMobile.Android() || $scope.isMobile.BlackBerry() || $scope.isMobile.iOS() || $scope.isMobile.Opera() || $scope.isMobile.Windows());
+			var isAny = ($scope.isMobile.Android() || $scope.isMobile.BlackBerry() || $scope.isMobile.iOS() || $scope.isMobile.Opera() || $scope.isMobile.Windows());
+			return isAny;
 		}
 	}
 	

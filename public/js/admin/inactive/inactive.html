@@ -1,5 +1,12 @@
 <div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
-	<input type="text" placeholder="search" class="pull-right search-bar" ng-model="query">
+	<p class="page-explanation">
+		Companies whose profiles are currently not visible are shown below.  By changing its "Active" state, the company may not quite yet show up in the "Active" list.  It may require that the "Pending" value is updated to be false.
+	</p>
+	<p class="page-explanation">
+		To search for a company by name, type the name in the box below.  When you've found the company you're looking for, click their name to view their profile and modify settings, or just click the corresponding setting shown on the card.
+	</p>
+	
+	<input type="text" placeholder="search" class="search-bar" ng-model="query">
 	
 	<md-card class="active-card" dir-paginate="company in inactiveList | filter: search | orderBy: companyName | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
