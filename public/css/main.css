@@ -437,6 +437,11 @@ md-dialog#profile-modal {
 	
 	/*LIST VIEW CSS*/  
 	
+	/*.search-bar-list {
+		margin-top: 10px;
+		margin-left: 10px;
+	}*/
+	
 	.list-main-box {
 		width: 600px;
 		
