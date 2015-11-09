@@ -9,7 +9,7 @@ angular.module('MainApp').controller('listCtrl', function($scope, $mdDialog, Mod
 	getAllCompanies();
 	
 	$scope.search = function(company) {
-		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
+		return (angular.lowercase(company.companyName).indexOf(($scope.query) || '') !== -1);
 	};
 	
 	
