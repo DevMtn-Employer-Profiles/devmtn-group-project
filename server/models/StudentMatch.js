@@ -8,7 +8,7 @@ var studentMatchSchema = new mongoose.Schema({
 		type: Date
 	},
 	employerId: {
-		type: mongoose.Scheme.Types.ObjectId,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	}
 });

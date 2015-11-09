@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
     session = require('express-session'),
     devmtn = require('./devmtnAuthConfig'),
     devmtnCtrl = require('../controllers/devmtnAuthCtrl'),
-	studentMatchCtrl = require('../controllers/stuedentMatchCtrl');
+	studentMatchCtrl = require('../controllers/studentMatchCtrl');
 
 
 module.exports = function (app){
