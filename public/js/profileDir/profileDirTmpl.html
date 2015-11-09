@@ -5,8 +5,10 @@
 	
 	<div class="list-right-side" flex layout="column">
 		<div class="list-top-right">
-			<div class="list-company-name"><strong>{{profile.companyName}}</strong></div>
-			<div class="list-company-bio"><p>{{profile.bio}}</p></div>
+			<div class="list-company-name" ng-click="openProfile($event, profile._id)"><strong>{{profile.companyName}}</strong></div>
+			<div class="list-company-bio">
+				<p>{{profile.bio | limitTo: 300}}<span ng-hide="profile.bio.length < 300">...</span></p>
+			</div>
 		</div>
 		
 		<div flex=""></div>

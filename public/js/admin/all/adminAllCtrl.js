@@ -72,7 +72,7 @@ app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalServic
 		 
 		$mdDialog.show({
 			controller: 'ModalController',
-			templateUrl: 'js/admin/modal/modal.html',
+			templateUrl: 'js/modal/modal.html',
 			parent: angular.element(document.body),
 			targetEvent: event,
 			clickOutsideToClose: true

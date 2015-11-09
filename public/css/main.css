@@ -121,7 +121,7 @@ header {
 		box-shadow: 0 0 8px #8CE0EB;
 	}
 
-.admin-explanation {
+.page-explanation {
 	width: 90%;
 	max-width: 800px;
 	
@@ -309,7 +309,7 @@ header {
 			background-color: #eee;
 		}
 		
-			.employer-info .company-name:hover {
+			.employer-info .company-name:hover, .list-company-name:hover  {
 				cursor: pointer;
 			}
 		

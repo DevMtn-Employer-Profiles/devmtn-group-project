@@ -1,6 +1,6 @@
 <div class="employer-container">
 	<div class="pull-right" ng-hide="isEditing">
-		<md-button ng-click='openEdit()' class="edit-btn">
+		<md-button ng-click='openEdit()' class="edit-btn profile-edit-buttons">
 			<span title='Edit Profile'class='fa fa-pencil-square-o'></span>
 		</md-button>
 		<md-button ng-click='submitProfile()' ng-show="!profile.isPending" class="save-btn">
@@ -9,10 +9,10 @@
 	</div>
 	
 	<div class='pull-right' ng-show="isEditing">
-		<md-button ng-click='cancelEdit()' class="cancel-btn">
+		<md-button ng-click='cancelEdit()' class="cancel-btn profile-edit-buttons">
 			<span title='Cancel Edit' class='fa fa-ban'></span>
 		</md-button>
-		<md-button>
+		<md-button ng-click="saveEdit()" class="save-btn profile-edit-buttons">
 			<span title='Save Profile' ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span>
 		</md-button>
 	</div>
