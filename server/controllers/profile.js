@@ -27,7 +27,7 @@ exports.getMyProfile = function(req, res) {
 }
 
 exports.getActiveProfiles = function(req, res){
-	Profile.find({isPending:false, isVisible: true}).populate('skills').exec(function(err, collection){
+	Profile.find({isVisible: true}).populate('skills').exec(function(err, collection){
 		res.send(collection);
 	});
 };
