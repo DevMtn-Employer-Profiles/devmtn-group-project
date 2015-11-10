@@ -7,6 +7,7 @@ exports.getProfileById = function(req, res){
 		res.send(profile);
 	});
 };
+
 exports.getProfiles = function(req, res){
 	Profile.find().exec(function(err, collection){
 		res.send(collection);

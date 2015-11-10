@@ -81,6 +81,17 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
+	//Admin Matching Web Requests
+	this.getAllStudents = function() {
+		return $http({
+			method: 'GET',
+			url: 'http://profiles.devmounta.in/api/studentPortfolio',
+			headers: {'Access-Control-Allow-Origin': '*', 
+					'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+					'Access-Control-Allow-Headers':' Origin, X-Requested-With, Content-Type, Accept'}
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	//Employer Web Requests
 	this.createSkill = function(skill) {
 		return $http({

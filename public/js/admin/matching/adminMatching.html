@@ -1,0 +1,64 @@
+<div class="section">
+	<h3>Step 1: Select Students</h3>
+	<p>Select students from the left column that you wish to include in this matching
+		algorithm.
+	</p>
+	<select ng-model="cohortFilter" ng-options="cohort for cohort in cohorts">
+		<option value="null">Select A Cohort</option>
+	</select>
+	<br/>
+	<div class="area">
+		<div class='select-box-container'>
+			<div ng-repeat='student in PossibleStudents' ng-click='addThisSelectedStudent = student'>
+				{{student}}
+			</div>
+		</div> 
+		<div class='div-center-buttons'>
+			<button ng-click='addStudent(addThisSelectedStudents)'>Right</button><br/>
+			<button ng-click='addAllStudents()'>All Right</button><br/>
+			<button ng-click='removeAllStudents()'>All Left</button><br/>
+			<button ng-click='removeStudents(removeThisSelectedStudent)'>Left</button>
+		</div>
+		<div class='select-box-container'>
+			<div ng-repeat='student in SelectedStudents' ng-click='removeThisSelectedStudent = student'>
+				{{student}}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h3>Step 2: Select Employers</h3>
+	<p>Select employers to match the selected students with (This is a list of active profiles only)</p>
+	<br/>
+	<div class="area">
+		<div class='select-box-container'>
+			<div ng-repeat='employer in PossibleEmployers track by $index' 
+					ng-click='changeSelectedEmployer($index)'
+					class='select-me-please'>
+				{{employer.companyName}}
+			</div>
+		</div> 
+		<div class='div-center-buttons'>
+			<button ng-click='addEmployer()'>Right</button><br/>
+			<button ng-click='addAllEmployers()'>All Right</button><br/>
+			<button ng-click='removeAllEmployers()'>All Left</button><br/>
+			<button ng-click='removeEmployer()'>Left</button>
+		</div>
+		<div class='select-box-container'>
+			<div class='select-me-please' ng-repeat='employer in SelectedEmployers track by $index' 
+					ng-click='removeThisSelectedEmployer = employer'>
+					<!--ng-class='{"selected-a-thing": "$index === removeThisSelectedEmployer"}'-->
+				{{employer.companyName}}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="section">
+	<h3>Step 3: Confirmation</h3>
+	<p>Select a date for these matches to expire</p>
+	<input type='date' ng-model='expirationDate'/>
+	<p>Okay, this is it. Once you push the big green button I will run the matching algorithm and send the
+		matches to the employers you selected!
+	</p>
+	<button class="big-create-matches-button">Match</button>
+</div>
