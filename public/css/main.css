@@ -672,25 +672,50 @@ md-dialog#profile-modal {
 
 
 /*****************Admin-Skills*************************/
-.skills:hover {
-	background: #6AC3E8;
+.skills, .new-skill-form {
+	transition: all linear 75ms;
 }
-.skills-delete:hover {
-	color: red;
+	
+	div.skills:hover {
+		background: #EEE;
+	}
+	
+	.skills > div {
+		padding: 8px 10px;
+		height: 100%;
+	}
+
+.skills-delete, .new-skill-submit {
+	transition: all linear .1s;
+}
+	
+	.skills-delete:hover, .new-skill-submit:hover, .new-skill-cancel:hover {
+		cursor: pointer;
+		background-color: rgba(250, 250, 250, .8);
+	}
+
+	.skills-delete:hover, .new-skill-cancel:hover {
+		color: rgb(244,67,54);
+	}
+
+	.new-skill-submit:hover {
+		color: green;
+	}
+
+.add-skill:hover {
 	cursor: pointer;
 }
 
-.skills-box {
-	margin: 20px;
-	padding: 10px;
-	box-sizing: border-box;
+#current-skills, #pending-skills {
+	margin: 0 auto;
+	padding: 20px;
+	width: calc(100% - 40px);
 }
 
-
-.new-skill-submit:hover {
-	cursor: pointer;
-	color: green;
-}
+	#current-skills > h3, #pending-skills > h3 {
+		margin: 0;
+		padding: 5px 0 10px 0;
+	}
 
 
 @media (max-width: 1450px) {
