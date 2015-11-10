@@ -12,12 +12,18 @@ angular.module('MainApp').service('authService', function($http, $q) {
 	
 	//This feels a little buggy, probably won't work --Tim
 	this.getCurrentUser = function() {
+		var deferred = $q.defer();
 
 		//check server for the current user
-		return $http({
+		$http({
 			method: 'GET',
 			url: '/auth/currentUser'
-		});
+		})
+			.then(function(response) {
+				deferred.resolve(response.data);
+			});
+		
+		return deferred.promise;
 	}
 	
 	this.login = function() {

@@ -12,8 +12,10 @@
 			</div>
 			
 			<form ng-submit='addNewSkill()' class="new-skill-form skills" ng-show="addingSkill" layout="row">
-				<input type='text' placeholder="New skill..." ng-model='newSkill' flex />
+				<input id="input-new-skill" type='text' placeholder="New skill..." ng-model='newSkill' flex />
+				
 				<div class="new-skill-submit fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
+				
 				<div class="new-skill-cancel fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
 			</form>
 			
@@ -36,9 +38,12 @@
 		</div>-->
 		<div id="pending-skills" class="column">
 			<h3>Pending Skills</h3>
+			
 			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index" layout="row" layout-align="start center">
 				<div flex>{{skill.name}}</div>
+				
 				<div class='fa fa-check new-skill-submit' ng-click='approveSkill(skill)'></div>
+				
 				<div class='fa fa-trash-o skills-delete' ng-click="removeSkill(skill._id)"></div>
 			</div>
 		</div>

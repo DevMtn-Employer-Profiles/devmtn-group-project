@@ -15,11 +15,11 @@ angular.module('MainApp').directive('siteHeader', function() {
 			}
 			var getAuth = function() {
 				authService.getCurrentUser()
-				.then(function(res) {
-					$scope.loggedIn = true;
-				}, function(err) {
-					$scope.loggedIn = false;
-				})
+					.then(function(res) {
+						$scope.loggedIn = true;
+					}, function(err) {
+						$scope.loggedIn = false;
+					});
 			}
 			
 			getAuth();

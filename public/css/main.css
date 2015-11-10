@@ -378,8 +378,6 @@ header {
 	margin: 0;
 	padding: 8px;
 	
-	border-radius: 5px;
-	
 	transition: all linear 100ms;
 }
 
@@ -691,15 +689,15 @@ md-dialog#profile-modal {
 	
 	.skills-delete:hover, .new-skill-submit:hover, .new-skill-cancel:hover {
 		cursor: pointer;
-		background-color: rgba(250, 250, 250, .8);
+		color: white;
 	}
 
 	.skills-delete:hover, .new-skill-cancel:hover {
-		color: rgb(244,67,54);
+		background-color: rgb(244,67,54);
 	}
 
 	.new-skill-submit:hover {
-		color: green;
+		background-color: green;
 	}
 
 .add-skill:hover {
@@ -716,6 +714,10 @@ md-dialog#profile-modal {
 		margin: 0;
 		padding: 5px 0 10px 0;
 	}
+
+#input-new-skill {
+	padding: 1px 7px;
+}
 
 
 @media (max-width: 1450px) {
