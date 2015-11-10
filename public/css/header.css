@@ -1,0 +1,42 @@
+header {
+	height: 67px;
+	padding: 20px;
+	box-sizing: border-box;
+	background: #f8f8f8;
+	border-bottom: #F0F0F0;
+	
+	box-shadow: 0 3px 5px rgba(200,200,240,.5);
+	
+	/*  For keeping the header shadow above the rest of the content  */
+	position: relative;
+	z-index: 50;
+}
+
+.pull-right {
+	display: block;
+	float: right;
+	
+	align-self: flex-end;
+}
+
+.logo {
+	height: 30px;
+	display: inline-block;
+}
+
+.header-link {
+	display: inline-block;
+	text-decoration: none;
+	color: #404041;
+	padding: 0px 11px;
+	box-sizing: border-box;
+	margin-top: 10px
+}
+
+.header-link:hover {
+	color: #2AABE2;
+}
+
+.header-buttons {
+	float: right;
+}
