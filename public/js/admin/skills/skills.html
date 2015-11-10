@@ -4,7 +4,7 @@
 			<input type="text" placeholder="Search skills" ng-model='searchTerms' class='pull-right'/>
 			<h3>Skills</h3>
 			<div class="skills" dir-paginate="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} | itemsPerPage: 20 track by $index" layout="row" layout-align="start center">
-				<div flex>{{skill.name}}</div><div class='fa fa-trash-o skills-delete'></div>
+				<div flex>{{skill.name}}</div><div class='fa fa-trash-o skill-button delete-button'></div>
 			</div>
 			
 			<div class="skills add-skill" ng-hide="addingSkill" ng-click="showAdd()">
@@ -14,9 +14,9 @@
 			<form ng-submit='addNewSkill()' class="new-skill-form skills" ng-show="addingSkill" layout="row">
 				<input id="input-new-skill" type='text' placeholder="New skill..." ng-model='newSkill' flex />
 				
-				<div class="new-skill-submit fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
+				<div class="submit-button skill-button fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
 				
-				<div class="delete-button fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
+				<div class="delete-button skill-button fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
 			</form>
 			
 			<div class="pagination no-select" layout="row">
@@ -28,24 +28,15 @@
 	</div>
 	
 	<div flex>
-		<!--<div class="skills-box">
-			<h3>New Skill</h3>
-			
-			<form ng-submit='addNewSkill()'>
-				<input type='text' ng-model='newSkill'/>
-				<strong ng-click='addNewSkill()' class='new-skill-submit'>+</strong>
-			</form>
-		</div>-->
-		
 		<div id="pending-skills" class="two-columns">
 			<h3>Pending Skills</h3>
 			
 			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index" layout="row" layout-align="start center">
 				<div flex>{{skill.name}}</div>
 				
-				<div class='fa fa-check new-skill-submit' ng-click='approveSkill(skill)'></div>
+				<div class='fa fa-check skill-button submit-button' ng-click='approveSkill(skill)'></div>
 				
-				<div class='fa fa-trash-o skills-delete' ng-click="removeSkill(skill._id)"></div>
+				<div class='fa fa-trash-o skill-button delete-button' ng-click="removeSkill(skill._id)"></div>
 			</div>
 		</div>
 	</div>
