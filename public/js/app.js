@@ -82,6 +82,12 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/config',
 				templateUrl: 'js/admin/config/config.html',
 				controller: 'adminConfigCtrl'
+			})
+			
+			.state('Admin.Matching', {
+				url: '/matching',
+				templateUrl: 'js/admin/matching/adminMatching.html',
+				controller: 'adminMatchingCtrl'
 			});
 	
 	$urlRouterProvider.otherwise('/');

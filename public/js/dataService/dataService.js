@@ -81,6 +81,22 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
+	//Admin Matching Web Requests
+	this.getAllStudents = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/students'
+		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.runAlgorithm = function(data) {
+		return $http({
+			method: 'POST',
+			url: '/api/algorithm',
+			data: data
+		})
+	}
+	
 	//Employer Web Requests
 	this.createSkill = function(skill) {
 		return $http({
