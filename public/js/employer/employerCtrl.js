@@ -1,4 +1,4 @@
-angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state) {
+angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state, MobileService) {
 	if ($location.path() === '/employer')
 		$state.go('Employer.Home');
 	// Sidenav Toolbar configuration from here on down
@@ -39,31 +39,7 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 	
 	//  This is designed to figure out if the browser is on a mobile device ONLY,
 	//  to allow me to ensure that it will be styled for that ONLY
-	$scope.isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-		
-		BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry|BB10|Tablet|Mobile/i);
-		},
-		
-		iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-		
-		Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-		
-		Windows: function() {
-			return navigator.userAgent.match(/IEMobile|Edge/i);
-		},
-		
-		any: function() {
-			return ($scope.isMobile.Android() || $scope.isMobile.BlackBerry() || $scope.isMobile.iOS() || $scope.isMobile.Opera() || $scope.isMobile.Windows());
-		}
-	}
+	$scope.isMobile = MobileService.isMobile;
 	
 	
 	
