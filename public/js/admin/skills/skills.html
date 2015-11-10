@@ -1,6 +1,6 @@
-<div class="subroute-container" id="skills-view" layout="row">
+<div class="subroutes" layout="row">
 	<div flex>
-		<div id="current-skills" class='column skills-box' flex>
+		<div id="current-skills" class='two-columns skills-box' flex>
 			<input type="text" placeholder="Search skills" ng-model='searchTerms' class='pull-right'/>
 			<h3>Skills</h3>
 			<div class="skills" dir-paginate="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} | itemsPerPage: 20 track by $index" layout="row" layout-align="start center">
@@ -16,7 +16,7 @@
 				
 				<div class="new-skill-submit fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
 				
-				<div class="new-skill-cancel fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
+				<div class="delete-button fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
 			</form>
 			
 			<div class="pagination no-select" layout="row">
@@ -37,7 +37,7 @@
 			</form>
 		</div>-->
 		
-		<div id="pending-skills" class="column">
+		<div id="pending-skills" class="two-columns">
 			<h3>Pending Skills</h3>
 			
 			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index" layout="row" layout-align="start center">
