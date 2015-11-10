@@ -85,11 +85,16 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	this.getAllStudents = function() {
 		return $http({
 			method: 'GET',
-			url: 'http://profiles.devmounta.in/api/studentPortfolio',
-			headers: {'Access-Control-Allow-Origin': '*', 
-					'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-					'Access-Control-Allow-Headers':' Origin, X-Requested-With, Content-Type, Accept'}
+			url: '/api/students'
 		}).then(simpleDataReturn, handleError);
+	}
+	
+	this.runAlgorithm = function(data) {
+		return $http({
+			method: 'POST',
+			url: '/api/algorithm',
+			data: data
+		})
 	}
 	
 	//Employer Web Requests

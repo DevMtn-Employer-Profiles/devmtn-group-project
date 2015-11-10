@@ -687,9 +687,10 @@ md-dialog#profile-modal {
 }
 
 .area {
-	display: inline-block;
+	display: block;
 	margin: auto;
 	margin-top: 20px;
+	text-align: center;
 }
 
 .select-box-container {
@@ -703,6 +704,7 @@ md-dialog#profile-modal {
 
 .div-center-buttons {
 	width: 15%;
+	height: 250px;
 	display: inline-block;
 	box-sizing: border-box;
 	text-align: center;
