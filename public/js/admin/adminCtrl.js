@@ -25,7 +25,7 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		};
 	};
 	
-	$scope.activateTab = function() {
+	function activateTab() {
 		$scope.activeTab = {
 			all: 		false,
 			active: 	false,
@@ -35,23 +35,21 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 			config: 	false
 		};
 		
-		$timeout(function() {
-			var tab = parsePath();
-			
-			switch(tab)
-			{
-				case 'all' 	   : $scope.activeTab.all = true;   	break;
-				case 'active'  : $scope.activeTab.active = true;	break;
-				case 'inactive': $scope.activeTab.inactive = true;	break;
-				case 'pending' : $scope.activeTab.pending = true;	break;
-				case 'skills'  : $scope.activeTab.skills = true;	break;
-				case 'config'  : $scope.activeTab.config = true;	break;
-				default		   : $scope.activeTab.all = true;	break;
-			}
-		}, 50);
+		var tab = parsePath();
+		
+		switch(tab)
+		{
+			case 'all' 	   : $scope.activeTab.all = true;   	break;
+			case 'active'  : $scope.activeTab.active = true;	break;
+			case 'inactive': $scope.activeTab.inactive = true;	break;
+			case 'pending' : $scope.activeTab.pending = true;	break;
+			case 'skills'  : $scope.activeTab.skills = true;	break;
+			case 'config'  : $scope.activeTab.config = true;	break;
+			default		   : $scope.activeTab.all = true;	break;
+		}
 	};
 	
-	$scope.activateTab();
+	activateTab();
 	
 	
 	
@@ -63,7 +61,7 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		},
 		
 		BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
+			return navigator.userAgent.match(/BlackBerry|BB10|Tablet|Mobile/i);
 		},
 		
 		iOS: function() {
@@ -115,4 +113,10 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location) {
 		
 		return reverseStr;
 	}
+	
+	$scope.$watch(function() {
+		return $location.path();
+	}, function(newVal) {
+		activateTab();
+	});
 });

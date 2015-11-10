@@ -40,16 +40,18 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.profile.isPending = true;
 		//** SET SKILLS TO BE ID's ONLY
 		var newSkills = [];
+		
 		$scope.profile.skills.forEach(function(item) {
 			newSkills.push(item._id);
-		})
+		});
+		
 		$scope.profile.skills = newSkills;
 		//Push to database
-		dataService.updateProfile($scope.profile).then(function(result) {
-			console.log('Profile Updated');
-			//Get New Profile
-			loadProfile();
-		});
+		dataService.updateProfile($scope.profile)
+			.then(function(result) {
+				//Get New Profile
+				loadProfile();
+			});
 		
 		$state.go('Employer.Home');
 	}

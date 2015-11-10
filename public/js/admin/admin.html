@@ -11,7 +11,7 @@
 			id="toggle-menu-button" 
 			class="toolbar-button" 
 			ng-click="toggleSidenav()"
-			ng-hide="isMobile.any()" 
+			ng-hide="!!isMobile.any()" 
 		>
 			<span 
 				class="open-expand smaller" 
@@ -25,8 +25,7 @@
 				md-no-ink 
 				id="all" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.all}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.all}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -40,8 +39,7 @@
 				md-no-ink 
 				id="active" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.active}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.active}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -55,8 +53,7 @@
 				md-no-ink 
 				id="inactive" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.inactive}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.inactive}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -70,8 +67,7 @@
 				md-no-ink 
 				id="pending" 
 				class="toolbar-button"
-				ng-class="{'active-tab': activeTab.pending}"  
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.pending}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -85,8 +81,7 @@
 				md-no-ink 
 				id="skills" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.skills}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.skills}"
 			>
 				<span 
 					class="open-expand fade-slide smaller" 
@@ -100,8 +95,7 @@
 				md-no-ink 
 				id="skills" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.config}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.config}"
 			>
 				<span 
 					class="open-expand fade-slide smaller" 

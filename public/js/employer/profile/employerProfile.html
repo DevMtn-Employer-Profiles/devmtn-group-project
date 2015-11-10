@@ -26,7 +26,7 @@
 			</div>
 			<h4>Skills Needed</h4>
 			<ul>
-				<li ng-repeat='skill in profile.skills'>{{skill.name}}</li>
+				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
 			</ul>
 		</div>
 		<div class="profile-right">
@@ -56,8 +56,8 @@
 				<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
 			</div>
 			<ul>
-				<li ng-repeat='skill in editedProfile.skills track by $index'>
-					<span ng-click='removeSkill($index)' class='fa fa-minus-circle delete-circle'></span>{{skill.name}}
+				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">
+					<span ng-click='removeSkill($index)' class='fa fa-minus-circle pull-right delete-circle'></span> {{skill.name}}
 				</li>
 			</ul>
 		</div>

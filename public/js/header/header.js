@@ -13,6 +13,7 @@ angular.module('MainApp').directive('siteHeader', function() {
 					console.error(error);
 				})
 			}
+			
 			var getAuth = function() {
 				authService.getCurrentUser()
 					.then(function(res) {
