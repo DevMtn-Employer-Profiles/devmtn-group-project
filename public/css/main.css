@@ -744,8 +744,16 @@ md-dialog#profile-modal {
 		position: static;
 	}
 	
-	md-dialog {
+	/*md-dialog {
 		width: 70%;
 		height: 70%;
+	}*/
+}
+
+@media (orientation: portrait) {
+	md-dialog.mobile {
+		height: 50%;
+		
+		font-size: x-large;
 	}
 }
