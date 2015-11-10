@@ -13,13 +13,14 @@ angular.module('MainApp').directive('siteHeader', function() {
 					console.error(error);
 				})
 			}
+			
 			var getAuth = function() {
 				authService.getCurrentUser()
-				.then(function(res) {
-					$scope.loggedIn = true;
-				}, function(err) {
-					$scope.loggedIn = false;
-				})
+					.then(function(res) {
+						$scope.loggedIn = true;
+					}, function(err) {
+						$scope.loggedIn = false;
+					});
 			}
 			
 			getAuth();

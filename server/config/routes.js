@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
     passport = require('passport'),
     session = require('express-session'),
     devmtn = require('./devmtnAuthConfig'),
-    devmtnCtrl = require('../controllers/devmtnAuthCtrl');
+    devmtnCtrl = require('../controllers/devmtnAuthCtrl'),
+	studentMatchCtrl = require('../controllers/studentMatchCtrl');
 
 
 module.exports = function (app){
@@ -20,6 +21,9 @@ module.exports = function (app){
 	app.post('/api/profile', profile.createProfile);
 	app.put('/api/profile/:id', profile.updateProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
+	//Student Match
+	app.get('/api/studentMatch', devmtnCtrl.requireEmployerRole, studentMatchCtrl.getMatches);
+	app.post('/api/studnentMatch', studentMatchCtrl.createMatch);
 	//Skills
 	app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
 	app.post('/api/skills', skill.createSkill);

@@ -18,11 +18,13 @@
 
 .profile-img {
 	text-align: center;
+	width: 200px;
+	max-height: 200px;
 }
 
 .profile-img > img {
-	width: 200px;
-	height: 200px;
+	width: 100%;
+	max-height: 200px;
 }
 
 .profile-textarea {
@@ -53,8 +55,14 @@ ul {
 		color: red;
 	}
 
+.save-btn, .edit-btn, .cancel-btn {
+	display: inline-block;
+}
+
 .save-btn {
 	font-size: 2em;
+	
+	margin: 0 20px;
 }
 
 	.save-btn:hover {
@@ -88,14 +96,20 @@ ul {
 
 /*Home Styles*/
 .employer-container {
-	width: 90%;
+	margin: 0 auto;
+	padding: 20px;
+	
+	max-width: 1100px;
+	/*width: 90%;
 	margin: auto;
-	box-shadow: 2px 2px #2F3F42;
-	border-radius: 20px;
 	border: thin solid lightgray;
 	padding: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 20px;*/
 }
+
+	.employer-container > h3 {
+		margin: 10px 0;
+	}
 
 .stretch {
 	clear: both;

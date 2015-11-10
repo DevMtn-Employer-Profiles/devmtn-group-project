@@ -6,7 +6,6 @@ angular.module('MainApp').controller('employerHomeCtrl', function($scope, $state
 	
 	dataService.getMyProfile().then(function(result) {
 		$scope.myProfile = result;
-		console.log("RESULT: ", result);
 		//Determine profile status
 		if(result.isPending) {
 			if(result.isVisible) {

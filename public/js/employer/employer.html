@@ -13,7 +13,7 @@
 			id="toggle-menu-button" 
 			class="toolbar-button" 
 			ng-click="toggleSidenav()"
-			ng-hide="isMobile.any()" 
+			ng-hide="!!isMobile.any()" 
 		>
 			<span 
 				class="open-expand smaller" 
@@ -27,8 +27,7 @@
 				md-no-ink 
 				id="home" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.home}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.home}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -45,8 +44,7 @@
 				md-no-ink 
 				id="active" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.profile}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.profile}"
 			>
 				<span 
 					class="open-expand smaller" 
@@ -63,8 +61,7 @@
 				md-no-ink 
 				id="active" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.students}" 
-				ng-click="activateTab()"
+				ng-class="{'active-tab': activeTab.students}"
 			>
 				<span 
 					class="open-expand smaller" 

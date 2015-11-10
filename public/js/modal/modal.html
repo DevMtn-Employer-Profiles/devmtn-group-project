@@ -1,14 +1,19 @@
-<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak>
-	<form layout="column" style="height: 100%; width: 100%">
+<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak ng-class="{desktop: !isMobile.any(), mobile: !!isMobile.any()}">
+	<form layout="column">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Company Profile</h2>
 				<span flex></span>
 				<h2>{{ currentProfile.companyName }}</h2>
 				<span flex></span>
-				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isPending">Pending</md-switch>
-				<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isVisible">Visible</md-switch>
-				<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
+				<div class="admin-tools" ng-show="getAdmin()" layout="row">
+					<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isPending">Pending</md-switch>
+					<md-switch class="md-primary" md-no-ink ng-click="updateCompany(company)" ng-model="currentProfile.isVisible">Visible</md-switch>
+					<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
+				</div>
+				<md-button class="md-icon-button big" ng-hide="getAdmin()" aria-label="Close Modal" ng-click="cancel()">
+					<span class="fa fa-times-circle"></span>
+				</md-button>
 			</div>
 		</md-toolbar>
 		
@@ -45,7 +50,7 @@
 			</div>
 		</md-dialog-content>
 		
-		<div class="md-actions" layout="row">
+		<div class="md-actions" ng-show="getAdmin()" layout="row">
 			<span flex></span>
 			<md-button ng-click="saveProfile()" aria-label="Save">Save</md-button>
 			<md-button ng-click="cancel()" aria-label="Cancel">Cancel</md-button>

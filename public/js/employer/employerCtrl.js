@@ -1,5 +1,4 @@
-angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state) {
-	console.log("Loading employer ctrl");
+angular.module('MainApp').controller('employerCtrl', function($scope, $location, $timeout, $state, MobileService) {
 	if ($location.path() === '/employer')
 		$state.go('Employer.Home');
 	// Sidenav Toolbar configuration from here on down
@@ -13,7 +12,7 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 		};
 	};
 	
-	$scope.activateTab = function() {
+	function activateTab() {
 		$scope.activeTab = {
 			all: 		false,
 			active: 	false,
@@ -23,50 +22,24 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 			config: 	false
 		};
 		
-		$timeout(function() {
-			var tab = parsePath();
-			
-			switch(tab)
-			{
-				case 'home'	   : $scope.activeTab.home = true;  	break;
-				case 'profile' : $scope.activeTab.profile = true;	break;
-				case 'students': $scope.activeTab.students = true;	break;
-				default		   : $scope.activeTab.active = true;	break;
-			}
-		}, 50);
+		var tab = parsePath();
+		
+		switch(tab)
+		{
+			case 'home'	   : $scope.activeTab.home = true;  	break;
+			case 'profile' : $scope.activeTab.profile = true;	break;
+			case 'students': $scope.activeTab.students = true;	break;
+			default		   : $scope.activeTab.active = true;	break;
+		}
 	};
 	
-	$scope.activateTab();
+	activateTab();
 	
 	
 	
 	//  This is designed to figure out if the browser is on a mobile device ONLY,
 	//  to allow me to ensure that it will be styled for that ONLY
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-		
-		BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-		
-		iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-		
-		Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-		
-		Windows: function() {
-			return navigator.userAgent.match(/IEMobile|Edge/i);
-		},
-		
-		any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	}
+	$scope.isMobile = MobileService.isMobile;
 	
 	
 	
@@ -99,4 +72,10 @@ angular.module('MainApp').controller('employerCtrl', function($scope, $location,
 		
 		return reverseStr;
 	}
+	
+	$scope.$watch(function() {
+		return $location.path();
+	}, function(newValue) {
+		activateTab();
+	});
 });

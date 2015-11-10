@@ -1,15 +1,32 @@
 <div class="employer-container">
+	<div class="pull-right" ng-hide="isEditing">
+		<md-button ng-click='openEdit()' aria-label="Edit Profile" class="edit-btn profile-edit-buttons">
+			<span title='Edit Profile'class='fa fa-pencil-square-o'></span>
+		</md-button>
+		<md-button ng-click='submitProfile()' aria-label="Submit Profile" ng-show="!profile.isPending" class="save-btn">
+			<span title='Submit Profile' class='fa fa-upload'></span> 
+		</md-button>
+	</div>
+	
+	<div class='pull-right' ng-show="isEditing">
+		<md-button ng-click='cancelEdit()' aria-label="Cancel Edit" class="cancel-btn profile-edit-buttons">
+			<span title='Cancel Edit' class='fa fa-ban'></span>
+		</md-button>
+		<md-button ng-click="saveEdit()" aria-label="Save Edit" class="save-btn profile-edit-buttons">
+			<span title='Save Profile' ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span>
+		</md-button>
+	</div>
+	
 	<h3>Profile</h3>
+	
 	<div ng-show='!isEditing'>
-		<span ng-show="!profile.isPending" title='Submit Profile' ng-click='submitProfile()' class='pull-right fa fa-upload save-btn'></span> 
-		<span title='Edit Profile' ng-click='openEdit()' class='pull-right edit-btn fa fa-pencil-square-o'></span><br/>
 		<div class='profile-left'>
 			<div class='profile-img'>
 				<img ng-src='{{profile.logo}}' alt='company logo'/>
 			</div>
 			<h4>Skills Needed</h4>
 			<ul>
-				<li ng-repeat='skill in profile.skills'>{{skill.name}}</li>
+				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
 			</ul>
 		</div>
 		<div class="profile-right">
@@ -22,11 +39,8 @@
 			</ul>
 		</div>
 	</div>
+	
 	<div ng-show='isEditing'>
-		<div class='pull-right'>
-			<span title='Cancel Edit' ng-click='cancelEdit()' class='fa fa-ban cancel-btn'></span>
-			<span title='Save Profile' ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span> <br/>
-		</div>
 		<div class='profile-left'>
 			<div class='profile-img'>
 				<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
@@ -42,11 +56,12 @@
 				<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
 			</div>
 			<ul>
-				<li ng-repeat='skill in editedProfile.skills track by $index'>
-					<span ng-click='removeSkill($index)' class='fa fa-minus-circle delete-circle'></span>{{skill.name}}
+				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">
+					<span ng-click='removeSkill($index)' class='fa fa-minus-circle pull-right delete-circle'></span> {{skill.name}}
 				</li>
 			</ul>
 		</div>
+		
 		<div class="profile-right">
 			<input type='text' ng-model='editedProfile.companyName' />
 			<h4>Bio</h4>
