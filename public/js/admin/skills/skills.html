@@ -1,26 +1,52 @@
 <div class="subroute-container" id="skills-view" layout="row">
-	<div id="current-skills" class='md-whiteframe-2dp column skills-box' flex>
-		<h3>Skills <input type="text" placeholder="search" ng-model='searchTerms' class='pull-right'/></h3>
-		<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} track by $index">
-			{{skill.name}}<span class='fa fa-trash-o pull-right skills-delete'></span>
+	<div flex>
+		<div id="current-skills" class='column skills-box' flex>
+			<input type="text" placeholder="Search skills" ng-model='searchTerms' class='pull-right'/>
+			<h3>Skills</h3>
+			<div class="skills" dir-paginate="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} | itemsPerPage: 20 track by $index" layout="row" layout-align="start center">
+				<div flex>{{skill.name}}</div><div class='fa fa-trash-o skills-delete'></div>
+			</div>
+			
+			<div class="skills add-skill" ng-hide="addingSkill" ng-click="showAdd()">
+				<div class="fa fa-plus"></div> Add New...
+			</div>
+			
+			<form ng-submit='addNewSkill()' class="new-skill-form skills" ng-show="addingSkill" layout="row">
+				<input id="input-new-skill" type='text' placeholder="New skill..." ng-model='newSkill' flex />
+				
+				<div class="new-skill-submit fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
+				
+				<div class="new-skill-cancel fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
+			</form>
+			
+			<div class="pagination no-select" layout="row">
+				<span flex></span>
+				<dir-pagination-controls max-size="20" direction-links="true" boundary-links="true"></dir-pagination-controls>
+				<span flex></span>
+			</div>
 		</div>
 	</div>
 	
-	<div id="pending-skills"  class='column' flex>
-		<div class="md-whiteframe-2dp skills-box">
+	<div flex>
+		<!--<div class="skills-box">
 			<h3>New Skill</h3>
+			
 			<form ng-submit='addNewSkill()'>
 				<input type='text' ng-model='newSkill'/>
 				<strong ng-click='addNewSkill()' class='new-skill-submit'>+</strong>
 			</form>
-		</div>
-		<div class="md-whiteframe-2dp skills-box">
+		</div>-->
+		
+		<div id="pending-skills" class="column">
 			<h3>Pending Skills</h3>
-			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index">
-				{{skill.name}}
-				<span class='fa fa-ban pull-right skills-delete' ng-click="removeSkill(skill._id)"></span>
-				<span class='fa fa-check pull-right new-skill-submit' ng-click='approveSkill(skill)'></span>
-		</div>	
+			
+			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index" layout="row" layout-align="start center">
+				<div flex>{{skill.name}}</div>
+				
+				<div class='fa fa-check new-skill-submit' ng-click='approveSkill(skill)'></div>
+				
+				<div class='fa fa-trash-o skills-delete' ng-click="removeSkill(skill._id)"></div>
+			</div>
 		</div>
 	</div>
 </div>

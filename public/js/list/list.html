@@ -7,7 +7,7 @@
 		<input type="text" placeholder="Click here and start typing for a live search of companies" class="search-bar" ng-model="query">
 	</div>
 	
-	<profile-dir class="active-card" dir-paginate="profile in profiles | filter: search | itemsPerPage: 10 track by $index"></profile-dir>
+	<profile-dir class="active-card" dir-paginate="profile in profiles | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index"></profile-dir>
 	
 	<div class="pagination no-select">
 		<span flex></span>

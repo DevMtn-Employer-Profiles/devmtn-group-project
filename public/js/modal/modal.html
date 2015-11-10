@@ -1,5 +1,5 @@
-<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak>
-	<form layout="column" style="height: 100%; width: 100%">
+<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak ng-class="{desktop: !isMobile.any(), mobile: !!isMobile.any()}">
+	<form layout="column">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h2>Company Profile</h2>
