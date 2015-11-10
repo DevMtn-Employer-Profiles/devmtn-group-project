@@ -26,5 +26,5 @@ app.service('MobileService', function() {
 			var isAny = (svc.isMobile.Android() || svc.isMobile.BlackBerry() || svc.isMobile.iOS() || svc.isMobile.Opera() || svc.isMobile.Windows());
 			return isAny;
 		}
-	}
+	};
 })

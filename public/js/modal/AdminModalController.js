@@ -1,4 +1,4 @@
-app.controller('ModalController', function($scope, $location, $mdDialog, ModalService, dataService) {
+app.controller('ModalController', function($scope, $location, $mdDialog, ModalService, MobileService, dataService) {
 	$scope.currentProfile = {};
 	
 	(function getReferencedProfile() {
@@ -54,5 +54,7 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	
 	$scope.getAdmin = function() {
 		return isAdmin;
-	}
+	};
+	
+	$scope.isMobile = MobileService.isMobile;
 });
