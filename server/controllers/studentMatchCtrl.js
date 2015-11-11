@@ -2,10 +2,10 @@
 var Request = require('request'),
 	Profile = require('mongoose').model('Profile');
 
-exports.getStudents = function() {
+exports.getStudents = function(req, res) {
 	Request('http://profiles.devmounta.in/api/studentPortfolio', function(error, response, body) {
 		if (error) {
-			return false;
+			res.status(500).send(error);
 		} else {
 			var newBody = JSON.parse(body);
 			var profiles = newBody.filter(function(item){
@@ -15,7 +15,7 @@ exports.getStudents = function() {
 					return false;
 				}
 			})
-			return profiles;
+			res.json(profiles);
 		}
 	})
 }

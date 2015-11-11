@@ -9,19 +9,19 @@
 	<br/>
 	<div class="area">
 		<div class='select-box-container'>
-			<div ng-repeat='student in PossibleStudents' ng-click='addThisSelectedStudent = student'>
-				{{student}}
+			<div ng-repeat='student in PossibleStudents track by $index' ng-click='addThisSelectedStudent = $index'>
+				{{student.name.last}},{{student.name.first}}
 			</div>
 		</div> 
 		<div class='div-center-buttons'>
-			<button ng-click='addStudent(addThisSelectedStudents)'>Right</button><br/>
+			<button ng-click='addStudent()'>Right</button><br/>
 			<button ng-click='addAllStudents()'>All Right</button><br/>
 			<button ng-click='removeAllStudents()'>All Left</button><br/>
-			<button ng-click='removeStudents(removeThisSelectedStudent)'>Left</button>
+			<button ng-click='removeStudent()'>Left</button>
 		</div>
 		<div class='select-box-container'>
-			<div ng-repeat='student in SelectedStudents' ng-click='removeThisSelectedStudent = student'>
-				{{student}}
+			<div ng-repeat='student in SelectedStudents track by $index' ng-click='removeThisSelectedStudent = $index'>
+				{{student.name.last}},{{student.name.first}}
 			</div>
 		</div>
 	</div>
@@ -55,8 +55,6 @@
 </div>
 <div class="section">
 	<h3>Step 3: Confirmation</h3>
-	<p>Select a date for these matches to expire</p>
-	<input type='date' ng-model='expirationDate' ng-change="validateReady()"/>
 	<!--Error messages appear here-->
 	<div ng-show="!ready">
 		<p ng-repeat='message in readyMessages'>{{message}}</p>
@@ -65,5 +63,5 @@
 		<p>Okay, this is it. Once you push the big green button I will run the matching algorithm and send the
 			matches to the employers you selected!</p>
 	</div>
-	<button id='bigSubmitButton' class="big-create-matches-button">Match</button>
+	<button id='bigSubmitButton' class="big-create-matches-button" ng-click='submitMatches()'>Match</button>
 </div>
