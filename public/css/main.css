@@ -1,3 +1,4 @@
+/* ---- DEFAULT TAGS ---- */
 body {
 	padding: 0;
 	margin: 0;
@@ -12,12 +13,176 @@ p {
 	margin-bottom: .5em;
 }
 
+
+/*  ---------  GENERAL CLASSES COULD BE USED ELSEWHERE  ------------  */
+
+/*  -------------------------  FORMATTING  -------------------------  */
+
+.hidden {
+	display: none;
+}
+
+.relative {
+	position: relative;
+}
+
+.page-explanation {
+	width: 90%;
+	max-width: 800px;
+	
+}
+
+/* ---- STYLE FOR EACH COLUMN IF YOU WANT TWO OF THEM ---- */
+.two-columns {
+	width: calc(45% - 60px);
+	
+	padding: 30px;
+}
+	.two-columns h3, .column h5 {
+		margin: 2px;
+	}
+	
+	.two-columns textarea {
+		width: calc(100% - 20px);
+		padding: 10px;
+		min-height: auto;
+		height: auto;
+		box-sizing: border-box;
+	}
+
+
+/*  ------------------------  ROUTING  ------------------------  */
+
 .main-router, .route-container {
 	width: 100%;
 	height: 80%;
 	height: calc(100% - 67px);
 	max-height: calc(100% - 67px);
 }
+	
+	.subroutes {
+		padding: 8px 20px;
+		overflow: auto;
+	}
+
+
+/*  -----------------  FONT STYLING CLASSES  ------------------  */
+
+.big {
+	font-size: x-large;
+}
+
+.smaller {
+	font-size: smaller;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	
+	cursor:  default;
+}
+
+
+/*  -------------  COMPONENT-SPECIFIC STYLING  ----------------  */
+
+/* ---- SEARCH BAR ---- */
+.search-bar {
+	width: 90%;
+	max-width: 800px;
+	
+	height: 2.5em;
+	
+	margin: 20px 0;
+	
+	padding: 8px;
+	box-sizing: border-box;
+	
+	transition: all linear .1s;
+	border: 1px solid lightgray;
+}
+
+	.search-bar:hover {
+		box-shadow: 0 0 8px #8CE0EB;
+	}
+
+
+/* ---- DELETE BUTTONS ---- */
+.delete-button, .submit-button {
+	min-height: auto;
+	min-width: auto;
+	
+	cursor: pointer;
+	text-align: center;
+}
+
+	.delete-button:hover {
+		background-color: rgb(244,67,54) !important;
+		color: white !important;
+	}
+
+/* ---- SUBMIT BUTTON ---- */
+.submit-button {
+	text-align: center;
+}
+
+	.submit-button:hover {
+		background-color: green;
+	}
+
+/* ---- CLICK-TO-EDIT ---- */
+.click-to-edit {
+	margin: 0;
+	padding: 8px;
+	
+	transition: all linear 100ms;
+}
+
+	.click-to-edit:hover {
+		background-color: rgba(200,200,240,.5);
+		
+		cursor: pointer;
+	}
+
+/* ---- CLICK-TO-EDIT ANIMATIONS ---- */
+.click-to-edit.ng-hide-add,
+.click-to-edit.ng-hide-remove {
+	position: absolute;
+}
+
+.click-to-edit.ng-hide {
+	position: absolute;
+}
+
+
+/* ---- PAGINATION ---- */
+.pagination {
+	list-style: none;
+	
+	width: 300px;
+}
+
+	.pagination-button {
+		margin: 0;
+		padding: 0;
+		
+		min-width: auto;
+		min-height: auto;
+		width: 100%;
+		height: auto;
+	}
+	
+		.current-page {
+			background-color: rgba(63,81,181, .9) !important;
+			color: white;
+			
+			font-weight: bolder;
+		}
+
 
 /*  ------------------------ ANIMATION ------------------------  */
 	
@@ -42,767 +207,10 @@ p {
 }
 
 
-
-/*Header Styles*/
-header {
-	height: 67px;
-	padding: 20px;
-	box-sizing: border-box;
-	background: #f8f8f8;
-	border-bottom: #F0F0F0;
-	
-	box-shadow: 0 3px 5px rgba(200,200,240,.5);
-	
-	/*  For keeping the header shadow above the rest of the content  */
-	position: relative;
-	z-index: 50;
-}
-
-.pull-right {
-	display: block;
-	float: right;
-	
-	align-self: flex-end;
-}
-
-.logo {
-	height: 30px;
-	display: inline-block;
-}
-
-.header-link {
-	display: inline-block;
-	text-decoration: none;
-	color: #404041;
-	padding: 0px 11px;
-	box-sizing: border-box;
-	margin-top: 10px
-}
-
-.header-link:hover {
-	color: #2AABE2;
-}
-
-.header-buttons {
-	float: right;
-}
-
-/*  ---------------------  ADMIN VIEW STYLES  ----------------------  */
-
-/*  ---------  GENERAL CLASSES COULD BE USED ELSEWHERE  ------------  */
-.hidden {
-	display: none;
-}
-
-.smaller {
-	font-size: smaller;
-}
-
-.relative {
-	position: relative;
-}
-
-.search-bar {
-	width: 90%;
-	max-width: 800px;
-	
-	height: 2.5em;
-	
-	margin: 20px 0;
-	
-	padding: 8px;
-	box-sizing: border-box;
-	
-	transition: all linear .1s;
-	border: 1px solid lightgray;
-}
-
-	.search-bar:hover {
-		box-shadow: 0 0 8px #8CE0EB;
-	}
-
-.page-explanation {
-	width: 90%;
-	max-width: 800px;
-	
-}
-
-.subroute-container {
-	padding: 8px 20px;
-}
-
-.sidenav-toolbar-open {
-	width: 200px;
-}
-
-.sidenav-toolbar-closed {
-	width: 85px;
-	transition: all .3s linear;
-}
-
-.big {
-	font-size: x-large;
-}
-
-.no-select {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-	
-	cursor:  default;
-}
-
-
-/*  ---------------------  ADMIN STYLES ONLY  ----------------------  */
-
-.active-tab {
-	/*background-color: #BCCADE;*/
-	/*color: black !important;*/
-	background-color: #2F3F42;
-	color: white;
-}
-
-.active-tab:hover, .active-tab:focus {
-	/*background-color: #BCCADE !important;*/
-	background-color: #344F4E !important;
-}
-
-.sidenav-toolbar .toolbar-button, #toggle-menu-button {
-	margin: 0;
-	
-	padding: 15px 33px;
-	
-	width: 100%;
-	
-	font-size: 1.2em;
-	
-	line-height: 1.01em;
-	
-	/*color: white;*/
-	/*color: #2F3F42;*/
-}
-
-.sidenav-toolbar {
-	height: 100%;
-	
-	/*background-color: #2F3F42;*/
-	
-	transition: all linear .3s;
-}
-
-	.sidenav-toolbar .toolbar-button {
-		text-align: left;
-		width: 100%;
-		
-		min-width: auto;
-		border-radius: 0;
-	}
-	
-	.sidenav-toolbar .toolbar-button > span:last-child {
-		position: relative;
-		left: -5px;
-	}
-
-
-.open-expand {
-	position: absolute;
-}
-
-
-#admin-subroutes {
-	overflow: auto;
-}
-
-.pages {
-	display:  inline-block;
-	margin: 0 20px;
-}
-	
-.arrow-button {
-	transition: all linear .1s;
-}
-
-.pagination {
-	list-style: none;
-	
-	width: 300px;
-}
-
-	.pagination-button {
-		margin: 0;
-		padding: 0;
-		
-		min-width: auto;
-		min-height: auto;
-		width: 100%;
-		height: auto;
-	}
-	
-		.current-page {
-			background-color: rgba(63,81,181, .9) !important;
-			color: white;
-			
-			font-weight: bolder;
-		}
-
-/*.arrow-button:hover {
-	background-color: rgba(63,81,181, .9) !important;
-	color: white;
-	cursor: pointer;
-}
-
-	.arrow-button > span {
-		position: relative;
-		top: 2px;
-	}*/
-
-
-/*  -----------------  ADMIN TAB VIEW STYLES  ----------------  */
-
-.active-card, .inactive-card, .pending-card, .all-card, .column, .employer-container {
-	width: 90%;
-	max-width: 800px;
-	
-	border-radius: 0px;
-	margin: 10px 0;
-	
-	opacity: .9;
-	border: 1px solid lightgray;
-	
-	transition: all linear .1s;
-	box-shadow: none;
-}
-
-.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover, .column:hover, .employer-container:hover {
-	opacity: 1;
-	box-shadow: 0 0 8px #8CE0EB;
-}
-
-	.employer-logo {
-		width: 150px;
-		height: 150px;
-		
-		margin: 10px; 
-	}
-		
-		.employer-logo > img {
-			width: 100%;
-		}
-	
-	.employer-info {
-		width: 100%;
-		
-		padding-left: 20px;
-	}
-	
-		.employer-info .company-name {
-			width: calc(100% - 40px);
-			
-			margin: 0;
-			
-			padding: 10px 20px;
-			
-			text-align: center;
-			background-color: #eee;
-		}
-		
-			.employer-info .company-name:hover, .list-company-name:hover  {
-				cursor: pointer;
-			}
-		
-		.skills-container {
-			margin-bottom: 20px;
-		}
-		
-			.skills-container .skill-tags {
-				display: inline-block;
-				
-				margin: 0 8px;
-				padding: 3px;
-				
-				background-color: #e0e0ff;
-				
-				box-shadow: 0 2px 3px #bbb;
-				
-				border-radius: 3px;
-			}
-
-
-/*  --------------  ANIMATION FOR TOOLBAR ONLY  ---------------  */
-.open-expand.ng-hide-add,
-.open-expand.ng-hide-remove {
-  width: 87px;
-}
-
-.ng-hide-remove {
-  -webkit-transition-delay: .1s;
-  transition-delay: .1s;
-}
-
-.open-expand.ng-hide {
-  width: 0px;
-}
-
-
-/*  ------------------  ADMIN.CONFIG ROUTE  -------------------  */
-
-.column {
-	width: calc(47% - 60px);
-	
-	padding: 30px;
-}
-	.column h3, .column h5 {
-		margin: 2px;
-	}
-	
-	.column textarea {
-		width: calc(100% - 20px);
-		padding: 10px;
-		min-height: auto;
-		height: auto;
-		box-sizing: border-box;
-	}
-	
-	#welcome-message {
-		margin: 20px 0;
-	}
-	
-	#welcome-edit {
-		margin: 20px 0;
-	}
-
-.click-to-edit {
-	margin: 0;
-	padding: 8px;
-	
-	transition: all linear 100ms;
-}
-
-	.click-to-edit:hover {
-		background-color: rgba(200,200,240,.5);
-		
-		cursor: pointer;
-	}
-
-	.delete-button {
-		min-height: auto;
-		min-width: auto;
-		height: 20px;
-		width: 20px;
-		
-		padding: 0;
-		margin: 0;
-		margin-right: 7px;
-		
-		position: relative;
-		top: .5em;
-		
-		border-radius: 10px;
-		
-		line-height: .5em;
-		text-align: center;
-	}
-	
-	.delete-button:hover {
-		background-color: rgb(244,67,54) !important;
-		color: white !important;
-	}
-
-/*  ------------  ANIMATIONS FOR CLICK-TO-EDIT, ETC.  -------------  */
-
-.click-to-edit.ng-hide-add,
-.click-to-edit.ng-hide-remove {
-	position: absolute;
-}
-
-.click-to-edit.ng-hide-remove {
-	position: absolute
-}
-
-.click-to-edit.ng-hide {
-	position: absolute;
-}
-
-
-/*  ---------------------  ADMIN MODAL STYLES  -------------------  */
-
-md-dialog#profile-modal {
-	border-radius: 0;
-	
-}
-
-	md-dialog.desktop {
-		width: 70%;
-		height: 70%;
-		max-width: 800px;
-		max-height: 600px;
-	}
-
-	md-dialog.mobile {
-		width: 90%;
-		height: 90%;
-	}
-
-		md-dialog > form {
-			width: 100%;
-			height: 100%;
-		}
-		
-		md-dialog#profile-modal md-toolbar, md-dialog#profile-modal .md-toolbar-tools {
-			background-color: #2F3F42;
-		}
-	
-		md-dialog#profile-modal .employer-logo-container-md {
-			width: 200px;
-		}
-		
-			md-dialog#profile-modal .employer-logo-container-md > img {
-				width: 100%;
-			}
-		
-		md-dialog#profile-modal #more-info {
-			margin-left: 30px;
-		}
-		
-			.md-dialog-container {
-				z-index: 200;
-			}
-
-	
-/*LIST VIEW CSS*/  
-#list-view {
-	padding-top: 20px;
-	
-	overflow: auto;
-	
-	align-items: center;
-}
-
-	.list-main-box {
-		width: 600px;
-		
-		border: 1px lightgray solid;
-		
-		/*height: 150px;*/
-		
-		margin: auto;
-		margin-bottom: 20px;
-		margin-top: 10px;
-				
-		position: relative;	
-		
-		opacity: 0.9;
-		
-		transition: all linear .1s;
-	}
-	
-	.list-main-box:hover {
-		/*box-shadow: 0 0 8px lightgray;*/
-		box-shadow: 0 0 8px #8CE0EB;
-		
-		opacity: 1;
-	}
-	
-	.list-logo-box {
-		padding: 15px;
-		
-		width: 150px;
-		height: 150px;
-	}
-		
-		.list-logo-box > img {
-			width: 100%;
-		}
-	
-	.list-right-side {
-		width: 450px;
-		
-		float: right;
-		
-		padding-left: 8px;
-		
-		box-sizing: border-box;
-	}
-	
-	.list-top-right {
-		height: 90%;
-	}
-	
-	.list-company-name {
-		font-size: 1.5em;
-		
-		text-align: center;
-		
-		color: black;
-		
-		background-color: #eee;
-		
-		font-family: Helvetica, Arial, sans-serif;
-		
-		padding: 5px;
-	}
-	
-	.list-company-bio {
-		font-size: 1em;
-		
-		/*text-align: center;*/
-		
-		color: black;
-		
-		font-family: Helvetica, Arial, sans-serif;
-		
-		padding-right: 10px; 
-	}
-	
-	.list-skills-row {
-		width: 100%;
-		
-		padding-bottom: 8px;
-	}
-	
-	.list-skills {
-		display: inline-block;
-		
-		padding: 2px 5px;
-		margin: 0 5px;
-		
-		background-color: #eee;
-		
-		border: 1px solid gray;
-		border-radius: 3px;
-	}
-	
-	.list-search-box {
-		width: 90%;
-		max-width: 800px;
-	}
-	
-		.list-search-box > input {
-			width: 100%;
-		}
-	
-	.active-card:hover, .inactive-card:hover, .pending-card:hover, .all-card:hover {
-		opacity: 1;
-		box-shadow: 0 0 8px #8CE0EB;
-	}
-
-
-/*LANDING PAGE CSS*/
-.landing-background {
-  position: relative;
-  
-  text-align: center;
-  
-  margin-top: -20px;
-  
-  height: 100vh;
-  
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfa1/t31.0-8/s2048x2048/11174272_842916812445854_1885598337984820889_o.jpg);
-  
-  background-position: center;
-  
-  background-size: cover;
-  
-  background-repeat: no-repeat;
-}
-
-.text-container {
-	padding-top: 250px;
-	
-	margin-top: 20px;
-}
-
-.fade-in-text-animate {
-	color: white;
-	
-	font-size: 50px;
-	
-	font-weight: 500px;
-	
-	font-family: Josefin Sans, sans-serif;
-	
-	margin: auto;
-	
-	visibility: visible;
-	
-	animation-duration: 2s;
-	
-	animation-name: fadeIn;
-}
-
-@-webkit-keyframes typing {
-    from { width: 0 }
-    to { width:16.3em }
-}
-
-@-webkit-keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: white }
-}
-
-@-webkit-keyframes delay {
-	from, to { display: none; }
-	50% { display: block;}
-}
-
-.typed-text { 
-    font-size:30px;
-	color: white;
-    width:15em;
-    white-space:nowrap;
-    overflow:hidden;
-    border-right: .1em solid white;
-	margin: auto;
-	font-family: Josefin Sans, sans-serif;
-	
-    -webkit-animation: typing 3s steps(35, end), /* # of steps = # of characters */
-                        blink-caret 1s step-end infinite;
-					
-}
-
-.foot-clan-box {
-    position: relative;
-	
-    min-height: 1px;
-	
-    padding-right: 15px;
-	
-    padding-left: 15px;
-	
-	font-family: Josefin Sans, sans-serif;
-	
-	background-color: #EEEEEE;
-}
-
-.foot-clan-box-text {
-	padding: 15px;
-	
-	margin: auto;
-	
-	text-align: center;
-}
- 
-
-
-
-/*****************Admin-Skills*************************/
-.skills, .new-skill-form {
-	transition: all linear 75ms;
-}
-	
-	div.skills:hover {
-		background: #EEE;
-	}
-	
-	.skills > div {
-		padding: 8px 10px;
-		height: 100%;
-	}
-
-.skills-delete, .new-skill-submit {
-	transition: all linear .1s;
-}
-	
-	.skills-delete:hover, .new-skill-submit:hover, .new-skill-cancel:hover {
-		cursor: pointer;
-		color: white;
-	}
-
-	.skills-delete:hover, .new-skill-cancel:hover {
-		background-color: rgb(244,67,54);
-	}
-
-	.new-skill-submit:hover {
-		background-color: green;
-	}
-
-.add-skill:hover {
-	cursor: pointer;
-}
-
-#current-skills, #pending-skills {
-	margin: 0 auto;
-	padding: 20px;
-	width: calc(100% - 40px);
-}
-
-	#current-skills > h3, #pending-skills > h3 {
-		margin: 0;
-		padding: 5px 0 10px 0;
-	}
-
-#input-new-skill {
-	padding: 1px 7px;
-}
-
-
 @media (max-width: 1450px) {
 	.search-bar {
 		position: static;
 	}
-	
-	/*md-dialog {
-		width: 70%;
-		height: 70%;
-	}*/
-}
-
-/*****************Admin-Student Matching*************************/
-.section {
-	width: 90%;
-	margin: auto;
-	background: ghostwhite;
-	border-radius: 20px;
-	padding: 20px;
-	margin-top: 20px;
-	box-sizing: border-box;
-}
-
-.area {
-	display: block;
-	margin: auto;
-	margin-top: 20px;
-	text-align: center;
-}
-
-.select-box-container {
-	box-sizing: border-box;
-	display: inline-block;
-	width: 200px;
-	height: 250px;
-	background: white;
-	overflow-y: scroll;
-}
-
-.div-center-buttons {
-	width: 15%;
-	height: 250px;
-	display: inline-block;
-	box-sizing: border-box;
-	text-align: center;
-}
-
-.select-me-please {
-	background: white;
-}
-
-.select-me-please:hover {
-	cursor: pointer;
-}
-
-.selected-a-thing {
-	background: dodgerblue;
-}
-
-.big-create-matches-button {
-	width: 100%;
-	height: 300px;
-	background: seagreen;
-	border-radius: 40px;
-	font-size: 4em;
 }
 
 @media (orientation: portrait) {

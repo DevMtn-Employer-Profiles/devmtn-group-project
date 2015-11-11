@@ -1,4 +1,4 @@
-<div class="subroute-container" id="active-view" layout="column" layout-margin layout-align="center center">
+<div class="subroutes" layout="column" layout-margin layout-align="center center">
 	<p class="page-explanation">
 		All companies are shown below.
 	</p>
@@ -8,7 +8,7 @@
 	
 	<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query">
 	
-	<div class="active-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">
+	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>

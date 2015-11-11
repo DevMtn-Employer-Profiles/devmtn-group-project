@@ -1,0 +1,70 @@
+.profile-card, .employer-container {
+	width: 90%;
+}
+
+.profile-card, .two-columns, .employer-container {
+	max-width: 800px;
+	
+	border-radius: 0px;
+	margin: 10px 0;
+	
+	opacity: .9;
+	border: 1px solid lightgray;
+	
+	transition: all linear .1s;
+	box-shadow: none;
+}
+
+.profile-card:hover, .two-columns:hover, .employer-container:hover {
+	opacity: 1;
+	box-shadow: 0 0 8px #8CE0EB;
+}
+
+	.employer-logo {
+		width: 150px;
+		height: 150px;
+		
+		margin: 10px; 
+	}
+		
+		.employer-logo > img {
+			width: 100%;
+		}
+	
+	.employer-info {
+		width: 100%;
+		
+		padding-left: 20px;
+	}
+	
+		.employer-info .company-name {
+			width: calc(100% - 40px);
+			
+			margin: 0;
+			
+			padding: 10px 20px;
+			
+			text-align: center;
+			background-color: #eee;
+		}
+		
+			.employer-info .company-name:hover, .list-company-name:hover  {
+				cursor: pointer;
+			}
+		
+		.skills-container {
+			margin-bottom: 20px;
+		}
+		
+			.skills-container .skill-tags {
+				display: inline-block;
+				
+				margin: 0 8px;
+				padding: 3px;
+				
+				background-color: #e0e0ff;
+				
+				box-shadow: 0 2px 3px #bbb;
+				
+				border-radius: 3px;
+			}

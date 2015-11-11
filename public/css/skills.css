@@ -1,0 +1,40 @@
+.skills, .new-skill-form {
+	transition: all linear 75ms;
+}
+	
+	div.skills:hover {
+		background: #EEE;
+	}
+	
+	.skills > div {
+		padding: 8px 10px;
+		height: 100%;
+	}
+
+.new-skill-form .skill-button {
+	transition: all linear .1s;
+}
+	
+	.skill-button:hover {
+		cursor: pointer;
+		color: white;
+	}
+
+.add-skill:hover {
+	cursor: pointer;
+}
+
+#current-skills, #pending-skills {
+	margin: 0 auto;
+	padding: 20px;
+	width: calc(100% - 40px);
+}
+
+	#current-skills > h3, #pending-skills > h3 {
+		margin: 0;
+		padding: 5px 0 10px 0;
+	}
+
+#input-new-skill {
+	padding: 1px 7px;
+}
