@@ -1,35 +1,33 @@
-var StudentMatch = require('mongoose').model('StudentMatch');
-var Request = require('request');
+// var StudentMatch = require('mongoose').model('StudentMatch');
+var Request = require('request'),
+	Profile = require('mongoose').model('Profile');
 
-exports.createMatch = function(req, res) {
-	StudentMatch.create(req.body, function(err, result){
-		if (err) {
-			res.status(500).send(err);
+exports.getStudents = function() {
+	Request('http://profiles.devmounta.in/api/studentPortfolio', function(error, response, body) {
+		if (error) {
+			return false;
 		} else {
-			res.json(result);
-		}
-	});
-	
-};
-
-exports.getMatches = function(req, res) {
-	StudentMatch.find({employerId: req.user._id}).exec(function(err, result) {
-		if (err) {
-			res.status(500).send(err);
-		} else {
-			res.json(result);
+			var newBody = JSON.parse(body);
+			var profiles = newBody.filter(function(item){
+				if (item.showProfile) {
+					return true;
+				} else {
+					return false;
+				}
+			})
+			return profiles;
 		}
 	})
-};
+}
 
-exports.getStudents = function(req, res) {
+exports.getCertainStudents = function(req, res, students) {
 	Request('http://profiles.devmounta.in/api/studentPortfolio', function(error, response, body) {
 		if (error) {
 			res.status(500).send(error);
 		} else {
 			var newBody = JSON.parse(body);
 			var profiles = newBody.filter(function(item){
-				if (item.showProfile) {
+				if (item.showProfile && students.indexOf(item._id) != -1) {
 					return true;
 				} else {
 					return false;

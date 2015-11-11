@@ -10,7 +10,8 @@ var schema = new mongoose.Schema({
 	skills: {type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Skill'}], default: []},
 	relocation: {type: Boolean},
 	contactEmail: {type: [{type:String}], default: []},
-	isVisible: {type: Boolean, default: false}
+	isVisible: {type: Boolean, default: false},
+	studentMatches: {type: [{type: String}], default: []}
 });
 
 module.exports = mongoose.model('Profile', schema);
