@@ -1,5 +1,6 @@
 var Profile = require('mongoose').model('Profile'),
-	Pending = require('mongoose').model('PendingProfile');
+	Pending = require('mongoose').model('PendingProfile'),
+	Students = require('./studentMatchCtrl');
 
 
 /*****GET Requests*****/ 
@@ -26,6 +27,18 @@ exports.getMyProfile = function(req, res) {
 		if(err)res.status(500).send();
 		res.json(profile);
 	})
+}
+
+exports.getMatches = function(req, res) {
+	var empId = req.params.id;
+	//get the profile
+	Profile.findOne({_id: empId}).exec(function(err, result) {
+		if(err) {
+			res.status(500).send(err);
+		}
+		//now we know which students we want
+		Students.getCertainStudents(req, res, result.studentMatches);
+	});
 }
 
 /*****POST Requests*****/

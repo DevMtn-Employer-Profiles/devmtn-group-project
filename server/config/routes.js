@@ -19,7 +19,7 @@ module.exports = function (app){
 	app.put('/api/profile/:id', profile.updateProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match
-	app.get('/api/studentMatch', studentMatchCtrl.getMatches);
+	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
 	//Skills
 	app.get('/api/skills', skill.getSkills);
@@ -31,10 +31,6 @@ module.exports = function (app){
 		//Doesn't get called?
 		console.log('Ha ha this should not ever get printed to the console');
 	});
-	// app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
-	//       failureRedirect: '/#/landing',
-	//       successRedirect: '/#/employer'
-	//     }));
 	app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
 		failureRedirect: '/#/landing'
 		}), devmtnCtrl.loginSuccessRouter);
