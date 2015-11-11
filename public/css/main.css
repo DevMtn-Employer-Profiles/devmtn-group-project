@@ -108,16 +108,11 @@ p {
 		background-color: #DDD;
 		border: 1px solid lightgray;
 		border-left: none;
+		
+		text-align: center;
 	}
 
 		.input-container .filter-box > md-select-value {
-			/*display: flex;
-			justify-content: center;
-			align-items: center;*/
-			
-			text-align: center;
-			vertical-align: middle;
-			
 			height: 100%;
 			
 			padding: 8px;

@@ -1,4 +1,4 @@
-app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
+app.controller('adminAllCtrl', function($scope, $filter, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
 	$scope.filterOptions = [
