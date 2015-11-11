@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
     skill = require('../controllers/skills'),
-    notification = require('../controllers/notification'),
     passport = require('passport'),
     session = require('express-session'),
     devmtn = require('./devmtnAuthConfig'),
@@ -17,9 +16,7 @@ module.exports = function (app){
 	app.get('/api/profile/:id', profile.getProfileById);
 	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
 	app.post('/api/profile', profile.createProfile);
-	app.post('/api/profile/pending/:id'. profile.createPendingProfile);
 	app.put('/api/profile/:id', profile.updateProfile);
-	app.put('/api/profile/pending/:id', profile.updatePendingProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match
 	app.get('/api/studentMatch', studentMatchCtrl.getMatches);
