@@ -115,21 +115,8 @@ p {
 .delete-button, .submit-button {
 	min-height: auto;
 	min-width: auto;
-	/*height: 20px;
-	width: 20px;
-	
-	padding: 0;
-	margin: 0;
-	margin-right: 7px;
-	
-	position: relative;
-	top: .5em;*/
 	
 	cursor: pointer;
-	
-	/*border-radius: 10px;*/
-	
-	/*line-height: .5em;*/
 	text-align: center;
 }
 
