@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
     skill = require('../controllers/skills'),
-    notification = require('../controllers/notification'),
     passport = require('passport'),
     session = require('express-session'),
     devmtn = require('./devmtnAuthConfig'),
