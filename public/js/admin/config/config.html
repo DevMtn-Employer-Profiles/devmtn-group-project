@@ -1,5 +1,5 @@
-<div class="subroute-container" id="config-view" layout="row" layout-align="space-around start">
-	<div class="column">
+<div class="subroutes" layout="row" layout-align="space-around start">
+	<div class="two-columns">
 		<h3>Employer welcome message</h3>
 		<h5>What the employers will see when they first sign into the website. Click to edit.</h5>
 		<p ng-hide="editModeList.welcome" id="welcome-message" class="click-to-edit" ng-click="editModeOn('welcome')">
@@ -12,7 +12,7 @@
 		</form>
 	</div>
 	
-	<div class="column">
+	<div class="two-columns">
 		<h3>Notifications</h3>
 		<div class="notification" ng-repeat="notification in notifications track by $index">
 			<md-button class="md-warn pull-right delete-button" ng-hide="editModeList[$index]" ng-click="deleteNotification($index)" aria-label="Delete Notification">
