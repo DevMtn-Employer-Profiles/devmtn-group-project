@@ -1,4 +1,5 @@
-var Profile = require('mongoose').model('Profile');
+var Profile = require('mongoose').model('Profile'),
+	Pending = require('mongoose').model('PendingProfile');
 
 
 /*****GET Requests*****/ 
@@ -14,8 +15,8 @@ exports.getProfiles = function(req, res){
 	});
 };
 
-exports.getPendingProfile = function(req, res){
-	Profile.find({isPending:true}).exec(function(err, collection){
+exports.getPendingProfiles = function(req, res){
+	Pending.find().exec(function(err, collection){
 		res.send(collection);
 	});
 };
@@ -27,21 +28,10 @@ exports.getMyProfile = function(req, res) {
 	})
 }
 
-exports.getActiveProfiles = function(req, res){
-	Profile.find({isVisible: true}).populate('skills').exec(function(err, collection){
-		res.send(collection);
-	});
-};
-
-exports.getInactiveProfile = function(req, res){
-	Profile.find({isVisible:false}).exec(function(err, collection){
-		res.send(collection);
-	});
-};
 /*****POST Requests*****/
 exports.createProfile = function(req, res, next){
 	var companyData = req.body;
-	companyData.companyName = companyData.companyName.toLowerCase();
+	companyData.companyName = companyData.companyName;
 	companyData.bio = companyData.bio;
 	Profile.create(companyData, function(err, profile){
 		if(err){
@@ -52,6 +42,7 @@ exports.createProfile = function(req, res, next){
 		} else{res.end();}
 	})
 }
+
 /*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;

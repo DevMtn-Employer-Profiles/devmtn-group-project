@@ -12,28 +12,23 @@ var mongoose = require('mongoose'),
 module.exports = function (app){
 	/**********Endpoints**********/
 	//Profiles
-	app.get('/api/profile/all',/*auth.requiresApiLogin(),*/ profile.getProfiles);
-	app.get('/api/profile/pending',/*auth.requiresRole('admin'),*/ profile.getPendingProfile);
-	app.get('/api/profile/active', profile.getActiveProfiles);
-	app.get('/api/profile/inactive', profile.getInactiveProfile);
+	app.get('/api/profile/all', profile.getProfiles);
+	app.get('/api/profile/pending', profile.getPendingProfiles);
 	app.get('/api/profile/:id', profile.getProfileById);
 	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
 	app.post('/api/profile', profile.createProfile);
+	app.post('/api/profile/pending/:id'. profile.createPendingProfile);
 	app.put('/api/profile/:id', profile.updateProfile);
+	app.put('/api/profile/pending/:id', profile.updatePendingProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match
 	app.get('/api/studentMatch', studentMatchCtrl.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
 	//Skills
-	app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
+	app.get('/api/skills', skill.getSkills);
 	app.post('/api/skills', skill.createSkill);
 	app.delete('/api/skills/:id', skill.removeSkill);
 	app.put('/api/skills/:id', skill.updateSkill);
-	//Notifications
-	app.get('/api/notifications', notification.getNotifications);
-	app.delete('/api/notifications/:id',  notification.deleteNotification);
-	app.post('/api/notifications', notification.addNotification);
-	app.put('/api/notifications/:id', notification.updateNotification);
 	//Authentication
 	app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
 		//Doesn't get called?
