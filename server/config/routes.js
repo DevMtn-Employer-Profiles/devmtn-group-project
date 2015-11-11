@@ -22,8 +22,8 @@ module.exports = function (app){
 	app.put('/api/profile/:id', profile.updateProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match
-	app.get('/api/studentMatch', devmtnCtrl.requireEmployerRole, studentMatchCtrl.getMatches);
-	app.post('/api/studnentMatch', studentMatchCtrl.createMatch);
+	app.get('/api/studentMatch', studentMatchCtrl.getMatches);
+	app.get('/api/students', studentMatchCtrl.getStudents);
 	//Skills
 	app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
 	app.post('/api/skills', skill.createSkill);
