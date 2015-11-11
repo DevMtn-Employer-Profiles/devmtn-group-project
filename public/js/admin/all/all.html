@@ -7,13 +7,16 @@
 	</p>
 	
 	<div class="input-container" layout="row">
-		<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query">
+		<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query" flex>
 		
-		<md-input-container>
-			<md-select>
-				<md-option ng-repeat="">me</md-option>
-			</md-select>
-		</md-input-container>
+		<!--<md-input-container>-->
+			<!--<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+				<md-option ng-repeat="option in filterOptions">{{ option }}</md-option>
+			</md-select>-->
+		<!--</md-input-container>-->
+		<select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+			<option ng-repeat="option in filterOptions">{{ option }}</md-option>
+		</select>
 	</div>
 	
 	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">

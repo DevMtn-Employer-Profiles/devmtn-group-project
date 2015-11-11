@@ -1,6 +1,14 @@
 app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
+	$scope.filterOptions = [
+		"Pending first",
+		"Name (desc)",
+		"Name (asc)",
+		"Amount of skills (asc)",
+		"Amount of skills (desc)"
+	];
+	
 	// $scope.currentPage = 1;
 	
 	// $scope.$watch(function() {

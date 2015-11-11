@@ -17,6 +17,7 @@
     "express-session": "^1.12.1",
     "mongoose": "^4.2.3",
     "passport": "^0.3.0",
+    "request": "^2.65.0",
     "require": "^2.4.20"
   }
 }
