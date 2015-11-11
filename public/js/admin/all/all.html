@@ -6,7 +6,15 @@
 		To search for a company by name, type the name in the box below.  When you've found the company you're looking for, click their name to view their profile and modify settings, or just click the corresponding setting shown on the card.
 	</p>
 	
-	<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query">
+	<div class="input-container" layout="row">
+		<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query">
+		
+		<md-input-container>
+			<md-select>
+				<md-option ng-repeat="">me</md-option>
+			</md-select>
+		</md-input-container>
+	</div>
 	
 	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
