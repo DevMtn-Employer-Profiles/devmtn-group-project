@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var studentMatchSchema = new mongoose.Schema({
 	student: {
-		type: String
+		type: [{type: String}]
 	},
 	expirationDate: {
 		type: Date
