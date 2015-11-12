@@ -2,12 +2,23 @@ app.controller('adminAllCtrl', function($scope, $filter, $timeout, $mdDialog, Mo
 	$scope.companyList = [];
 	
 	$scope.filterOptions = [
-		"Pending first",
-		"Name (desc)",
-		"Name (asc)",
-		"Amount of skills (asc)",
-		"Amount of skills (desc)"
+		{name: "All", abbr: 'all'},
+		{name: "Pending", abbr: 'pending'},
+		{name: "Active", abbr: 'active'},
+		{name: "Inactive", abbr: 'inactive'}
 	];
+	
+	$scope.orderOptions = [
+		{name: "Pending first", abbr: 'pending'},
+		{name: "Name (+)", abbr: 'nameDesc'},
+		{name: "Name (-)", abbr: 'nameAsc'},
+		{name: "Amount of Skills (+)", abbr: 'skillsDesc'},
+		{name: "Amount of Skills (-)", abbr: 'skillsAsc'}
+	];
+	
+	function pendingFilter(a, b) {
+		
+	}
 	
 	// $scope.currentPage = 1;
 	

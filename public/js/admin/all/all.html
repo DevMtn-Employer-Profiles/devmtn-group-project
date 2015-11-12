@@ -7,15 +7,19 @@
 	</p>
 	
 	<div class="input-container" layout="row">
-		<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query" flex>
+		<input type="text" autofocus="true" placeholder="Search Companies" class="search-bar" ng-model="query" flex>
 		
-		<!--<md-input-container>-->
-			<!--<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
-				<md-option ng-repeat="option in filterOptions">{{ option }}</md-option>
-			</md-select>-->
-		<!--</md-input-container>-->
+		<!-- maybe.............. -->
+		<!--<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+			<md-option ng-repeat="option in filterOptions">{{ option }}</md-option>
+		</md-select>-->
+		
+		<select class="filter-box" ng-model="orderSelect" aria-label="Order Search">
+			<option ng-selected="" ng-repeat="option in orderOptions" ng-value="option.abbr">{{ option.name }}</option>
+		</select>
+		
 		<select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
-			<option ng-repeat="option in filterOptions">{{ option }}</md-option>
+			<option ng-repeat="option in filterOptions" ng-value="option.abbr">{{ option.name }}</option>
 		</select>
 	</div>
 	
