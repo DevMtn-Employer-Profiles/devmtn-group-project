@@ -7,7 +7,7 @@ angular.module('MainApp').controller('matchViewCtrl', function($scope, dataServi
 		var idx = link.lastIndexOf('/');
 		var matchId = link.substring(idx + 1);
 		dataService.getMatchData(matchId).then(function(results) {
-			$scope.results = results;
+			$scope.students = results;
 		})
 	}
 	
