@@ -1,0 +1,17 @@
+<div id="list-view" class="route-container" layout="column">
+	<p class="page-explanation">
+		Below are listed employers who are currently looking for Web, iOS, and User Experience positions to fill.  The cards say only a portion of the info on their profiles; however, if your DevMountain student portfolio is live, you will be able to click the name and see more information. 
+	</p>
+	
+	<div class="list-search-box">
+		<input type="text" placeholder="Click here and start typing for a live search of companies" class="search-bar" ng-model="query">
+	</div>
+	
+	<profile-dir class="profile-card" dir-paginate="profile in profiles | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index"></profile-dir>
+	
+	<div class="pagination no-select">
+		<span flex></span>
+		<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+		<span flex></span>
+	</div>
+</div>

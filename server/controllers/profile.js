@@ -26,8 +26,8 @@ exports.getMyProfile = function(req, res) {
 	Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
 		if(err)res.status(500).send();
 		res.json(profile);
-	})
-}
+	});
+};
 
 exports.getMatches = function(req, res) {
 	var empId = req.params.id;
@@ -39,7 +39,7 @@ exports.getMatches = function(req, res) {
 		//now we know which students we want
 		Students.getCertainStudents(req, res, result.studentMatches);
 	});
-}
+};
 
 /*****POST Requests*****/
 exports.createProfile = function(req, res, next){
@@ -53,22 +53,22 @@ exports.createProfile = function(req, res, next){
 			}
 			return res.status(400).send({reason:err.toString()});
 		} else{res.end();}
-	})
-}
+	});
+};
 
 /*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
 	return Profile.findByIdAndUpdate(req.params.id, companyUpdates,function(err, schema){
-		if(err){return res.send(err)};
+		if(err){return res.send(err);};
 		return res.send(companyUpdates);
-	})
+	});
 };
 /*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
 	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){
 		if(err){
 			return res.status(400).send({reason:err.toString()});
-		} else {res.end()};
+		} else {res.end();};
 	});
 };

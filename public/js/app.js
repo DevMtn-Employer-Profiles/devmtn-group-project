@@ -42,6 +42,14 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		
 		
+		.state('Student', {
+			url: '/student',
+			templateUrl: 'js/studentView/studentList.html',
+			controller: 'mvStudentListCtrl'
+		})
+		
+		
+		
 		.state('Admin', {
 			url: '/admin',
 			templateUrl: 'js/admin/admin.html',
