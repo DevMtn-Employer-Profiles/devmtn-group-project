@@ -1,7 +1,7 @@
 app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	//Step 1
-	$scope.cohortFilter = 'All';
-	$scope.cohorts = ['All', 'Web-DM5', 'Web-DM6', 'Web-DM7'];
+	$scope.cohortFilter = {name: 'All', value: true};
+	$scope.cohorts = [{name: 'All', value: true}];
 	$scope.PossibleStudents = [];
 	$scope.SelectedStudents = [];
 	$scope.addThisSelectedStudent = 0;
@@ -13,12 +13,44 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 		dataService.getAllStudents().then(function (result) {
 			console.log("Populating possible students: ", result);
 			$scope.PossibleStudents = result;
+			//see what filters we may need
+			var cohorts = [{name: 'All', value: true}];
+			result.forEach(function(student) {
+				var found = false;
+				for(var i = 0; i < cohorts.length && !found; i++) {
+					//make a readable identifier
+					
+					if(cohorts[i].value === student.cohort.cohortname._id)
+						found = true;
+				}
+				if(!found) {
+					var cort = student.cohort;
+					var stringy = '';
+					stringy += cort.cohortLocation.text.substring(0,cort.cohortLocation.text.indexOf(','));
+					stringy += ' ' + cort.className.text.substring(0,cort.className.text.indexOf(' '));
+					stringy += ' ' + cort.cohortname.text;
+					console.log('Stringy', stringy);
+					cohorts.push({name: stringy, value: student.cohort.cohortname._id});
+				}
+			});
+			console.log('cohorts: ', cohorts);
+			$scope.cohorts = cohorts;
 		})
 	}
-
+	
+	$scope.selectStudent = function(add, idx) {
+		if(add) {
+			$scope.addThisSelectedStudent = idx;
+			// $scope.addStudent();
+		} else {
+			$scope.removeThisSelectedStudent = idx;
+			// $scope.removeStudent();
+		}
+	}
+	
 	$scope.addStudent = function () {
 		var stud = $scope.PossibleStudents.splice($scope.addThisSelectedStudent, 1);
-		console.log('add: ',stud);
+		console.log('add: ', stud, $scope.addThisSelectedStudent);
 		$scope.SelectedStudents.push(stud[0]);
 		$scope.validateReady();
 	}

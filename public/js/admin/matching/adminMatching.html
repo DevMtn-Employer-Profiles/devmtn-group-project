@@ -3,14 +3,14 @@
 	<p>Select students from the left column that you wish to include in this matching
 		algorithm.
 	</p>
-	<select ng-model="cohortFilter" ng-options="cohort for cohort in cohorts">
-		<option value="null">Select A Cohort</option>
+	<select ng-model="cohortFilter" ng-options="cohort.name for cohort in cohorts">
+		<!--<option value="true">All</option>-->
 	</select>
 	<br/>
 	<div class="area">
 		<div class='select-box-container'>
-			<div ng-repeat='student in PossibleStudents track by $index' ng-click='addThisSelectedStudent = $index'>
-				{{student.name.last}},{{student.name.first}}
+			<div ng-repeat='student in PossibleStudents | filter: cohortFilter.value track by $index' ng-click='selectStudent(true, $index)'>
+				{{student.name.last}},&nbsp{{student.name.first}}
 			</div>
 		</div> 
 		<div class='div-center-buttons'>
@@ -20,8 +20,8 @@
 			<button ng-click='removeStudent()'>Left</button>
 		</div>
 		<div class='select-box-container'>
-			<div ng-repeat='student in SelectedStudents track by $index' ng-click='removeThisSelectedStudent = $index'>
-				{{student.name.last}},{{student.name.first}}
+			<div ng-repeat='student in SelectedStudents track by $index' ng-click='selectStudent(false, $index)'>
+				{{student.name.last}},&nbsp{{student.name.first}}
 			</div>
 		</div>
 	</div>
