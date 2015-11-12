@@ -21,6 +21,7 @@ module.exports = function (app){
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
+	app.post('/api/algorithm', studentMatchCtrl.runAlgorithm);
 	//Skills
 	app.get('/api/skills', skill.getSkills);
 	app.post('/api/skills', skill.createSkill);
