@@ -89,6 +89,13 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError);
 	}
 	
+	this.getMatchData = function(matchId) {
+		return $http({
+			method: 'GET',
+			url: '/api/students/'+matchId
+		}).then(simpleDataReturn, handleError);
+	}
+	
 	this.runAlgorithm = function(data) {
 		return $http({
 			method: 'POST',

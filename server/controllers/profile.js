@@ -11,7 +11,7 @@ exports.getProfileById = function(req, res){
 };
 
 exports.getProfiles = function(req, res){
-	Profile.find().exec(function(err, collection){
+	Profile.find().populate('skills').exec(function(err, collection){
 		res.send(collection);
 	});
 };
