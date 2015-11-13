@@ -83,7 +83,6 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	$scope.unpendCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isPending = false;
-		console.log($scope.companyList[index]);
 		
 		dataService.updateProfile($scope.companyList[index]);
 	};
@@ -98,7 +97,6 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	$scope.deactivateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isVisible = false;
-		console.log($scope.companyList[index]);
 		
 		dataService.updateProfile($scope.companyList[index]);
 	};
