@@ -19,6 +19,8 @@
 	
 	<h3>Profile</h3>
 	
+	<hr/>
+	
 	<div ng-show='!isEditing'>
 		<div class='profile-left'>
 			<img ng-src='{{profile.logo}}' alt='company logo'/>
@@ -29,19 +31,16 @@
 			<p>{{profile.bio}}</p>
 		</div>
 		<div class="stretch">
+			<h4>Company Website</h4>
+			<a class='employer-section' ng-href='{{profile.website}}'>{{profile.website || 'http://___________'}}</a>
 			<h4>Requirements</h4>
-			<p>The requirements here help students to see what skills are needed in the
-				workplace and what skills they may want to learn. By filling this information
-				we can match you with the Dev Mountain students who have the skills you are
-				looking for.
-			</p>
 			<div class="employer-section">
 			<h5>Relocation</h5>
 			<input type='checkbox' disabled='true' ng-model="profile.relocation"/> Willing to Relocate
 				<h5>Skills Needed</h5>
-				<ul>
+				<ul class='skills-container'>
 					<li ng-show="profile.skills.length < 1">No Skills Listed</li>
-					<li ng-repeat="skill in profile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
+					<li class='skill-tags' ng-repeat="skill in profile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
 				</ul>
 			</div>
 			<h4>Job Postings</h4>
@@ -64,15 +63,17 @@
 	
 	<div ng-show='isEditing'>
 		<div class='profile-left'>
-			<img ng-src='{{profile.logo}}' alt='company logo'/>
+			<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
 		</div>
 		<div class="profile-right">
 			<h4>Company Name</h4>
-			<input type='text' ng-model="profile.companyName"/>
+			<input type='text' ng-model="editedProfile.companyName"/>
 			<h4>Bio</h4>
-			<textarea ng-model='profile.bio' class='emp-profile-edit-bio'></textarea>
+			<textarea ng-model='editedProfile.bio' class='emp-profile-edit-bio'></textarea>
 		</div>
 		<div class="stretch">
+			<h4>Company Website</h4>
+			<input type='text' ng-model='editedProfile.website' placeholder="company website"/>
 			<h4>Requirements</h4>
 			<p>The requirements here help students to see what skills are needed in the
 				workplace and what skills they may want to learn. By filling this information
@@ -81,29 +82,49 @@
 			</p>
 			<div class="employer-section">
 			<h5>Relocation</h5>
-			<input type='checkbox' ng-model="profile.relocation"/> Willing to Relocate
+			<input type='checkbox' ng-model="editedProfile.relocation"/> Willing to Relocate
 				<h5>Skills Needed</h5>
-				<select ng-options="skill for skill in skillsOptions">
-					
+				<select ng-options="skill.name for skill in skillsOptions" ng-model="selectedSkill">
 				</select>
-				<ul>
-					<li ng-show="profile.skills.length < 1">No Skills Listed</li>
-					<li ng-repeat="skill in profile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
+				<button ng-click='addSelectedSkill(selectedSkill)'>+</button>
+				<ul class='skills-container'>
+					<li ng-show="editedProfile.skills.length < 1">No Skills Listed</li>
+					<li class='skill-tags' ng-repeat="skill in editedProfile.skills track by $index | orderBy: 'name'">
+						{{skill.name}}
+						<span class='delete-x' ng-click='removeSkill($index)'>&nbsp;x</span>
+					</li>
 				</ul>
+				<p>Don't see a skill your looking for? Add a new one!</p>
+				<input type="text" placeholder="new skill" ng-model='skillToSubmit'/>
+				<button ng-click='requestSkill(skillToSubmit)'>Submit</button>
 			</div>
 			<h4>Job Postings</h4>
+			<div class="new-job-container">
+				<input type='text' placeholder="url" ng-model="newJobUrl"/>
+				<button ng-click='addNewJob(newJobUrl)'>+</button>
+			</div>
 			<ul>
-				<li ng-show='profile.jobPostings.length < 1'>No Job Postings Found</li>
-				<li ng-repeat='posting in profile.jobPostings'>{{posting}}</li>
+				<li ng-show='editedProfile.jobPostings.length < 1'>No Job Postings Found</li>
+				<li ng-repeat='posting in editedProfile.jobPostings track by $index'>
+					<input type='text' ng-model="editedProfile.jobPostings[$index]" />
+					<span class='delete-x' ng-click="removeJob($index)">X</span>
+				</li>
 			</ul>
 			<h4>More</h4>
 			<p>This information is not visible on your profile, but helps us stay in contact
 				with you.</p>
 			<div class='employer-section'>
 				<h5>Contact Emails</h5>
+				<div class="new-contact-email-container">
+					<input type='text' placeholder="New Email" ng-model="newContactEmail"/>
+					<button ng-click='addContactEmail(newContactEmail)'>+</button>
+				</div>
 				<ul>
-					<li ng-show='profile.contactEmails.length < 1'>No Contact Emails Found</li>
-					<li ng-repeat="email in profile.contactEmails">{{email}}</li>
+					<li ng-show='editedProfile.contactEmails.length < 1'>No Contact Emails Found</li>
+					<li ng-show='editedProfile.contactEmails.length > 0' ng-repeat="email in editedProfile.contactEmails track by $index">
+						<input type='text' ng-model='editedProfile.contactEmails[$index]'/>
+						<span class='delete-x' ng-click='deleteEmail($index)'>X</span>
+					</li>
 				</ul>
 			</div>
 		</div>

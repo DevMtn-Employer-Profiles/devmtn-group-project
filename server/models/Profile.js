@@ -11,7 +11,8 @@ var schema = new mongoose.Schema({
 	relocation: {type: Boolean},
 	contactEmails: {type: [{type:String}], default: []},
 	isVisible: {type: Boolean, default: false},
-	studentMatches: {type: [], default: []}
+	studentMatches: {type: [], default: []},
+	website: {type: String, default: ''}
 });
 
 module.exports = mongoose.model('Profile', schema);

@@ -30,6 +30,7 @@
 	background: #fff;
 	opacity: 0.9;
 	width: 80%;
+	max-width: 1200px;
 	margin: auto;
 	z-index: 1;
 	padding: 20px;
@@ -67,4 +68,17 @@
 	width: 90%;
 	resize: none;
 	max-height: 125px;
+}
+
+.delete-x:hover {
+	cursor: pointer;
+	color: #2AABE2;
+}
+
+.stretch > a {
+	color: black;
+}
+
+.stretch > a:hover {
+	color: #2AABE2;
 }
