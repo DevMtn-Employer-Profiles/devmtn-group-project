@@ -3,7 +3,7 @@ app.controller('adminActiveCtrl', function($scope, $timeout, $mdDialog, ModalSer
 	
 	$scope.search = function(company) {
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
-	}
+	};
 	
 	function getActiveCompanies() {
 		dataService.getActiveCompanies()
@@ -35,7 +35,7 @@ app.controller('adminActiveCtrl', function($scope, $timeout, $mdDialog, ModalSer
 	};
 	
 	$scope.$watch(function() {
-		return ModalService.ModalSaveConfirmed
+		return ModalService.ModalSaveConfirmed;
 	}, function(newValue) {
 		getActiveCompanies();
 	});

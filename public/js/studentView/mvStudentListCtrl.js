@@ -1,12 +1,11 @@
 angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDialog, ModalService, dataService) {
 	$scope.profiles = [];	
-	var getAllCompanies = function() {
-		dataService.getActiveCompanies().then(function(resp) {
-			$scope.profiles = resp;
+	/*Get all companies */(function() {
+		dataService.getAllCompanies().then(function(res) {
+			$scope.profiles = res;
 		});		
-	};
+	})();
 	
-	getAllCompanies();
 	
 	$scope.search = function(company) {
 		return (angular.lowercase(company.companyName).indexOf(($scope.query) || '') !== -1);
