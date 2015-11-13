@@ -9,10 +9,11 @@ var schema = new mongoose.Schema({
 	jobPostings: {type: [{type: String}], default: []},
 	skills: {type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Skill'}], default: []},
 	relocation: {type: Boolean},
-	contactEmail: {type: [{type:String}], default: []},
+	contactEmails: {type: [{type:String}], default: []},
 	isVisible: {type: Boolean, default: false},
 	isPending: {type: Boolean, default: true},
-	studentMatches: {type: [], default: []}
+	studentMatches: {type: [], default: []},
+	website: {type: String, default: ''}
 });
 
 module.exports = mongoose.model('Profile', schema);
