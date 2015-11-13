@@ -19,7 +19,7 @@ app.service('MobileService', function() {
 		},
 		
 		Windows: function() {
-			return navigator.userAgent.match(/IEMobile|Edge/i);
+			return navigator.userAgent.match(/IEMobile/i);
 		},
 		
 		any: function() {

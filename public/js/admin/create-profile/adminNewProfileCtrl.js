@@ -1,4 +1,4 @@
-app.controller('adminConfigCtrl', function($scope, $timeout, dataService) {
+app.controller('adminNewProfileCtrl', function($scope, $timeout, dataService) {
 	$scope.editModeList = [];
 	
 	$scope.notifications = [];

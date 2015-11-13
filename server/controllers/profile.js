@@ -11,7 +11,7 @@ exports.getProfileById = function(req, res){
 };
 
 exports.getProfiles = function(req, res){
-	Profile.find().exec(function(err, collection){
+	Profile.find().populate('skills').exec(function(err, collection){
 		res.send(collection);
 	});
 };
@@ -37,7 +37,7 @@ exports.getMatches = function(req, res) {
 			res.status(500).send(err);
 		}
 		//now we know which students we want
-		Students.getCertainStudents(req, res, result.studentMatches);
+		Students.getStudents(req, res, result.studentMatches);
 	});
 };
 
