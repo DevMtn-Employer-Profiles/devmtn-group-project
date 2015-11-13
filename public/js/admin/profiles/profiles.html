@@ -1,14 +1,29 @@
 <div class="subroutes" layout="column" layout-margin layout-align="center center">
 	<p class="page-explanation">
-		All companies are shown below.
+		The company profiles are shown below.  You can filter as well as order them as you would like.  Default shows the whole list as pending employer profiles first to make it easier to find.  To create a new company profile, click <a href="" ui-sref="Admin.CreateProfile">HERE</a>.
 	</p>
 	<p class="page-explanation">
 		To search for a company by name, type the name in the box below.  When you've found the company you're looking for, click their name to view their profile and modify settings, or just click the corresponding setting shown on the card.
 	</p>
 	
-	<input type="text" placeholder="Search Companies" class="search-bar" ng-model="query">
+	<div class="input-container" layout="row">
+		<input type="text" autofocus="true" placeholder="Search Companies" class="search-bar" ng-model="query" flex>
+		
+		<!-- maybe.............. -->
+		<!--<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+			<md-option ng-repeat="option in filterOptions">{{ option }}</md-option>
+		</md-select>-->
+		
+		<md-select class="filter-box" ng-model="orderSelect" aria-label="Order Search">
+			<md-option ng-selected="$first" ng-repeat="option in orderOptions" ng-value="option.abbr">{{ option.name }}</md-option>
+		</md-select>
+		
+		<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+			<md-option ng-selected="$first" ng-repeat="option in filterOptions" ng-value="option.abbr">{{ option.name }}</md-option>
+		</md-select>
+	</div>
 	
-	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">
+	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: orderSelect | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>

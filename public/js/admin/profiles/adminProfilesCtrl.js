@@ -1,30 +1,41 @@
-app.controller('adminAllCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
+app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.companyList = [];
 	
-	// $scope.currentPage = 1;
+	$scope.filterOptions = [
+		{name: "All", abbr: 'all'},
+		{name: "Pending", abbr: 'pending'},
+		{name: "Active", abbr: 'active'},
+		{name: "Inactive", abbr: 'inactive'}
+	];
 	
-	// $scope.$watch(function() {
-	// 	return $scope.currentPage;
-	// }, function(newValue) {
-	// 	$scope.amountShown = ($scope.currentPage - 1) * 10;
-	// });
-	
-	// $scope.nextPage = function() {
-	// 	$scope.currentPage++;
-	// };
-	
-	// $scope.previousPage = function() {
-	// 	$scope.currentPage--;
-	// };
-	
-	// $scope.$watch(function() {
-	// 	return $scope.companyList.length;
-	// }, function(newValue) {
-	// 	$scope.lastPage = Math.ceil($scope.companyList.length / 10);
-	// });
+	$scope.orderOptions = [
+		{name: "Pending Profiles first", abbr: '-isPending'},
+		{name: "Name (+)", abbr: 'companyName'},
+		{name: "Name (-)", abbr: '-companyName'},
+		{name: "Amount of Skills (+)", abbr: '-skills.length'},
+		{name: "Amount of Skills (-)", abbr: 'skills.length'}
+	];
 	
 	
 	$scope.search = function(company) {
+		if ($scope.filterSelect === 'pending') {
+			return (
+				(angular.lowercase(company.companyName)
+						.indexOf(angular.lowercase($scope.query) || '') !== -1)
+					&& company.isPending 
+			);
+		} else if($scope.filterSelect === 'active') {
+			return (
+				(angular.lowercase(company.companyName)
+						.indexOf(angular.lowercase($scope.query) || '') !== -1)
+					&& company.isVisible );
+		} else if($scope.filterSelect === 'inactive') {
+			return (
+				(angular.lowercase(company.companyName)
+						.indexOf(angular.lowercase($scope.query) || '') !== -1)
+					&& !company.isVisible );
+		}
+		
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};
 	
