@@ -25,12 +25,14 @@
 				md-no-ink 
 				id="all" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.profiles}"
+				ng-class="{ 'active-tab': activeTab.profiles }"
 			>
 				<span 
 					class="open-expand smaller" 
 					ng-show="isExpanded && !isMobile.any()" 
-				>Profiles</span> <span class="pull-right menu-icon fa fa-database"></span>
+				>Profiles</span> 
+				
+				<span class="pull-right menu-icon fa fa-database"></span>
 			</md-button>
 		</nav>
 		
@@ -39,7 +41,7 @@
 				md-no-ink 
 				id="skills" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.skills}"
+				ng-class="{ 'active-tab': activeTab.skills }"
 			>
 				<span 
 					class="open-expand fade-slide smaller" 
@@ -55,12 +57,14 @@
 				md-no-ink 
 				id="skills" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.matching}"
+				ng-class="{ 'active-tab': activeTab.matching }"
 			>
 				<span 
 					class="open-expand fade-slide smaller" 
 					ng-show="isExpanded && !isMobile.any()" 
-				>Student Matching</span> <span class="pull-right menu-icon fa fa-gear"></span>
+				>Student Matching</span> 
+				
+				<span class="pull-right menu-icon fa fa-user"></span>
 			</md-button>
 		</nav>
 	</div>

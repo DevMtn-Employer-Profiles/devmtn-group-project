@@ -16,6 +16,10 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		{name: "Amount of Skills (-)", abbr: 'skills.length'}
 	];
 	
+	$scope.printSkillsList = function(company) {
+		console.log(company.skills);
+	};
+	
 	
 	$scope.search = function(company) {
 		if ($scope.filterSelect === 'pending') {

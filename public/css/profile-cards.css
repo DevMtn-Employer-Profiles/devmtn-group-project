@@ -19,17 +19,22 @@
 	opacity: 1;
 	box-shadow: 0 0 8px #8CE0EB;
 }
-
-	.employer-logo {
-		width: 150px;
-		height: 150px;
-		
-		margin: 10px; 
+	
+	.card-left {
+		padding-left: 20px;
+		padding-bottom: 20px;
 	}
-		
-		.employer-logo > img {
-			width: 100%;
+	
+		.employer-logo {
+			width: 150px;
+			height: 150px;
+			
+			margin: 10px; 
 		}
+			
+			.employer-logo > img {
+				width: 100%;
+			}
 	
 	.employer-info {
 		width: 100%;
