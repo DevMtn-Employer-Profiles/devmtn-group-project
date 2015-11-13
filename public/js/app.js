@@ -88,7 +88,13 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/matching',
 				templateUrl: 'js/admin/matching/adminMatching.html',
 				controller: 'adminMatchingCtrl'
-			});
+			})
+			
+		.state('Matching', {
+			url: '/myMatches/:id',
+			templateUrl: 'js/matchView/matchView.html',
+			controller: 'matchViewCtrl'
+		});
 	
 	$urlRouterProvider.otherwise('/');
 });

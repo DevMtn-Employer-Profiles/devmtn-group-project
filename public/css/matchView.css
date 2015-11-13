@@ -11,7 +11,12 @@
 	
 }
 
-.studentDiv {
+.student-div {
 	border: lightgray solid 1px;
 	border-radius: 5px;	
+}
+
+.student-picture {
+	height: 100px;
+	width: 100px;
 }
