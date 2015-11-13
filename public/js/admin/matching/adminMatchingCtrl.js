@@ -1,42 +1,75 @@
 app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	//Step 1
-	$scope.cohortFilter = 'All';
-	$scope.cohorts = ['All', 'Web-DM5', 'Web-DM6', 'Web-DM7'];
+	$scope.cohortFilter = {name: 'All', value: true};
+	$scope.cohorts = [{name: 'All', value: true}];
 	$scope.PossibleStudents = [];
 	$scope.SelectedStudents = [];
-	$scope.addThisSelectedStudent = {};
-	$scope.removeThisSelectedStudent = {};
+	$scope.addThisSelectedStudent = 0;
+	$scope.removeThisSelectedStudent = 0;
 
 	//Populates the student list with all available students
 	var getStudents = function () {
+		console.log("getting students");
 		dataService.getAllStudents().then(function (result) {
 			console.log("Populating possible students: ", result);
 			$scope.PossibleStudents = result;
+			//see what filters we may need
+			var cohorts = [{name: 'All', value: true}];
+			result.forEach(function(student) {
+				var found = false;
+				for(var i = 0; i < cohorts.length && !found; i++) {
+					//make a readable identifier
+					
+					if(cohorts[i].value === student.cohort.cohortname._id)
+						found = true;
+				}
+				if(!found) {
+					var cort = student.cohort;
+					var stringy = '';
+					stringy += cort.cohortLocation.text.substring(0,cort.cohortLocation.text.indexOf(','));
+					stringy += ' ' + cort.className.text.substring(0,cort.className.text.indexOf(' '));
+					stringy += ' ' + cort.cohortname.text;
+					console.log('Stringy', stringy);
+					cohorts.push({name: stringy, value: student.cohort.cohortname._id});
+				}
+			});
+			console.log('cohorts: ', cohorts);
+			$scope.cohorts = cohorts;
 		})
 	}
-
-	$scope.addStudent = function (student) {
-		var idx = $scope.PossibleStudents.indexOf(student);
-		var stud = $scope.PossibleStudents.splice(idx);
-		$scope.SelectedStudents.push(stud);
+	
+	$scope.selectStudent = function(add, idx) {
+		if(add) {
+			$scope.addThisSelectedStudent = idx;
+			// $scope.addStudent();
+		} else {
+			$scope.removeThisSelectedStudent = idx;
+			// $scope.removeStudent();
+		}
+	}
+	
+	$scope.addStudent = function () {
+		var stud = $scope.PossibleStudents.splice($scope.addThisSelectedStudent, 1);
+		console.log('add: ', stud, $scope.addThisSelectedStudent);
+		$scope.SelectedStudents.push(stud[0]);
 		$scope.validateReady();
 	}
 
-	$scope.removeStudent = function (student) {
-		var idx = $scope.SelectedStudents.indexOf(student);
-		var stud = $scope.SelectedStudents.splice(idx, 1);
-		$scope.PossibleStudents.push(stud);
+	$scope.removeStudent = function () {
+		var stud = $scope.SelectedStudents.splice($scope.removeThisSelectedStudent, 1);
+		console.log('remove: ',stud);
+		$scope.PossibleStudents.push(stud[0]);
 		$scope.validateReady();
 	}
 
 	$scope.addAllStudents = function () {
-		$scope.SelectedStudents.push($scope.PossibleStudents);
+		$scope.SelectedStudents = $scope.SelectedStudents.concat($scope.PossibleStudents);
 		$scope.PossibleStudents = [];
 		$scope.validateReady();
 	}
 
 	$scope.removeAllStudents = function () {
-		$scope.PossibleStudents.push($scope.SelectedStudents);
+		$scope.PossibleStudents = $scope.PossibleStudents.concat($scope.SelectedStudents);
 		$scope.SelectedStudents = [];
 		$scope.validateReady();
 	}
@@ -97,6 +130,7 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	$scope.readyMessages = [];
 	//Validate Form
 	$scope.validateReady = function() {
+		$scope.ready = true;
 		$scope.readyMessages = [];
 		//Validate Students
 		if(!$scope.SelectedStudents || $scope.SelectedStudents.length < 1) {
@@ -108,14 +142,7 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 			$scope.ready = false;
 			$scope.readyMessages.push('You still need to select some employers');
 		}
-		//Validate Date
-		if(!$scope.expirationDate) {
-			$scope.ready = false;
-			$scope.readyMessages.push('Please choose a date for the matches to expire.');
-		} else if ($scope.expirationDate < Date.now()) {
-			$scope.ready = false;
-			$scope.readyMessages.push('Please choose a date that has not passed alread');
-		}
+		//Change enabled for big button
 		if($scope.ready) {
 			document.getElementById('bigSubmitButton').disabled = false;
 		} else {
@@ -125,10 +152,10 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	
 	$scope.submitMatches = function() {
 		$scope.validateReady();
+		console.log("MATCH");
 		var data = {
 			students: $scope.SelectedStudents,
-			employers: $scope.SelectedEmployers,
-			expiration: $scope.expirationDate
+			employers: $scope.SelectedEmployers
 		};
 		//Send to server to run algorithm
 		dataService.runAlgorithm(data).then(function(result) {

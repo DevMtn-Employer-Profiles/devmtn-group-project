@@ -2,8 +2,7 @@ var mongoose = require('mongoose'),
     profileModel = require('../models/Profile'),
     skillsModel = require('../models/Skill'),
     userModel = require('../models/User'),
-    notificationModel = require('../models/Notification'),
-    studentMatchModel = require('../models/StudentMatch');
+    pendingModel = require('../models/PendingProfile');
 
 module.exports = function(config){
     /**********Mongoose Connection*********/
