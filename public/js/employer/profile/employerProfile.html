@@ -1,4 +1,4 @@
-<div class="employer-container">
+<div class="profile-employer-container">
 	<div class="pull-right" ng-hide="isEditing">
 		<md-button ng-click='openEdit()' aria-label="Edit Profile" class="edit-btn profile-edit-buttons">
 			<span title='Edit Profile'class='fa fa-pencil-square-o'></span>
@@ -21,61 +21,93 @@
 	
 	<div ng-show='!isEditing'>
 		<div class='profile-left'>
-			<div class='profile-img'>
-				<img ng-src='{{profile.logo}}' alt='company logo'/>
-			</div>
-			<h4>Skills Needed</h4>
-			<ul>
-				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
-			</ul>
+			<img ng-src='{{profile.logo}}' alt='company logo'/>
 		</div>
 		<div class="profile-right">
 			<h3>{{profile.companyName}}</h3>
 			<h4>Bio</h4>
 			<p>{{profile.bio}}</p>
+		</div>
+		<div class="stretch">
 			<h4>Requirements</h4>
+			<p>The requirements here help students to see what skills are needed in the
+				workplace and what skills they may want to learn. By filling this information
+				we can match you with the Dev Mountain students who have the skills you are
+				looking for.
+			</p>
+			<div class="employer-section">
+			<h5>Relocation</h5>
+			<input type='checkbox' disabled='true' ng-model="profile.relocation"/> Willing to Relocate
+				<h5>Skills Needed</h5>
+				<ul>
+					<li ng-show="profile.skills.length < 1">No Skills Listed</li>
+					<li ng-repeat="skill in profile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
+				</ul>
+			</div>
+			<h4>Job Postings</h4>
 			<ul>
-				<li ng-repeat='requirement in profile.requirements'>{{requirement}}</li>
+				<li ng-show='profile.jobPostings.length < 1'>No Job Postings Found</li>
+				<li ng-repeat='posting in profile.jobPostings'>{{posting}}</li>
 			</ul>
+			<h4>More</h4>
+			<p>This information is not visible on your profile, but helps us stay in contact
+				with you.</p>
+			<div class='employer-section'>
+				<h5>Contact Emails</h5>
+				<ul>
+					<li ng-show='profile.contactEmails.length < 1'>No Contact Emails Found</li>
+					<li ng-repeat="email in profile.contactEmails">{{email}}</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	
 	<div ng-show='isEditing'>
 		<div class='profile-left'>
-			<div class='profile-img'>
-				<img ng-src='{{editedProfile.logo}}' alt='company logo'/>
-				<input type='text' placeholder='company logo url' ng-model='editedProfile.logo' />
-			</div>
-			<h4>Skills Needed</h4>
-			<select ng-change='changeSelectedSkill(selectedSkill)' ng-options='item as item.name for item in skillsOptions' ng-model='selectedSkill'>
-			</select>
-			<span ng-click='addSelectedSkill(selectedSkill)' class='fa fa-plus-circle add-circle'></span>
-			<button ng-click="showNewSkill = !showNewSkill">New</button>
-			<div ng-show='showNewSkill'>
-				<input type='text' placeholder='new skill' ng-model='newSkill'/>
-				<span ng-click='submitNewSkill(newSkill)' class='fa fa-plus-circle add-circle'></span>
-			</div>
-			<ul>
-				<li ng-repeat="skill in editedProfile.skills | orderBy: 'name' track by $index">
-					<span ng-click='removeSkill($index)' class='fa fa-minus-circle pull-right delete-circle'></span> {{skill.name}}
-				</li>
-			</ul>
+			<img ng-src='{{profile.logo}}' alt='company logo'/>
 		</div>
-		
 		<div class="profile-right">
-			<input type='text' ng-model='editedProfile.companyName' />
+			<h4>Company Name</h4>
+			<input type='text' ng-model="profile.companyName"/>
 			<h4>Bio</h4>
-			<textarea class='profile-textarea' ng-model='editedProfile.bio'></textarea>
+			<textarea ng-model='profile.bio' class='emp-profile-edit-bio'></textarea>
+		</div>
+		<div class="stretch">
 			<h4>Requirements</h4>
-			<input type='text' placeholder='new requirement' ng-model='newRequirement'/>
-			<span ng-click='addNewRequirement(newRequirement)' class='fa fa-plus-circle add-circle'></span>
+			<p>The requirements here help students to see what skills are needed in the
+				workplace and what skills they may want to learn. By filling this information
+				we can match you with the Dev Mountain students who have the skills you are
+				looking for.
+			</p>
+			<div class="employer-section">
+			<h5>Relocation</h5>
+			<input type='checkbox' ng-model="profile.relocation"/> Willing to Relocate
+				<h5>Skills Needed</h5>
+				<select ng-options="skill for skill in skillsOptions">
+					
+				</select>
+				<ul>
+					<li ng-show="profile.skills.length < 1">No Skills Listed</li>
+					<li ng-repeat="skill in profile.skills | orderBy: 'name' track by $index">{{skill.name}}</li>
+				</ul>
+			</div>
+			<h4>Job Postings</h4>
 			<ul>
-				<li ng-repeat='requirement in editedProfile.requirements track by $index'>
-					<span ng-click='removeRequirement($index)' class='fa fa-minus-circle delete-circle'></span>
-					<input type='text' ng-model='editedProfile.requirements[$index]'/>
-				</li>
+				<li ng-show='profile.jobPostings.length < 1'>No Job Postings Found</li>
+				<li ng-repeat='posting in profile.jobPostings'>{{posting}}</li>
 			</ul>
+			<h4>More</h4>
+			<p>This information is not visible on your profile, but helps us stay in contact
+				with you.</p>
+			<div class='employer-section'>
+				<h5>Contact Emails</h5>
+				<ul>
+					<li ng-show='profile.contactEmails.length < 1'>No Contact Emails Found</li>
+					<li ng-repeat="email in profile.contactEmails">{{email}}</li>
+				</ul>
+			</div>
 		</div>
 	</div>
+	
 	<div class="stretch"></div>
 </div>
