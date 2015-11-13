@@ -11,6 +11,7 @@ var schema = new mongoose.Schema({
 	relocation: {type: Boolean},
 	contactEmail: {type: [{type:String}], default: []},
 	isVisible: {type: Boolean, default: false},
+	isPending: {type: Boolean, default: true},
 	studentMatches: {type: [], default: []}
 });
 

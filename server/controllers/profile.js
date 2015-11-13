@@ -61,8 +61,8 @@ exports.createProfile = function(req, res, next){
 /*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
-	return Profile.findByIdAndUpdate(req.params.id, companyUpdates,function(err, schema){
-		if(err){return res.send(err)};
+	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
+		if(err){ return res.send(err); }
 		return res.send(companyUpdates);
 	})
 };

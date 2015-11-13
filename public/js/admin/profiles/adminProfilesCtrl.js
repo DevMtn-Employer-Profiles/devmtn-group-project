@@ -76,9 +76,31 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	
 	$scope.updateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
-		$timeout(function() {
-			dataService.updateProfile($scope.companyList[index]);
-		}, 50);
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.unpendCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isPending = false;
+		console.log($scope.companyList[index]);
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.activateCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isVisible = true;
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.deactivateCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isVisible = false;
+		console.log($scope.companyList[index]);
+		
+		dataService.updateProfile($scope.companyList[index]);
 	};
 	
 	

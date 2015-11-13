@@ -162,7 +162,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	}
 	
 	this.updateProfile = function(newProfile) {
-		// console.log("UPDATING PROFILE: ", newProfile);
+		console.log("UPDATING PROFILE: ", newProfile);
 		return $http({
 			method: 'PUT',
 			url: '/api/profile/'+newProfile._id,
