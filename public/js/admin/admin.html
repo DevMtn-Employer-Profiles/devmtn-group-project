@@ -20,59 +20,17 @@
 		</md-button>
 		
 		
-		<nav ui-sref="Admin.All">
+		<nav ui-sref="Admin.Profiles">
 			<md-button 
 				md-no-ink 
 				id="all" 
 				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.all}"
+				ng-class="{'active-tab': activeTab.profiles}"
 			>
 				<span 
 					class="open-expand smaller" 
 					ng-show="isExpanded && !isMobile.any()" 
-				>All</span> <span class="pull-right menu-icon fa fa-database"></span>
-			</md-button>
-		</nav>
-		
-		<nav ui-sref="Admin.Active">
-			<md-button 
-				md-no-ink 
-				id="active" 
-				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.active}"
-			>
-				<span 
-					class="open-expand smaller" 
-					ng-show="isExpanded && !isMobile.any()" 
-				>Active</span> <span class="pull-right menu-icon fa fa-play"></span>
-			</md-button>
-		</nav>
-		
-		<nav ui-sref="Admin.Inactive">
-			<md-button 
-				md-no-ink 
-				id="inactive" 
-				class="toolbar-button" 
-				ng-class="{'active-tab': activeTab.inactive}"
-			>
-				<span 
-					class="open-expand smaller" 
-					ng-show="isExpanded && !isMobile.any()" 
-				>Inactive</span> <span class="pull-right menu-icon fa fa-stop"></span>
-			</md-button>
-		</nav>
-		
-		<nav ui-sref="Admin.Pending">
-			<md-button 
-				md-no-ink 
-				id="pending" 
-				class="toolbar-button"
-				ng-class="{'active-tab': activeTab.pending}"
-			>
-				<span 
-					class="open-expand smaller" 
-					ng-show="isExpanded && !isMobile.any()" 
-				>Pending</span> <span class="pull-right menu-icon fa fa-exclamation-triangle"></span>
+				>Profiles</span> <span class="pull-right menu-icon fa fa-database"></span>
 			</md-button>
 		</nav>
 		
@@ -101,6 +59,20 @@
 					class="open-expand fade-slide smaller" 
 					ng-show="isExpanded && !isMobile.any()" 
 				>Config</span> <span class="pull-right menu-icon fa fa-gear"></span>
+			</md-button>
+		</nav>
+		
+		<nav ui-sref="Admin.Config">
+			<md-button 
+				md-no-ink 
+				id="skills" 
+				class="toolbar-button" 
+				ng-class="{'active-tab': activeTab.config}"
+			>
+				<span 
+					class="open-expand fade-slide smaller" 
+					ng-show="isExpanded && !isMobile.any()" 
+				>New Profile</span> <span class="pull-right menu-icon fa fa-gear"></span>
 			</md-button>
 		</nav>
 	</div>

@@ -2,7 +2,7 @@ var scope
 
 app.controller('adminCtrl', function($scope, $timeout, $state, $location, MobileService) {
 	if ($location.path() === '/admin')
-		$state.go('Admin.All');
+		$state.go('Admin.Profiles');
 	
 	$scope.isExpanded = true;
 	
@@ -27,26 +27,14 @@ app.controller('adminCtrl', function($scope, $timeout, $state, $location, Mobile
 	
 	function activateTab() {
 		$scope.activeTab = {
-			all: 		false,
-			active: 	false,
-			inactive: 	false,
-			pending: 	false,
+			Profiles:	false,
 			skills: 	false,
 			config: 	false
 		};
 		
 		var tab = parsePath();
 		
-		switch(tab)
-		{
-			case 'all' 	   : $scope.activeTab.all = true;   	break;
-			case 'active'  : $scope.activeTab.active = true;	break;
-			case 'inactive': $scope.activeTab.inactive = true;	break;
-			case 'pending' : $scope.activeTab.pending = true;	break;
-			case 'skills'  : $scope.activeTab.skills = true;	break;
-			case 'config'  : $scope.activeTab.config = true;	break;
-			default		   : $scope.activeTab.all = true;	break;
-		}
+		$scope.activeTab[tab] = true;
 	};
 	
 	activateTab();
