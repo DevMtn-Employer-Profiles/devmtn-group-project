@@ -89,7 +89,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				templateUrl: 'js/admin/matching/adminMatching.html',
 				controller: 'adminMatchingCtrl'
 			});
-	
+		
 	$urlRouterProvider.otherwise('/');
 });
 
