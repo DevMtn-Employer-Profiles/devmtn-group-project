@@ -37,11 +37,12 @@ exports.getCertainStudents = function(req, res, students) {
 			var profiles = allStudents.filter(function(stud){
 				if (stud.showProfile && findStudent(students, stud._id)) {
 					return true;
+				// Tim needs to fix, line 30. It is not working properly. 
 				} else {
 					return false;
 				}
 			})
-			res.json(profiles);
+			res.json(profiles, students);
 		}
 	})
 }

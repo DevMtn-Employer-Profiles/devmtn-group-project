@@ -90,16 +90,52 @@ p {
 
 /*  -------------  COMPONENT-SPECIFIC STYLING  ----------------  */
 
-/* ---- SEARCH BAR ---- */
-.search-bar {
+/* ---- INPUT CONTAINER FOR SEARCHING/FILTERING ---- */
+
+.input-container {
 	width: 90%;
 	max-width: 800px;
 	
-	height: 2.5em;
-	
 	margin: 20px 0;
+}
+
+	.input-container .filter-box {
+		height: 40px;
+		width: 200px;
+		
+		margin: 0;
+		
+		background-color: #EEE;
+		border: 1px solid lightgray;
+		border-left: none;
+		
+		text-align: center;
+	}
+
+		.input-container .filter-box > md-select-value {
+			height: 100%;
+			
+			padding: 8px;
+			
+			margin: 0;
+			
+			font-size: smaller;
+			
+			box-sizing: border-box;
+			border: 1px solid lightgray;
+			border-left: none;
+		}
+
+
+/* ---- SEARCH BAR ---- */
+.search-bar {
+	height: 2.5em;
+	/*width: 90%;
+	max-width: 800px;*/
+	
 	
 	padding: 8px;
+	
 	box-sizing: border-box;
 	
 	transition: all linear .1s;
