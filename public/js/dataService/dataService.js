@@ -92,7 +92,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	this.getMatchData = function(matchId) {
 		return $http({
 			method: 'GET',
-			url: '/api/students/'+matchId
+			url: '/api/matches/'+matchId
 		}).then(simpleDataReturn, handleError);
 	}
 	

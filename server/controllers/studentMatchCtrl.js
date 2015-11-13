@@ -29,11 +29,12 @@ exports.getCertainStudents = function(req, res, students) {
 			var profiles = newBody.filter(function(item){
 				if (item.showProfile && students.indexOf(item._id) != -1) {
 					return true;
+				// Tim needs to fix, line 30. It is not working properly. 
 				} else {
 					return false;
 				}
 			})
-			res.json(profiles);
+			res.json(profiles, students);
 		}
 	})
 }
