@@ -1,126 +1,84 @@
-.page-view-container {
+.emp-land-button-container {
+	text-align: center;
+	padding-top: 20%;
+}
+
+.emp-land-button {
+	padding: 1% 15px;
+	margin: 0 20px;
+	min-width: 20%;
+	background-color: #2AABE2;
+	color: #fff;
+	border: 1px solid #1B75BB;
+	font-weight: bold;
+}
+
+.emp-land-button:hover {
+	background-color: #57BDE8;
+	border: 1px solid #1D9ED5;
+}
+
+#employer-subroutes {
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/devMtnArial.png');
+	background-size: cover;
+}
+
+/*        Profile Page         */
+.profile-employer-container {
+	background: #fff;
+	opacity: 0.9;
+	width: 80%;
+	max-width: 1200px;
+	margin: auto;
+	z-index: 1;
 	padding: 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.profile-left > img {
+	padding: 20px;
+	width: 100%;
 	box-sizing: border-box;
 }
 
-/*Profile View Styles*/
 .profile-left {
-	width: 30%;
 	float: left;
+	width: 40%;
 }
 
 .profile-right {
-	width: 70%;
-	float: right;
-	padding: 10px;
+	float: left;
+	width: 60%;
+	padding-left: 20px;
 	box-sizing: border-box;
 }
-
-.profile-img {
-	text-align: center;
-	width: 200px;
-	max-height: 200px;
-}
-
-.profile-img > img {
-	width: 100%;
-	max-height: 200px;
-}
-
-.profile-textarea {
-	box-sizing: border-box;
-	width: 100%;
-	height: 200px;
-	resize: none;
-}
-
-ul {
-	list-style: none;
-}
-
-.add-circle {
-	margin: 2px;
-}
-
-	.add-circle:hover {
-		color: green;
-	}
-
-.delete-circle {
-	margin: 2px;
-}
-
-	.delete-circle:hover {
-		cursor: pointer;
-		color: red;
-	}
-
-.save-btn, .edit-btn, .cancel-btn {
-	display: inline-block;
-}
-
-.save-btn {
-	font-size: 2em;
-	
-	margin: 0 20px;
-}
-
-	.save-btn:hover {
-		color: green;
-		cursor: pointer;
-	}
-
-.cancel-btn {
-	font-size: 2em;
-}
-	.cancel-btn:hover {
-		color: red;
-		cursor: pointer;
-	}
-
-/*Notification*/
-.notification-container {
-	border-left: thin solid black;
-	margin-left: 10px;
-	margin-bottom: 20px;
-	padding-left: 10px;
-}
-
-.notification-date {
-	margin: 0;
-}
-
-.notification-message {
-	margin: 0;
-}
-
-/*Home Styles*/
-.employer-container {
-	margin: 0 auto;
-	padding: 20px;
-	
-	max-width: 1100px;
-	/*width: 90%;
-	margin: auto;
-	border: thin solid lightgray;
-	padding: 10px;
-	margin-bottom: 20px;*/
-}
-
-	.employer-container > h3 {
-		margin: 10px 0;
-	}
 
 .stretch {
 	clear: both;
-	content: ' ';
 }
 
-.edit-btn {
-	font-size: 2em;
+.employer-section {
+	margin-left: 20px;
 }
 
-.edit-btn:hover {
+.emp-profile-edit-bio {
+	width: 90%;
+	resize: none;
+	max-height: 125px;
+}
+
+.delete-x:hover {
 	cursor: pointer;
-	color: #2F3F42;
+	color: #2AABE2;
+}
+
+.stretch > a {
+	color: black;
+}
+
+.stretch > a:hover {
+	color: #2AABE2;
 }
