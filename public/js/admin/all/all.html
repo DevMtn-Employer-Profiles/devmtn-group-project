@@ -14,16 +14,16 @@
 			<md-option ng-repeat="option in filterOptions">{{ option }}</md-option>
 		</md-select>-->
 		
-		<select class="filter-box" ng-model="orderSelect" aria-label="Order Search">
-			<option ng-selected="" ng-repeat="option in orderOptions" ng-value="option.abbr">{{ option.name }}</option>
-		</select>
+		<md-select class="filter-box" ng-model="orderSelect" aria-label="Order Search">
+			<md-option ng-selected="$first" ng-repeat="option in orderOptions" ng-value="option.abbr">{{ option.name }}</md-option>
+		</md-select>
 		
-		<select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
-			<option ng-repeat="option in filterOptions" ng-value="option.abbr">{{ option.name }}</option>
-		</select>
+		<md-select class="filter-box" ng-model="filterSelect" aria-label="Filter Search">
+			<md-option ng-selected="$first" ng-repeat="option in filterOptions" ng-value="option.abbr" ng-click="changeFilterParams(option.abbr)">{{ option.name }}</md-option>
+		</md-select>
 	</div>
 	
-	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index" layout="row">
+	<div class="profile-card" dir-paginate="company in companyList | filter: search | orderBy: orderSelect | itemsPerPage: 10 track by $index" layout="row">
 		<section class="employer-logo">
 			<img alt="Company Logo" ng-src="{{ company.logo }}">
 		</section>

@@ -9,16 +9,16 @@ app.controller('adminAllCtrl', function($scope, $filter, $timeout, $mdDialog, Mo
 	];
 	
 	$scope.orderOptions = [
-		{name: "Pending first", abbr: 'pending'},
-		{name: "Name (+)", abbr: 'nameDesc'},
-		{name: "Name (-)", abbr: 'nameAsc'},
-		{name: "Amount of Skills (+)", abbr: 'skillsDesc'},
-		{name: "Amount of Skills (-)", abbr: 'skillsAsc'}
+		{name: "Pending Employers first", abbr: '-isPending'},
+		{name: "Name (+)", abbr: 'companyName'},
+		{name: "Name (-)", abbr: '-companyName'},
+		{name: "Amount of Skills (+)", abbr: '-skills.length'},
+		{name: "Amount of Skills (-)", abbr: 'skills.length'}
 	];
 	
-	function pendingFilter(a, b) {
+	$scope.changeFilterParams = function(change) {
 		
-	}
+	};
 	
 	// $scope.currentPage = 1;
 	
@@ -44,6 +44,9 @@ app.controller('adminAllCtrl', function($scope, $filter, $timeout, $mdDialog, Mo
 	
 	
 	$scope.search = function(company) {
+		if ($scope.filterSelect === 'pending') {
+			return ((angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) && company.isPending) || '') !== -1);
+		}
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};
 	
