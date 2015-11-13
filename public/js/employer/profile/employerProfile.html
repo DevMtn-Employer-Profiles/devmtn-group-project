@@ -9,18 +9,16 @@
 	</div>
 	
 	<div class='pull-right' ng-show="isEditing">
-		<md-button ng-click='cancelEdit()' aria-label="Cancel Edit" class="cancel-btn profile-edit-buttons">
-			<span title='Cancel Edit' class='fa fa-ban'></span>
-		</md-button>
 		<md-button ng-click="saveEdit()" aria-label="Save Edit" class="save-btn profile-edit-buttons">
 			<span title='Save Profile' ng-click='saveEdit()' class='fa fa-floppy-o save-btn'></span>
+		</md-button>
+		<md-button ng-click='cancelEdit()' aria-label="Cancel Edit" class="cancel-btn profile-edit-buttons">
+			<span title='Cancel Edit' class='fa fa-ban'></span>
 		</md-button>
 	</div>
 	
 	<h3>Profile</h3>
-	
 	<hr/>
-	
 	<div ng-show='!isEditing'>
 		<div class='profile-left'>
 			<img ng-src='{{profile.logo}}' alt='company logo'/>
