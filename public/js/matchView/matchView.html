@@ -2,6 +2,6 @@
 	<div class="skillDiv" ng-repeat="skill in skills">{{}}</div>
 </div>
 <div class="lowerDiv">
-	<div class="studentDiv" ng-repeat="student in students">{{student.name.first}} {{student.name.last}} <img class="student-picture" src="{{student.picture}}"></div>
+	<div class="studentDiv" ng-repeat="student in students"> <img class="student-picture" src="{{student.picture}}"> {{student.name.first}} {{student.name.last}}</div>
 </div>
 <script src="matchViewCtrl.js"></script>
