@@ -41,7 +41,7 @@ module.exports = function (app){
 	app.get('/auth/currentUser', devmtnCtrl.currentUser);
 	//Catch-all api errors
 	app.all('/api/*', function(req, res){
-		res.send(404);
+		res.sendStatus(404);
 	});
 
   //Catch-all route errors
