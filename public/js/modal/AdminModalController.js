@@ -21,7 +21,8 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	$scope.saveProfile = function(answer) {
 		if (isAdmin) {
 			var confirm = $mdDialog.confirm()
-								.title('Save changes to the profile for ' + angular.uppercase($scope.currentProfile.companyName) + '?')
+								.title('Save changes to the profile for ' + 
+										angular.uppercase($scope.currentProfile.companyName) + '?')
 								.ariaLabel('Save Profile')
 								.targetEvent(event)
 								.ok('Save')
@@ -38,7 +39,8 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	$scope.deleteCompany = function(event, company) {
 		if (isAdmin) {
 			var confirm = $mdDialog.confirm()
-								.title('Delete the profile for ' + angular.uppercase($scope.currentProfile.companyName) + '?')
+								.title('Delete the profile for ' + 
+										angular.uppercase($scope.currentProfile.companyName) + '?')
 								.ariaLabel('Delete Profile')
 								.targetEvent(event)
 								.ok('Delete')

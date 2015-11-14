@@ -108,6 +108,7 @@ p {
 		background-color: #EEE;
 		border: 1px solid lightgray;
 		border-left: none;
+		box-sizing: border-box;
 		
 		text-align: center;
 	}
@@ -133,6 +134,8 @@ p {
 	/*width: 90%;
 	max-width: 800px;*/
 	
+	position: relative;
+	z-index: 75;
 	
 	padding: 8px;
 	
@@ -167,7 +170,7 @@ p {
 }
 
 	.submit-button:hover {
-		background-color: green;
+		background-color: #4DCC27 !important;
 	}
 
 /* ---- CLICK-TO-EDIT ---- */

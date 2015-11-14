@@ -11,9 +11,11 @@ exports.getProfileById = function(req, res){
 };
 
 exports.getProfiles = function(req, res){
-	Profile.find().populate('skills').exec(function(err, collection){
-		res.send(collection);
-	});
+	Profile.find({})
+		   .populate('profiles skills')
+		   .exec(function(err, collection){
+		       res.send(collection);
+		   });
 };
 
 exports.getPendingProfiles = function(req, res){
@@ -59,8 +61,8 @@ exports.createProfile = function(req, res, next){
 /*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
-	return Profile.findByIdAndUpdate(req.params.id, companyUpdates,function(err, schema){
-		if(err){return res.send(err)};
+	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
+		if(err){ return res.send(err); }
 		return res.send(companyUpdates);
 	})
 };
