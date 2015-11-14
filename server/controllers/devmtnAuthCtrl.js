@@ -2,21 +2,18 @@ var passport = require('passport'),
 	Devmtn = require('devmtn-auth'),
 	DevmtnStrategy = Devmtn.Strategy,
 	DevmtnAuthConfig = require('../config/devmtnAuthConfig'),
-	User = require('../models/User'),
-	Profile = require('../models/Profile');
+	User = require('../models/User');
 
 passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, user, done) {
-	console.log('devmtn profile: ', user);
 	//don't allow anyone with student role to register as an employer. don't allow admins to create a company profile
 	if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'student')) {
 		console.log('Students should not login as an employer.')
-		// return done(null, false, { message: 'Students not allowed on Employers site' });
+		return done(null, false, { message: 'Students not allowed on Employers site' }); 
 	} else if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
-		console.log('admin user, free access, does not need to be created in database.');
+		console.log('admin user, free access, does not have a profile.');
 		return done(null, user);
 	}
 	User.findOne({ email: user.email }, function (findErr, foundUser) {
-		console.log("RAN QUERY");
 		if (findErr) return done(findErr, false);
 		if (!foundUser) {
 			//New User
@@ -28,33 +25,15 @@ passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, u
 			};
 			User.create(newUser, function (createErr, createdUser) {
 				if (createErr) return done(createErr, null);
-				console.log('Created a new user: ', createdUser);
-				//Create a new profile for the new user
-				var prof = {
-					companyName: 'Company Name Here',
-					userId: createdUser._id,
-					bio: 'Bio goes here'
-				}
-				//if it is an admin, don't create a profile
-				if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
-					return done(null, createdUser);
-				}
-				Profile.create(prof, function (profileErr, newProfile) {
-					if (profileErr) return done(profileErr, null);
-					console.log("Created a profile for the new user: ", newProfile);
-					return done(null, createdUser);
-				})
+				console.log("Welcom to our new user, ",createdUser);
+				return done(null, createdUser);
 			});
 		} else {
 			//Existing user found in my database
-			console.log('Found an existing user: ', foundUser);
+			console.log('Welcome back, '+foundUser.firstName+' '+foundUser.lastName);
 			foundUser.devmtnId = user.id;
 			//Make sure the id's still match up
-			foundUser.save(function (saveErr, savedUser) {
-				if (saveErr) return done(saveErr, savedUser);
-				console.log('savedUser: ', savedUser);
-				return done(null, savedUser);
-			});
+			return done(null, foundUser);
 		}
 	});
 }));
