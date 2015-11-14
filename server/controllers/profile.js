@@ -25,10 +25,19 @@ exports.getPendingProfiles = function(req, res){
 };
 
 exports.getMyProfile = function(req, res) {
-	Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
-		if(err)res.status(500).send();
-		res.json(profile);
-	})
+	if (req.user) {
+		Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
+			if(err)res.status(500).send();
+			
+			if (profile) {
+				exports.createProfile(req, res)
+			}
+			
+			res.json(profile);
+		});
+	}
+	
+	res.sendStatus(401);
 }
 
 exports.getMatches = function(req, res) {
@@ -44,7 +53,7 @@ exports.getMatches = function(req, res) {
 }
 
 /*****POST Requests*****/
-exports.createProfile = function(req, res, next){
+exports.createProfile = function(req, res){
 	var companyData = req.body;
 	companyData.companyName = companyData.companyName;
 	companyData.bio = companyData.bio;
@@ -54,7 +63,10 @@ exports.createProfile = function(req, res, next){
 				err = new Error('Duplicate Company Name');
 			}
 			return res.status(400).send({reason:err.toString()});
-		} else{res.end();}
+		} else{
+			res.send(profile);
+		}
+			// console.log(profile);
 	})
 }
 
@@ -66,6 +78,10 @@ exports.updateProfile = function(req, res){
 		return res.send(companyUpdates);
 	})
 };
+
+exports.acceptProfile = function(req, res) {
+	
+}
 /*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
 	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){

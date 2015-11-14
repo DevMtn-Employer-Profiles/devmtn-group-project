@@ -3,13 +3,15 @@ var mongoose = require('mongoose'),
 
 var schema = new mongoose.Schema({
 	logo: {type: String, default: 'http://www.factfiend.com/wp-content/uploads/2014/10/windows-logo.png'},
-	companyName: {type: String, required: '{PATH} is required', unique: true},
-	userId: {type: mongoose.Schema.Types.ObjectId, ref: 'user', required: true},
+	companyName: {type: String, unique: true},
+	userId: {type: mongoose.Schema.Types.ObjectId, ref: 'user'},
 	bio: {type: String},
-	jobPostings: {type: [{type: String}], default: []},
-	skills: {type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Skill'}], default: []},
+	jobPostings: {type: [{type: String}]},
+	skills: {type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Skill'}]},
 	relocation: {type: Boolean},
-	contactEmail: {type: [{type:String}], default: []}
+	contactEmails: {type: [{type:String}]},
+	website: {type: String, default: ''},
+	acceptRequestSent: Boolean
 });
 
 module.exports = mongoose.model('PendingProfile', schema);

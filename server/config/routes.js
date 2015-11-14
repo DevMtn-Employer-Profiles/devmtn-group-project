@@ -10,15 +10,16 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app){
 	/**********Endpoints**********/
-	//Profiles
-	app.get('/api/profile/all', profile.getProfiles);
-	app.get('/api/profile/pending', profile.getPendingProfiles);
-	app.get('/api/profile/:id', profile.getProfileById);
+	//Profiles - Admin
+	app.get('/api/profiles/all', profile.getProfiles);
+	app.get('/api/profiles/pending', profile.getPendingProfiles);
+	app.get('/api/profiles/:id', profile.getProfileById);
+	app.post('/api/profiles', profile.createProfile);
+	app.put('/api/profiles/accept/:id', profile.acceptProfile);
+	app.put('/api/profiles/:id', profile.updateProfile);
+	app.delete('/api/profiles/:id', profile.removeProfile);
+	//Profiles - Employer
 	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
-	app.post('/api/profile', profile.createProfile);
-	app.post('/api/profile/accept', profile.acceptProfile);
-	app.put('/api/profile/:id', profile.updateProfile);
-	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
