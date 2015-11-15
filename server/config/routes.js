@@ -30,10 +30,7 @@ module.exports = function (app){
 	app.delete('/api/skills/:id', skill.removeSkill);
 	app.put('/api/skills/:id', skill.updateSkill);
 	//Authentication
-	app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
-		//Doesn't get called?
-		console.log('Ha ha this should not ever get printed to the console');
-	});
+	app.get('/auth/devmtn', passport.authenticate('devmtn'));
 	app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
 		failureRedirect: '/#/landing'
 		}), devmtnCtrl.loginSuccessRouter);
