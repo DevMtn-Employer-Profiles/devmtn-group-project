@@ -3,14 +3,9 @@ var Profile = require('mongoose').model('Profile'),
 	Students = require('./studentMatchCtrl');
 
 
+//  --------------------------------------------  ADMIN CONTROLLERS
+
 /*****GET Requests*****/ 
-
-exports.getProfileById = function(req, res){
-	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
-		res.send(profile);
-	});
-};
-
 exports.getProfiles = function(req, res){
 	Profile.find({})
 		   .populate('profiles skills pendingprofiles')
@@ -21,6 +16,21 @@ exports.getProfiles = function(req, res){
 		       res.send(collection);
 		   });
 };
+
+exports.getProfileById = function(req, res){
+	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
+		res.send(profile);
+	});
+};
+
+exports.updateProfile = function(req, res){
+	var companyUpdates = req.body;
+	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
+		if(err){ return res.send(err); }
+		return res.send(companyUpdates);
+	})
+};
+
 
 exports.getActiveProfiles = function(req, res) {
 	Profile.find({isVisible: true})
@@ -172,32 +182,31 @@ exports.createProfile = function(req, res){
 
 /*****PUT Requests*****/
 exports.acceptProfile = function(req, res) {
+	var updateObj;
 	Profile.findById(req.params.id, function(err, schema) {
+		console.log(req.params.id)
 		if (schema._doc.isPending) {
 			Pending.findByIdAndRemove(schema._doc._id, function(err, pendProfile) {
 				if (pendProfile) {
-					for (var key in pendProfile._doc) {
-						if (key !== 'acceptRequestSent' && key !== "_id" && 
-							key !== 'isPending' && key !== 'pendingProfile') {
-							schema._doc[key] === pendProfile._doc[key];
-						} else if (key === 'isPending') {
-							schema._doc[key] = false;
-						} else if (key === 'pendingProfile') {
-							delete schema._doc[key];
-						}
-					}
+					updateObj = pendProfile._doc;
+					delete updateObj._id;
+					delete updateObj.select;
+					updateObj.isPending = false;
+					updateObj.pendingProfile = undefined;
+					console.log(updateObj);
 				
-					Profile.findByIdAndUpdate(schema._doc._id, schema._doc, function(err, profile) {
-						if (err) {
-							console.log('Error', err);
-						} else {
-							res.json(profile._doc);
-						}
-					})
+					Profile.findByIdAndUpdate(updateObj._id, updateObj)
+						   .exec(function(err, profile) {
+								if (err) {
+									console.log('Error', err);
+								} else {
+									res.json(profile._doc);
+								}
+							});
 				}
 			});
 		} else {
-			Profile.findByIdAndUpdate(schema._doc._id, req.body, function(err, profile) {
+			Profile.findByIdAndUpdate(req.body._id, req.body, function(err, profile) {
 				if (err)
 					return console.log(err);
 				
