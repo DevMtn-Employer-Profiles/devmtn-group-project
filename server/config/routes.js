@@ -10,6 +10,16 @@ var mongoose = require('mongoose'),
 
 module.exports = function (app){
 	/**********Endpoints**********/
+	//Authentication
+	app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
+		//Doesn't get called?
+		console.log('Ha ha this should not ever get printed to the console');
+	});
+	app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
+		failureRedirect: '/#/landing'
+		}), devmtnCtrl.loginSuccessRouter);
+	app.get('/auth/logout', devmtnCtrl.logout);
+	app.get('/auth/currentUser', devmtnCtrl.currentUser);
 	//Profiles
 	app.get('/api/profile/all', profile.getProfiles);
 	app.get('/api/profile/pending', profile.getPendingProfiles);
@@ -28,16 +38,6 @@ module.exports = function (app){
 	app.post('/api/skills', skill.createSkill);
 	app.delete('/api/skills/:id', skill.removeSkill);
 	app.put('/api/skills/:id', skill.updateSkill);
-	//Authentication
-	app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
-		//Doesn't get called?
-		console.log('Ha ha this should not ever get printed to the console');
-	});
-	app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
-		failureRedirect: '/#/landing'
-		}), devmtnCtrl.loginSuccessRouter);
-	app.get('/auth/logout', devmtnCtrl.logout);
-	app.get('/auth/currentUser', devmtnCtrl.currentUser);
 	//Catch-all api errors
 	app.all('/api/*', function(req, res){
 		res.send(404);

@@ -58,6 +58,10 @@ exports.createProfile = function(req, res, next){
 	})
 }
 
+exports.acceptProfile = function() {
+	
+}
+
 /*****PUT Requests*****/
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
