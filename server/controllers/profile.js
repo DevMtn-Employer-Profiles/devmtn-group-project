@@ -62,23 +62,26 @@ exports.saveProfile = function(req, res) {
 			if(!result.isPending) {
 				console.log('Profile is not pending');
 				//Profile Not Pending
-				Profile.findByIdAndUpdate(result._id, {isPending: true}, function(err2, result2) {
+				
+				//Save to Pending Collection
+				Pending.create(req.body, function(err2, result2) {
 					if(err2) {
 						res.status(500).send(err2);
 					} else {
-						console.log('set pending to true');
-						//Now create a new profile on the pending profiles collection
-						Pending.create(req.body, function(err3, result3) {
+						console.log('saved into pending collection');
+						//Profile saved to collection.
+						//Link the pending profile to the active profile
+						Profile.findByIdAndUpdate(result._id, {isPending: true, pendingProfile: result2._id}, function(err3, result3) {
 							if(err3) {
 								res.status(500).send(err3);
 							} else {
-								console.log('saved into pending collection');
-								//Profile saved to collection.
+								console.log("Updated Profile");
+								//done :)
 								res.json(result2);
 							}
 						});
 					}
-				})
+				});
 			} else {
 				//Profile is Pending
 				console.log('profile is currently pending');

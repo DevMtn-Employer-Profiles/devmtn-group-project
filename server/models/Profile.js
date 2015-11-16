@@ -13,7 +13,8 @@ var schema = new mongoose.Schema({
 	isVisible: {type: Boolean, default: false},
 	isPending: {type: Boolean, default: true},
 	studentMatches: {type: [], default: []},
-	website: {type: String, default: ''}
+	website: {type: String, default: ''},
+	pendingProfile: {type: mongoose.Schema.Types.ObjectId, ref: 'PendingProfile', default: null}
 });
 
 module.exports = mongoose.model('Profile', schema);
