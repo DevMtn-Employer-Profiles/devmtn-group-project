@@ -1,14 +1,5 @@
-angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDialog, ModalService, dataService, authService) {
-	var currentUser = ""; (function(){
-		authService.getCurrentUser().then(function(res){
-			currentUser = res;
-			console.log(res);
-		});
-	})();
-	
-
-	$scope.profiles = [];	
-	/*Get all companies */(function() {
+angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDialog, $window, ModalService, dataService, authService) {
+	$scope.profiles = []; (function() {
 		dataService.getAllCompanies().then(function(res) {
 			for (var i = 0; i < res.length; i++){
 				if (res[i].isVisible === true){
@@ -17,17 +8,18 @@ angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDi
 			}
 		});		
 	})();
+
+	var currentUser = "",currentUserRoles = [], currentUserProfile = false;
+	(function() { authService.getCurrentUser().then(function(res){
+			currentUser = res;
+			currentUserRoles = res.roles;
+			currentUserProfile = res.showProfile;
+			console.log(res);
+		});
+	})();
 	
-	
-	$scope.search = function(company) {
-		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
-	};
-	
-	
-	$scope.openProfile = function(event, profileId) {
+	var companyProfile = function(event, profileId) {
 		ModalService.currentProfileId = profileId;
-		
-		
 		
 		$mdDialog.show({
 			controller: 'ModalController',
@@ -37,4 +29,30 @@ angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDi
 			clickOutsideToClose: true
 		});
 	};
+	$scope.user = function(role){
+		for(var i = 0; i < currentUserRoles.length; i++){
+			if (currentUserRoles[i] == role) return true;
+		}
+	};
+	
+	$scope.openProfile = function(event, profile){
+		for(var i = 0; i < currentUserRoles.length; i++){
+			if (currentUserRoles[i] == 'student'){
+				if(currentUserProfile === true) companyProfile(event, profile._id);
+				else $mdDialog.show({
+						controller: 'ModalController',
+						templateUrl: 'js/studentView/unfinishedProfileModal.html',
+						parent: angular.element(document.body),
+						targetEvent: event,
+						clickOutsideToClose: true
+				});
+			} else $window.location.href=profile.website;
+		}
+		
+	};
+	
+	$scope.search = function(company) {
+		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
+	};
+	
 });
