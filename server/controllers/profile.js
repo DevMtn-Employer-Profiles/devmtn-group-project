@@ -13,7 +13,7 @@ exports.getProfileById = function(req, res){
 exports.getProfiles = function(req, res){
 	Profile.find({})
 		   .populate('profiles skills pendingprofiles')
-		//    .populate('profiles pendingprofiles')
+		   .populate('profiles pendingProfile')
 		   .exec(function(err, collection){
 			   Pending.findById()
 			   
