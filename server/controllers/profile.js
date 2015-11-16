@@ -29,7 +29,7 @@ exports.getMyProfile = function(req, res) {
 		Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
 			// if(err)res.status(500).send();
 			
-			if (!profile) {
+			if (profile) {
 				exports.createProfile(req, res)
 			}
 			
@@ -48,7 +48,7 @@ exports.getMatches = function(req, res) {
 			res.status(500).send(err);
 		}
 		//now we know which students we want
-		Students.getCertainStudents(req, res, result.studentMatches);
+		Students.getStudents(req, res, result.studentMatches);
 	});
 }
 
