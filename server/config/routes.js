@@ -16,7 +16,7 @@ module.exports = function (app){
 	app.get('/api/profile/:id', profile.getProfileById);
 	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
 	app.post('/api/profile', profile.createProfile);
-	app.post('/api/profile/accept', profile.acceptProfile);
+	//app.post('/api/profile/accept', profile.acceptProfile);
 	app.put('/api/profile/:id', profile.updateProfile);
 	app.delete('/api/profile/:id', profile.removeProfile);
 	//Student Match

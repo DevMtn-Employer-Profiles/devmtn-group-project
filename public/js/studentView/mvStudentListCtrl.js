@@ -1,4 +1,12 @@
-angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDialog, ModalService, dataService) {
+angular.module('MainApp').controller('mvStudentListCtrl', function($scope, $mdDialog, ModalService, dataService, authService) {
+	var currentUser = ""; (function(){
+		authService.getCurrentUser().then(function(res){
+			currentUser = res;
+			console.log(res);
+		});
+	})();
+	
+
 	$scope.profiles = [];	
 	/*Get all companies */(function() {
 		dataService.getAllCompanies().then(function(res) {
