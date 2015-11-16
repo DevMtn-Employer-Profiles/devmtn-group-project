@@ -46,6 +46,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	function getAllCompanies() {
 		dataService.getAllCompanies()
 			.then(function(response) {
+				console.log(response);
 				$scope.companyList = response;
 				$scope.lastPage = Math.ceil($scope.companyList.length / 10);
 			});

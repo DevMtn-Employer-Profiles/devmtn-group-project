@@ -12,9 +12,11 @@ exports.getProfileById = function(req, res){
 
 exports.getProfiles = function(req, res){
 	Profile.find({})
-		   .populate('profiles skills')
-		   .populate('pendingprofiles')
+		   .populate('profiles skills pendingprofiles')
+		//    .populate('profiles pendingprofiles')
 		   .exec(function(err, collection){
+			   Pending.findById()
+			   
 		       res.send(collection);
 		   });
 };
@@ -94,10 +96,13 @@ exports.acceptProfile = function(req, res) {
 			Pending.findByIdAndRemove(schema._doc._id, function(err, pendProfile) {
 				if (pendProfile) {
 					for (var key in pendProfile._doc) {
-						if (key !== 'acceptRequestSent' && key !== "_id" && key !== 'isPending') {
+						if (key !== 'acceptRequestSent' && key !== "_id" && 
+							key !== 'isPending' && key !== 'pendingProfile') {
 							schema._doc[key] === pendProfile._doc[key];
 						} else if (key === 'isPending') {
 							schema._doc[key] = false;
+						} else if (key === 'pendingProfile') {
+							delete schema._doc[key];
 						}
 					}
 				
@@ -111,7 +116,7 @@ exports.acceptProfile = function(req, res) {
 				}
 			});
 		} else {
-			Profile.findByIdAndUpdate(schema._id, req.body, function(err, profile) {
+			Profile.findByIdAndUpdate(schema._doc._id, req.body, function(err, profile) {
 				if (err)
 					return console.log(err);
 				
