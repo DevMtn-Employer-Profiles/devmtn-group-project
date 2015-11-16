@@ -89,6 +89,14 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		});
 	}
 	
+	this.rejectCompany = function(company) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profiles/reject/' + company._id,
+			data: company
+		});
+	}
+	
 	//Admin Matching Web Requests
 	this.getAllStudents = function() {
 		return $http({

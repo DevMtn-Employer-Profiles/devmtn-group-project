@@ -182,14 +182,15 @@ exports.createProfile = function(req, res){
 
 /*****PUT Requests*****/
 exports.acceptProfile = function(req, res) {
-	var updateObj;
+	var updateObj = {
+		_id: req.params.id
+	};
 	Profile.findById(req.params.id, function(err, schema) {
 		console.log(req.params.id)
 		if (schema._doc.isPending) {
-			Pending.findByIdAndRemove(schema._doc._id, function(err, pendProfile) {
+			Pending.findByIdAndRemove(req.params.id, function(err, pendProfile) {
 				if (pendProfile) {
 					updateObj = pendProfile._doc;
-					delete updateObj._id;
 					delete updateObj.select;
 					updateObj.isPending = false;
 					updateObj.pendingProfile = undefined;

@@ -38,6 +38,7 @@
 		class="profile-card" 
 		dir-paginate="company in companyList | 
 					  filter: search | 
+					  orderBy: 'companyName' | 
 					  orderBy: orderSelect | 
 					  itemsPerPage: 10 track by $index" 
 		layout="row"
@@ -99,16 +100,27 @@
 				>
 					Deactivate
 				</md-button>
-				
-				<md-button 
-					class="admin-control-button submit-button accept-changes-button" 
-					md-no-ink 
-					ng-click="acceptChanges(company)" 
-					ng-show="company.pendingProfile.submit"
-				>
-					<span ng-show="!!isMobile.any()" class="fa fa-check"></span>
-					<span ng-show="!isMobile.any()">Accept Changes</span>
-				</md-button>
+				<div ng-show="company.pendingProfile.submit" layout="row">
+					<md-button 
+						class="admin-control-button delete-button" 
+						md-no-ink 
+						ng-click="rejectChanges(company)" 
+						ng-show="company.pendingProfile.submit"
+					>
+						<span ng-show="!!isMobile.any()" class="fa fa-ban"></span>
+						<span ng-show="!isMobile.any()">Reject Changes</span>
+					</md-button>
+					
+					<md-button 
+						class="admin-control-button submit-button accept-changes-button" 
+						md-no-ink 
+						ng-click="acceptChanges(company)" 
+						ng-show="company.pendingProfile.submit"
+					>
+						<span ng-show="!!isMobile.any()" class="fa fa-check"></span>
+						<span ng-show="!isMobile.any()">Accept Changes</span>
+					</md-button>
+				</div>
 			</div>
 		</section>
 	</div>
