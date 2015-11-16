@@ -19,6 +19,7 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		});
 		dataService.getSkills().then(function(result) {
 			$scope.skillsOptions = result;
+			console.log(result);
 		})
 	}
 	
@@ -81,8 +82,7 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.editedProfile = {};
 	}
 	
-	//Get the selected skill and add it to the list if it
-	//is not their already
+	//Skills
 	$scope.addSelectedSkill = function(newSkill) {
 		console.log("ADDING: ", newSkill);
 		if(newSkill && $scope.editedProfile.skills.indexOf(newSkill) === -1) {
@@ -90,43 +90,36 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		}
 	}
 	
-	//Remove the selected skill from the skills list
 	$scope.removeSkill = function(idx) {
 		$scope.editedProfile.skills.splice(idx, 1);
 	}
 	
-	//Adds the new requirement to the list and resets the inputs value
-	$scope.addNewRequirement = function(newReq) {
-		$scope.editedProfile.requirements.push(newReq);
-		$scope.newRequirement = '';
+	$scope.requestSkill = function(skill) {
+		$scope.skillToSubmit = '';
 	}
 	
-	//Splice value from an array
-	$scope.removeRequirement = function(idx) {
-		$scope.editedProfile.requirements.splice(idx, 1);
+	
+	//Job Postings
+	$scope.addNewJob = function(url) {
+		$scope.editedProfile.jobPostings.push(url);
+		$scope.newJobUrl = '';
 	}
 	
-	$scope.changeSelectedSkill = function(val) {
-		if(val ==='Other') {
-			$scope.showNewSkill = true;
-		} else {
-			$scope.showNewSkill = false;
-		}
+	$scope.removeJob = function(idx) {
+		$scope.editedProfile.jobPostings.splice(idx, 1);
 	}
 	
-	$scope.submitNewSkill = function(newSkill) {
-		if($scope.skillsOptions.indexOf(newSkill) === -1) {
-			//Send to server this new skill
-			dataService.createSkill(newSkill).then(function(result) {
-				console.log("Skill Created");
-			});
-			//add to list
-			$scope.skillsOptions.push(newSkill);
-			$scope.newSkill = '';
-			$scope.editedProfile.skills.push(newSkill);
-			$scope.showNewSkill = false;
-		}
+	//Contact Email
+	$scope.addContactEmail = function(newEmail) {
+		$scope.editedProfile.contactEmails.push(newEmail);
+		$scope.newContactEmail = '';
+	}
+	
+	$scope.deleteEmail = function(idx) {
+		$scope.editedProfile.contactEmails.splice(idx, 1);
 	}
 	
 	loadProfile();
 })
+
+//add a company url

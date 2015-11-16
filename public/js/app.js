@@ -78,6 +78,7 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				url: '/matching',
 				templateUrl: 'js/admin/matching/adminMatching.html',
 				controller: 'adminMatchingCtrl'
+
 			})
 			
 		.state('Matching', {

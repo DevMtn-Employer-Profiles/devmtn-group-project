@@ -16,6 +16,10 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		{name: "Amount of Skills (-)", abbr: 'skills.length'}
 	];
 	
+	$scope.printSkillsList = function(company) {
+		console.log(company.skills);
+	};
+	
 	
 	$scope.search = function(company) {
 		if ($scope.filterSelect === 'pending') {
@@ -72,9 +76,29 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	
 	$scope.updateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
-		$timeout(function() {
-			dataService.updateProfile($scope.companyList[index]);
-		}, 50);
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.unpendCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isPending = false;
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.activateCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isVisible = true;
+		
+		dataService.updateProfile($scope.companyList[index]);
+	};
+	
+	$scope.deactivateCompany = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		$scope.companyList[index].isVisible = false;
+		
+		dataService.updateProfile($scope.companyList[index]);
 	};
 	
 	

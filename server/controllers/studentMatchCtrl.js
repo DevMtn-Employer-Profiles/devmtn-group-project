@@ -14,10 +14,18 @@ exports.getStudents = function(req, res) {
 				} else {
 					return false;
 				}
-			})
+			});
 			res.json(profiles);
 		}
 	})
+}
+
+var findStudent = function(list, id) {
+	for(var i = 0; i < list.length; i++) {
+		if(list[i]._id = id)
+			return true;
+	}
+	return false;
 }
 
 exports.getCertainStudents = function(req, res, students) {
@@ -25,9 +33,9 @@ exports.getCertainStudents = function(req, res, students) {
 		if (error) {
 			res.status(500).send(error);
 		} else {
-			var newBody = JSON.parse(body);
-			var profiles = newBody.filter(function(item){
-				if (item.showProfile && students.indexOf(item._id) != -1) {
+			var allStudents = JSON.parse(body);
+			var profiles = allStudents.filter(function(stud){
+				if (stud.showProfile && findStudent(students, stud._id)) {
 					return true;
 				// Tim needs to fix, line 30. It is not working properly. 
 				} else {
