@@ -17,7 +17,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		
 		$http({
 			method: 'GET', 
-			url: '/api/profile/' + companyId
+			url: '/api/profiles/' + companyId
 		}).then(function(response) {
 			deferred.resolve(response.data);
 		}, handleError);
@@ -30,7 +30,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		
 		$http({
 			method: 'GET',
-			url: '/api/profile/all'
+			url: '/api/profiles/all'
 		}).then(function(response) {
 			deferred.resolve(response.data);
 		}, handleError);
@@ -43,7 +43,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		
 		$http({
 			method: 'GET',
-			url: '/api/profile/pending'
+			url: '/api/profiles/pending'
 		}).then(function(response) {
 			deferred.resolve(response.data);
 		}, handleError);
@@ -54,21 +54,21 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	this.getActiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/profile/active'
+			url: '/api/profiles/active'
 		}).then(simpleDataReturn, handleError);
 	};
 	
 	this.getInactiveCompanies = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/profile/inactive'
+			url: '/api/profiles/inactive'
 		}).then(simpleDataReturn, handleError);
 	};
 	
 	this.deleteCompany = function(companyId) {
 		return $http({
 			method: 'DELETE',
-			url: '/api/profile/' + companyId	
+			url: '/api/profiles/' + companyId	
 
 		}).then(simpleDataReturn, handleError);
 	};
@@ -76,9 +76,25 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	this.createCompany = function(company) {
 		return $http({
 			method: 'POST',
-			url: '/api/profile/',
+			url: '/api/profiles/',
 			data: company	
 		}).then(simpleDataReturn, handleError);
+	};
+	
+	this.acceptCompany = function(company) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profiles/accept/' + company._id,
+			data: company
+		});
+	};
+	
+	this.rejectCompany = function(company) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profiles/reject/' + company._id,
+			data: company
+		});
 	};
 	
 	//Admin Matching Web Requests
@@ -94,7 +110,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 			method: 'GET',
 			url: '/api/matches/'+matchId
 		}).then(simpleDataReturn, handleError);
-	}
+	};
 	
 	this.runAlgorithm = function(data) {
 		return $http({
@@ -141,67 +157,25 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError);
 	};
 	
-	// this.getSkillById = function(skillId) {
-	// 	var deferred = $q.defer();
-		
-	// 	$http({
-	// 		method: 'GET',
-	// 		url: '/api/skills/' + skillId
-	// 	}).then(function(response) {
-	// 		deferred.resolve(response.data);
-	// 	}, handleError)
-		
-	// 	return deferred.promise;
-	// }
-	
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/myProfile/'
+			url: '/api/my-profile/'
 		}).then(simpleDataReturn, handleError);
 	};
 	
 	this.updateProfile = function(newProfile) {
-		// console.log("UPDATING PROFILE: ", newProfile);
 		return $http({
 			method: 'PUT',
-			url: '/api/profile/'+newProfile._id,
+			url: '/api/my-profile',
 			data: newProfile	
-
 		}).then(simpleDataReturn, handleError);
 	};
 	
-	//Notification web requests
-	this.getNotifications = function() {
-		var deferred = $q.defer();
-		
-		$http({
-			method: 'GET',
-			url: '/api/notifications'
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
-		
-		return deferred.promise;
-	};
-	this.deleteNotification = function(noteId) {
-		return $http({
-			method: 'DELETE',
-			url: '/api/notifications/'+noteId
-		}).then(simpleDataReturn, handleError);
-	};
-	this.addNotification = function(msg) {
-		return $http({
-			method: 'POST',
-			url: '/api/notifications',
-			data: {message: msg}
-		}).then(simpleDataReturn, handleError);
-	};
-	this.updateNotification = function(noteId, changeObj) {
+	this.requestProfileApproval = function() {
 		return $http({
 			method: 'PUT',
-			url: '/api/notifications/' + noteId,
-			data: changeObj
+			url: '/api/my-profile/request-approval'
 		}).then(simpleDataReturn, handleError);
 	};
 });

@@ -49,17 +49,21 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	}
 	
 	$scope.addStudent = function () {
-		var stud = $scope.PossibleStudents.splice($scope.addThisSelectedStudent, 1);
-		console.log('add: ', stud, $scope.addThisSelectedStudent);
-		$scope.SelectedStudents.push(stud[0]);
-		$scope.validateReady();
+		if($scope.addThisSelectedStudent < $scope.PossibleStudents.length) {
+			var stud = $scope.PossibleStudents.splice($scope.addThisSelectedStudent, 1);
+			console.log('add: ', stud, $scope.addThisSelectedStudent);
+			$scope.SelectedStudents.push(stud[0]);
+			$scope.validateReady();
+		}
 	}
 
 	$scope.removeStudent = function () {
-		var stud = $scope.SelectedStudents.splice($scope.removeThisSelectedStudent, 1);
-		console.log('remove: ',stud);
-		$scope.PossibleStudents.push(stud[0]);
-		$scope.validateReady();
+		if($scope.removeThisSelectedStudent < $scope.SelectedStudents.length) {
+			var stud = $scope.SelectedStudents.splice($scope.removeThisSelectedStudent, 1);
+			console.log('remove: ',stud);
+			$scope.PossibleStudents.push(stud[0]);
+			$scope.validateReady();
+		}
 	}
 
 	$scope.addAllStudents = function () {
@@ -79,7 +83,7 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	//Step 2
 	$scope.employerFilters = ['All', 'Visible', "Not Visible"];
 	$scope.empFilter = 'All';
-	$scope.PossibleEmployers = [''];
+	$scope.PossibleEmployers = [];
 	$scope.SelectedEmployers = [];
 	$scope.addThisSelectedEmployer = -1;
 	$scope.removeThisSelectedEmployer = -1;
@@ -98,16 +102,19 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 	}
 	
 	$scope.addEmployer = function() {
-		var empl = $scope.PossibleEmployers.splice($scope.addThisSelectedEmployer, 1);
-		$scope.SelectedEmployers.push(empl[0]);
-		$scope.validateReady();
+		if($scope.addThisSelectedEmployer < $scope.PossibleEmployers.length) {
+			var empl = $scope.PossibleEmployers.splice($scope.addThisSelectedEmployer, 1);
+			$scope.SelectedEmployers.push(empl[0]);
+			$scope.validateReady();
+		}
 	}
 	
 	$scope.removeEmployer = function() {
-		console.log("REMOVE");
-		var empl = $scope.SelectedEmployers.splice($scope.removeThisSelectedEmployer, 1);
-		$scope.PossibleEmployers.push(empl[0]);
-		$scope.validateReady();
+		if($scope.removeThisSelectedEmployer < $scope.SelectedEmployers.length) {
+			var empl = $scope.SelectedEmployers.splice($scope.removeThisSelectedEmployer, 1);
+			$scope.PossibleEmployers.push(empl[0]);
+			$scope.validateReady();
+		}
 	}
 	
 	$scope.addAllEmployers = function() {

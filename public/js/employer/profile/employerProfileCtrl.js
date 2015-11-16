@@ -19,7 +19,6 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		});
 		dataService.getSkills().then(function(result) {
 			$scope.skillsOptions = result;
-			console.log(result);
 		})
 	}
 	
@@ -37,24 +36,9 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	}
 	
 	$scope.submitProfile = function() {
-		// $scope.editedProfile._id = $scope.profile._id;
-		$scope.profile.isPending = true;
-		//** SET SKILLS TO BE ID's ONLY
-		var newSkills = [];
-		
-		$scope.profile.skills.forEach(function(item) {
-			newSkills.push(item._id);
+		dataService.requestProfileApproval().then(function(result) {
+			
 		});
-		
-		$scope.profile.skills = newSkills;
-		//Push to database
-		dataService.updateProfile($scope.profile)
-			.then(function(result) {
-				//Get New Profile
-				loadProfile();
-			});
-		
-		$state.go('Employer.Home');
 	}
 	
 	//Saves the edited variables to the database 

@@ -1,12 +1,3 @@
-.section {
-	width: 90%;
-	margin: auto;
-	background: ghostwhite;
-	border-radius: 20px;
-	padding: 20px;
-	margin-top: 20px;
-	box-sizing: border-box;
-}
 
 .area {
 	display: block;
@@ -15,13 +6,36 @@
 	text-align: center;
 }
 
+.select-box-title {
+	margin-bottom: 2px;
+}
+
+.match-container {
+	width: 90%;
+	border: thin solid lightgray;
+	padding: 20px;
+	margin: 20px auto;
+	min-width: 650px;
+}
+
 .select-box-container {
 	box-sizing: border-box;
 	display: inline-block;
-	width: 200px;
+	width: 250px;
+	height: 250px;
+	background: white;
+	text-align: center;
+}
+
+.select-box-select-area {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 250px;
 	height: 250px;
 	background: white;
 	overflow-y: scroll;
+	padding: 2px 0px;
+	border: thin solid lightgray;
 }
 
 .div-center-buttons {
@@ -30,6 +44,20 @@
 	display: inline-block;
 	box-sizing: border-box;
 	text-align: center;
+	vertical-align: top;
+	padding-top: 100px;
+}
+
+.match-button {
+	border: none;
+	padding: 5px 10px;
+	margin: 3px 10px;
+	border-radius: 2px;
+}
+
+.match-button:hover {
+	background: gray;
+	color: white;
 }
 
 .select-me-please {
@@ -51,3 +79,4 @@
 	border-radius: 40px;
 	font-size: 4em;
 }
+

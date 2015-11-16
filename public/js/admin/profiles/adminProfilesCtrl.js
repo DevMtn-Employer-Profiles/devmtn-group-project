@@ -9,7 +9,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	];
 	
 	$scope.orderOptions = [
-		{name: "Pending Profiles first", abbr: '-isPending'},
+		{name: "Pending Profiles first", abbr: '-pendingProfile.submit === true'},
 		{name: "Name (+)", abbr: 'companyName'},
 		{name: "Name (-)", abbr: '-companyName'},
 		{name: "Amount of Skills (+)", abbr: '-skills.length'},
@@ -26,8 +26,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 			return (
 				(angular.lowercase(company.companyName)
 						.indexOf(angular.lowercase($scope.query) || '') !== -1)
-					&& company.isPending 
-			);
+					&& company.pendingProfile.submit );
 		} else if($scope.filterSelect === 'active') {
 			return (
 				(angular.lowercase(company.companyName)
@@ -80,11 +79,24 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		dataService.updateProfile($scope.companyList[index]);
 	};
 	
-	$scope.unpendCompany = function(company) {
+	$scope.acceptChanges = function(company) {
 		var index = $scope.companyList.indexOf(company);
-		$scope.companyList[index].isPending = false;
+		// $scope.companyList[index].isPending = false;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.acceptCompany($scope.companyList[index])
+			.then(function(result) {
+				getAllCompanies();
+			});
+	};
+	
+	$scope.rejectChanges = function(company) {
+		var index = $scope.companyList.indexOf(company);
+		// $scope.companyList[index]
+		
+		dataService.rejectCompany($scope.companyList[index])
+			.then(function(result) {
+				getAllCompanies();
+			});
 	};
 	
 	$scope.activateCompany = function(company) {

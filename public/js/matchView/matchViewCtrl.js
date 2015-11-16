@@ -10,8 +10,14 @@ angular.module('MainApp').controller('matchViewCtrl', function($scope, dataServi
 		dataService.getMatchData($stateParams.id).then(function(results) {
 			$scope.students = results;
 			console.log(results);
+			$scope.studentCall(0);
 		})
 	}
 	
 	load();
+	
+	$scope.studentCall = function(idx) {
+		$scope.student = $scope.students[idx];
+	}
+	
 });
