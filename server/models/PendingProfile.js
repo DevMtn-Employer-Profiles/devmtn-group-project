@@ -12,7 +12,7 @@ var schema = new mongoose.Schema({
 	relocation: Boolean,
 	contactEmails: {type: [{type:String}]},
 	website: String,
-	submit: Boolean
+	submit: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('PendingProfile', schema);

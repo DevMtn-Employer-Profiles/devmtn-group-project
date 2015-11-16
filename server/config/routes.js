@@ -12,15 +12,15 @@ module.exports = function (app){
 	/**********Endpoints**********/
 	//Profiles - Admin
 	app.get('/api/profiles/all', profile.getProfiles);
-	app.get('/api/profiles/pending', profile.getPendingProfiles);
 	app.get('/api/profiles/:id', profile.getProfileById);
-	app.post('/api/profiles', profile.createProfile);
 	app.put('/api/profiles/accept/:id', profile.acceptProfile);
 	app.put('/api/profiles/:id', profile.updateProfile);
 	app.delete('/api/profiles/:id', profile.removeProfile);
 	
 	//Profiles - Employer
-	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
+	app.get('/api/my-profile', /*devmtnCtrl.requireEmployerRole,*/ profile.getMyProfile);
+	app.put('/api/my-profile', profile.saveProfile);
+	app.put('/api/my-profile/request-approval', profile.requestApproval);
 	
 	//Profiles - Public
 	app.get('/api/profiles/active', profile.getActiveProfiles);
