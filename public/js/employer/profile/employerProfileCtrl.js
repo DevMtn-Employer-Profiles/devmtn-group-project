@@ -5,6 +5,8 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	
 	$scope.skillsOptions = ['Angular', 'Node','React','Webpack', 'Other'];
 	
+	$scope.statusMessage = 'loading...';
+	
 	$scope.profile = {
 		companyName: 'Qualtrics',
 		bio: 'Located in Provo, Qualtrics is a great company with a cool environment for devs to work in.',
@@ -13,9 +15,36 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		logo: 'https://image.freepik.com/free-vector/dolphin-clipart_91-5846.jpg'
 	};
 	
+	$scope.showSubmit = false;
+	
+	var setStatus = function(profile) {
+		var status = profile.hasOwnProperty('submit');
+		if(status) {
+			$scope.showSubmit = false;
+			if(profile.submit) {
+				//Status for pending administrator approval
+				$scope.showSubmit = true;
+				$scope.statusMessage = 'Pending Administrator Approval';
+			} else {
+				//status for saved but not pending
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Your profile is saved. Press submit to request administrator approval.';
+			}
+		} else {
+			if(profile.isVisible) {
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Your profile is live!';
+			} else {
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Your Profile is not live, go and edit it.';
+			}
+		}
+	}
+	
 	var loadProfile = function() {
 		dataService.getMyProfile().then(function(result) {
 			$scope.profile = result;
+			setStatus(result);
 		});
 		dataService.getSkills().then(function(result) {
 			$scope.skillsOptions = result;
@@ -37,7 +66,7 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	
 	$scope.submitProfile = function() {
 		dataService.requestProfileApproval().then(function(result) {
-			
+			loadProfile();
 		});
 	}
 	

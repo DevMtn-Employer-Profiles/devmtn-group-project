@@ -1,9 +1,15 @@
 <div class="profile-employer-container">
+	<div class="status-div">
+		<hr/>
+		<!--Status goes here-->
+		Profile Status: {{statusMessage}}
+		<hr/>
+	</div>
 	<div class="pull-right" ng-hide="isEditing">
 		<md-button ng-click='openEdit()' aria-label="Edit Profile" class="edit-btn profile-edit-buttons">
 			<span title='Edit Profile'class='fa fa-pencil-square-o'></span>
 		</md-button>
-		<md-button ng-click='submitProfile()' aria-label="Submit Profile" ng-show="!profile.isPending" class="save-btn">
+		<md-button ng-click='submitProfile()' aria-label="Submit Profile" ng-show="showSubmit" class="save-btn">
 			<span title='Submit Profile' class='fa fa-upload'></span> 
 		</md-button>
 	</div>
@@ -74,10 +80,7 @@
 			<h4>Company Website</h4>
 			<input type='text' ng-model='editedProfile.website' placeholder="company website"/>
 			<h4>Requirements</h4>
-			<p>The requirements here help students to see what skills are needed in the
-				workplace and what skills they may want to learn. By filling this information
-				we can match you with the Dev Mountain students who have the skills you are
-				looking for.
+			<p>The requirements here help students see what skills are needed in the workplace and what they need to learn. By filling in this information, we can match you with the DevMountain students that have the skills you want.
 			</p>
 			<div class="employer-section">
 			<h5>Relocation</h5>
