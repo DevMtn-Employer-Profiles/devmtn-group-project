@@ -22,6 +22,9 @@ module.exports = function (app){
 	//Profiles - Employer
 	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
 	
+	//Profiles - Public
+	app.get('/api/profiles/active', profile.getActiveProfiles);
+	
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);

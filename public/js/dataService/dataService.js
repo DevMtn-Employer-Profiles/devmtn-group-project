@@ -81,6 +81,14 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
+	this.acceptCompany = function(company) {
+		return $http({
+			method: 'PUT',
+			url: '/api/profiles/accept/' + company._id,
+			data: company
+		});
+	}
+	
 	//Admin Matching Web Requests
 	this.getAllStudents = function() {
 		return $http({
@@ -171,37 +179,37 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	//Notification web requests
-	this.getNotifications = function() {
-		var deferred = $q.defer();
+	// //Notification web requests
+	// this.getNotifications = function() {
+	// 	var deferred = $q.defer();
 		
-		$http({
-			method: 'GET',
-			url: '/api/notifications'
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
+	// 	$http({
+	// 		method: 'GET',
+	// 		url: '/api/notifications'
+	// 	}).then(function(response) {
+	// 		deferred.resolve(response.data);
+	// 	}, handleError);
 		
-		return deferred.promise;
-	}
-	this.deleteNotification = function(noteId) {
-		return $http({
-			method: 'DELETE',
-			url: '/api/notifications/'+noteId
-		}).then(simpleDataReturn, handleError);
-	}
-	this.addNotification = function(msg) {
-		return $http({
-			method: 'POST',
-			url: '/api/notifications',
-			data: {message: msg}
-		}).then(simpleDataReturn, handleError);
-	}
-	this.updateNotification = function(noteId, changeObj) {
-		return $http({
-			method: 'PUT',
-			url: '/api/notifications/' + noteId,
-			data: changeObj
-		}).then(simpleDataReturn, handleError);
-	};
+	// 	return deferred.promise;
+	// }
+	// this.deleteNotification = function(noteId) {
+	// 	return $http({
+	// 		method: 'DELETE',
+	// 		url: '/api/notifications/'+noteId
+	// 	}).then(simpleDataReturn, handleError);
+	// }
+	// this.addNotification = function(msg) {
+	// 	return $http({
+	// 		method: 'POST',
+	// 		url: '/api/notifications',
+	// 		data: {message: msg}
+	// 	}).then(simpleDataReturn, handleError);
+	// }
+	// this.updateNotification = function(noteId, changeObj) {
+	// 	return $http({
+	// 		method: 'PUT',
+	// 		url: '/api/notifications/' + noteId,
+	// 		data: changeObj
+	// 	}).then(simpleDataReturn, handleError);
+	// };
 });

@@ -80,11 +80,11 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		dataService.updateProfile($scope.companyList[index]);
 	};
 	
-	$scope.unpendCompany = function(company) {
+	$scope.acceptChanges = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isPending = false;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.acceptCompany($scope.companyList[index]);
 	};
 	
 	$scope.activateCompany = function(company) {

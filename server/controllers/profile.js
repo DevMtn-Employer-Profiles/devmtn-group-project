@@ -19,6 +19,13 @@ exports.getProfiles = function(req, res){
 		   });
 };
 
+exports.getActiveProfiles = function(req, res) {
+	Profile.find({isVisible: true})
+		   .exec(function(err, collection) {
+			   res.send(collection);
+		   });
+};
+
 exports.getPendingProfiles = function(req, res){
 	Pending.find().exec(function(err, collection){
 		res.send(collection);
@@ -82,8 +89,34 @@ exports.updateProfile = function(req, res){
 };
 
 exports.acceptProfile = function(req, res) {
-	
-}
+	Profile.findById(req.params.id, function(err, schema) {
+		if (schema._doc.isPending) {
+			Pending.findByIdAndRemove(schema.pendingProfile, function(err, pendProfile) {
+				for (var key in pendProfile) {
+					if (key !== 'acceptRequestSent' || key !== "_id") {
+						schema[key] === pendProfile[key];
+					}
+				}
+				
+				Profile.findByIdAndUpdate(schema._id, schema, function(err, profile) {
+					if (err) {
+						console.log('Error', err);
+					} else {
+						res.json(profile);
+					}
+				})
+			});
+		} else {
+			Profile.findByIdAndUpdate(schema._id, req.body, function(err, profile) {
+				if (err)
+					return console.log(err);
+				
+				res.send(profile);
+			});
+		}
+	});
+};
+
 /*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
 	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){
