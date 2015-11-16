@@ -14,6 +14,7 @@ module.exports = function (app){
 	app.get('/api/profiles/all', profile.getProfiles);
 	app.get('/api/profiles/:id', profile.getProfileById);
 	app.put('/api/profiles/accept/:id', profile.acceptProfile);
+	app.put('/api/profiles/reject/:id', profile.rejectProfile);
 	app.put('/api/profiles/:id', profile.updateProfile);
 	app.delete('/api/profiles/:id', profile.removeProfile);
 	

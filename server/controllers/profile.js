@@ -217,11 +217,26 @@ exports.acceptProfile = function(req, res) {
 	});
 };
 
+exports.rejectProfile = function(req, res) {
+	Pending.findByIdAndUpdate(req.params.id, {submit: false}, function(err, profile) {
+		if (err)
+			return console.log(err);
+		
+		res.send(profile._doc);
+	})
+}
+
 /*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
 	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){
 		if(err){
 			return res.status(400).send({reason:err.toString()});
 		} else {res.end()};
+	});
+	
+	Pending.findByIdAndRemove(req.params.id, function(err) {
+		if (err) {
+			res.send(err);
+		} else res.end();
 	});
 };

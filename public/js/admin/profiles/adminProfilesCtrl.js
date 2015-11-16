@@ -9,7 +9,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 	];
 	
 	$scope.orderOptions = [
-		{name: "Pending Profiles first", abbr: 'pendingProfile.submit'},
+		{name: "Pending Profiles first", abbr: '-pendingProfile.submit === true'},
 		{name: "Name (+)", abbr: 'companyName'},
 		{name: "Name (-)", abbr: '-companyName'},
 		{name: "Amount of Skills (+)", abbr: '-skills.length'},
@@ -93,7 +93,10 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		var index = $scope.companyList.indexOf(company);
 		// $scope.companyList[index]
 		
-		dataService.rejectCompany($scope.companyList[index]);
+		dataService.rejectCompany($scope.companyList[index])
+			.then(function(result) {
+				getAllCompanies();
+			});
 	};
 	
 	$scope.activateCompany = function(company) {
