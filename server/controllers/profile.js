@@ -91,27 +91,31 @@ exports.updateProfile = function(req, res){
 exports.acceptProfile = function(req, res) {
 	Profile.findById(req.params.id, function(err, schema) {
 		if (schema._doc.isPending) {
-			Pending.findByIdAndRemove(schema.pendingProfile, function(err, pendProfile) {
-				for (var key in pendProfile) {
-					if (key !== 'acceptRequestSent' || key !== "_id") {
-						schema[key] === pendProfile[key];
+			Pending.findByIdAndRemove(schema._doc._id, function(err, pendProfile) {
+				if (pendProfile) {
+					for (var key in pendProfile._doc) {
+						if (key !== 'acceptRequestSent' && key !== "_id" && key !== 'isPending') {
+							schema._doc[key] === pendProfile._doc[key];
+						} else if (key === 'isPending') {
+							schema._doc[key] = false;
+						}
 					}
-				}
 				
-				Profile.findByIdAndUpdate(schema._id, schema, function(err, profile) {
-					if (err) {
-						console.log('Error', err);
-					} else {
-						res.json(profile);
-					}
-				})
+					Profile.findByIdAndUpdate(schema._doc._id, schema._doc, function(err, profile) {
+						if (err) {
+							console.log('Error', err);
+						} else {
+							res.json(profile._doc);
+						}
+					})
+				}
 			});
 		} else {
 			Profile.findByIdAndUpdate(schema._id, req.body, function(err, profile) {
 				if (err)
 					return console.log(err);
 				
-				res.send(profile);
+				res.send(profile._doc);
 			});
 		}
 	});
