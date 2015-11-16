@@ -17,7 +17,6 @@ exports.getSkills = function(req, res){
 exports.createSkill = function(req, res, next){
 	var skillsData = req.body;
 	console.log("GOT: ", skillsData);
-	skillsData.name = skillsData.name.toLowerCase();
 	Skill.create(skillsData, function(err, skill){
 		if(err){
 			if(err.toString().indexOf('E11000') > -1){

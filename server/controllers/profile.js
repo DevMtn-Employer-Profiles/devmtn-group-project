@@ -3,7 +3,41 @@ var Profile = require('mongoose').model('Profile'),
 	Students = require('./studentMatchCtrl');
 
 
+//  --------------------------------------------  ADMIN CONTROLLERS
+
 /*****GET Requests*****/ 
+exports.getProfiles = function(req, res){
+	Profile.find({})
+		   .populate('profiles skills pendingprofiles')
+		   .populate('profiles pendingProfile')
+		   .exec(function(err, collection){
+			   Pending.findById()
+			   
+		       res.send(collection);
+		   });
+};
+
+exports.getProfileById = function(req, res){
+	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
+		res.send(profile);
+	});
+};
+
+exports.updateProfile = function(req, res){
+	var companyUpdates = req.body;
+	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
+		if(err){ return res.send(err); }
+		return res.send(companyUpdates);
+	})
+};
+
+
+exports.getActiveProfiles = function(req, res) {
+	Profile.find({isVisible: true})
+		   .exec(function(err, collection) {
+			   res.send(collection);
+		   });
+};
 
 exports.getMyProfile = function(req, res) {
 	//does the user have a profile?
@@ -50,7 +84,6 @@ exports.getMyProfile = function(req, res) {
 		}
 	});
 }
-
 
 /*****PUT Requests*****/
 exports.saveProfile = function(req, res) {
@@ -124,6 +157,88 @@ exports.getMatches = function(req, res) {
 			res.status(500).send(err);
 		}
 		//now we know which students we want
-		Students.getCertainStudents(req, res, result.studentMatches);
+		Students.getStudents(req, res, result.studentMatches);
 	});
 }
+
+/*****POST Requests*****/
+exports.createProfile = function(req, res){
+	var companyData = req.body;
+	companyData.companyName = companyData.companyName;
+	companyData.bio = companyData.bio;
+	Profile.create(companyData, function(err, profile){
+		if(err){
+			if(err.toString().indexOf('E11000') > -1){
+				err = new Error('Duplicate Company Name');
+			}
+			// if (res.statusCode <= 400)
+			// 	return res.send({reason:err.toString()});
+		} else {
+			res.send(profile);
+		}
+			// console.log(profile);
+	})
+}
+
+/*****PUT Requests*****/
+exports.acceptProfile = function(req, res) {
+	var updateObj = {
+		_id: req.params.id
+	};
+	Profile.findById(req.params.id, function(err, schema) {
+		console.log(req.params.id)
+		if (schema._doc.isPending) {
+			Pending.findByIdAndRemove(req.params.id, function(err, pendProfile) {
+				if (pendProfile) {
+					updateObj = pendProfile._doc;
+					delete updateObj.select;
+					updateObj.isPending = false;
+					updateObj.pendingProfile = undefined;
+					console.log(updateObj);
+				
+					Profile.findByIdAndUpdate(updateObj._id, updateObj)
+						   .exec(function(err, profile) {
+								if (err) {
+									console.log('Error', err);
+								} else {
+									res.json(profile._doc);
+								}
+							});
+				}
+			});
+		} else {
+			Profile.findByIdAndUpdate(req.body._id, req.body, function(err, profile) {
+				if (err)
+					return console.log(err);
+				
+				res.send(profile._doc);
+			});
+		}
+	});
+};
+
+exports.rejectProfile = function(req, res) {
+	Pending.findByIdAndUpdate(req.params.id, {submit: false}, function(err, profile) {
+		if (err)
+			return console.log(err);
+		
+		res.send(profile._doc);
+	})
+}
+
+/*****DELETE Requests*****/
+exports.removeProfile = function(req, res){
+	Profile.findByIdAndRemove({'_id':req.params.id}, function(err, profile){
+		if(err){
+			return res.status(400).send({reason:err.toString()});
+		} else {
+			if (profile._docs.isPending) {
+				Pending.findByIdAndRemove(req.params.id, function(err) {
+					if (err) {
+						res.send(err);
+					} else res.end();
+				});
+			}
+		}
+	});
+};

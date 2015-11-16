@@ -11,10 +11,10 @@ var schema = new mongoose.Schema({
 	relocation: {type: Boolean},
 	contactEmails: {type: [{type:String}], default: []},
 	isVisible: {type: Boolean, default: false},
-	isPending: {type: Boolean, default: true},
+	pendingProfile: {type: mongoose.Schema.Types.ObjectId, ref: 'PendingProfile'},
+	isPending: {type: Boolean, default: false},
 	studentMatches: {type: [], default: []},
-	website: {type: String, default: ''},
-	pendingProfile: {type: mongoose.Schema.Types.ObjectId, ref: 'PendingProfile', default: null}
+	website: {type: String, default: ''}
 });
 
 module.exports = mongoose.model('Profile', schema);
