@@ -21,14 +21,18 @@ module.exports = function (app){
 	app.get('/auth/logout', devmtnCtrl.logout);
 	app.get('/auth/currentUser', devmtnCtrl.currentUser);
 	//Profiles
-	app.get('/api/profile/all', profile.getProfiles);
-	app.get('/api/profile/pending', profile.getPendingProfiles);
-	app.get('/api/profile/:id', profile.getProfileById);
-	app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
-	app.post('/api/profile', profile.createProfile);
-	app.post('/api/profile/accept', profile.acceptProfile);
-	app.put('/api/profile/:id', profile.updateProfile);
-	app.delete('/api/profile/:id', profile.removeProfile);
+	app.get('/api/my-profile', profile.getMyProfile);
+	app.put('/api/my-profile', profile.saveProfile);
+	app.put('/api/my-profile/request-approval', profile.requestApproval);
+	// app.get('/api/profile/all', profile.getProfiles);
+	// app.get('/api/profile/pending', profile.getPendingProfiles);
+	// app.get('/api/profile/:id', profile.getProfileById);
+	// app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
+	// app.post('/api/profile', profile.createProfile);
+	// app.post('/api/profile/accept', profile.acceptProfile);
+	// app.put('/api/profile/:id', profile.updateProfile);
+	// app.delete('/api/profile/:id', profile.removeProfile);
+	
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);

@@ -157,51 +157,22 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
-			url: '/api/myProfile/'
+			url: '/api/my-profile/'
 		}).then(simpleDataReturn, handleError);
 	}
 	
 	this.updateProfile = function(newProfile) {
-		// console.log("UPDATING PROFILE: ", newProfile);
 		return $http({
 			method: 'PUT',
-			url: '/api/profile/'+newProfile._id,
+			url: '/api/my-profile',
 			data: newProfile	
-
 		}).then(simpleDataReturn, handleError)
 	}
 	
-	//Notification web requests
-	this.getNotifications = function() {
-		var deferred = $q.defer();
-		
-		$http({
-			method: 'GET',
-			url: '/api/notifications'
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
-		
-		return deferred.promise;
-	}
-	this.deleteNotification = function(noteId) {
-		return $http({
-			method: 'DELETE',
-			url: '/api/notifications/'+noteId
-		}).then(simpleDataReturn, handleError);
-	}
-	this.addNotification = function(msg) {
-		return $http({
-			method: 'POST',
-			url: '/api/notifications',
-			data: {message: msg}
-		}).then(simpleDataReturn, handleError);
-	}
-	this.updateNotification = function(noteId, changeObj) {
+	this.requestProfileApproval = function() {
 		return $http({
 			method: 'PUT',
-			url: '/api/notifications/' + noteId,
-			data: changeObj
+			url: '/api/my-profile/request-approval'
 		}).then(simpleDataReturn, handleError);
-	};
+	}
 });
