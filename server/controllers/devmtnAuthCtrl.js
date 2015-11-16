@@ -87,6 +87,7 @@ module.exports = {
 		}
 	},
 	currentUser: function(req, res) {
+		console.log(req.user);
 		//Return the currently logged in user
 		if(req.isAuthenticated()) {
 			res.json(req.user);
@@ -95,6 +96,7 @@ module.exports = {
 		}
 	},
 	requireAdminRole: function(req, res, next) {
+		console.log(req.user);
 		//only call next if the user has admin status
 		if(req.isAuthenticated() && req.user.isAdmin) {
 			next();
@@ -103,9 +105,10 @@ module.exports = {
 		}
 	},
 	requireEmployerRole: function(req, res, next) {
+		console.log(req.isAuthenticated());
 		if(req.isAuthenticated() && !req.user.isAdmin) {
 			next();
-		} else {
+		}  else  {
 			res.status(401).json('Resource available for employers only');
 		}
 	}

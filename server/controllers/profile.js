@@ -27,9 +27,9 @@ exports.getPendingProfiles = function(req, res){
 exports.getMyProfile = function(req, res) {
 	if (req.user) {
 		Profile.findOne({userId: req.user._id}).populate('skills').exec(function(err, profile) {
-			if(err)res.status(500).send();
+			// if(err)res.status(500).send();
 			
-			if (profile) {
+			if (!profile) {
 				exports.createProfile(req, res)
 			}
 			
@@ -37,7 +37,7 @@ exports.getMyProfile = function(req, res) {
 		});
 	}
 	
-	res.sendStatus(401);
+	// res.status(401).send();
 }
 
 exports.getMatches = function(req, res) {
@@ -62,8 +62,9 @@ exports.createProfile = function(req, res){
 			if(err.toString().indexOf('E11000') > -1){
 				err = new Error('Duplicate Company Name');
 			}
-			return res.status(400).send({reason:err.toString()});
-		} else{
+			// if (res.statusCode <= 400)
+			// 	return res.send({reason:err.toString()});
+		} else {
 			res.send(profile);
 		}
 			// console.log(profile);

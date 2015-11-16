@@ -19,7 +19,6 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		});
 		dataService.getSkills().then(function(result) {
 			$scope.skillsOptions = result;
-			console.log(result);
 		})
 	}
 	
