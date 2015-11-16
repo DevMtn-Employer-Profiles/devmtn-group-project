@@ -48,7 +48,7 @@ exports.getMatches = function(req, res) {
 			res.status(500).send(err);
 		}
 		//now we know which students we want
-		Students.getStudents(req, res, result.studentMatches);
+		Students.getCertainStudents(req, res, result.studentMatches);
 	});
 }
 
