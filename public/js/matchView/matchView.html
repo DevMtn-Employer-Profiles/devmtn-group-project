@@ -1,15 +1,42 @@
 <div class="student-box">
 	<div class="student-left">
-		<div class="student-repeat" ng-repeat="student in students">
+		<div class="student-repeat" ng-repeat="student in students track by $index" ng-click="studentCall($index)">
 			<img class="student-pic-box" src="{{student.picture}}">
 			<div class="student-name">
-				<p>{{student.name.first}}&nbsp{{student.name.last}}</p>
+				<p class="list-name">{{student.name.first}}&nbsp{{student.name.last}}</p>
 			</div>
 		</div>
 	</div>
 	<div class="student-right">
-		<div class="student-bio">
-			{{student.bio}}
+		<div class="student-right-left">
+			<div class="student-right-pic">
+				<img class="larger-pic" src="{{student.picture}}">
+			</div>
+			<div class="student-right-name">
+				<h3>{{student.name.first}} {{student.name.last}}</h3>
+			</div>
+			<div class="student-links">
+				{{student.email}}
+				<br>
+				<a ng-href="http://www.github.com/{{student.github}}">github</a>
+				<br>
+				<a ng-href="http://www.linkedin.com/{{student.linkdIn}}">linkedIn</a>
+			</div>
+		</div>
+		<div class="student-right-right">
+			<h3 class="hi-header">{{student.name.first}} is a match!</h3>
+			<p>Here is some basic information about {{student.name.first}}:</p>
+			<br>
+			<div class="student-info">
+				<strong>Skills: </strong>{{student.skills}} 
+				<br>
+				<br>
+				<strong>Willing to relocate? </strong>{{student.relocation.text}}
+			</div>
+			<br>
+			<div>
+				Want more information about {{student.name.first}}? Check out their DevMountain profile <a href="http://profiles.devmounta.in/#/student/{{student._id}}">here</a>.
+			</div>
 		</div>
 	</div>
 </div>
