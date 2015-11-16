@@ -1,36 +1,28 @@
-<div id="list-view" class="route-container" layout="column">
-	<p class="page-explanation">
+<div class="profile-list">
+	<h1 class="page-explanation profile-list-header" ng-hide="">Check out the current companies whom are connecting with DevMountain Graduates!</h1>
+	<p class="page-explanation profile-list-header" ng-show="">
 		Below are listed employers who are currently looking for Web, iOS, and User Experience positions to fill. The cards say only
 		a portion of the info on their profiles; however, if your DevMountain student portfolio is live, you will be able to click
 		the name and see more information.
 	</p>
 
-	<div class="list-search-box">
+	<div class="list-search-box profile-list-search">
 		<input type="text" placeholder="Click here and start typing for a live search of companies" class="search-bar" ng-model="query">
 	</div>
-
-	<div layout="row" class="profile-card" dir-paginate="profile in profiles | filter: search | orderBy: 'companyName' | itemsPerPage: 10 track by $index"  ng-click="openProfile($event, profile._id)">
-		<div class="list-logo-box">
-			<img ng-src="{{profile.logo}}" />
-		</div>
-
-		<div class="list-right-side" flex layout="column">
-			<div class="list-top-right">
-				<div class="list-company-name"><strong>{{profile.companyName}}</strong></div>
-				<div class="list-company-bio">
-					<p>{{profile.bio | limitTo: 300}}<span ng-hide="profile.bio.length < 300">...</span></p>
-				</div>
+	<div class="profile-public-list" layout="row" layout-wrap="wrap">
+		<div class="profile-badge" dir-paginate="profile in profiles | filter: search | orderBy: 'companyName' | itemsPerPage: 40 track by $index"
+		ng-click="openProfile($event, profile._id)">
+			<div class="badge-logo-box">
+				<img ng-src="{{profile.logo}}" />
 			</div>
+			<!--<div flex=""></div>-->
+			<div class="list-company-name"><strong>{{profile.companyName}}</strong></div>
 
-			<div flex=""></div>
-
-			</div>
 		</div>
 	</div>
-
 	<div class="pagination no-select">
 		<span flex></span>
-		<dir-pagination-controls max-size="10" direction-links="true" boundary-links="true"></dir-pagination-controls>
+		<dir-pagination-controls max-size="40" direction-links="true" boundary-links="true"></dir-pagination-controls>
 		<span flex></span>
 	</div>
 </div>
