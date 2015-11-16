@@ -11,7 +11,7 @@ var schema = new mongoose.Schema({
 	relocation: {type: Boolean},
 	contactEmails: {type: [{type:String}], default: []},
 	isVisible: {type: Boolean, default: false},
-	pendingProfile: {type: mongoose.Schema.Types.ObjectId, ref: 'pendingprofiles'},
+	pendingProfile: {type: mongoose.Schema.Types.ObjectId, ref: 'pendingprofile'},
 	isPending: {type: Boolean, default: false},
 	studentMatches: {type: [], default: []},
 	website: {type: String, default: ''}

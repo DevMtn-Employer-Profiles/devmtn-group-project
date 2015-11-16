@@ -13,6 +13,7 @@ exports.getProfileById = function(req, res){
 exports.getProfiles = function(req, res){
 	Profile.find({})
 		   .populate('profiles skills')
+		   .populate('pendingprofiles')
 		   .exec(function(err, collection){
 		       res.send(collection);
 		   });
