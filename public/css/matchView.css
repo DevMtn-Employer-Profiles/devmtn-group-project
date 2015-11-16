@@ -1,22 +1,33 @@
-.upperDiv {
- 
-}
-
-.skillDiv {
-	border: lightgray solid 1px;
-	border-radius: 5px;
-}
-
-.lowerDiv {
-	
-}
-
-.student-div {
-	border: lightgray solid 1px;
-	border-radius: 5px;	
-}
-
-.student-picture {
-	width: 200px;
+.student-pic-box {
 	height: auto;
+	width: 150px;
+	display: inline-block;
+}
+
+.student-name {
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 100%; 
+}
+
+.student-repeat {
+	width: 150px;	
+	margin: auto;
+}
+
+.student-left {
+	border: black 1px solid;
+	width: 250px;
+	height: 70vh; 
+	overflow-y: scroll;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+.student-right {
+	box-sizing: border-box;
+	border: 1px solid black;
+	float: right; 
+	height: 70vh;
+	width: calc(100% - 400px); 
 }
