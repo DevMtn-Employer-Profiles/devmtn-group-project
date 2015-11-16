@@ -228,15 +228,17 @@ exports.rejectProfile = function(req, res) {
 
 /*****DELETE Requests*****/
 exports.removeProfile = function(req, res){
-	Profile.findByIdAndRemove({'_id':req.params.id}, function(err){
+	Profile.findByIdAndRemove({'_id':req.params.id}, function(err, profile){
 		if(err){
 			return res.status(400).send({reason:err.toString()});
-		} else {res.end()};
-	});
-	
-	Pending.findByIdAndRemove(req.params.id, function(err) {
-		if (err) {
-			res.send(err);
-		} else res.end();
+		} else {
+			if (profile._docs.isPending) {
+				Pending.findByIdAndRemove(req.params.id, function(err) {
+					if (err) {
+						res.send(err);
+					} else res.end();
+				});
+			}
+		}
 	});
 };
