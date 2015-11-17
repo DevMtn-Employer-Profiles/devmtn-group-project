@@ -51,7 +51,6 @@ module.exports = function (app){
 
   	//Catch-all route errors
 	app.get('/', function(req, res){
-		console.log('Wrong spot');
 		res.render('index');
 	});
 };
