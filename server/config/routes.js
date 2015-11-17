@@ -7,9 +7,11 @@ var mongoose = require('mongoose'),
     devmtnCtrl = require('../controllers/devmtnAuthCtrl'),
 	studentMatchCtrl = require('../controllers/studentMatchCtrl');
 
-
 module.exports = function (app){
 	/**********Endpoints**********/
+	//Profiles - Public
+	app.get('/api/profiles/active', profile.getActiveProfiles);	
+	
 	//Profiles - Admin
 	app.get('/api/profiles/all', profile.getProfiles);
 	app.get('/api/profiles/:id', profile.getProfileById);
@@ -24,10 +26,7 @@ module.exports = function (app){
 	app.get('/api/my-profile', /*devmtnCtrl.requireEmployerRole,*/ profile.getMyProfile);
 	app.put('/api/my-profile', profile.saveProfile);
 	app.put('/api/my-profile/request-approval', profile.requestApproval);
-	
-	//Profiles - Public
-	app.get('/api/profiles/active', profile.getActiveProfiles);
-	
+
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
@@ -36,8 +35,8 @@ module.exports = function (app){
 	//Skills
 	app.get('/api/skills', skill.getSkills);
 	app.post('/api/skills', skill.createSkill);
-	app.delete('/api/skills/:id', skill.removeSkill);
 	app.put('/api/skills/:id', skill.updateSkill);
+	app.delete('/api/skills/:id', skill.removeSkill);
 	
 	//Authentication
 	app.get('/auth/devmtn', passport.authenticate('devmtn'));

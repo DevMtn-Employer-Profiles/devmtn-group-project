@@ -108,3 +108,54 @@
 		.list-search-box > input {
 			width: 100%;
 		}
+		
+/*****-!-*****/
+		
+.profile-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+	h1.profile-list-header{
+		text-align: center;
+	}
+	
+	.profile-list-header{
+		margin: 40px;
+	}
+	
+	.profile-list-search{
+		margin-bottom: 35px;
+	}
+	
+	.profile-badge{
+		flex-direction: column;
+		background-color: #eee;
+		width: 180px;
+		margin: 10px;
+		cursor: pointer;
+		box-sizing: border-box;
+		opacity: .85;
+		border: 1px solid lightgray;
+		transition: all linear .1s;
+		box-shadow: none;
+	}
+	.profile-badge:hover{
+		opacity: 1;
+		box-shadow: 0 0 8px #8CE0EB;
+	}
+		
+		.badge-logo-box {
+			width: calc(100% - 30px);
+			height: calc(180px - 30px);
+			flex-shrink:1;
+			padding: 15px;
+			background-color: white;
+		}
+		
+			.badge-logo-box > img {
+				width: 100%;
+			}
+	.profile-badge>.list-company-name{
+		height: calc(100%-180px);
+	}

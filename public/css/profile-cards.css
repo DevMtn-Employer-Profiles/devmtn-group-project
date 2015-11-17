@@ -14,6 +14,10 @@
 	transition: all linear .1s;
 	box-shadow: none;
 }
+.profile-public-list{
+	max-width: 800px;
+	align-content: center;
+}
 
 .profile-card:hover, .two-columns:hover, .employer-container:hover {
 	opacity: 1;
@@ -126,3 +130,4 @@
 				.accept-changes-button:hover {
 					background-color: #4DCC27 !important;
 				}
+
