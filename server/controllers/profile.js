@@ -99,6 +99,7 @@ exports.saveProfile = function(req, res) {
 				//Save to Pending Collection
 				Pending.create(req.body, function(err2, result2) {
 					if(err2) {
+						console.log(err2);
 						res.status(500).send(err2);
 					} else {
 						console.log('saved into pending collection');
