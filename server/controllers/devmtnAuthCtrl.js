@@ -68,14 +68,11 @@ module.exports = {
 	currentUser: function(req, res) {
 		console.log(req.user);
 		//Return the currently logged in user
-		
-		res.status(200).json({name:'Doug', showProfile: false, roles:['student']});
-		//This needs to be switched back after test --Doug
-		/*if(req.isAuthenticated()) {
+		if(req.isAuthenticated()) {
 			res.json(req.user);
 		} else {
 			res.status(401).send();
-		}*/
+		}
 	},
 	requireAdminRole: function(req, res, next) {
 		console.log(req.user);

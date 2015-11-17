@@ -28,7 +28,7 @@ exports.updateProfile = function(req, res){
 	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
 		if(err){ return res.send(err); }
 		return res.send(companyUpdates);
-	})
+	});
 };
 
 
