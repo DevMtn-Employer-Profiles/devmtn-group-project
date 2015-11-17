@@ -103,14 +103,14 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isVisible = true;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.activateProfile($scope.companyList[index]);
 	};
 	
 	$scope.deactivateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isVisible = false;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.deactivateProfile($scope.companyList[index]);
 	};
 	
 	
