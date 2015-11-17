@@ -19,15 +19,15 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 	
 	var setStatus = function(profile) {
 		var status = profile.hasOwnProperty('submit');
-		if(status) {
+		if(status && profile.submit != null) {
 			$scope.showSubmit = false;
 			if(profile.submit) {
 				//Status for pending administrator approval
-				$scope.showSubmit = true;
+				$scope.showSubmit = false;
 				$scope.statusMessage = 'Pending Administrator Approval';
 			} else {
 				//status for saved but not pending
-				$scope.showSubmit = false;
+				$scope.showSubmit = true;
 				$scope.statusMessage = 'Your profile is saved. Press submit to request administrator approval.';
 			}
 		} else {
