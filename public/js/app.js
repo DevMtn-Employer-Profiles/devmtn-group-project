@@ -91,5 +91,5 @@ app.config(function($urlRouterProvider, $stateProvider) {
 });
 
 app.config(function(paginationTemplateProvider) {
-	paginationTemplateProvider.setPath('bower_components/angularUtils-pagination/dirPagination.tpl.html');
+	paginationTemplateProvider.setPath('js/pagination/dirPagination.tpl.html');
 });

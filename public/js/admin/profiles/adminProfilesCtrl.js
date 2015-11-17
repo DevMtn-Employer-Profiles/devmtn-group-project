@@ -66,7 +66,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 			.then(function() {
 				dataService.deleteCompany($scope.companyList[index]._id)
 					.then(function(result) {
-						$scope.companyList.splice(index, 1);
+						getAllCompanies();
 					});
 			});
 		
@@ -103,14 +103,14 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isVisible = true;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.activateProfile($scope.companyList[index]);
 	};
 	
 	$scope.deactivateCompany = function(company) {
 		var index = $scope.companyList.indexOf(company);
 		$scope.companyList[index].isVisible = false;
 		
-		dataService.updateProfile($scope.companyList[index]);
+		dataService.deactivateProfile($scope.companyList[index]);
 	};
 	
 	

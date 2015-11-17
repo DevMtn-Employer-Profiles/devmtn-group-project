@@ -173,6 +173,15 @@ p {
 		background-color: #4DCC27 !important;
 	}
 
+.other-button {
+	text-align: center;
+}
+
+	.other-button:hover {
+		background-color: rgb(80,95,190) !important;
+		color: white !important;
+	}
+
 /* ---- CLICK-TO-EDIT ---- */
 .click-to-edit {
 	margin: 0;

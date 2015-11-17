@@ -3,25 +3,35 @@ md-dialog#profile-modal {
 	
 }
 
-	md-dialog.desktop {
+	md-dialog.student, md-dialog.desktop {
 		width: 70%;
 		height: 70%;
 		max-width: 800px;
 		max-height: 600px;
 	}
 
-	md-dialog.mobile {
+	md-dialog.mobile, md-dialog.admin {
 		width: 90%;
 		height: 90%;
 	}
+		
+		#quick-info {
+			max-width: 200px;
+		}
 
 		md-dialog > form {
 			width: 100%;
 			height: 100%;
 		}
 		
-		md-dialog#profile-modal md-toolbar, md-dialog#profile-modal .md-toolbar-tools {
+		md-toolbar {
+			min-height: auto;
+		}
+		
+		md-toolbar .md-toolbar-tools {
 			background-color: #2F3F42;
+			line-height: .5em;
+			height: auto;
 		}
 	
 		md-dialog#profile-modal .employer-logo-container-md {

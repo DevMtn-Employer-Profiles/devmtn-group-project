@@ -8,7 +8,7 @@ var Profile = require('mongoose').model('Profile'),
 /*****GET Requests*****/ 
 exports.getProfiles = function(req, res){
 	Profile.find({})
-		   .populate('profiles skills pendingprofiles')
+		   .populate('profiles skills')
 		   .populate('profiles pendingProfile')
 		   .exec(function(err, collection){
 			   Pending.findById()
@@ -18,16 +18,32 @@ exports.getProfiles = function(req, res){
 };
 
 exports.getProfileById = function(req, res){
-	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
+	Profile.findById({'_id':req.params.id})
+		   .populate('skills')
+		   .populate('pendingProfile')
+		   .exec(function(err, profile){
 		res.send(profile);
 	});
 };
 
 exports.updateProfile = function(req, res){
 	var companyUpdates = req.body;
-	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
-		if(err){ return res.send(err); }
-		return res.send(companyUpdates);
+	
+	Profile.findById(req.params.id, function(err, profile) {
+		if (profile._doc.isPending) {
+			Pending.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema) {
+				if (err) {
+					return res.send(err);
+				} else {
+					exports.accpetProfile(req, res)
+				}
+			});
+		} else {
+			Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
+				if(err){ return res.send(err); }
+				return res.send(companyUpdates);
+			});
+		}
 	});
 };
 
@@ -187,25 +203,25 @@ exports.acceptProfile = function(req, res) {
 	var updateObj = {
 		_id: req.params.id
 	};
+	
 	Profile.findById(req.params.id, function(err, schema) {
-		console.log(req.params.id)
 		if (schema._doc.isPending) {
 			Pending.findByIdAndRemove(req.params.id, function(err, pendProfile) {
-				if (pendProfile) {
-					updateObj = pendProfile._doc;
-					delete updateObj.select;
-					updateObj.isPending = false;
-					updateObj.pendingProfile = undefined;
-					console.log(updateObj);
-				
-					Profile.findByIdAndUpdate(updateObj._id, updateObj)
-						   .exec(function(err, profile) {
-								if (err) {
-									console.log('Error', err);
-								} else {
-									res.json(profile._doc);
-								}
-							});
+					if (pendProfile) {
+						updateObj = pendProfile._doc;
+						delete updateObj.submit;
+						updateObj.isPending = false;
+						updateObj.isVisible = true;
+						updateObj.pendingProfile = null;
+						console.log(updateObj);
+						Profile.findByIdAndUpdate(updateObj._id, updateObj)
+							.exec(function(err, profile) {
+									if (err) {
+										console.log('Error', err);
+									} else {
+										res.json(profile._doc);
+									}
+								});
 				}
 			});
 		} else {
@@ -234,7 +250,7 @@ exports.removeProfile = function(req, res){
 		if(err){
 			return res.status(400).send({reason:err.toString()});
 		} else {
-			if (profile._docs.isPending) {
+			if (profile._doc.isPending) {
 				Pending.findByIdAndRemove(req.params.id, function(err) {
 					if (err) {
 						res.send(err);
