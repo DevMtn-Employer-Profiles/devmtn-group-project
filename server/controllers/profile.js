@@ -28,7 +28,7 @@ exports.updateProfile = function(req, res){
 	Profile.findByIdAndUpdate(req.params.id, companyUpdates, function(err, schema){
 		if(err){ return res.send(err); }
 		return res.send(companyUpdates);
-	})
+	});
 };
 
 
@@ -150,6 +150,7 @@ exports.requestApproval = function(req, res) {
 	});
 }
 
+
 exports.getMatches = function(req, res) {
 	var empId = req.params.id;
 	//get the profile
@@ -160,7 +161,7 @@ exports.getMatches = function(req, res) {
 		//now we know which students we want
 		Students.getStudents(req, res, result.studentMatches);
 	});
-}
+};
 
 /*****POST Requests*****/
 exports.createProfile = function(req, res){

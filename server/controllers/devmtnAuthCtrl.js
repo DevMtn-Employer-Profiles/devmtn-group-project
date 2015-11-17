@@ -7,7 +7,7 @@ var passport = require('passport'),
 passport.use('devmtn', new DevmtnStrategy(DevmtnAuthConfig, function (jwtoken, user, done) {
 	//don't allow anyone with student role to register as an employer. don't allow admins to create a company profile
 	if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'student')) {
-		console.log('Students should not login as an employer.')
+		console.log('Students should not login as an employer.');
 		return done(null, false, { message: 'Students not allowed on Employers site' }); 
 	} else if (user.hasOwnProperty('roles') && Devmtn.checkRoles(user, 'admin')) {
 		console.log('admin user, free access, does not have a profile.');
@@ -58,11 +58,11 @@ module.exports = {
 		//to the employer view. Students will not get authorized so they should not end up here
 		if(req.user.hasOwnProperty('roles') && Devmtn.checkRoles(req.user, 'admin')) {
 			console.log("Redirecting to admin");
-			res.redirect('/#/admin')
+			res.redirect('/#/admin');
 		} else {
 			console.log("Redirecting to employer");
 			// res.send('to employer');
-			res.redirect('/#/employer/home')
+			res.redirect('/#/employer/home');
 		}
 	},
 	currentUser: function(req, res) {
@@ -91,4 +91,4 @@ module.exports = {
 			res.status(401).json('Resource available for employers only');
 		}
 	}
-}
+};
