@@ -150,25 +150,27 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 			$scope.readyMessages.push('You still need to select some employers');
 		}
 		//Change enabled for big button
-		if($scope.ready) {
-			document.getElementById('bigSubmitButton').disabled = false;
-		} else {
-			document.getElementById('bigSubmitButton').disabled = true;
-		}
+		// if($scope.ready) {
+		// 	document.getElementById('bigSubmitButton').disabled = false;
+		// } else {
+		// 	document.getElementById('bigSubmitButton').disabled = true;
+		// }
 	}
 	
 	$scope.submitMatches = function() {
-		$scope.validateReady();
-		console.log("MATCH");
-		var data = {
-			students: $scope.SelectedStudents,
-			employers: $scope.SelectedEmployers
-		};
-		//Send to server to run algorithm
-		dataService.runAlgorithm(data).then(function(result) {
-			
-			$state.go('Admin.All');
-		});
+		if ($scope.ready) {
+			$scope.validateReady();
+			console.log("MATCH");
+			var data = {
+				students: $scope.SelectedStudents,
+				employers: $scope.SelectedEmployers
+			};
+			//Send to server to run algorithm
+			dataService.runAlgorithm(data).then(function(result) {
+				
+				$state.go('Admin.All');
+			});
+		}
 	}
 	
 	$scope.validateReady();
