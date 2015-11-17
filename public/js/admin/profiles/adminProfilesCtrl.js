@@ -66,7 +66,7 @@ app.controller('adminProfilesCtrl', function($scope, $filter, $timeout, $mdDialo
 			.then(function() {
 				dataService.deleteCompany($scope.companyList[index]._id)
 					.then(function(result) {
-						$scope.companyList.splice(index, 1);
+						getAllCompanies();
 					});
 			});
 		

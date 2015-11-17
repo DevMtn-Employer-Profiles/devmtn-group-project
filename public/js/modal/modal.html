@@ -1,4 +1,15 @@
-<md-dialog id="profile-modal" aria-label="Company Profile" ng-cloak ng-class="{desktop: !isMobile.any(), mobile: !!isMobile.any()}">
+<md-dialog 
+	id="profile-modal" 
+	aria-label="Company Profile" 
+	ng-cloak 
+	ng-class="{
+		admin: (path.indexOf('admin') > -1 && !isMobile.any()),
+		compare: (compareChanges && !isMobile.any()), 
+		mobile: !!isMobile.any(), 
+		student: (parsePath() === 'students' && !isMobile.any()), 
+		desktop: !isMobile.any() && !compareChanges
+	}"
+>
 	<form layout="column">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
@@ -6,10 +17,7 @@
 				<span flex></span>
 				<h2>{{ currentProfile.companyName }}</h2>
 				<span flex></span>
-				<div class="admin-tools" ng-show="getAdmin()" layout="row">
-					<md-button ng-disabled="company.isVisible" class="md-warn md-raised" ng-click="deleteCompany($event, company)">Delete</md-button>
-				</div>
-				<md-button class="md-icon-button big" ng-hide="getAdmin()" aria-label="Close Modal" ng-click="cancel()">
+				<md-button class="md-icon-button big" ng-focus="true" aria-label="Close Modal" ng-click="cancel()">
 					<span class="fa fa-times-circle"></span>
 				</md-button>
 			</div>
@@ -24,8 +32,10 @@
 					<p><b ng-show="currentProfile.size">Company Size:</b> {{ currentProfile.size }}</p>
 					<div ng-show="currentProfile.skills[0]">
 						<b>Requested Skills:</b> 
-						<ul ng-repeat="skill in currentProfile.skills track by $index">
-							<li>{{ skill.name }}</li>
+						<ul class="skills-container">
+							<li class="skill-tags" ng-repeat="skill in currentProfile.skills track by $index">
+								{{ skill.name }}
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -48,10 +58,28 @@
 			</div>
 		</md-dialog-content>
 		
-		<div class="md-actions" ng-show="getAdmin()" layout="row">
+		<div class="md-actions controls" ng-show="getAdmin()" layout="row">
+			<md-button class="other-button button" ng-show="currentProfile.pendingProfile" ng-click="showChanges()">
+				Show Changes
+			</md-button>
+			
+			<md-button class="other-button button" ng-hide="isEditing" ng-click="beginEdit()">
+				Edit
+			</md-button>
+			
+			<md-button class="delete-button button" ng-show="isEditing" ng-click="deleteCompany($event, company)">
+				Delete
+			</md-button>
+			
 			<span flex></span>
-			<md-button ng-click="saveProfile()" aria-label="Save">Save</md-button>
-			<md-button ng-click="cancel()" aria-label="Cancel">Cancel</md-button>
+			
+			<md-button class="button submit-button" ng-show="isEditing" ng-click="saveProfile()" aria-label="Save">
+				Save
+			</md-button>
+			
+			<md-button class="button" ng-click="cancel()" aria-label="Cancel">
+				Cancel
+			</md-button>
 		</div>
 	</form>
 </md-dialog>

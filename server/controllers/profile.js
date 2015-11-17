@@ -18,7 +18,10 @@ exports.getProfiles = function(req, res){
 };
 
 exports.getProfileById = function(req, res){
-	Profile.findById({'_id':req.params.id}).populate('skills').exec(function(err, profile){
+	Profile.findById({'_id':req.params.id})
+		   .populate('skills')
+		   .populate('pendingProfile')
+		   .exec(function(err, profile){
 		res.send(profile);
 	});
 };

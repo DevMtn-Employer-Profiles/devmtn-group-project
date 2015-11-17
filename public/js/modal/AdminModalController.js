@@ -5,17 +5,36 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 		dataService.getCompanyById(ModalService.currentProfileId)
 			.then(function(result) {
 				$scope.currentProfile = result;
+				$scope.isEditing = false;
+				console.log('profile: ', result);
 			});
 	})();
+	
+	$scope.path = $location.path();
+	$scope.compareChanges = false;
 	
 	var isAdmin = ($location.path().indexOf('admin') !== -1);
 	
 	$scope.hide = function() {
-		$mdDialog.hide();
+		$scope.cancel();
 	};
 	
 	$scope.cancel = function() {
-		$mdDialog.cancel();
+		if ($scope.isEditing) {
+			$scope.isEditing = false;
+		} else if ($scope.compareChanges) {
+			$scope.compareChanges = false;
+		} else {
+			$mdDialog.cancel();
+		}
+	};
+	
+	$scope.beginEdit = function() {
+		$scope.isEditing = true;
+	};
+	
+	$scope.showChanges = function() {
+		$scope.compareChanges = true;
 	};
 	
 	$scope.saveProfile = function(answer) {
@@ -59,4 +78,32 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	};
 	
 	$scope.isMobile = MobileService.isMobile;
+	
+	function parsePath() {
+		var reversePath = reverseString($location.path()),
+			removeFromFirstSlash = deleteFrom(reversePath, reversePath.indexOf('/')),
+			restoredPath = reverseString(removeFromFirstSlash);
+		
+		return restoredPath;
+	}
+	
+	function deleteFrom(str, index) {
+		var newString = '';
+		
+		for (var i = 0; i < index; i++) {
+			newString += str[i];
+		}
+		
+		return newString;
+	}
+	
+	function reverseString(str) {
+		var reverseStr = '';
+		
+		for (var i = str.length - 1; i >= 0; i--) {
+			reverseStr += str[i];
+		}
+		
+		return reverseStr;
+	}
 });
