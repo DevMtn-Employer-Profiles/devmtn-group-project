@@ -1,0 +1,28 @@
+<ul class="pagination" ng-if="1 < pages.length || !autoHide" layout="row">
+    <li ng-if="boundaryLinks" flex>
+        <md-button class="pagination-button" ng-disabled="pagination.current == 1" ng-click="setCurrent(1)" aria-label="First Page">
+			<span class="fa fa-backward"></span>
+		</md-button>
+    </li>
+    <li ng-if="directionLinks" flex>
+        <md-button class="pagination-button big" ng-disabled="pagination.current == 1" ng-click="setCurrent(pagination.current - 1)" aria-label="Last Page">
+			<span class="fa fa-caret-left"></span>
+		</md-button>
+    </li>
+    <li ng-repeat="pageNumber in pages track by tracker(pageNumber, $index)" ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }" flex>
+        <md-button class="pagination-button" ng-class="{'current-page': pagination.current == pageNumber}" ng-click="setCurrent(pageNumber)">
+			{{ pageNumber }}
+		</md-button>
+    </li>
+
+    <li ng-if="directionLinks" flex>
+        <md-button class="pagination-button big" ng-disabled="pagination.current == pagination.last" ng-click="setCurrent(pagination.current + 1)" aria-label="Next Page">
+			<span class="fa fa-caret-right"></span>
+		</md-button>
+    </li>
+    <li ng-if="boundaryLinks" flex>
+        <md-button class="pagination-button" ng-disabled="pagination.current == pagination.last" ng-click="setCurrent(pagination.last)" aria-label="Last Page">
+			<span class="fa fa-forward"></span>
+		</md-button>
+    </li>
+</ul>
