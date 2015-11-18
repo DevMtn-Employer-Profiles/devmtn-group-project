@@ -13,11 +13,21 @@ angular.module('MainApp').service('authService', function($http, $q, $state) {
 		}
 	}
 	
-	this.getCurrentUser = function() {
+	this.getCurrentUser = function(forceRedirect) {
 		return $http({
 			method: 'GET',
 			url: '/auth/currentUser'
-		}).then(simpleLoginReturn, loginErrorHandler);
+		}).then(simpleLoginReturn, function(error) {
+			if(error.status === 401) {
+				//unauthorized
+				console.error("Unauthorized");
+				if(forceRedirect) {
+					$state.go('Landing');
+				}
+			} else {
+				console.error(error);
+			}
+		});
 	}
 	
 	this.login = function() {
@@ -32,8 +42,6 @@ angular.module('MainApp').service('authService', function($http, $q, $state) {
 		return $http({
 			method: 'GET',
 			url: '/auth/logout'
-		}).then(function(success) {
-			$state.go('Landing');
-		}, loginErrorHandler)
+		});
 	}
 });

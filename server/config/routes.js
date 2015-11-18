@@ -23,9 +23,9 @@ module.exports = function (app){
 	app.delete('/api/profiles/:id', profile.removeProfile);
 	
 	//Profiles - Employer
-	app.get('/api/my-profile', /*devmtnCtrl.requireEmployerRole,*/ profile.getMyProfile);
-	app.put('/api/my-profile', profile.saveProfile);
-	app.put('/api/my-profile/request-approval', profile.requestApproval);
+	app.get('/api/my-profile', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
+	app.put('/api/my-profile', devmtnCtrl.requireEmployerRole, profile.saveProfile);
+	app.put('/api/my-profile/request-approval', devmtnCtrl.requireEmployerRole, profile.requestApproval);
 
 	//Student Match
 	app.get('/api/matches/:id', profile.getMatches);
