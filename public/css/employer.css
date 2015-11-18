@@ -14,8 +14,16 @@
 	float: right;
 }
 
+<<<<<<< Updated upstream
 .profile-img {
 	text-align: center;
+=======
+#employer-subroutes {
+	width: 100%;
+	height: 100%;
+	background-image: url('../img/devMtnArialwithLogo.png');
+	background-size: cover;
+>>>>>>> Stashed changes
 }
 
 .profile-img > img {
