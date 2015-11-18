@@ -28,8 +28,8 @@ module.exports = function (app){
 	app.put('/api/my-profile/request-approval', devmtnCtrl.requireEmployerRole, profile.requestApproval);
 
 	//Student Match
-	app.get('/api/matches/:id', profile.getMatches);
 	app.get('/api/students', studentMatchCtrl.getStudents);
+	app.get('/api/matches/:id', profile.getMatches);
 	app.post('/api/algorithm', studentMatchCtrl.runAlgorithm);
 	
 	//Skills
