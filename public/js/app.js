@@ -11,11 +11,10 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		.state('List', {
 			url: '/list',
-			templateUrl: 'js/list/list.html',
-			controller: 'listCtrl'
+			templateUrl: 'js/list/studentList.html',
+			controller: 'mvStudentListCtrl'
 		})
-		
-		
+
 		
 		.state('Employer', {
 			url: '/employer',
@@ -39,15 +38,6 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				templateUrl: 'js/employer/profile/employerProfile.html',
 				controller: 'employerProfileCtrl'
 			})
-		
-		
-		
-		.state('Public', {
-			url: '/companies',
-			templateUrl: 'js/studentView/studentList.html',
-			controller: 'mvStudentListCtrl'
-		})
-		
 		
 		
 		.state('Admin', {
