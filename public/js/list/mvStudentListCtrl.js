@@ -1,8 +1,9 @@
 angular.module('MainApp').controller('mvStudentListCtrl', function ($scope, $mdDialog, $window, ModalService, dataService, authService) {
-	
+
 	//Database call functions
-	authService.getCurrentUser().then(function (res) { currentUser = res; currentUserRoles = res.roles; currentUserProfile = res.showProfile; });
+	authService.getCurrentUser().then(function (res) {if(currentUser){currentUser = res; currentUserRoles = res.roles; currentUserProfile = res.showProfile;} });
 	dataService.getActiveCompanies().then(function (res) { $scope.profiles = res; });
+
 
 	var currentUser = "",
 		currentUserRoles = [],
@@ -19,21 +20,23 @@ angular.module('MainApp').controller('mvStudentListCtrl', function ($scope, $mdD
 				clickOutsideToClose: true
 			});
 		};
-	
+
 	$scope.profiles = [];
 
 	$scope.user = function (role) {
-		for (var i = 0; i < currentUserRoles.length; i++) {
-			if (currentUserRoles[i] == role) return true;
+		if (!currentUserRoles) {
+			for (var i = 0; i < currentUserRoles.length; i++) {
+				if (currentUserRoles[i] == role) return true;
+			}
 		}
 	};
 
 	$scope.openProfile = function (event, profile) {
-		if (currentUserRoles.length > 0) {
+		if (!currentUserRoles) {
 			for (var i = 0; i < currentUserRoles.length; i++) {
-				if (currentUserRoles[i] == 'student') {
-					if (currentUserProfile === true) companyProfile(event, profile._id);
-					
+				if (currentUserRoles[i] === 'student') {
+					if (currentUserProfile) companyProfile(event, profile._id);
+
 					else $mdDialog.show({
 						controller: 'ModalController',
 						templateUrl: 'js/studentView/unfinishedProfileModal.html',
@@ -42,7 +45,7 @@ angular.module('MainApp').controller('mvStudentListCtrl', function ($scope, $mdD
 						clickOutsideToClose: true
 					});
 				} else $window.location.href = profile.website;
-			};
+			}
 		} else $window.location.href = profile.website;
 
 	};
@@ -50,5 +53,4 @@ angular.module('MainApp').controller('mvStudentListCtrl', function ($scope, $mdD
 	$scope.search = function (company) {
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	};
-
 });
