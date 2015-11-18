@@ -71,10 +71,18 @@ md-dialog#profile-modal {
 			outline: 2px solid #F88;
 		}
 		
+		#quick-info .original-logo.click-to-edit {
+			padding: 0;
+		}
+		
 		#quick-info .employer-logo-container-md.changed-logo {
 			outline: 2px solid #8F8;
 			
 			margin-top: 5px;
+		}
+		
+		#quick-info .changed-logo.click-to-edit {
+			padding: 0;
 		}
 		
 		#more-info h2, #more-info h4 {

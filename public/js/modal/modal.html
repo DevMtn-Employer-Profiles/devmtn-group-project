@@ -27,14 +27,25 @@
 			<div class="md-dialog-content" layout="row">
 				<div id="quick-info">
 					<!-----------------------LOGO-------------------------------------------------------->
-					<div class="employer-logo-container-md" ng-class="{ 'original-logo': compareChanges && changeObj.logo }">
+					<div 
+						class="employer-logo-container-md" 
+						ng-class="{ 
+							'original-logo': compareChanges && changeObj.logo,
+							'click-to-edit': !currentProfile.isPending && isEditing 
+						}"
+					>
 						<img ng-src="{{ currentProfile.logo }}">
 					</div>
-					<div class="employer-logo-container-md changed-logo" ng-show="compareChanges && changeObj.logo">
+					
+					<div 
+						class="employer-logo-container-md changed-logo" 
+						ng-class="{ 'click-to-edit': isEditing }"
+						ng-show="compareChanges && changeObj.logo"
+					>
 						<img ng-src="{{ currentProfile.pendingProfile.logo }}">
 					</div>
 					
-					<!-----------------------------COMPANY SIZE...--------------------------------------->
+					<!-----------------------------COMPANY SIZE...?-------------------------------------->
 					<p>
 						<b ng-show="currentProfile.size">Company Size:</b>
 						{{ currentProfile.size }} <br>
@@ -45,12 +56,22 @@
 					<div ng-show="currentProfile.skills.length">
 						<b>Requested Skills:</b> 
 						<ul class="skills-container">
-							<li class="skill-tags" ng-class="{ 'original-skills': compareChanges && changeObj.skills, 'click-to-edit': !isPending && isEditing }" ng-repeat="skill in currentProfile.skills track by $index">
+							<li 
+								class="skill-tags" 
+								ng-class="{ 
+									'original-skills': compareChanges && changeObj.skills, 
+									'click-to-edit': !currentProfile.isPending && isEditing 
+								}" 
+								ng-repeat="skill in currentProfile.skills track by $index"
+							>
 								{{ skill.name }}
 							</li>
 						</ul> 
 						<ul class="skills-container" ng-show="compareChanges && changeObj.skills">
-							<li class="skill-tags changed-skills" ng-repeat="skill in currentProfile.pendingProfile.skills track by $index">
+							<li 
+								class="skill-tags changed-skills" 
+								ng-repeat="skill in currentProfile.pendingProfile.skills track by $index"
+							>
 								{{ skill.name }}
 							</li>
 						</ul>
@@ -59,7 +80,12 @@
 					<!-------------------------------RELOCATION REQUIREMENT----------------------------->
 					<div>
 						<b>Requires Relocation:</b>
-						<p ng-class="{ 'original-relocation': compareChanges && changeObj.relocation, 'click-to-edit': !isPending && isEditing }">
+						<p 
+							ng-class="{
+								'original-relocation': compareChanges && changeObj.relocation,
+								'click-to-edit': !currentProfile.isPending && isEditing  
+							}"
+						>
 							<span class="fa fa-check" ng-show="currentProfile.relocation"></span>
 							<span class="fa fa-ban" ng-hide="currentProfile.relocation"></span>
 							{{currentProfile.relocation || 'false'}}
@@ -74,8 +100,18 @@
 					<!----------------------------------CONTACT EMAILS---------------------------------->
 					<div ng-show="getAdmin()">
 						<b>Contact Emails</b>
-						<ul ng-class="{ 'original-contacts': compareChanges && changeObj.contactEmails }">
-							<li ng-repeat="email in currentProfile.contactEmails">{{ email }}</li>
+						<ul 
+							ng-class="{ 
+								'original-contacts': compareChanges && changeObj.contactEmails
+							}"
+						>
+							<li 
+								ng-repeat="email in currentProfile.contactEmails"
+								ng-class="{ 'click-to-edit': !currentProfile.isPending && isEditing }"
+							>{{ email }}</li>
+							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending" ng-click="openEdit('newContact')">
+								<span class="fa fa-plus"></span> Add new email
+							</li>
 						</ul>
 						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.contactEmails.length">
 							This profile currently doesn't have any contact emails

@@ -186,6 +186,7 @@ p {
 .click-to-edit {
 	margin: 0;
 	padding: 8px;
+	list-style: none;
 	
 	transition: all linear 100ms;
 }
