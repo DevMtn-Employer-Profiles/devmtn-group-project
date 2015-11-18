@@ -6,9 +6,15 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 			.then(function(result) {
 				$scope.currentProfile = result;
 				$scope.isEditing = false;
-				if (result.pendingProfile) {
-					console.log(result.pendingProfile.skills);
-					console.log(result.skills)
+				
+				if (result.isPending) {
+					$scope.changeObj = {};
+					
+					for (var key in result.pendingProfile) {
+						if (JSON.stringify(result.pendingProfile[key]) !== JSON.stringify(result[key]) && key !== 'submit') {
+							$scope.changeObj[key] = true;
+						}
+					}
 				}
 			});
 	})();

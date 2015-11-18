@@ -26,41 +26,100 @@
 		<md-dialog-content flex>
 			<div class="md-dialog-content" layout="row">
 				<div id="quick-info">
-					<div class="employer-logo-container-md">
+					<!-----------------------LOGO-------------------------------------------------------->
+					<div class="employer-logo-container-md" ng-class="{ 'original-logo': compareChanges && changeObj.logo }">
 						<img ng-src="{{ currentProfile.logo }}">
 					</div>
+					<div class="employer-logo-container-md changed-logo" ng-show="compareChanges && changeObj.logo">
+						<img ng-src="{{ currentProfile.pendingProfile.logo }}">
+					</div>
+					
+					<!-----------------------------COMPANY SIZE...--------------------------------------->
 					<p>
 						<b ng-show="currentProfile.size">Company Size:</b>
 						{{ currentProfile.size }} <br>
 						<span ng-show="compareChanges">{{ currentProfile.pendingProfile.size }}</span>
 					</p>
-					<div ng-show="currentProfile.skills[0]">
+					
+					<!------------------------------------SKILLS----------------------------------------->
+					<div ng-show="currentProfile.skills.length">
 						<b>Requested Skills:</b> 
 						<ul class="skills-container">
-							<li class="skill-tags" ng-repeat="skill in currentProfile.skills track by $index">
+							<li class="skill-tags" ng-class="{ 'original-skills': compareChanges && changeObj.skills, 'click-to-edit': !isPending && isEditing }" ng-repeat="skill in currentProfile.skills track by $index">
 								{{ skill.name }}
 							</li>
 						</ul> 
-						<ul class="skills-container" ng-show="compareChanges" ng-hide="(currentProfile.pendingProfile.skills !== currentProfile.skills)">
+						<ul class="skills-container" ng-show="compareChanges && changeObj.skills">
 							<li class="skill-tags changed-skills" ng-repeat="skill in currentProfile.pendingProfile.skills track by $index">
 								{{ skill.name }}
 							</li>
 						</ul>
 					</div>
+					
+					<!-------------------------------RELOCATION REQUIREMENT----------------------------->
+					<div>
+						<b>Requires Relocation:</b>
+						<p ng-class="{ 'original-relocation': compareChanges && changeObj.relocation, 'click-to-edit': !isPending && isEditing }">
+							<span class="fa fa-check" ng-show="currentProfile.relocation"></span>
+							<span class="fa fa-ban" ng-hide="currentProfile.relocation"></span>
+							{{currentProfile.relocation || 'false'}}
+						</p>
+						<p class="changed-relocation" ng-show="compareChanges && changeObj.relocation">
+							<span class="fa fa-check" ng-show="currentProfile.pendingProfile.relocation"></span>
+							<span class="fa fa-ban" ng-hide="currentProfile.pendingProfile.relocation"></span>
+							{{currentProfile.pendingProfile.relocation || 'false'}}
+						</p>
+					</div>
+					
+					<!----------------------------------CONTACT EMAILS---------------------------------->
+					<div ng-show="getAdmin()">
+						<b>Contact Emails</b>
+						<ul ng-class="{ 'original-contacts': compareChanges && changeObj.contactEmails }">
+							<li ng-repeat="email in currentProfile.contactEmails">{{ email }}</li>
+						</ul>
+						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.contactEmails.length">
+							This profile currently doesn't have any contact emails
+						</p>
+						
+						<ul class="changed-contacts" ng-show="compareChanges && changeObj.contactEmails">
+							<li ng-repeat="email in currentProfile.pendingProfile.contactEmails">{{ email }}</li>
+						</ul>
+						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.pendingProfile.contactEmails.length">
+							The user deleted all of their contact emails
+						</p>
+					</div>
 				</div>
 				
 				<div id="more-info">
-					<h2>{{ currentProfile.companyName }}</h2>
+					<!------------------------------COMPANY NAME--------------------------------------->
+					<h2 ng-class="{ 'original-name': compareChanges && changeObj.companyName }">
+						{{ currentProfile.companyName }}
+					</h2>
 					
-					<div id="profile-bio">
-						<h4>Description:</h4>
+					<h2 class="changed-name" ng-show="compareChanges && changeObj.companyName">
+						{{ currentProfile.pendingProfile.companyName }}
+					</h2>
+					
+					<!---------------------------------------BIO--------------------------------------->
+					<h4>Description:</h4>
+					<div class="profile-bio" ng-class="{ 'original-bio': compareChanges && changeObj.bio }">
 						<p>{{ currentProfile.bio }}</p>
 					</div>
 					
-					<div id="profile-requirements">
-						<h4>Requirements:</h4>
-						<ul>
-							<li ng-repeat="requirement in currentProfile.requirements track by $index">{{ requirement }}</li>
+					<div class="profile-bio changed-bio" ng-show="compareChanges && changeObj.bio">
+						<p>{{ currentProfile.pendingProfile.bio }}</p>
+					</div>
+					
+					<!-----------------------------------JOB POSTINGS---------------------------------->
+					<div class="profile-job-postings" ng-show="currentProfile.jobPostings[0] || (currentProfile.pendingProfile.jobPostings[0] && compareChanges)">
+						<h4>Job Postings:</h4>
+						<ul ng-class="{ 'original-postings': compareChanges && changeObj.jobPostings }">
+							<li ng-repeat="posting in currentProfile.jobPostings track by $index" ng-hide="currentProfile.jobPostings.length" ng-href="posting"><a href="{{posting}}" target="_blank">{{ posting }}</a></li>
+							<p ng-show="!currentProfile.jobPostings.length">No job postings currently listed</p>
+						</ul>
+						<ul class="changed-postings" ng-show="compareChanges && changeObj.jobPostings">
+							<li ng-repeat="posting in currentProfile.pendingProfile.jobPostings track by $index"><a href="{{posting}}" target="_blank">{{ posting }}</a></li>
+							<p ng-show="currentProfile.jobPostings.length">User deleted all job postings</p>
 						</ul>
 					</div>
 				</div>

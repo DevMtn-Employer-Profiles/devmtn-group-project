@@ -42,6 +42,45 @@ md-dialog#profile-modal {
 				width: 100%;
 			}
 		
+		#quick-info .skill-tags.original-skills, 
+		#quick-info .original-relocation,
+		#quick-info .original-contacts,
+		#more-info .original-name,
+		#more-info .original-bio,
+		#more-info .original-postings {
+			background-color: #F88;
+			padding: 5px;
+			margin: 0;
+			list-style: none;
+		}
+		
+		#quick-info .skill-tags.changed-skills, 
+		#quick-info .changed-relocation,
+		#quick-info .changed-contacts,
+		#more-info .changed-name,
+		#more-info .changed-bio,
+		#more-info .changed-postings {
+			background-color: #8F8;
+			padding: 5px;
+			margin: 0;
+			margin-top: 5px;
+			list-style: none;
+		}
+		
+		#quick-info .employer-logo-container-md.original-logo {
+			outline: 2px solid #F88;
+		}
+		
+		#quick-info .employer-logo-container-md.changed-logo {
+			outline: 2px solid #8F8;
+			
+			margin-top: 5px;
+		}
+		
+		#more-info h2, #more-info h4 {
+			margin-bottom: 0;
+		}
+		
 		md-dialog#profile-modal #more-info {
 			margin-left: 30px;
 		}
