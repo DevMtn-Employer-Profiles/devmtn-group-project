@@ -35,6 +35,7 @@
 						}"
 					>
 						<img ng-src="{{ currentProfile.logo }}">
+						<input type="text" ng-model="editObj.logo" ng-show="isEditing && editMode.logo && !currentProfile.isPending">
 					</div>
 					
 					<div 
@@ -115,8 +116,8 @@
 							>
 								<a href="mailto:{{email}}">{{ email }}</a>
 							</li>
-							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending" ng-click="openEdit('newContact')">
-								<span class="fa fa-plus"></span> Add new email
+							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending" ng-click="openEdit('newContact')" layout="row">
+								<span ng-show="!editMode.newContact"><span class="fa fa-plus"></span>&nbsp; Add new email</span>
 							</li>
 						</ul>
 						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.contactEmails.length">
@@ -206,6 +207,14 @@
 			</md-button>
 			
 			<span flex></span>
+			
+			<md-button class="button delete-button" ng-show="compareChanges && !isEditing" ng-click="rejectChanges()" aria-label="Reject Changes">
+				Reject Changes
+			</md-button>
+			
+			<md-button class="button submit-button" ng-show="compareChanges && !isEditing" ng-click="acceptChanges()" aria-label="Accept Changes">
+				Accept Changes
+			</md-button>
 			
 			<md-button class="button submit-button" ng-show="isEditing" ng-click="saveProfile()" aria-label="Save">
 				Save
