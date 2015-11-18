@@ -49,9 +49,7 @@ md-dialog#profile-modal {
 		#more-info .original-bio,
 		#more-info .original-postings {
 			background-color: #F88;
-			padding: 5px;
-			margin: 0;
-			list-style: none;
+			margin-bottom: 0;
 		}
 		
 		#quick-info .skill-tags.changed-skills, 
@@ -61,11 +59,18 @@ md-dialog#profile-modal {
 		#more-info .changed-bio,
 		#more-info .changed-postings {
 			background-color: #8F8;
-			padding: 5px;
 			margin: 0;
-			margin-top: 5px;
 			list-style: none;
 		}
+		
+		#quick-info .skills-container {
+			margin-bottom: 15px;
+		}
+		
+			#quick-info .skill-tags.changed-skills {
+				margin-right: 8px;
+				margin-top: 5px;
+			}		
 		
 		#quick-info .employer-logo-container-md.original-logo {
 			outline: 2px solid #F88;
@@ -85,8 +90,26 @@ md-dialog#profile-modal {
 			padding: 0;
 		}
 		
+		md-dialog > form ul, md-dialog > form p {
+			list-style: none;
+			margin: 0;
+			margin-top: 5px;
+			margin-bottom: 15px;
+			padding: 8px;
+		}
+		
 		#more-info h2, #more-info h4 {
-			margin-bottom: 0;
+			margin: 0;
+		}
+		
+		#more-info > div, #more-info > div > div {
+			padding: 8px;
+			width: 100%;
+			margin-bottom: 7px;
+		}
+		
+		#more-info > div > div {
+			padding: 8px 0;
 		}
 		
 		md-dialog#profile-modal #more-info {

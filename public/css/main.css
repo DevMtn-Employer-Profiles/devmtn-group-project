@@ -187,6 +187,7 @@ p {
 	margin: 0;
 	padding: 8px;
 	list-style: none;
+	width: 100%;
 	
 	transition: all linear 100ms;
 }

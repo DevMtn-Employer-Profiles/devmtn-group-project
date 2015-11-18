@@ -45,12 +45,14 @@
 						<img ng-src="{{ currentProfile.pendingProfile.logo }}">
 					</div>
 					
+					
 					<!-----------------------------COMPANY SIZE...?-------------------------------------->
 					<p>
 						<b ng-show="currentProfile.size">Company Size:</b>
 						{{ currentProfile.size }} <br>
 						<span ng-show="compareChanges">{{ currentProfile.pendingProfile.size }}</span>
 					</p>
+					
 					
 					<!------------------------------------SKILLS----------------------------------------->
 					<div ng-show="currentProfile.skills.length">
@@ -77,6 +79,7 @@
 						</ul>
 					</div>
 					
+					
 					<!-------------------------------RELOCATION REQUIREMENT----------------------------->
 					<div>
 						<b>Requires Relocation:</b>
@@ -97,6 +100,7 @@
 						</p>
 					</div>
 					
+					
 					<!----------------------------------CONTACT EMAILS---------------------------------->
 					<div ng-show="getAdmin()">
 						<b>Contact Emails</b>
@@ -108,7 +112,9 @@
 							<li 
 								ng-repeat="email in currentProfile.contactEmails"
 								ng-class="{ 'click-to-edit': !currentProfile.isPending && isEditing }"
-							>{{ email }}</li>
+							>
+								<a href="mailto:{{email}}">{{ email }}</a>
+							</li>
 							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending" ng-click="openEdit('newContact')">
 								<span class="fa fa-plus"></span> Add new email
 							</li>
@@ -118,7 +124,9 @@
 						</p>
 						
 						<ul class="changed-contacts" ng-show="compareChanges && changeObj.contactEmails">
-							<li ng-repeat="email in currentProfile.pendingProfile.contactEmails">{{ email }}</li>
+							<li ng-repeat="email in currentProfile.pendingProfile.contactEmails">
+								<a href="mailto:{{email}}">{{ email }}</a>
+							</li>
 						</ul>
 						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.pendingProfile.contactEmails.length">
 							The user deleted all of their contact emails
@@ -126,36 +134,58 @@
 					</div>
 				</div>
 				
-				<div id="more-info">
+				<div id="more-info" flex>
 					<!------------------------------COMPANY NAME--------------------------------------->
-					<h2 ng-class="{ 'original-name': compareChanges && changeObj.companyName }">
-						{{ currentProfile.companyName }}
-					</h2>
+					<div>
+						<h2 
+							ng-class="{
+								'original-name': compareChanges && changeObj.companyName,
+								'click-to-edit': !currentProfile.isPending && isEditing
+							}"
+						>
+							{{ currentProfile.companyName }}
+						</h2>
+						
+						<h2 class="changed-name" ng-show="compareChanges && changeObj.companyName">
+							{{ currentProfile.pendingProfile.companyName }}
+						</h2>
+					</div>
 					
-					<h2 class="changed-name" ng-show="compareChanges && changeObj.companyName">
-						{{ currentProfile.pendingProfile.companyName }}
-					</h2>
 					
 					<!---------------------------------------BIO--------------------------------------->
-					<h4>Description:</h4>
-					<div class="profile-bio" ng-class="{ 'original-bio': compareChanges && changeObj.bio }">
-						<p>{{ currentProfile.bio }}</p>
+					<div>
+						<h4>Description:</h4>
+						<div 
+							class="profile-bio" 
+							ng-class="{
+								'original-bio': compareChanges && changeObj.bio,
+								'click-to-edit': !currentProfile.isPending && isEditing 
+							}"
+						>
+							<span>{{ currentProfile.bio }}</span>
+						</div>
+						
+						<div class="profile-bio changed-bio" ng-show="compareChanges && changeObj.bio">
+							<span>{{ currentProfile.pendingProfile.bio }}</span>
+						</div>
 					</div>
 					
-					<div class="profile-bio changed-bio" ng-show="compareChanges && changeObj.bio">
-						<p>{{ currentProfile.pendingProfile.bio }}</p>
-					</div>
 					
 					<!-----------------------------------JOB POSTINGS---------------------------------->
 					<div class="profile-job-postings" ng-show="currentProfile.jobPostings[0] || (currentProfile.pendingProfile.jobPostings[0] && compareChanges)">
 						<h4>Job Postings:</h4>
-						<ul ng-class="{ 'original-postings': compareChanges && changeObj.jobPostings }">
+						<ul 
+							ng-class="{
+								'original-postings': compareChanges && changeObj.jobPostings,
+								'click-to-edit': !currentProfile.isPending && isEditing
+							}"
+						>
 							<li ng-repeat="posting in currentProfile.jobPostings track by $index" ng-hide="currentProfile.jobPostings.length" ng-href="posting"><a href="{{posting}}" target="_blank">{{ posting }}</a></li>
-							<p ng-show="!currentProfile.jobPostings.length">No job postings currently listed</p>
+							<span ng-show="!currentProfile.jobPostings.length">No job postings currently listed</span>
 						</ul>
 						<ul class="changed-postings" ng-show="compareChanges && changeObj.jobPostings">
 							<li ng-repeat="posting in currentProfile.pendingProfile.jobPostings track by $index"><a href="{{posting}}" target="_blank">{{ posting }}</a></li>
-							<p ng-show="currentProfile.jobPostings.length">User deleted all job postings</p>
+							<span ng-show="currentProfile.jobPostings.length">User deleted all job postings</span>
 						</ul>
 					</div>
 				</div>
