@@ -116,8 +116,19 @@
 							>
 								<a href="mailto:{{email}}">{{ email }}</a>
 							</li>
-							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending" ng-click="openEdit('newContact')" layout="row">
+							
+							<li class="click-to-edit" ng-show="isEditing && !currentProfile.isPending && !editMode.newContact" ng-click="openEdit('newContact')" layout="row">
 								<span ng-show="!editMode.newContact"><span class="fa fa-plus"></span>&nbsp; Add new email</span>
+							</li>
+							
+							<li layout="row" ng-show="editMode.newContact" class="edit-controls">
+								<input type="text" ng-model="editObj.newContact" placeholder="New email" flex>
+								<md-button class="button skill-button submit-button" aria-label="Save edit">
+									<span class="fa fa-floppy-o"></span>
+								</md-button>
+								<md-button class="button skill-button delete-button" aria-label="Delete edit">
+									<span class="fa fa-trash-o delete-button skill-button"></span>
+								</md-button>
 							</li>
 						</ul>
 						<p ng-show="compareChanges && changeObj.contactEmails && !currentProfile.contactEmails.length">

@@ -1,11 +1,14 @@
 app.controller('ModalController', function($scope, $location, $mdDialog, ModalService, MobileService, dataService) {
 	$scope.currentProfile = {};
+	$scope.editMode = {};
+	$scope.editObj = {};
 	
 	(function getReferencedProfile() {
 		dataService.getCompanyById(ModalService.currentProfileId)
 			.then(function(result) {
 				$scope.currentProfile = result;
 				$scope.isEditing = false;
+				$scope.editObj.isPending = result.isPending;
 				
 				if (result.isPending) {
 					$scope.changeObj = {};
@@ -31,6 +34,9 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	$scope.cancel = function() {
 		if ($scope.isEditing) {
 			$scope.isEditing = false;
+			$scope.editObj = {
+				isPending: $scope.currentProfile.isPending
+			};
 		} else if ($scope.compareChanges) {
 			$scope.compareChanges = false;
 		} else {
@@ -41,6 +47,85 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 	$scope.beginEdit = function() {
 		$scope.isEditing = true;
 	};
+	
+	$scope.openEdit = function(key1, key2, key3) {
+		if (key2) {
+			if (key3) {
+				$scope.editMode[key1][key2][key3] = true;
+				
+				if ($scope.currentProfile[key1][key2][key3])
+					$scope.editObj[key1][key2][key3] = JSON.parse(JSON.stringify($scope.currentProfile[key1][key2][key3]).slice());
+			
+					else
+						$scope.editObj[key1][key2][key3] = '';
+			}
+			
+			else {
+				$scope.editMode[key1][key2] = true;
+				
+				if ($scope.currentProfile[key1][key2])
+					$scope.editObj[key1][key2] = JSON.parse(JSON.stringify($scope.currentProfile[key1][key2]).slice());
+			
+				else
+					$scope.editObj[key1][key2] = '';
+			}
+		}
+		
+		else {
+			$scope.editMode[key1] = true;
+			
+			if ($scope.currentProfile[key1])
+				$scope.editObj[key1] = JSON.parse(JSON.stringify($scope.currentProfile[key1]).slice());
+			
+			else
+				$scope.editObj[key1] = '';
+		}
+		
+		console.log($scope.editObj);
+	};
+	
+	$scope.cancelEdit = function(key1, key2, key3) {
+		if (key2) {
+			if (key3) {
+				$scope.editMode[key1][key2][key3] = false;
+				
+				delete $scope.editObj[key1][key2][key3];
+			}
+			
+			else {
+				$scope.editMode[key1][key2] = false;
+				
+				delete $scope.editObj[key1][key2];
+			}
+		}
+		
+		else {
+			$scope.editMode[key1] = false;
+			
+			delete $scope.editObj[key1];
+		}
+		
+		console.log($scope.editObj);
+	};
+	
+	$scope.saveNewElement = function(key1, key2, key3) {
+		if (key2) {
+			if (key3) {
+				$scope.editMode[key1][key2][key3] = false;
+			}
+			
+			else {
+				$scope.editMode[key1][key2] = false;
+			}
+		}
+		
+		else {
+			$scope.editMode[key1] = false;
+		}
+		
+		console.log($scope.editObj);
+	};
+	
 	
 	$scope.showChanges = function() {
 		$scope.compareChanges = true;
