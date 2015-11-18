@@ -6,6 +6,10 @@ app.controller('ModalController', function($scope, $location, $mdDialog, ModalSe
 			.then(function(result) {
 				$scope.currentProfile = result;
 				$scope.isEditing = false;
+				if (result.pendingProfile) {
+					console.log(result.pendingProfile.skills);
+					console.log(result.skills)
+				}
 			});
 	})();
 	

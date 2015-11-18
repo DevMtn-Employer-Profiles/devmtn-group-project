@@ -1,5 +1,6 @@
 var Profile = require('mongoose').model('Profile'),
 	Pending = require('mongoose').model('PendingProfile'),
+	Skill = require('mongoose').model('Skill'),
 	Students = require('./studentMatchCtrl');
 
 
@@ -19,11 +20,16 @@ exports.getProfiles = function(req, res){
 
 exports.getProfileById = function(req, res){
 	Profile.findById({'_id':req.params.id})
-		   .populate('skills')
-		   .populate('pendingProfile')
+		   .populate({path: 'skills'})
+		   .populate({path:'pendingProfile'})
 		   .exec(function(err, profile){
-		res.send(profile);
-	});
+				Profile.populate(profile, {path: 'pendingProfile.skills', model: 'Skill'}, function(err, profile) {
+					if (err) 
+						return console.error(err);
+					
+					res.send(profile);
+				})
+			});
 };
 
 exports.updateProfile = function(req, res){

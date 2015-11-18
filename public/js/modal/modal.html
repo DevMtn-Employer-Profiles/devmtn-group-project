@@ -29,11 +29,20 @@
 					<div class="employer-logo-container-md">
 						<img ng-src="{{ currentProfile.logo }}">
 					</div>
-					<p><b ng-show="currentProfile.size">Company Size:</b> {{ currentProfile.size }}</p>
+					<p>
+						<b ng-show="currentProfile.size">Company Size:</b>
+						{{ currentProfile.size }} <br>
+						<span ng-show="compareChanges">{{ currentProfile.pendingProfile.size }}</span>
+					</p>
 					<div ng-show="currentProfile.skills[0]">
 						<b>Requested Skills:</b> 
 						<ul class="skills-container">
 							<li class="skill-tags" ng-repeat="skill in currentProfile.skills track by $index">
+								{{ skill.name }}
+							</li>
+						</ul> 
+						<ul class="skills-container" ng-show="compareChanges" ng-hide="(currentProfile.pendingProfile.skills !== currentProfile.skills)">
+							<li class="skill-tags changed-skills" ng-repeat="skill in currentProfile.pendingProfile.skills track by $index">
 								{{ skill.name }}
 							</li>
 						</ul>
@@ -59,11 +68,11 @@
 		</md-dialog-content>
 		
 		<div class="md-actions controls" ng-show="getAdmin()" layout="row">
-			<md-button class="other-button button" ng-show="currentProfile.pendingProfile" ng-click="showChanges()">
+			<md-button class="other-button button" ng-show="currentProfile.pendingProfile && !compareChanges" ng-click="showChanges()">
 				Show Changes
 			</md-button>
 			
-			<md-button class="other-button button" ng-hide="isEditing" ng-click="beginEdit()">
+			<md-button class="other-button button" ng-hide="isEditing || (currentProfile.pendingProfile && !isEditing)" ng-show="compareChanges && !isEditing" ng-click="beginEdit()">
 				Edit
 			</md-button>
 			
