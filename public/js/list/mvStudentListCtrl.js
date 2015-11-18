@@ -1,7 +1,7 @@
 angular.module('MainApp').controller('mvStudentListCtrl', function ($scope, $mdDialog, $window, ModalService, dataService, authService) {
 
 	//Database call functions
-	authService.getCurrentUser().then(function (res) {if(currentUser){currentUser = res; currentUserRoles = res.roles; currentUserProfile = res.showProfile;} });
+	authService.getCurrentUser().then(function (res) {if(res){currentUser = res; currentUserRoles = res.roles; currentUserProfile = res.showProfile;} });
 	dataService.getActiveCompanies().then(function (res) { $scope.profiles = res; });
 
 
