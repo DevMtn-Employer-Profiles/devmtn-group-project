@@ -2,6 +2,21 @@ app.controller('adminSkillsCtrl', function($scope, dataService) {
 	
 	$scope.skills = [];
 	$scope.addingSkill = false;
+	$scope.editList = [];
+	
+	$scope.ToggleEdit = function(skill) {
+		console.log(skill._id);
+		var iidx = $scope.editList.indexOf(skill._id);
+		console.log(iidx);
+		if(iidx === -1) {
+			//not in list
+			$scope.editList.push(skill._id);
+		} else {
+			$scope.editList.splice(iidx, 1);
+			//SAVE HERE
+			$scope.updateSkill(skill);
+		}
+	}
 	
 	$scope.getSkills = function() {
 		dataService.getSkills()
@@ -21,6 +36,7 @@ app.controller('adminSkillsCtrl', function($scope, dataService) {
 			//Refresh Skill List
 			$scope.getSkills();
 			$scope.newSkill = '';
+			$scope.addingSkill = false;
 		});
 	}
 	
