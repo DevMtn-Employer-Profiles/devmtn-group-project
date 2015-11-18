@@ -1,55 +1,58 @@
 var mongoose = require('mongoose'),
     profile = require('../controllers/profile'),
     skill = require('../controllers/skills'),
-    notification = require('../controllers/notification'),
     passport = require('passport'),
     session = require('express-session'),
     devmtn = require('./devmtnAuthConfig'),
-    devmtnCtrl = require('../controllers/devmtnAuthCtrl');
-
+    devmtnCtrl = require('../controllers/devmtnAuthCtrl'),
+	studentMatchCtrl = require('../controllers/studentMatchCtrl');
 
 module.exports = function (app){
-  /**********Endpoints**********/
-  //Profiles
-  app.get('/api/profile',/*auth.requiresApiLogin(),*/ profile.getProfiles);
-  app.get('/api/profile/pending',/*auth.requiresRole('admin'),*/ profile.getPendingProfile);
-  app.get('/api/profile/active', profile.getActiveProfile);
-  app.get('/api/profile/inactive', profile.getInactiveProfile);
-  app.get('/api/profile/:id', profile.getProfileById);
-  app.get('/api/myProfile/', devmtnCtrl.requireEmployerRole, profile.getMyProfile);
-  app.post('/api/profile', profile.createProfile);
-  app.put('/api/profile/:id', profile.updateProfile);
-  app.delete('/api/profile/:id', profile.removeProfile);
-  //Skills
-  app.get('/api/skills',/*auth.requiresApiLogin(),*/ skill.getSkills);
-  app.post('/api/skills', skill.createSkill);
-  app.delete('/api/skills/:id', skill.removeSkill);
-  //Notifications
-  app.get('/api/notifications', notification.getNotifications);
-  app.delete('/api/notifications/:id',  notification.deleteNotification);
-  app.post('/api/notifications', notification.addNotification);
-  app.put('/api/notifications/:id', notification.updateNotification);
-  //Authentication
-  app.get('/auth/devmtn', passport.authenticate('devmtn'), function(req, res) {
-    //Doesn't get called?
-    console.log('Ha ha this should not ever get printed to the console');
-  });
-  // app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
-  //       failureRedirect: '/#/landing',
-  //       successRedirect: '/#/employer'
-  //     }));
-  app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
-        failureRedirect: '/#/landing'
-      }), devmtnCtrl.loginSuccessRouter);
-  app.get('/auth/logout', devmtnCtrl.logout);
-  app.get('/auth/currentUser', devmtnCtrl.currentUser);
-  //Catch-all api errors
-  app.all('/api/*', function(req, res){
-      res.send(404);
-  });
+	/**********Endpoints**********/
+	//Profiles - Public
+	app.get('/api/profiles/active', profile.getActiveProfiles);	
+	
+	//Profiles - Admin
+	app.get('/api/profiles/all', profile.getProfiles);
+	app.get('/api/profiles/:id', profile.getProfileById);
+	app.put('/api/profiles/accept/:id', profile.acceptProfile);
+	app.put('/api/profiles/reject/:id', profile.rejectProfile);
+	app.put('/api/profiles/activate/:id', profile.rejectProfile);
+	app.put('/api/profiles/deactivate/:id', profile.rejectProfile);
+	app.put('/api/profiles/:id', profile.updateProfile);
+	app.delete('/api/profiles/:id', profile.removeProfile);
+	
+	//Profiles - Employer
+	app.get('/api/my-profile', /*devmtnCtrl.requireEmployerRole,*/ profile.getMyProfile);
+	app.put('/api/my-profile', profile.saveProfile);
+	app.put('/api/my-profile/request-approval', profile.requestApproval);
 
-  //Catch-all route errors
-  app.get('/', function(req, res){
-      res.render('index');
-  });
+	//Student Match
+	app.get('/api/matches/:id', profile.getMatches);
+	app.get('/api/students', studentMatchCtrl.getStudents);
+	app.post('/api/algorithm', studentMatchCtrl.runAlgorithm);
+	
+	//Skills
+	app.get('/api/skills', skill.getSkills);
+	app.post('/api/skills', skill.createSkill);
+	app.put('/api/skills/:id', skill.updateSkill);
+	app.delete('/api/skills/:id', skill.removeSkill);
+	
+	//Authentication
+	app.get('/auth/devmtn', passport.authenticate('devmtn'));
+	app.get('/auth/devmtn/callback', passport.authenticate('devmtn', {
+		failureRedirect: '/#/landing'
+		}), devmtnCtrl.loginSuccessRouter);
+	app.get('/auth/logout', devmtnCtrl.logout);
+	app.get('/auth/currentUser', devmtnCtrl.currentUser);
+	
+	//Catch-all api errors
+	app.all('/api/*', function(req, res){
+		res.sendStatus(404);
+	});
+
+  	//Catch-all route errors
+	app.get('/', function(req, res){
+		res.render('index');
+	});
 };

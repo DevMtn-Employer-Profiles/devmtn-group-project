@@ -1,4 +1,6 @@
 node_modules
 bower_components
+Other
 .vscode
 devmtnAuthConfig.js
+npm-debug.log

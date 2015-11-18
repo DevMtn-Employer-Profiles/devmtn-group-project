@@ -12,23 +12,18 @@ angular.module('MainApp').service('authService', function($http, $q) {
 	
 	//This feels a little buggy, probably won't work --Tim
 	this.getCurrentUser = function() {
-		var dfd = $q.defer();
-		//check local storage for the current user
-		var user = localStorage.getItem('devmtnUser');
-		if(user)
-			dfd.resolve(user);
+		var deferred = $q.defer();
+
 		//check server for the current user
 		$http({
 			method: 'GET',
 			url: '/auth/currentUser'
-		}).then(function(result) {
-			//found a current user
-			dfd.resolve(result);
-		}, function(err) {
-			//user does not find anyone as being logged in
-			dfd.resolve(err, null);
-		});
-		return dfd.promise;
+		})
+			.then(function(response) {
+				deferred.resolve(response.data);
+			});
+		
+		return deferred.promise;
 	}
 	
 	this.login = function() {

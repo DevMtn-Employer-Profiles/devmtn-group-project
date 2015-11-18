@@ -1,18 +1,18 @@
-app.controller('adminActiveCtrl', function($scope, $timeout, dataService) {
+app.controller('adminActiveCtrl', function($scope, $timeout, $mdDialog, ModalService, dataService) {
 	$scope.activeList = [];
 	
 	$scope.search = function(company) {
 		return (angular.lowercase(company.companyName).indexOf(angular.lowercase($scope.query) || '') !== -1);
 	}
 	
-	$scope.getActiveCompanies = function() {
+	function getActiveCompanies() {
 		dataService.getActiveCompanies()
 			.then(function(response) {
 				$scope.activeList = response;
 			});
 	};
 	
-	$scope.getActiveCompanies();
+	getActiveCompanies();
 	
 	$scope.updateStatus = function(company) {
 		var index = $scope.activeList.indexOf(company);
@@ -21,4 +21,22 @@ app.controller('adminActiveCtrl', function($scope, $timeout, dataService) {
 			dataService.updateProfile($scope.activeList[index]);
 		}, 50);
 	};
+	
+	$scope.openProfile = function(event, profileId) {
+		ModalService.currentProfileId = profileId;
+		 
+		$mdDialog.show({
+			controller: 'ModalController',
+			templateUrl: 'js/modal/modal.html',
+			parent: angular.element(document.body),
+			targetEvent: event,
+			clickOutsideToClose: true
+		});
+	};
+	
+	$scope.$watch(function() {
+		return ModalService.ModalSaveConfirmed
+	}, function(newValue) {
+		getActiveCompanies();
+	});
 });

@@ -1,9 +1,11 @@
-angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService) {
+angular.module('MainApp').controller('employerProfileCtrl', function($scope, dataService, $state) {
 	$scope.message = 'Hello from employer profile controller';
 	
 	$scope.isEditing  = false;
 	
 	$scope.skillsOptions = ['Angular', 'Node','React','Webpack', 'Other'];
+	
+	$scope.statusMessage = 'loading...';
 	
 	$scope.profile = {
 		companyName: 'Qualtrics',
@@ -13,10 +15,36 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		logo: 'https://image.freepik.com/free-vector/dolphin-clipart_91-5846.jpg'
 	};
 	
+	$scope.showSubmit = false;
+	
+	var setStatus = function(profile) {
+		var status = profile.hasOwnProperty('submit');
+		if(status && profile.submit != null) {
+			$scope.showSubmit = false;
+			if(profile.submit) {
+				//Status for pending administrator approval
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Pending Administrator Approval';
+			} else {
+				//status for saved but not pending
+				$scope.showSubmit = true;
+				$scope.statusMessage = 'Your profile is saved. Press submit to request administrator approval.';
+			}
+		} else {
+			if(profile.isVisible) {
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Your profile is live!';
+			} else {
+				$scope.showSubmit = false;
+				$scope.statusMessage = 'Your Profile is not live, go and edit it.';
+			}
+		}
+	}
+	
 	var loadProfile = function() {
 		dataService.getMyProfile().then(function(result) {
 			$scope.profile = result;
-			console.log("Profile Loaded: ", result);
+			setStatus(result);
 		});
 		dataService.getSkills().then(function(result) {
 			$scope.skillsOptions = result;
@@ -36,10 +64,19 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.isEditing = false;
 	}
 	
+	$scope.submitProfile = function() {
+		dataService.requestProfileApproval().then(function(result) {
+			loadProfile();
+		});
+	}
+	
 	//Saves the edited variables to the database 
 	$scope.saveEdit = function() {
 		// $scope.editedProfile._id = $scope.profile._id;
 		$scope.profile = $scope.editedProfile;
+		if($scope.profile.isVisible) {
+			$scope.profile.isPending = true;
+		}
 		//** SET SKILLS TO BE ID's ONLY
 		var newSkills = [];
 		$scope.profile.skills.forEach(function(item) {
@@ -58,8 +95,7 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		$scope.editedProfile = {};
 	}
 	
-	//Get the selected skill and add it to the list if it
-	//is not their already
+	//Skills
 	$scope.addSelectedSkill = function(newSkill) {
 		console.log("ADDING: ", newSkill);
 		if(newSkill && $scope.editedProfile.skills.indexOf(newSkill) === -1) {
@@ -67,43 +103,36 @@ angular.module('MainApp').controller('employerProfileCtrl', function($scope, dat
 		}
 	}
 	
-	//Remove the selected skill from the skills list
 	$scope.removeSkill = function(idx) {
 		$scope.editedProfile.skills.splice(idx, 1);
 	}
 	
-	//Adds the new requirement to the list and resets the inputs value
-	$scope.addNewRequirement = function(newReq) {
-		$scope.editedProfile.requirements.push(newReq);
-		$scope.newRequirement = '';
+	$scope.requestSkill = function(skill) {
+		$scope.skillToSubmit = '';
 	}
 	
-	//Splice value from an array
-	$scope.removeRequirement = function(idx) {
-		$scope.editedProfile.requirements.splice(idx, 1);
+	
+	//Job Postings
+	$scope.addNewJob = function(url) {
+		$scope.editedProfile.jobPostings.push(url);
+		$scope.newJobUrl = '';
 	}
 	
-	$scope.changeSelectedSkill = function(val) {
-		if(val ==='Other') {
-			$scope.showNewSkill = true;
-		} else {
-			$scope.showNewSkill = false;
-		}
+	$scope.removeJob = function(idx) {
+		$scope.editedProfile.jobPostings.splice(idx, 1);
 	}
 	
-	$scope.submitNewSkill = function(newSkill) {
-		if($scope.skillsOptions.indexOf(newSkill) === -1) {
-			//Send to server this new skill
-			dataService.createSkill(newSkill).then(function(result) {
-				console.log("Skill Created");
-			});
-			//add to list
-			$scope.skillsOptions.push(newSkill);
-			$scope.newSkill = '';
-			$scope.editedProfile.skills.push(newSkill);
-			$scope.showNewSkill = false;
-		}
+	//Contact Email
+	$scope.addContactEmail = function(newEmail) {
+		$scope.editedProfile.contactEmails.push(newEmail);
+		$scope.newContactEmail = '';
+	}
+	
+	$scope.deleteEmail = function(idx) {
+		$scope.editedProfile.contactEmails.splice(idx, 1);
 	}
 	
 	loadProfile();
 })
+
+//add a company url

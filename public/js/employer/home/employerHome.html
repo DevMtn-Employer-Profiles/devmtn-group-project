@@ -1,9 +1,4 @@
-<h3>Home</h3>
-<h4>Welcome!</h4>
-<p>{{welcomeMessage || defaultWelcomeMessage}}</p>
-<h4>Notifications</h4>
-<notification ng-repeat='note in notifications'></notification>
-<p ng-show='notifications.length < 1'>No current notifications.</p>
-
-<h4>Status</h4>
-<p>{{status}}</p>
+<div class='emp-land-button-container'>
+	<button class='emp-land-button' ui-sref='Employer.Students'>Our Students</button>
+	<button class='emp-land-button' ui-sref='Employer.Profile'>Your Profile</button>
+</div>

@@ -1,4 +1,4 @@
-var app = angular.module('MainApp', ['ui.router', 'ngMaterial']);
+var app = angular.module('MainApp', ['ui.router', 'ngMaterial', 'angularUtils.directives.dirPagination']);
 
 app.config(function($urlRouterProvider, $stateProvider) {
 	$stateProvider
@@ -11,11 +11,10 @@ app.config(function($urlRouterProvider, $stateProvider) {
 		
 		.state('List', {
 			url: '/list',
-			templateUrl: 'js/list/list.html',
-			controller: 'listCtrl'
+			templateUrl: 'js/list/studentList.html',
+			controller: 'mvStudentListCtrl'
 		})
-		
-		
+
 		
 		.state('Employer', {
 			url: '/employer',
@@ -41,35 +40,16 @@ app.config(function($urlRouterProvider, $stateProvider) {
 			})
 		
 		
-		
 		.state('Admin', {
 			url: '/admin',
 			templateUrl: 'js/admin/admin.html',
 			controller: 'adminCtrl'
 		})
 		
-			.state('Admin.All', {
-				url: '/all',
-				templateUrl: 'js/admin/all/all.html',
-				controller: 'adminAllCtrl'
-			})
-			
-			.state('Admin.Active', {
-				url: '/active',
-				templateUrl: 'js/admin/active/active.html',
-				controller: 'adminActiveCtrl'
-			})
-			
-			.state('Admin.Inactive', {
-				url: '/inactive',
-				templateUrl: 'js/admin/inactive/inactive.html',
-				controller: 'adminInactiveCtrl'
-			})
-			
-			.state('Admin.Pending', {
-				url: '/pending',
-				templateUrl: 'js/admin/pending/pending.html',
-				controller: 'adminPendingCtrl'
+			.state('Admin.Profiles', {
+				url: '/profiles',
+				templateUrl: 'js/admin/profiles/profiles.html',
+				controller: 'adminProfilesCtrl'
 			})
 			
 			.state('Admin.Skills', {
@@ -78,11 +58,28 @@ app.config(function($urlRouterProvider, $stateProvider) {
 				controller: 'adminSkillsCtrl'
 			})
 			
-			.state('Admin.Config', {
-				url: '/config',
-				templateUrl: 'js/admin/config/config.html',
-				controller: 'adminConfigCtrl'
-			});
+			.state('Admin.CreateProfile', {
+				url: '/create-profile',
+				templateUrl: 'js/admin/create-profile/create-profile.html',
+				controller: 'adminNewProfileCtrl'
+			})
+			
+			.state('Admin.Matching', {
+				url: '/matching',
+				templateUrl: 'js/admin/matching/adminMatching.html',
+				controller: 'adminMatchingCtrl'
+
+			})
+			
+		.state('Matching', {
+			url: '/myMatches/:id',
+			templateUrl: 'js/matchView/matchView.html',
+			controller: 'matchViewCtrl'
+		});
 	
 	$urlRouterProvider.otherwise('/');
+});
+
+app.config(function(paginationTemplateProvider) {
+	paginationTemplateProvider.setPath('js/pagination/dirPagination.tpl.html');
 });

@@ -2,7 +2,7 @@ angular.module('MainApp').directive('siteHeader', function() {
 	return {
 		restrict: 'E',
 		templateUrl: 'js/header/headerTemplate.html',
-		controller: function($scope, $http) {
+		controller: function($scope, $http, authService) {
 			$scope.login = function() {
 				$http({
 					method: 'GET',
@@ -13,6 +13,17 @@ angular.module('MainApp').directive('siteHeader', function() {
 					console.error(error);
 				})
 			}
+			
+			var getAuth = function() {
+				authService.getCurrentUser()
+					.then(function(res) {
+						$scope.loggedIn = true;
+					}, function(err) {
+						$scope.loggedIn = false;
+					});
+			}
+			
+			getAuth();
 		}
 	}
 })

@@ -2,9 +2,17 @@
 	<a href="/">
 		<img class="logo" src="/img/logowhiteblue.png" ui-sref='Landing'/>
 		<div class='header-buttons'>
-			<a href='http://profiles.devmounta.in' class='header-link'>Student Login</a>
-			<a href='/auth/devmtn' class='header-link'>Employer Login</a>
+			<a href='http://profiles.devmounta.in' class='header-link' ng-hide="loggedIn">Student Login</a>
+			
+			<a href='/auth/devmtn' class='header-link' ng-hide="loggedIn">Employer Login</a>
+			
 			<a ui-sref='List' class='header-link'>Profiles</a>
+			
+			<a ui-sref="Employer.Home" class="header-link" ng-show="loggedIn">Home</a>
+			
+			<a ui-sref="Admin.Active" class="header-link" ng-show="isAdmin">Admin</a>
+			
+			<a href="/auth/logout" class="header-link" ng-show="loggedIn">Log Out</a>
 		</div>
 	</a>
 </header>

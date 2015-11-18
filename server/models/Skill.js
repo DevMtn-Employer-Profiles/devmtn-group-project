@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var schema = mongoose.Schema({
 	name: {type: String, required: true, unique: true, trim: true},
-	created_on: {type: Date}
+	approved: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Skill', schema);

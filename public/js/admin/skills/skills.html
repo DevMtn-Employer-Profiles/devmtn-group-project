@@ -1,1 +1,51 @@
-Skills view
+<div class="subroutes" layout="row">
+	<div flex>
+		<div id="current-skills" class='two-columns skills-box' flex>
+			<input type="text" placeholder="Search skills" ng-model='searchTerms' class='pull-right'/>
+			<h3>Skills</h3>
+			<div class="skills" 
+				dir-paginate="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} | itemsPerPage: 20 track by $index" 
+				layout="row" 
+				layout-align="start center">
+				<div flex layout='row'>
+					<span ng-click='ToggleEdit(skill)' ng-show='editList.indexOf(skill._id) === -1'>{{skill.name}}</span>
+					<input flex ng-show="editList.indexOf(skill._id) > -1" type='text' ng-model='skill.name'/>
+				</div>
+				<div ng-show="editList.indexOf(skill._id) > -1" class='fa fa-floppy-o skill-button submit-button' ng-click="ToggleEdit(skill)"></div>
+				<div class='fa fa-trash-o skill-button delete-button' ng-click='removeSkill(skill._id)'></div>
+			</div>
+			
+			<div class="skills add-skill" ng-hide="addingSkill" ng-click="showAdd()">
+				<div class="fa fa-plus"></div> Add New...
+			</div>
+			
+			<form ng-submit='addNewSkill()' class="new-skill-form skills" ng-show="addingSkill" layout="row">
+				<input id="input-new-skill" type='text' placeholder="New skill..." ng-model='newSkill' flex />
+				
+				<div class="submit-button skill-button fa fa-plus" title="Add" ng-click="addNewSkill()"></div>
+				
+				<div class="delete-button skill-button fa fa-times-circle" title="Cancel" ng-click="cancelNewSkill()"></div>
+			</form>
+			
+			<div class="pagination no-select" layout="row">
+				<span flex></span>
+				<dir-pagination-controls max-size="20" direction-links="true" boundary-links="true"></dir-pagination-controls>
+				<span flex></span>
+			</div>
+		</div>
+	</div>
+	
+	<div flex>
+		<div id="pending-skills" class="two-columns">
+			<h3>Pending Skills</h3>
+			
+			<div class="skills" ng-repeat="skill in skills | orderBy: 'name' | filter: {approved: false} track by $index" layout="row" layout-align="start center">
+				<div flex>{{skill.name}}</div>
+				
+				<div class='fa fa-check skill-button submit-button' ng-click='approveSkill(skill)'></div>
+				
+				<div class='fa fa-trash-o skill-button delete-button' ng-click="removeSkill(skill._id)"></div>
+			</div>
+		</div>
+	</div>
+</div>

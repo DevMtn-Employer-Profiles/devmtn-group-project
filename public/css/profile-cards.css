@@ -1,0 +1,133 @@
+.profile-card, .employer-container {
+	width: 90%;
+}
+
+.profile-card, .two-columns, .employer-container {
+	max-width: 800px;
+	
+	border-radius: 0px;
+	margin: 10px 0;
+	
+	opacity: .9;
+	border: 1px solid lightgray;
+	
+	transition: all linear .1s;
+	box-shadow: none;
+}
+.profile-public-list{
+	max-width: 800px;
+	align-content: center;
+}
+
+.profile-card:hover, .two-columns:hover, .employer-container:hover {
+	opacity: 1;
+	box-shadow: 0 0 8px #8CE0EB;
+}
+	
+	.card-left {
+		padding-left: 20px;
+		padding-bottom: 20px;
+	}
+	
+		.employer-logo {
+			width: 150px;
+			max-width: 150px;
+			height: 150px;
+			
+			margin: 10px; 
+		}
+			
+			.employer-logo > img {
+				width: 100%;
+			}
+	
+	.employer-info {
+		width: 100%;
+		
+		padding-left: 20px;
+		
+		position: relative;
+	}
+	
+		.employer-info .company-name {
+			width: calc(100% - 40px);
+			
+			margin: 0;
+			
+			padding: 10px 20px;
+			
+			text-align: center;
+			background-color: #eee;
+		}
+		
+			.employer-info .company-name:hover, .list-company-name:hover  {
+				cursor: pointer;
+			}
+		
+		.skills-container {
+			margin-bottom: 20px;
+			padding: 0;
+		}
+		
+			.skills-container .skill-tags {
+				display: inline-block;
+				
+				margin: 5px;
+				padding: .30em .35em;
+				
+				background-color: #e5e5fe;
+				
+				/*box-shadow: 0 1px 2px #ddd;*/
+				
+				border-radius: 2px;
+			}
+		
+		.md-actions.controls {
+			height: auto;
+			min-height: auto;
+			padding: 0;
+		}
+		
+		.controls {
+			background-color: #F5F5FF;
+		}
+		
+			.controls .button {
+				height: 100%;
+				min-height: auto;
+				min-width: auto;
+				margin: 0 !important;
+				
+				line-height: 1em;
+				
+				font-size: large;
+				
+				padding: 15px 25px;
+				
+				border-radius: 0;
+			}
+		
+			.admin-control-button {
+				border-radius: 0;
+				
+				font-weight: bolder;
+				
+				margin: 0;
+				height: 100%;
+				
+				padding: 5px 15px;
+			}
+				
+				.activate-company-button:hover {
+					background-color: rgb(80,100,195) !important;
+					color: white !important;
+				}
+				
+				.delete-company-button:hover {
+					background-color: rgb(244,67,54) !important;
+				}
+				
+				.accept-changes-button:hover {
+					background-color: #4DCC27 !important;
+				}
+

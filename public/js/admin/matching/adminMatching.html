@@ -1,0 +1,83 @@
+<div class='match-container'>
+	<div>
+		<h3 class='step-title'>Step 1: Select Students</h3>
+		<hr/>
+		<p>Select students from the left column that you wish to include in this matching
+			algorithm.
+		</p>
+		<select ng-model="cohortFilter" ng-options="cohort.name for cohort in cohorts">
+		</select>
+		<br/>
+		<div class="area">
+			<div class='select-box-container'>
+				<h5 class="select-box-title">Available</h5>
+				<div class='select-box-select-area'>	
+					<div ng-repeat='student in PossibleStudents | filter: cohortFilter.value track by $index' ng-click='selectStudent(true, $index)'>
+						{{student.name.last}},&nbsp{{student.name.first}}
+					</div>
+				</div>
+			</div> 
+			<div class='div-center-buttons'>
+				<button class='match-button' ng-click='addStudent()'><i class='fa fa-chevron-right'></i></button><br/>
+				<button class='match-button' ng-click='addAllStudents()'><i class='fa fa-chevron-right'></i><i class='fa fa-chevron-right'></i></button><br/>
+				<button class='match-button' ng-click='removeAllStudents()'><i class='fa fa-chevron-left'></i><i class='fa fa-chevron-left'></i></button><br/>
+				<button class='match-button' ng-click='removeStudent()'><i class='fa fa-chevron-left'></i></button>
+			</div>
+			<div class='select-box-container'>
+				<h5 class="select-box-title">Selected</h5>
+				<div class="select-box-select-area">
+					<div ng-repeat='student in SelectedStudents track by $index' ng-click='selectStudent(false, $index)'>
+						{{student.name.last}},&nbsp{{student.name.first}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3 class='step-title'>Step 2: Select Employers</h3>
+		<hr/>
+		<p>Select employers to match the selected students with (This is a list of active profiles only)</p>
+		<br/>
+		<div class="area">
+			<div class='select-box-container'>
+				<h5 class="select-box-title">Available</h5>
+				<div class="select-box-select-area">
+					<div ng-repeat='employer in PossibleEmployers track by $index' 
+							ng-click='changeSelectedEmployer($index)'
+							class='select-me-please'>
+						{{employer.companyName}}
+					</div>
+				</div>
+			</div> 
+			<div class='div-center-buttons'>
+				<button class='match-button' ng-click='addEmployer()'><i class='fa fa-chevron-right'></i></button><br/>
+				<button class='match-button' ng-click='addAllEmployers()'><i class='fa fa-chevron-right'></i><i class='fa fa-chevron-right'></i></button><br/>
+				<button class='match-button' ng-click='removeAllEmployers()'><i class='fa fa-chevron-left'></i><i class='fa fa-chevron-left'></i></button><br/>
+				<button class='match-button' ng-click='removeEmployer()'><i class='fa fa-chevron-left'></i></button>
+			</div>
+			<div class='select-box-container'>
+				<h5 class="select-box-title">Selected</h5>
+				<div class="select-box-select-area">
+					<div class='select-me-please' ng-repeat='employer in SelectedEmployers track by $index' 
+							ng-click='removeThisSelectedEmployer = employer'>
+							<!--ng-class='{"selected-a-thing": "$index === removeThisSelectedEmployer"}'-->
+						{{employer.companyName}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<h3 class='step-title'>Step 3: Confirmation</h3>
+		<hr/>
+		<!--Error messages appear here-->
+		<div ng-show="!ready">
+			<p ng-repeat='message in readyMessages'>{{message}}</p>
+		</div>
+		<div ng-show="ready">
+			<p>Okay, this is it. Once you push the big green button I will run the matching algorithm and send the
+				matches to the employers you selected!</p>
+		</div>
+		<md-button id='bigSubmitButton' class="big-create-matches-button" ng-click='submitMatches()' ng-disabled="!ready">Match</md-button>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+.student-pic-box {
+	height: 150px;
+	width: 150px;
+	display: inline-block;
+}
+
+.student-name {
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 100%; 
+}
+
+.student-repeat {
+	width: 150px;	
+	margin: auto;
+}
+
+.list-name {
+	overflow-wrap: break-word;
+	width: 150px;
+}
+
+.student-left {
+	border: lightgray 1px solid;
+	width: 250px;
+	height: 85vh; 
+	overflow-y: scroll;
+	overflow-x: hidden;
+	box-sizing: border-box;
+	display: inline-block;
+	
+}
+
+.student-right {
+	box-sizing: border-box;
+	border: 1px solid lightgray; 
+	height: 25em;
+	width: calc(100% - 400px); 
+	display: inline-block;
+	margin-left: 2em;
+	padding: 1em;
+	margin-bottom: 6em;
+}
+
+.larger-pic {
+	height: 250px;
+	width: 250px;
+	margin: auto;
+}
+
+.student-right-left {
+	margin: auto;
+	float: left;
+	width: 45%;
+}
+
+.student-right-pic{
+	height: auto;
+	width: 150px;
+}
+
+.student-right-right {
+	width: 45%;
+	float: right;
+	text-align: center;
+	margin-right: 5em;
+}

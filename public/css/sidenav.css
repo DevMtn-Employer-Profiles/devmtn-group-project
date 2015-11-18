@@ -1,0 +1,74 @@
+/* ---- SIDENAV TOOLBAR ---- */
+.sidenav-toolbar {
+	height: 100%;
+	
+	/*background-color: #2F3F42;*/
+	
+	transition: all linear .3s;
+}
+
+		.sidenav-toolbar-open {
+			/*min-width: 200px;*/
+			width: 282px;
+		}
+		
+		.sidenav-toolbar-closed {
+			width: 85px;
+			/*transition: all .3s linear;*/
+		}
+
+
+	.sidenav-toolbar .toolbar-button, #toggle-menu-button {
+		margin: 0;
+		
+		padding: 15px 33px;
+		
+		width: 100%;
+		
+		font-size: 1.2em;
+		text-align: left;
+		line-height: 1.01em;
+		
+		border-radius: 0;
+		
+		/*color: white;*/
+		/*color: #2F3F42;*/
+	}
+		
+		.active-tab {
+			/*background-color: #BCCADE;*/
+			/*color: black !important;*/
+			background-color: #2F3F42;
+			color: white;
+		}
+		
+			.active-tab:hover, .active-tab:focus {
+				/*background-color: #BCCADE !important;*/
+				background-color: #344F4E !important;
+			}
+		
+		.sidenav-toolbar .toolbar-button > span:last-child {
+			position: relative;
+			left: -5px;
+			
+			margin-left: 30px;
+		}
+		
+			.open-expand {
+				position: absolute;
+			}
+
+/* ---- SIDENAV ANIMATION ---- */
+.open-expand.ng-hide-add,
+.open-expand.ng-hide-remove {
+  width: 87px;
+}
+
+.open-expand.ng-hide-remove {
+  -webkit-transition-delay: .1s;
+  transition-delay: .1s;
+}
+
+.open-expand.ng-hide {
+  width: 0px;
+}

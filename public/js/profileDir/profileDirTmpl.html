@@ -1,10 +1,23 @@
-<div class="list-main-box">
-	<img class="list-logo-box" ng-src="{{profile.logo}}" />
-	<div class="list-right-side">
+<div layout="row">
+	<div class="list-logo-box">
+		<img ng-src="{{profile.logo}}" />
+	</div>
+	
+	<div class="list-right-side" flex layout="column">
 		<div class="list-top-right">
-			<div class="list-company-name">{{profile.companyName}}</div>
-			<div class="list-company-bio"><p>{{profile.bio}}</p></div>
+			<div class="list-company-name" ng-click="openProfile($event, profile._id)"><strong>{{profile.companyName}}</strong></div>
+			<div class="list-company-bio">
+				<p>{{profile.bio | limitTo: 300}}<span ng-hide="profile.bio.length < 300">...</span></p>
+			</div>
 		</div>
-		<div class="list-skills-row"><p class="list-p-skills" ng-repeat="skill in profile.skills">{{skill}}</p></div>
+		
+		<div flex=""></div>
+		
+		<div class="list-skills-row" layout="row">
+			<b layout="row" layout-align="center center" ng-show="profile.skills[0]">Requested skills:</b>
+			<div class="list-skills" ng-repeat="skill in profile.skills">
+				{{skill.name}}
+			</div>
+		</div>
 	</div>
 </div>

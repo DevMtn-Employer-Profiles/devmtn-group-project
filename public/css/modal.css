@@ -1,0 +1,51 @@
+md-dialog#profile-modal {
+	border-radius: 0;
+	
+}
+
+	md-dialog.student, md-dialog.desktop {
+		width: 70%;
+		height: 70%;
+		max-width: 800px;
+		max-height: 600px;
+	}
+
+	md-dialog.mobile, md-dialog.admin {
+		width: 90%;
+		height: 90%;
+	}
+		
+		#quick-info {
+			max-width: 200px;
+		}
+
+		md-dialog > form {
+			width: 100%;
+			height: 100%;
+		}
+		
+		md-toolbar {
+			min-height: auto;
+		}
+		
+		md-toolbar .md-toolbar-tools {
+			background-color: #2F3F42;
+			line-height: .5em;
+			height: auto;
+		}
+	
+		md-dialog#profile-modal .employer-logo-container-md {
+			width: 200px;
+		}
+		
+			md-dialog#profile-modal .employer-logo-container-md > img {
+				width: 100%;
+			}
+		
+		md-dialog#profile-modal #more-info {
+			margin-left: 30px;
+		}
+		
+			.md-dialog-container {
+				z-index: 200;
+			}

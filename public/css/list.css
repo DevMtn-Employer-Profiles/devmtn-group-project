@@ -1,0 +1,161 @@
+#list-view {
+	padding-top: 20px;
+	
+	overflow: auto;
+	
+	align-items: center;
+}
+
+	.list-main-box {
+		width: 600px;
+		
+		border: 1px lightgray solid;
+		
+		/*height: 150px;*/
+		
+		margin: auto;
+		margin-bottom: 20px;
+		margin-top: 10px;
+				
+		position: relative;	
+		
+		opacity: 0.9;
+		
+		transition: all linear .1s;
+	}
+	
+	.list-main-box:hover {
+		/*box-shadow: 0 0 8px lightgray;*/
+		box-shadow: 0 0 8px #8CE0EB;
+		
+		opacity: 1;
+	}
+	
+	.list-logo-box {
+		padding: 15px;
+		
+		width: 150px;
+		height: 150px;
+	}
+		
+		.list-logo-box > img {
+			width: 100%;
+		}
+	
+	.list-right-side {
+		width: 450px;
+		
+		float: right;
+		
+		padding-left: 8px;
+		
+		box-sizing: border-box;
+	}
+	
+	.list-top-right {
+		height: 90%;
+	}
+	
+	.list-company-name {
+		font-size: 1.5em;
+		
+		text-align: center;
+		
+		color: black;
+		
+		background-color: #eee;
+		
+		font-family: Helvetica, Arial, sans-serif;
+		
+		padding: 5px;
+	}
+	
+	.list-company-bio {
+		font-size: 1em;
+		
+		/*text-align: center;*/
+		
+		color: black;
+		
+		font-family: Helvetica, Arial, sans-serif;
+		
+		padding-right: 10px; 
+	}
+	
+	.list-skills-row {
+		width: 100%;
+		
+		padding-bottom: 8px;
+	}
+	
+	.list-skills {
+		display: inline-block;
+		
+		padding: 2px 5px;
+		margin: 0 5px;
+		
+		background-color: #eee;
+		
+		border: 1px solid gray;
+		border-radius: 3px;
+	}
+	
+	.list-search-box {
+		width: 90%;
+		max-width: 800px;
+	}
+	
+		.list-search-box > input {
+			width: 100%;
+		}
+		
+/*****-!-*****/
+		
+.profile-list{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+	h1.profile-list-header{
+		text-align: center;
+	}
+	
+	.profile-list-header{
+		margin: 40px;
+	}
+	
+	.profile-list-search{
+		margin-bottom: 35px;
+	}
+	
+	.profile-badge{
+		flex-direction: column;
+		background-color: #eee;
+		width: 180px;
+		margin: 10px;
+		cursor: pointer;
+		box-sizing: border-box;
+		opacity: .85;
+		border: 1px solid lightgray;
+		transition: all linear .1s;
+		box-shadow: none;
+	}
+	.profile-badge:hover{
+		opacity: 1;
+		box-shadow: 0 0 8px #8CE0EB;
+	}
+		
+		.badge-logo-box {
+			width: calc(100% - 30px);
+			height: calc(180px - 30px);
+			flex-shrink:1;
+			padding: 15px;
+			background-color: white;
+		}
+		
+			.badge-logo-box > img {
+				width: 100%;
+			}
+	.profile-badge>.list-company-name{
+		height: calc(100%-180px);
+	}
