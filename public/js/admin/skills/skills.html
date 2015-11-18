@@ -7,11 +7,11 @@
 				dir-paginate="skill in skills | orderBy: 'name' | filter: {approved: true, name: searchTerms} | itemsPerPage: 20 track by $index" 
 				layout="row" 
 				layout-align="start center">
-				<div flex>
+				<div flex layout='row'>
 					<span ng-click='ToggleEdit(skill)' ng-show='editList.indexOf(skill._id) === -1'>{{skill.name}}</span>
-					<input ng-show="editList.indexOf(skill._id) > -1" type='text' ng-model='skill.name'/>
-					<div ng-show="editList.indexOf(skill._id) > -1" class='fa fa-floppy-o skill-button' ng-click="ToggleEdit(skill)"></div>
+					<input flex ng-show="editList.indexOf(skill._id) > -1" type='text' ng-model='skill.name'/>
 				</div>
+				<div ng-show="editList.indexOf(skill._id) > -1" class='fa fa-floppy-o skill-button submit-button' ng-click="ToggleEdit(skill)"></div>
 				<div class='fa fa-trash-o skill-button delete-button' ng-click='removeSkill(skill._id)'></div>
 			</div>
 			
