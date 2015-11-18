@@ -3,6 +3,8 @@ angular.module('MainApp').directive('siteHeader', function() {
 		restrict: 'E',
 		templateUrl: 'js/header/headerTemplate.html',
 		controller: function($scope, $http, authService) {
+			$scope.loggedIn = false;
+			
 			$scope.login = function() {
 				$http({
 					method: 'GET',
@@ -15,9 +17,12 @@ angular.module('MainApp').directive('siteHeader', function() {
 			}
 			
 			var getAuth = function() {
-				authService.getCurrentUser()
+				authService.getCurrentUser(false)
 					.then(function(res) {
 						$scope.loggedIn = true;
+						if(!res) {
+							$scope.loggedIn = false;
+						}
 					}, function(err) {
 						$scope.loggedIn = false;
 					});
