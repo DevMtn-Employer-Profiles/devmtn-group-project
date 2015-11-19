@@ -24,16 +24,20 @@ header {
 	display: inline-block;
 }
 
-.header-link {
+a.header-link {
 	display: inline-block;
-	text-decoration: none;
-	color: #404041;
 	padding: 0px 11px;
 	box-sizing: border-box;
 	margin-top: 10px
 }
 
-.header-link:hover {
+.header-buttons a:link, .header-buttons a:visited {
+	color: #404041;
+	
+	text-decoration: none;
+}
+
+a.header-link:hover {
 	color: #2AABE2;
 }
 

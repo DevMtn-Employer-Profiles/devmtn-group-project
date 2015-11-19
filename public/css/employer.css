@@ -71,15 +71,20 @@
 	max-height: 125px;
 }
 
+.delete-x {
+	transition: all linear .1s;
+}
+
 .delete-x:hover {
 	cursor: pointer;
-	color: #2AABE2;
+	color: #F22A2A;
+	text-shadow: 0 0 3px #E23A3A;
 }
 
-.stretch > a {
+/*.stretch > a {
 	color: black;
-}
+}*/
 
-.stretch > a:hover {
+/*.stretch > a:hover {
 	color: #2AABE2;
-}
+}*/
