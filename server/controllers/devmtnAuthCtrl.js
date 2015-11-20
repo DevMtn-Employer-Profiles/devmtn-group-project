@@ -71,7 +71,7 @@ module.exports = {
 		if(req.isAuthenticated()) {
 			res.json(req.user);
 		} else {
-			res.status(401).send();
+			res.send(null);
 		}
 	},
 	requireAdminRole: function(req, res, next) {
@@ -83,8 +83,9 @@ module.exports = {
 			res.status(401).json('Resource available for admins only');
 		}
 	},
+	
 	requireEmployerRole: function(req, res, next) {
-		console.log(req.isAuthenticated());
+		console.log('requiring roles: ',req.isAuthenticated());
 		if(req.isAuthenticated() && !req.user.isAdmin) {
 			next();
 		}  else  {

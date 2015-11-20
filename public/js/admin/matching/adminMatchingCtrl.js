@@ -167,8 +167,7 @@ app.controller('adminMatchingCtrl', function ($scope, dataService, $state) {
 			};
 			//Send to server to run algorithm
 			dataService.runAlgorithm(data).then(function(result) {
-				
-				$state.go('Admin.All');
+				$state.go('Admin.Profiles');
 			});
 		}
 	}

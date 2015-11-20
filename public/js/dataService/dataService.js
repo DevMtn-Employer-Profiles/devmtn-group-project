@@ -1,42 +1,15 @@
 angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	
-	// Default response functions
-	var simpleDataReturn = function(result) {
-		return result.data;
-	};
-	
-	var handleError = function(error) {
-		if(error.status===401) {
-			//unauthorized! get them out of here!
-			$state.go('Landing');
-		}
-		console.error(error);
-	};
-	
-	
-	// API Calls - Public
-	
+	/**********API Calls**********/
+	// Profiles - Public	
 	this.getActiveCompanies = function() {
 		return $http({
 			method: 'GET',
 			url: '/api/profiles/active'
 		}).then(simpleDataReturn, handleError);
-	}
-	
-	// API Calls - Admin
-	this.getCompanyById = function(companyId) {
-		var deferred = $q.defer();
-		
-		$http({
-			method: 'GET', 
-			url: '/api/profiles/' + companyId
-		}).then(function(response) {
-			deferred.resolve(response.data);
-		}, handleError);
-		
-		return deferred.promise;
 	};
 	
+	// Profiles - Admin
 	this.getAllCompanies = function() {
 		var deferred = $q.defer();
 		
@@ -50,12 +23,17 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 		return deferred.promise;
 	};
 	
-	this.deleteCompany = function(companyId) {
-		return $http({
-			method: 'DELETE',
-			url: '/api/profiles/' + companyId	
-
-		}).then(simpleDataReturn, handleError);
+	this.getCompanyById = function(companyId) {
+		var deferred = $q.defer();
+		
+		$http({
+			method: 'GET', 
+			url: '/api/profiles/' + companyId
+		}).then(function(response) {
+			deferred.resolve(response.data);
+		}, handleError);
+		
+		return deferred.promise;
 	};
 	
 	this.acceptCompany = function(company) {
@@ -80,7 +58,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 			url: '/api/profiles/activate/' + company._id,
 			data: company
 		});
-	}
+	};
 	
 	this.deactivateProfile = function(company) {
 		return $http({
@@ -88,22 +66,7 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 			url: '/api/profiles/deactivate/' + company._id,
 			data: company
 		});
-	}
-	
-	this.updateSkill = function(skill) {
-		return $http({
-			method: 'PUT',
-			url: '/api/skills/'+skill._id,
-			data: skill
-		}).then(simpleDataReturn, handleError);
-	}
-	
-	this.deleteSkill = function(skillId) {
-		return $http({
-			method: 'DELETE',
-			url: '/api/skills/' + skillId
-		}).then(simpleDataReturn, handleError);
-	}
+	};
 	
 	// __________ MAYBE... ____________________ 
 	// this.createCompany = function(company) {
@@ -114,51 +77,16 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 	// 	}).then(simpleDataReturn, handleError)
 	// }
 	
-	//Admin Matching Web Requests
-	this.getAllStudents = function() {
+	this.deleteCompany = function(companyId) {
 		return $http({
-			method: 'GET',
-			url: '/api/students'
+			method: 'DELETE',
+			url: '/api/profiles/' + companyId	
+
 		}).then(simpleDataReturn, handleError);
 	};
+	//End
 	
-	this.getMatchData = function(matchId) {
-		return $http({
-			method: 'GET',
-			url: '/api/matches/'+matchId
-		}).then(simpleDataReturn, handleError);
-	};
-	
-	this.runAlgorithm = function(data) {
-		return $http({
-			method: 'POST',
-			url: '/api/algorithm',
-			data: data
-		});
-	};
-	
-	//Employer Web Requests
-	this.createSkill = function(skill) {
-		return $http({
-			method: 'POST',
-			url: '/api/skills',
-			data: skill
-		}).then(simpleDataReturn, handleError);
-	};
-	
-	this.getSkills = function() {
-		var deferred = $q.defer();
-		
-		$http({
-			method: 'GET',
-			url: '/api/skills'
-		}).then(function(result) {
-			deferred.resolve(result.data);
-		}, handleError);
-		
-		return deferred.promise;
-	};
-	
+	//Profiles - Employer
 	this.getMyProfile = function() {
 		return $http({
 			method: 'GET',
@@ -180,4 +108,81 @@ angular.module('MainApp').service('dataService', function($http, $q, $state) {
 			url: '/api/my-profile/request-approval'
 		}).then(simpleDataReturn, handleError);
 	};
+	//End
+	
+	//Student Match
+	this.getAllStudents = function() {
+		return $http({
+			method: 'GET',
+			url: '/api/students'
+		}).then(simpleDataReturn, handleError);
+	};
+	
+	this.getMatchData = function(matchId) {
+		return $http({
+			method: 'GET',
+			url: '/api/matches/'+matchId
+		}).then(simpleDataReturn, handleError);
+	};
+	
+	this.runAlgorithm = function(data) {
+		return $http({
+			method: 'POST',
+			url: '/api/algorithm',
+			data: data
+		});
+	};
+	//End
+	
+	//Skills
+	this.getSkills = function() {
+		var deferred = $q.defer();
+		
+		$http({
+			method: 'GET',
+			url: '/api/skills'
+		}).then(function(result) {
+			deferred.resolve(result.data);
+		}, handleError);
+		
+		return deferred.promise;
+	};
+	
+	this.createSkill = function(skill) {
+		return $http({
+			method: 'POST',
+			url: '/api/skills',
+			data: skill
+		}).then(simpleDataReturn, handleError);
+	};
+	
+	this.updateSkill = function(skill) {
+		return $http({
+			method: 'PUT',
+			url: '/api/skills/'+skill._id,
+			data: skill
+		}).then(simpleDataReturn, handleError);
+	};
+	
+	this.deleteSkill = function(skillId) {
+		return $http({
+			method: 'DELETE',
+			url: '/api/skills/' + skillId
+		}).then(simpleDataReturn, handleError);
+	};
+	//End
+	
+	// Default response functions
+	function simpleDataReturn(result) {
+		return result.data;
+	};
+	
+	function handleError(error) {
+		if(error.status===401) {
+			//unauthorized! get them out of here!
+			$state.go('Landing');
+		}
+		console.error(error);
+	};
+	
 });
