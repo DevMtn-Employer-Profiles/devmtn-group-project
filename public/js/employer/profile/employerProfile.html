@@ -36,7 +36,7 @@
 		</div>
 		<div class="stretch">
 			<h4>Company Website</h4>
-			<a class='employer-section' ng-href='{{profile.website}}'>{{profile.website || 'http://___________'}}</a>
+			<a class='employer-section' ng-href='{{profile.website}}' target="_blank">{{profile.website || 'http://___________'}}</a>
 			<h4>Requirements</h4>
 			<div class="employer-section">
 			<h5>Relocation</h5>
@@ -50,7 +50,7 @@
 			<h4>Job Postings</h4>
 			<ul>
 				<li ng-show='profile.jobPostings.length < 1'>No Job Postings Found</li>
-				<li ng-repeat='posting in profile.jobPostings'>{{posting}}</li>
+				<li ng-repeat='posting in profile.jobPostings'><a href="{{posting}}" target="_blank">{{posting}}</a></li>
 			</ul>
 			<h4>More</h4>
 			<p>This information is not visible on your profile, but helps us stay in contact
@@ -59,7 +59,7 @@
 				<h5>Contact Emails</h5>
 				<ul>
 					<li ng-show='profile.contactEmails.length < 1'>No Contact Emails Found</li>
-					<li ng-repeat="email in profile.contactEmails">{{email}}</li>
+					<li ng-repeat="email in profile.contactEmails"><a href="mailto:{{ email }}" target="_blank">{{email}}</a></li>
 				</ul>
 			</div>
 		</div>

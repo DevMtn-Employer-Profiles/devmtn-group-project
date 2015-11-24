@@ -42,6 +42,89 @@ md-dialog#profile-modal {
 				width: 100%;
 			}
 		
+		#quick-info .skill-tags.original-skills, 
+		#quick-info .original-relocation,
+		#quick-info .original-contacts,
+		#more-info .original-name,
+		#more-info .original-bio,
+		#more-info .original-postings {
+			background-color: #F88;
+			margin-bottom: 0;
+		}
+		
+		#quick-info .skill-tags.changed-skills {
+			background-color: #8F8;
+		}
+		 
+		#quick-info .changed-relocation,
+		#quick-info .changed-contacts,
+		#more-info .changed-name,
+		#more-info .changed-bio,
+		#more-info .changed-postings {
+			background-color: #8F8;
+			margin: 0;
+			margin-bottom: 15px; 
+		}
+		
+		#quick-info .skills-container {
+			margin-bottom: 15px;
+		}
+		
+			#quick-info .skill-tags.changed-skills {
+				margin-right: 8px;
+				margin-top: 5px;
+			}		
+		
+		#quick-info .employer-logo-container-md.original-logo {
+			outline: 2px solid #F88;
+		}
+		
+		#quick-info .original-logo.click-to-edit {
+			padding: 0;
+		}
+		
+		#quick-info .employer-logo-container-md.changed-logo {
+			outline: 2px solid #8F8;
+			
+			margin-top: 5px;
+		}
+		
+		#quick-info .changed-logo.click-to-edit {
+			padding: 0;
+		}
+		
+		md-dialog > form ul, md-dialog > form p {
+			list-style: none;
+			margin: 0;
+			margin-top: 0px;
+			margin-bottom: 15px;
+			padding: 8px;
+		}
+		
+		md-dialog .edit-controls button {
+			border-radius: 0;
+			padding: 8px;
+			margin: 0;
+			line-height: 1em;
+		}
+		
+		#quick-info b, #more-info h2, #more-info h4 {
+			display: block;
+			margin: 0;
+			width: calc(100% - 16px);
+			padding: 8px;
+		}
+		
+		/*#more-info > div, #more-info > div > div {
+			width: calc(100% - 16px);
+			padding: 8px;
+		}*/
+		
+		#more-info > div > div {
+			padding: 8px;
+			width: calc(100% - 16px);
+		}
+		
 		md-dialog#profile-modal #more-info {
 			margin-left: 30px;
 		}

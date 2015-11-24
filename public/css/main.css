@@ -13,6 +13,25 @@ p {
 	margin-bottom: .5em;
 }
 
+a {
+	transition: all linear .1s;
+}
+
+form a:link, .route-container a:link, .subroutes a:link {
+	color: #1964BF;
+	text-decoration: none;
+	/*font-weight: bold;*/
+}
+
+form a:link, .route-container a:hover {
+	text-decoration: underline;
+	color: #2AABE2 !important;
+}
+
+form a:link, .route-container a:visited {
+	color: #1964BF;
+}
+
 
 /*  ---------  GENERAL CLASSES COULD BE USED ELSEWHERE  ------------  */
 
@@ -186,6 +205,8 @@ p {
 .click-to-edit {
 	margin: 0;
 	padding: 8px;
+	list-style: none;
+	width: 100%;
 	
 	transition: all linear 100ms;
 }
